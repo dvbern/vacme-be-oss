@@ -1,0 +1,738 @@
+{
+    "FACH-APP": {
+        "START-PAGE": {
+            "CODE": "Code à 6 caractères",
+            "SUCHEN": "Rechercher",
+            "REGESTRIEREN": "Enregistrer",
+            "REGESTRIEREN-TEXT": "Enregistrer une nouvelle personne",
+            "REGISTRIEREN-TEXT-AFFENPOCKEN": "Enregistrer une nouvelle personne (Variole du singe)",
+            "REGISTRIEREN-TEXT-FSME": "Enregistrer une nouvelle personne (FSME)",
+            "ODI": {
+                "NEU": "Lieu de vaccination",
+                "BEARBEITEN": "Modifier"
+            },
+            "TOOLS": "Autres fonctions",
+            "SUCHEN-TITLE": "Rechercher la personne à vacciner",
+            "SUCHEN-KVK-TITLE": "Rechercher le numéro de carte d’assurance maladie",
+            "SUCHEN-KVK-TEXT": "Numéro d’enregistrement inconnu ? Recherche par numéro de carte d’assurance maladie",
+            "SUCHE_MIT_PERSONALIEN": "Chercher par nom, prénom et date de naissance (avec rendez-vous ou déjà vacciné ici)",
+            "PERSONALIEN-SUCHE-GOTO": "Ouvrir",
+            "OEFFNEN": "Ouvrir",
+            "CLEAR": "Effacer la recherche",
+            "TAGES-STATISTIK": {
+                "TITLE": "Statistiques quotidiennes des vaccinations",
+                "SELECT": "Afficher les statistiques du lieu de vaccination",
+                "AUSBLENDEN": "cacher",
+                "IMPFSTOFF_UNBEKANNT": "Pas clairement défini *",
+                "DURCHGEFUEHRT": {
+                    "TITLE": "Vaccinations réalisés",
+                    "TOTAL": "Total",
+                    "IMPFUNG-1": "Vaccin I",
+                    "IMPFUNG-2": "Vaccin II",
+                    "IMPFUNG-N": "Vaccin N"
+                },
+                "GEPLANT": {
+                    "TITLE": "Total (réalisé plus en attente)",
+                    "TOTAL": "Total",
+                    "IMPFUNG-1": "Vaccin I",
+                    "IMPFUNG-2": "Vaccin II",
+                    "IMPFUNG-N": "Vaccin N"
+                },
+                "PENDENT": {
+                    "TITLE": "Vaccinations en attente, y compris recommandation vaccinale",
+                    "TOTAL": "Total",
+                    "IMPFUNG-1": "Vaccin I",
+                    "IMPFUNG-2": "Vaccin II",
+                    "IMPFUNG-N": "Vaccin N"
+                },
+                "HINT": "* Pour la vaccination 1 : Libre choix du vaccin<br>Pour la vaccination 2 : 1ère vaccination correspondante non (encore) réalisée<br>Pour la vaccination N : Plusieurs vaccins sont recommandés",
+                "HINT2": "** Toutes les vaccinations ayant été effectué après la deuxième vaccination ou en cas de malade du COVID après la première vaccination.",
+                "DETAILLINK": "(Détails)"
+            },
+            "TAGES-STATISTIK-DETAIL": {
+                "TOTAL": "Total",
+                "VON": "De",
+                "BIS": "Jusqu'au",
+                "IMPFUNG-1": "Vaccin I",
+                "IMPFUNG-2": "Vaccin II",
+                "IMPFUNG-N": "Vaccin N",
+                "NOCH_PENDENT": "Pas encore apparu : ",
+                "NOCH_PENDENT_NO_SELECTION": "Veuillez sélectionner une entrée dans le tableau",
+                "TITLE-PENDENT": "Pendant",
+                "LINK-PENDENT": "encore ouvert"
+            }
+        },
+        "KONTROLLE": {
+            "TITLE": "Personne à vacciner (contrôle {{i}})",
+            "TITLE-NEW": "Enregistrement de la personne à vacciner",
+            "SPEICHERN": "Terminer l’enregistrement",
+            "PERSON_SPEICHERN": "Enregistrer",
+            "TERMIN1": "Date 1",
+            "TERMIN2": "Date 2",
+            "TERMIN": "Rendez-vous",
+            "IMPFUNG1": "Vaccination 1",
+            "IMPFUNG2": "Vaccination 2",
+            "FRUEHERE_IMPFUNGEN": "Vaccinations passées",
+            "KEINE_FRUEHERE_IMPFUNGEN": "Pas de vaccination passée",
+            "TERMIN_NOCH_UNBEKANNT": "Rendez-vous pas encore fixé",
+            "TERMIN_NICHT_BENOETIGT": "Deuxième rendez-vous n’est pas nécessaire",
+            "IDENTITAET-GEPRUEFT": "Identité contrôlée",
+            "DRUCKEN": "Imprimer la confirmation d’enregistrement",
+            "ERROR_WRONG_STATE": "Le statut de l’enregistrement est inattendu.",
+            "UPLOAD_BUTTON": "Charger le fichier",
+            "ANHANG": "Annexe",
+            "BEMERKUNGEN": "Remarques: ",
+            "BEIDE_TERMINE_VERSCHIEBEN": "Reporter ou annuler les deux rendez-vous",
+            "BOOSTER_TERMIN_VERSCHIEBEN": "Reporter ou annuler le rendez-vous",
+            "DOCUMENTS": "Documents",
+            "GOTO_IMPFUNG": "Vers la vaccination",
+            "MOBIL_CONFIRMATION": "Voulez-vous vraiment décocher cette option? Cela retirera la personne du Report 'Personnes à vacciner par les équipes mobiles'",
+            "MOBIL_CONFIRMATION_DEP": "Voulez-vous vraiment cocher cette option? En principe, aucun nouvel enregistrement n'est accepté pour les équipes mobiles.",
+            "DIALOG_CONFIRM_BIRTHDATE": "Cette personne a {{age}} ans. Veuillez confirmer la date de naissance",
+            "DIALOG_CONFIRM_BIRTHDATE_PLACEHOLDER": "Date de naissance, par exemple le 31.12.1980",
+            "ERROR_LOADING_IMPFSTOFFE": "Impossible de charger les vaccins",
+            "ERROR_LOADING_KK": "Impossible de charger les assurances maladie",
+            "VERSTORBEN": {
+                "CANCEL": "Annuler",
+                "CONFIRM": "Confirmer",
+                "CONFIRM_QUESTION": "Cette personne est-elle réellement décédée?",
+                "QUESTION": "Cette personne est décédée"
+            },
+            "NEXT_FREIGABE_TEXT": "La prochaine vaccination peut être réservée à partir du {{datumFreigabe}}.",
+            "ALREADY_FREIGEGEBEN_TEXT": "Le rendez-vous peut être réservé",
+            "TERMIN_BUCHEN": "Réserver un rendez-vous",
+            "LEISTUNGSERBRINGER_AGB": {
+                "TITLE": "Consentement de la personne souhaitant être vaccinée",
+                "TEXT": "L'extension de l'offre de gestion des vaccinations FSME dans VacMe a été mise en œuvre par DV Bern AG (fabricant de VacMe). La réalisation et la documentation de la vaccination FSME auront lieu dans des pharmacies autorisées. Le canton de Berne n'est pas responsable de l'organisation et de la gestion des vaccinations FSME. Veuillez confirmer que la personne souhaitant se faire vacciner a été informée à ce sujet et qu'elle accepte la déclaration de consentement et les conditions d'utilisation de DV Bern AG.",
+                "AGB": "La personne qui souhaite se faire vacciner accepte les <a class='text-link' target='_blank' href='/assets/files/AGB_DV_Bern_VacMe_fr.pdf'>conditions d’utilisation</a>.",
+                "EINWILLIGUNG": "La personne qui souhaite se faire vacciner a lu et accepte la <a class='text-link' target='_blank' href='/assets/files/Einverstaendniserklaerung_vacme_be_fr.pdf'>déclaration de consentement</a>."
+            }
+        },
+        "ODI": {
+            "STAMMDATEN": {
+                "REGISTRIERUNG": "Ajouter un nouveau lieu de vaccination",
+                "BEARBEITUNG": "Lieu de vaccination",
+                "IDENTIFIER": "Code",
+                "NAME": "Nom",
+                "ADRESSE1": "Adresse 1",
+                "ADRESSE2": "Adresse 2",
+                "PLZ": "NPA",
+                "ORT": "Localité",
+                "OEFFENTLICH": "Accessible au public",
+                "MOBILER-ODI": "Centre mobile de vaccination",
+                "TERMINVERWALTUNG": "Gestion des rendez-vous via VacMe",
+                "EXTERNER_BUCHUNGSLINK": "Lien externe de réservation",
+                "EXTERNER_BUCHUNGSLINK_HINT": "Lien pour la réservation du rendez-vous, par ex. <a href=\"https://www.google.ch/\" target=\"_blank\">https://www.google.ch/</a>",
+                "PERSONALISIERTER_IMPF_REPORT": "Autorisé à recevoir un rapport de vaccination personnalisé",
+                "DEAKTIVIERT": "Désactivé",
+                "BOOSTER": "Vaccinations rappel",
+                "IMPFUNG_GEGEN_BEZAHLUNG": "Vaccination payante",
+                "BOOSTER_IMPFSTOFF": "Vaccins disponibles",
+                "ZSR-NUMMER": " No RCC",
+                "GLN-NUMMER": "No GLN",
+                "TYP-TEXT": "Lieu de vaccination",
+                "TYP": {
+                    "ALTERSHEIM": "EMS",
+                    "APOTHEKE": "Pharmacie",
+                    "HAUSARZT": "Cabinet médical",
+                    "IMPFZENTRUM": "Centre de vaccination",
+                    "KINDER_IMPFZENTRUM": "Centre de vaccination pour enfants",
+                    "MOBIL": "Equipe mobile de vaccination",
+                    "SPITAL": "Hôpital",
+                    "ANDERE": "Autre"
+                },
+                "KOMMENTAR": "Remarques",
+                "SPEICHERN": "Enregistrer le lieu de vaccination",
+                "CODE_UEBERPRUEFEN": "Vérifier le code",
+                "FACHVERANTWORTUNGBAB": "Responsable technique (autorisation d’exercer)",
+                "ORGANISATIONSVERANTWORTUNG": "Responsable de l’organisation",
+                "KUNDENGRUPPE": "Groupe de client",
+                "TERMINE_BEARBEITEN": "Modifier les rendez-vous",
+                "ZURUECK": "Interrompre",
+                "TERMINE_ABSAGEN": "Annuler tout les rendez-vous",
+                "TERMINE_ABSAGEN_QUESTION": "Annuler tout les rendez-vous de cette journée?",
+                "TERMINE_ABSAGEN_ZWEITTERMIN_CONFIRM": "Je confirme que tout les rendez-vous pour la deuxième vaccination sélectionnés pour ce jour seront supprimé. Dans ce cas les personnes à vacciner seront informées par un SMS ou une lettre et devront réserver un nouveau second rendez-vous de vaccination via VacMe ou un callcenter",
+                "TERMINE_ABSAGEN_ERSTTERMIN_CONFIRM": "Je confirme que tout les rendez-vous pour la première vaccination sélectionnés pour ce jour ainsi que les rendez-vous pour la seconde vaccination correspondant seront supprimé. Dans ce cas les personnes à vacciner seront informées par un SMS ou une lettre et devront réserver les deux rendez-vous de vaccination via VacMe ou un callcenter",
+                "TERMINE_ABSAGEN_BOOSTERTERMIN_CONFIRM": "Je confirme que tous les rendez-vous de rappel seront supprimés ce jour-là. Dans ce cas, toutes les personnes à vacciner seront informées par SMS ou par lettre et devront réserver un nouveau rendez-vous de rappel via VacMe ou via le centre d’appel."
+            },
+            "KUNDENGRUPPE": {
+                "GALENICA": "Galenica",
+                "DROPA": "Dropa",
+                "UNBEKANNT": "Unbekannt"
+            },
+            "TERMINVERWALTUNG": {
+                "TITLE": "Gestion des rendez-vous",
+                "IMPFSLOTS_ERSTELLEN": "Créer les emplacements de rendez-vous",
+                "SPEICHERN": "Enregistrer le rendez-vous",
+                "MONAT": {
+                    "0": "Janvier",
+                    "1": "Février",
+                    "2": "Mars",
+                    "3": "Avril",
+                    "4": "Mai",
+                    "5": "Juin",
+                    "6": "Juillet",
+                    "7": "Août",
+                    "8": "Septembre",
+                    "9": "Octobre",
+                    "10": "Novembre",
+                    "11": "Décembre"
+                },
+                "ZEILENSUMME": "Total",
+                "DATUM": "Date",
+                "VALIDIERUNG_TITEL": "Attention: pour les premiers RDV, il y a trop peu de seconds RDV aux intervalles de {{desiredDays}} jours appropriés :",
+                "VALIDIERUNG_ZEILE": "RDV 1 {{datum1Display}}: {{kap1}}, RDV 2 {{datum2Display}}: {{kap2}}",
+                "COVID": "Covid",
+                "AFFENPOCKEN": "Mpox",
+                "FSME": "FSME"
+            },
+            "BENUTZER": {
+                "TITEL": "Personnes",
+                "ROLLE": {
+                    "PERSONAL": "Personnel",
+                    "FACHPERSONAL": "Personnel spécialisé",
+                    "ORGANISATIONSSUPERVISION": "Supervision (organisation)",
+                    "ORGANISATIONSVERANTWORTUNG": "Responsabilité (organisation)",
+                    "FACHSUPERVISION": "Supervision technique",
+                    "FACHVERANTWORTUNG_BAB": "Responsabilité technique (autorisation d’exercer)",
+                    "FACHVERANTWORTUNG_BAB_DELEGIERT": "Responsabilité technique (autorisation d’exercer) (délégué)"
+                },
+                "BEARBEITUNG": "Modifier l’utilisateur",
+                "REGISTRIERUNG": "Créer un utilisateur",
+                "FIRSTNAME": "Prénom",
+                "LASTNAME": "Nom de famille",
+                "EMAIL": "Adresse électronique",
+                "PHONE": "No de portable",
+                "GLNNUMMER": " No GLN ",
+                "USERNAME": "Nom d'utilisateur",
+                "SPEICHERN": "Enregistrer l’utilisateur",
+                "ROLLE-TEXT": "Rôle",
+                "LOESCHEN": "Supprimer un utilisateur",
+                "SPERREN": "Bloquer un utilisateur",
+                "ENTSPERREN": "Débloquer l'utilisateur",
+                "LOESCHEN.CONFIRM.TITLE": "Êtes-vous sûr de vouloir supprimer l'utilisateur {{user}} ?",
+                "LOESCHEN.CONFIRM.OK": "Oui",
+                "LOESCHEN.CONFIRM.CANCEL": "Annuler"
+            },
+            "BENUTZERLISTE": {
+                "BENUTZER_ERFASSEN": "Saisir un utilisateur",
+                "FACHROLLE": "Rôle",
+                "FIRSTNAME": "Prénom",
+                "LASTNAME": "Nom de famille",
+                "USERNAME": "Nom d'utilisateur",
+                "MEHR_LADEN": "Charger plus"
+            },
+            "ODI_FILTER": {
+                "TITLE": "Filtres",
+                "BEARBEITEN": "Modifier les filtres",
+                "TYP": "Type de filtre",
+                "STRING_ARGUMENT": "Valeur texte",
+                "MINIMAL_WERT": "Plus grand que",
+                "MAXIMAL_WERT": "Valeur maximale",
+                "NEW": "Nouveau filtre",
+                "SAVE": "Enregistrer",
+                "TYP_ENUM": {
+                    "AGE_FILTER": "Age",
+                    "GESCHLECHT_FILTER": "Sexe",
+                    "PRIORITAET_FILTER": "Priorité",
+                    "PRIORITAET_PUNKT_FILTER": "Points de priorité",
+                    "REGISTRIERUNGS_EINGANG": "Reçu d'enregistrement",
+                    "CHRONISCHE_KRANKHEITEN": "Maladies chroniques",
+                    "BERUFLICHE_TAETIGKEIT": "Profession",
+                    "LEBENSUMSTAENDE": "Cadre de vie"
+                }
+            }
+        },
+        "UPLOAD": {
+            "FILENAME": "nom du fichier "
+        }
+    },
+    "FACH-ADMIN": {
+        "DATEN_KORREKTUR": {
+            "TITLE": "Correction des données",
+            "REGISTRIERUNGSNUMMER": "Numéro d’enregistrement",
+            "IMPFUNG": {
+                "TITLE": "Corriger une vaccination",
+                "IMPFFOLGE": "Séquence de vaccination",
+                "ERSTE_IMPFUNG": "Première vaccination",
+                "ZWEITE_IMPFUNG": "Deuxième vaccination",
+                "BOOSTER_IMPFUNG": "Vaccination rappel",
+                "IMPFUNG_UND_NR": "Vaccination",
+                "IMPFUNG_NR": "Vaccination n°{{num}} - {{date}}"
+            },
+            "BOOSTER": {
+                "BOOSTERNR": "Séléction de la vaccination rappel"
+            },
+            "KORRIGIEREN": "Corriger",
+            "SUCCESS": "Vaccination ajustée. N'oubliez pas de corriger l'autre vaccination si nécessaire.",
+            "SUCCESS_PERSONENDATEN": "Données personnelles modifiées",
+            "SUCCESS_DOWNLOAD_IMPFDOKU": "Télécharger la documentation de vaccination",
+            "SUCCESS_EMAIL_TELEPHONE": "E-Mail et Numéro de téléphone mobile modifié",
+            "DELETE_ACCOUNT": "Supprimer l'enregistrement",
+            "DELETE_ACCOUNT_QUESTION": "Êtes-vous sûr de vouloir supprimer l'enregistrement, y compris l'historique et le compte d'utilisateur ?",
+            "EMAIL_TELEPHONE": "Modifier le courriel et le numéro de portable des accès en ligne",
+            "USERDATA": "Données d'utilisateur",
+            "USERNAME": "Nom d'utilisateur",
+            "EMAIL_TELEPHONE_INFO": "Seuls l'email et le numéro de télephone de l'utilisateur seront modifié, ceux de l'enregistrement lié ne seront pas modifié, voulez-vous continuer?",
+            "IMPFUNG_DATEN": "Modifier les données de vaccination (vaccin, lot, volume)",
+            "IMPFUNG_ORT": "Modifier le lieu de vaccination",
+            "SELBSTZAHLENDE": "Modifier mode du paiement",
+            "ONBOARDING": "Onboarding",
+            "ONBOARDING_SEND": "Envoyer lettre d'onboarding",
+            "ONBOARDING_NOT_POSSIBLE": "Un login existe déjà pour cet enregistrement",
+            "IMPFUNG_VERABREICHUNG": "Modifier l'injection",
+            "IMPFSTOFF_EINGESTELLT_WARNUNG": "L'utilisation de {{impfstoff}} a été cessé",
+            "IMPFUNG_DATUM": "Modifier les dates de vaccination",
+            "PERSONENDATEN": "Modifier les données personnelles de base",
+            "DELETE_IMPFUNG": "Supprimer la vaccination (uniquement duplicata ou vaccination incorrecte)",
+            "DELETE_IMPFUNG_WARNING_DIALOG": {
+                "TITLE": "Une vaccination effectuée ne doit pas être supprimée!",
+                "LABEL": "Vous ne pouvez supprimer que les doublons ou les vaccinations saisies à tort. Dans ce cas, cette vaccination ne sera pas remboursée, sera supprimée par le VMDL et les éventuels certificats COVID délivrés seront révoqués.",
+                "CONFIRM": "Supprimer un doublon ou une vaccination erronée",
+                "CANCEL": "Vaccination effectuée, annuler"
+            },
+            "KORREKTUR_TYP": "Correction désirée",
+            "KRANKHEIT": "Maladie Type",
+            "OPEN_MASK": "Ouvrir la page de correction",
+            "SUCHE_MIT_PERSONALIEN": "Recherche d’une personne vaccinée par son nom, son prénom et sa date de naissance",
+            "ZERTIFIKAT": "Certificat",
+            "ZERTIFIKAT_NEU_ERSTELLEN": "Établir un nouveau certificat",
+            "ZERTIFIKAT_FORCE_POST": "Forcer la livraison du certificat par courrier",
+            "DURCHFUEHRENDE_PERSON": "Personne chargée d’administrer le vaccin: ",
+            "ZERTIFIKAT_ZURUECKZIEHEN": "Retirer le certificat",
+            "ZERTIFIKAT_REVOKE_AND_RECREATE": "Réétablir le certificat",
+            "ZERTIFIKAT_BEREITS_PER_POST_GESCHICKT": "Attention, l'envoie postale a déjà été déclenché le {{timestampLetzterPostversand}}"
+        }
+    },
+    "IMPFDOK": {
+        "TITLE": "Documentation relative à la vaccination {{i}}",
+        "NO_ACCESS": "Il n’est pas ou plus possible d’accéder à la documentation pour cet enregistrement",
+        "VERANTWORTLICH": "Responsable",
+        "DURCHFUEHREND": "Personne chargée d’administrer le vaccin",
+        "EINWILLIGUNG": {
+            "LABEL": "Consentement vaccination",
+            "OHNE_VORBEHALT": "Consentement sans réserve",
+            "OHNE_VORBEHALT_AFFENPOCKEN": "La fiche d’information de l’OFSP au sujet de la vaccination contre la variole du singe a été lue et la déclaration de consentement a été dûment signée",
+            "MIT_VORBEHALT": "Consentement à l’encontre des recommandations actuelles (à consigner dans les remarques)"
+        },
+        "IMPFSTOFF": "Vaccin",
+        "IMPFSTOFF_ZULASSUNG": {
+            "ZUGELASSEN": "",
+            "EMPFOHLEN": "",
+            "EXTERN_ZUGELASSEN": "(seulement pour des vaccinations externes)",
+            "NICHT_ZUGELASSEN": "(non approuvé)",
+            "NICHT_WHO_ZUGELASSEN": "(non approuvé par l'OMS)"
+        },
+        "LOT": "Charge / LOT",
+        "IMMUNSUPPRIMIERT": "Personne immunosupprimée ?",
+        "KEIN_FIEBER": "Pas de fièvre",
+        "KEINE_NEUE_KRANKHEIT": "Pas de nouvelles maladies",
+        "KEIN_FIEBER_KEINE_KONTRAINDI": {
+            "LABEL": "Pas de fièvre et pas de contre-indications",
+            "KEINE_NEUE_ERKRANKUNGEN_COVID": "Pas de nouvelles maladies",
+            "KEINE_NEUE_ERKRANKUNGEN_AFFENPOCKEN": "Avoir ≥18 ans et ne jamais avoir contracté la variole du singe",
+            "KEINE_NEUE_ERKRANKUNGEN_FSME": "TODO Text definieren",
+            "KEINE_ALLERGIEN_1": "Ne pas présenter d’allergie significative pour la vaccination ",
+            "KEINE_ALLERGIEN_2": "ou voir les remarques",
+            "KEINE_ALLERGIEN_INFO_COVID": "Important: réaction généralisée/anaphylaxie aux substances du vaccin ARN, sensibilité connue ou supposée du type immédiat au polyéthylèneglycol (PEG, Macrogol) ou à la trométhamine (TRIS, Trométamol), anaphylaxie après la première dose du vaccin ARN. En cas d’anaphylaxie grave (de degré III/IV) avec un déclencheur peu clair ou pas encore vérifié ou lors d’une anaphylaxie idiopathique, il convient de consulter un médecin allergologue.",
+            "KEINE_ALLERGIEN_INFO_AFFENPOCKEN": "Incompatibilités ou allergies connues aux composants du vaccin (y compris protéines de poulet, tromé-tamol, gentamicine, benzonase, ciprofloxacine)",
+            "KEINE_ALLERGIEN_INFO_FSME": "Allergie aux protéines de poulet, aux médicaments ou à un composant du vaccin",
+            "KEINE_REAKTIONEN": "Ne pas avoir eu de réaction à d’autres vaccins par le passé (voir remarques)",
+            "KEINE_REAKTION_FSME": "Pas de réaction anaphylactique à une vaccination antérieure",
+            "KEINE_WIRKUNGEN_FSME": "Pas d'effets indésirables graves dus à d'autres vaccinations dans le passé ou voir remarques",
+            "KEIN_REGELMAESSIGE_MEDIKAMENTE_FSME": "Pas de médicaments réguliers ou voir remarques"
+        },
+        "KEINE_BESONDEREN_UMSTAENDE": {
+            "LABEL": "Pas de circonstances particulières",
+            "KEIN_BLUTVERDUENNUNG": "Pas d’anticoagulants, voir remarques",
+            "KEIN_BLUTVERDUENNUNG_FSME": "Pas d'anticoagulant ou risque connu de saignement ou voir remarques"
+        },
+        "ZECKENSTICH": "Piqûre de tique au cours des 4 dernières semaines ?",
+        "SCHWANGER": "Femme enceinte ?",
+        "RISIKOREICHES_SEXUALLEBEN": "Comportement sexuel à risque ?",
+        "IMPFUNG_AUS_BERUFLICHEN_GRUENDEN": "Vaccination pour raisons professionnelles ?",
+        "KONTAKT_MIT_PERSON_AUS_RISIKOGRUPPE": "Contact à risque avec des personnes infectées ?",
+        "OPTIONAL-TRUE-FALSE-OPTION": {
+            "TRUE": "oui",
+            "FALSE": "non",
+            "KEINE_ANGABE": "Ne souhaite pas donner d’information"
+        },
+        "SCHWANGER_WARNUNG": "Précision pour les pharmacies: les femmes enceinte ont besoin d'une attestation",
+        "SELBSTZAHLENDE": "Mode du paiement:",
+        "SELBSTZAHLENDE_OPTION": {
+            "SELBSTZAHLENDE": "Vaccination payante",
+            "IMPFKAMPAGNE_COVID": "Vaccination de la campagne de vaccination COVID-19",
+            "ZAHLUNGSTYP_KRANKENKASSE": "Vaccination à facturer par la caisse maladie"
+        },
+        "SELBSTZAHLENDE_WARNUNG": {
+            "IMMUNSUPPRIMIERT": "{{vorname}} {{name}} est immunodéprimé. Le règlement devrait se faire par le biais de la campagne de vaccination COVID-19.",
+            "INFO_POPUP": "Attention ! Veuillez vérifier que le mode de paiement est correctement réglé."
+        },
+        "VERABREICHUNG_ART": "Mode d’administration",
+        "VERAB_ART": {
+            "INTRA_MUSKULAER": "Intramusculaire",
+            "SUBKUTAN": "Sous-cutané",
+            "INTRADERMAL": "Par voie intradermique"
+        },
+        "VERABREICHUNG_ORT": "Endroit de l’injection",
+        "VERAB_ORT": {
+            "OBERARM": "Haut du bras",
+            "UNTERARM": "Avant-bras",
+            "OBERSCHENKEL": "Cuisse",
+            "ANDERER_ORT": "Autre endroit"
+        },
+        "VERABREICHUNGORTLR": "",
+        "LINKS_RECHTS": {
+            "LINKS": "Côté droit",
+            "RECHTS": "Côté gauche"
+        },
+        "MENGE": "Quantité en ml",
+        "SPEICHERN_WARN": "Vous ne pourrez plus modifier les informations après l’enregistrement.",
+        "SPEICHERN": "Vacciné-e",
+        "ZURUECK": "Retour",
+        "BEMERKUNG": "Remarque",
+        "DRUCKEN": "Imprimer la documentation",
+        "ERROR": {
+            "LOAD-DATA": "La documentation n’a pas pu être chargée",
+            "WRONG-STATUS": "Le statut de l’enregistrement n’est pas le bon. {{dossierStatus}}. Maladie: {{dossierKrankheit}} (Dossier) respectivement {{urlKrankheit}} (URL)"
+        },
+        "REG-BEMERKUNG": "Remarque concernant l’enregistrement",
+        "REG-KONTROLLE-N": "Remarque concernant le contrôle n°{{impffolgeNr}}",
+        "TERMIN": {
+            "HEUTE": "Aujourd'hui",
+            "ERSTE_IMPFUNG": "Date 1",
+            "ZWEITE_IMPFUNG": "Date 2",
+            "ANPASSEN": "Modifier le rendez-vous",
+            "IN": "dans",
+            "SEIT": "depuis",
+            "TAGEN": "jours",
+            "CANCEL_TERMIN_2": "Annuler le rendez-vous",
+            "AD_HOC": "Créer un RDV aujourd'hui"
+        },
+        "ODI": "Lieu de vaccination",
+        "ZURUEK_ZU_KONTROLLE": "Vaccination impossible",
+        "ZURUEK_ZU_KONTROLLE.CONFIRM": "Vaccination impossible ?",
+        "ZURUEK_ZU_KONTROLLE.CONFIRM_ZURUEK": "Oui, non vacciné",
+        "ZURUEK_ZU_KONTROLLE.CONFIRM_CANCEL": "Annuler",
+        "KEIN_ZWEITE_IMPFUNG": {
+            "TRIGGER": "Abandonner vaccination 2",
+            "ZWEITE_TITLE": "Vaccination impossible ?",
+            "ERSTE_TITLE": "Abandonner la deuxième vaccination?",
+            "CONFIRM_ZURUEK": "Oui",
+            "CONFIRM_CANCEL": "Annuler",
+            "VERSCHIEBEN": "La deuxième vaccination ne peut pas être faite aujourd'hui, p.ex. le vacciné a de la fièvre",
+            "VERZICHTEN": "Renoncer à la seconde injection et clôturer le dossier de vaccination",
+            "BEGRUENDUNG": "Raison pour la documentation de vaccination",
+            "BEGRUENDUNG_VOLLSTAENDIGER_IMPFSCHUTZ": "Raison pour la documentation de vaccination: La personne ayant précédemment contracté le COVID-19 de manière avérée, il a été décidé de renoncer à administrer la seconde dose de vaccin. Selon les prescriptions de l’Office fédéral de la santé publique (OFSP), seule une injection est recommandée dans cette situation.",
+            "VOLLSTAENDIGER_IMPFSCHUTZ": "Protection vaccinale complète selon les termes de l’Office fédéral de la santé publique (OFSP) en raison d'une infection au COVID-19 confirmée",
+            "VOLLSTAENDIGER_IMPFSCHUTZ_BEGRUENDUNG": "Une seule vaccination est recommandée aux personnes qui ont été malades du COVID-19 et dont l’infection a été confirmée.",
+            "POSITIV_GETESTET_DATUM": "Date du test positif",
+            "POSITIV_GETESTET": "Test positif le {{date}}"
+        },
+        "NOT_SAME_ODI": {
+            "TERMIN1": "Le rendez-vous 1 a été pris au lieu de vaccination \"{{i}}\".",
+            "TERMIN2": "Le rendez-vous 2 a été pris au lieu de vaccination \"{{i}}\".",
+            "TERMIN": "Le rendez-vous a été pris au lieu de vaccination \"{{i}}\".",
+            "GEWUENSCHTER_ODI": "L’endroit souhaité pour la vaccination est \"{{i}}\""
+        },
+        "NACHTRAG_IMPFUNG_N": {
+            "IMPFUNG_HEUTE": "La dose de vaccin n°{{n}} est administrée au-jour-d'hui",
+            "IMPFUNG_NACHTRAG": "La dose de vaccin n°{{n}} a déjà été administrée",
+            "ERSTE_IMPFUNG_ERFASSEN": "Vous devez documenter la vaccination n°{{n}} avant de commencer à documenter n°{{m}}",
+            "DATUM_ERSTE_IMPFUNG": "Date de la vaccination n°{{n}}",
+            "IMPFUNG_1_NACHTRAGEN": "Sauvegarder la documentation",
+            "EXTERN": "Vaccination n°{{n}} effectuée ailleurs ou sous un autre enregistrement"
+        },
+        "NUR_EINE_DOSIS": {
+            "CONFIRM": "Une seule dose est requise pour ce vaccin. Le deuxième rendez-vous sera supprimé si nécessaire. Veuillez confirmer que la personne vaccinée sera informée."
+        },
+        "GRUNDIMMUNISIERUNG_OPTION": {
+            "TRUE": "Cette vaccination fait encore partie de la vaccination de base",
+            "FALSE": "Cette vaccination est une vaccination de rappel"
+        },
+        "IMPF_SCHEMA": "Schéma de vaccination",
+        "IMPF_SCHEMA_OPTION": {
+            "SCHNELLSCHEMA": "Schéma rapide",
+            "KONVENTIONELL": "Conventionnel"
+        }
+    },
+    "REPORTS": {
+        "ASYNC": {
+            "TABLETITLE": "Rapports asynchrones",
+            "NORESULTS": "Actuellement, il n'existe pas de rapports générés de manière asynchrone pour votre utilisateur."
+        },
+        "TITLE": "Rapports et statistiques",
+        "ANZEIGEN": "Afficher",
+        "REPORTING_KANTON": "Reporting Canton",
+        "REPORTING_KANTON_STATISTIK": "Enregistrements Canton CSV",
+        "REPORTING_KANTONSARZT_STATISTIK": "Enregistrements médecin cantonal CSV",
+        "REPORTING_IMPFUNGEN_STATISTIK": "Vaccinations CSV",
+        "REPORTING_TERMINSLOTS_STATISTIK": "Reporting Terminslots CSV",
+        "REPORTING_ODIS_STATISTIK": "Reporting ODIs CSV",
+        "REPORTING_KANTON_FILENAME": "ReportingKanton.xlsx",
+        "REPORTING_KANTON_CSV_FILENAME": "EnregistrementsCanton.csv",
+        "REPORTING_IMPFUNGEN_CSV_FILENAME": "ReportingImpfungen.csv",
+        "REPORTING_TERMINSLOTS_CSV_FILENAME": "ReportingTerminslots.csv",
+        "REPORTING_ODIS_CSV_FILENAME": "ReportingOdis.csv",
+        "REPORTING_KANTONSARZT_CSV_FILENAME": "EnregistrementsgMédecinCantonal.csv",
+        "REPORTING_ODI_IMPFUNGEN_STATISTIK": "Reporting ODI Vaccinations",
+        "REPORTING_ODI_IMPFUNGEN_CSV_FILENAME": "ReportingOdiImpfungen.xlsx",
+        "REPORTING_ODI_TERMINBUCHUNGEN_STATISTIK": "Reporting ODI Réservations de dates",
+        "REPORTING_ODI_TERMINBUCHUNGEN_CSV_FILENAME": "ReportingOdiTerminbuchungen.xlsx",
+        "ABRECHNUNG": {
+            "FILE_NAME": "Abrechnung.xlsx",
+            "TITLE": "Décomptes campagne de vaccination COVID-19",
+            "START": "Télécharger le décompte",
+            "VON": "De",
+            "BIS": "À"
+        },
+        "ABRECHNUNG_ERWACHSEN": {
+            "FILE_NAME": "AbrechnungErwachsen.xlsx",
+            "TITLE": "Décomptes campagne de vaccination COVID-19 >= 12 ans"
+        },
+        "ABRECHNUNG_KIND": {
+            "FILE_NAME": "AbrechnungKind.xlsx",
+            "TITLE": "Décomptes campagne de vaccination COVID-19 < 12 ans"
+        },
+        "IMPFUNGEN_FHIR": {
+            "FILE_NAME": "ReportingImpfungen_{{regNum}}.xml",
+            "TITLE": "Vaccination FHIR"
+        },
+        "ABRECHNUNG_ZH": {
+            "FILE_NAME": "AbrechnungZH.xlsx",
+            "TITLE": "Décomptes campagne de vaccination COVID-19 du canton de Zürich 65+/-"
+        },
+        "ABRECHNUNG_ZH_KIND": {
+            "FILE_NAME": "AbrechnungZHKind.xlsx",
+            "TITLE": "Décomptes campagne de vaccination COVID-19 du canton de Zürich 11+/-"
+        },
+        "ABRECHNUNG_ZEITRAUM_TOO_BIG": "La période est trop grande, seuls 366 jours sont autorisés au maximum",
+        "TBL": {
+            "TYP": "Type",
+            "STATUS": "Statut",
+            "ZEIT_BESTELLT": "Temps de commande",
+            "ZEIT_GELIEFERT": "Livré Temps",
+            "ZEIT_FILENAME": "Nom du fichier",
+            "LINK": "Télécharger"
+        }
+    },
+    "SYSTEM_ADMINISTRATION": {
+        "TERMIN": "Rendez-vous",
+        "TITLE": "Administration du système",
+        "ANZEIGEN": "Afficher",
+        "RE_GENERATE_DOKUMENTE": "Générer à nouveau les documents et envoyer à la poste (uniquement Callcenter)",
+        "RE_GENERATE_DOKUMENTE_SAVE_DB": "Générer à nouveau et les sauvegarder dans une base de données  (uniquement Callcenter)",
+        "STICHTAG": "Date limite (14:00 la veille jusqu'à 14:00 le jour de l'échéance)",
+        "DOWNLOAD_DOKUMENTE": "Télécharger les documents",
+        "ZIP_DOWNLOAD_FILENAME": "Dokumente_{{stichtag}}.zip",
+        "PROCESS_UPLOAD_MYCOVIDVAC": "Traiter / télécharger sur MyCOVIDvac (mesvaccins)",
+        "IMPFGRUPPE_FREIGEBEN": "Autoriser le groupe cible",
+        "IMPFGRUPPENFREIGABE": "Libération du groupe de vaccination",
+        "RUN_JOB_STATISTIK_ERSTIMPFUNGEN": "Envoyer un courriel avec le nombre de premières et booster vaccinations",
+        "JOB_STATISTIK_ERSTIMPFUNGEN_SUCCESS": "Les informations ont été envoyées à l'adresse e-mail configurée",
+        "ZERTIFIKAT_ENABLED": "La création d'un Certificat COVID doit-elle apparaitre",
+        "ZERTIFIKAT_ENABLED_SPEICHERN": "Sauvegarder la préférence de certificat",
+        "IMPFSTOFF": {
+            "TITLE": "Éditer le vaccin",
+            "IMPFSTOFF": "Vaccin",
+            "NAME": "Nom",
+            "HERSTELLER": "Fabricant",
+            "CODE": "Code",
+            "COVID_CERT_PROD_CODE": "Certificat Covid Prod Code",
+            "HEX_FARBE": "Couleur (code hexadécimal)",
+            "ANZAHL_DOSEN_BENOETIGT": "Nombre de boîtes nécessaires",
+            "ZULASSUNGS_STATUS": "Statut d'autorisation",
+            "INFORMATIONS_LINK": "Lien d'information",
+            "TITLE_EMPFEHLUNG": "Recommandation de vaccination CH pour la immunisation de base",
+            "ANZAHL_VERABREICHT": "nombre administré",
+            "NOTWENDIG_FUER_GRUNDIMMUNISIERUNG": "Nécessaire pour la immunisation de base",
+            "ADD_EMPFEHLUNG": "Ajouter une recommandation",
+            "IMPFSTOFFTYP": "Type de vaccins",
+            "ZULASSUNGS_STATUS_BOOSTER": "Statut de l'autorisationBooster",
+            "EINGESTELLT": "Cessé",
+            "HINWEIS_10_MINUTEN": "Remarque : Si le nouveau calcul doit être effectué après l'édition du vaccin. Veuillez attendre 10 minutes après l'édition avant de lancer un nouveau calcul.",
+            "WHOCH2_CODE": "WHoch2 Code",
+            "KRANKHEIT": "La maladie"
+        }
+    },
+    "ERROR_FILE_TOO_BIG": "Le dossier est trop volumineux. Max 10MB",
+    "ERROR_COMBINED_FILES_TOO_BIG": "Les fichiers sont trop gros ensemble pour le téléchargement commun",
+    "ERROR_UNKOWN_KRANKHEIT": "La maladie transmise n'est pas prise en charge pour la saisie dans le système.",
+    "ERR_FALSCHE_PERS": "Un contrôle précédent a révélé qu’il s’agissait de la mauvaise personne.",
+    "ERR_NO_IMPFABLE_PERS": "Aucune personne à vacciner n’a été trouvée.",
+    "UPLOAD_FILE_ERROR": "Les fichiers n’ont pas pu être chargés.",
+    "REG_VALIDATION": {
+        "AGE_WARNING_CHILD": "La personne a moins de {{warnage}} ans.",
+        "AGE_WARNING_CHILD_COVID": "La personne a moins de 12 ans. N'utilisez que Pfizer/BioNTech Comirnaty® 10 Mikrogramm/Dosis (Kinderimpfung) !",
+        "AGE_WARNING_ADULT_COVID": "La personne a plus de 12 ans. N'utilisez pas Pfizer/BioNTech Comirnaty® 10 Mikrogramm/Dosis (Kinderimpfung)",
+        "TITLE": "Attention",
+        "PHONE_NOT_SWISS_MOBILE": "Le numéro saisi ne semble pas être un numéro de téléphone mobile suisse. Vous pouvez toujours le sauvegarder si vous êtes sûr que des SMS peuvent être envoyés à ce numéro.",
+        "IMPFUNG_WAS_SAME_DAY": "Cette personne a déjà été vaccinée aujourd'hui",
+        "MIN_DAYS_NOT_VALID": "L'intervalle entre les vaccinations est inférieur aux quatre semaines recommandées",
+        "MAX_DAYS_NOT_VALID": "L'intervalle entre les vaccinations est supérieur aux quatre semaines recommandées",
+        "WRONG_IMPFGRUPPE": "Le groupe cible '{{gruppe}' n’est pas encore autorisé",
+        "WRONG_STATUS": "La personne n'est pas dans le bon état du système",
+        "DIFFERENT_IMPFSTOFF": "Un vaccin différent a été utilisé lors de la vaccination précédente",
+        "BUTTON_SAVE_ANYWAY": "Vacciner néanmoins",
+        "BUTTON_CANCEL": "Annuler",
+        "NO_TERMIN": "La personne à vacciner n'a pas de rendez-vous",
+        "USER_NOT_FOR_ODI": "Le rendez-vous actuel {{impffolge}} se trouve dans un lieu de vaccination  au quel vous n'êtes pas attribué",
+        "WRONG_TERMIN": "La personne à vacciner n'a pas de rendez-vous aujourd'hui",
+        "WRONG_ODI": "La personne à vacciner est enregistré dans un autre lieu de vaccination",
+        "ODI_INAKTIV": "Ce lieu de vaccination n'est plus actif",
+        "NICHT_FREIGEGEBEN_SELBSTZAHLER": "L'intervalle entre la dernière vaccination ou maladie Covid est inférieur à celui recommandé par la CFVI.",
+        "IMPFSTOFF_EINGESTELLT": "L'utilisation de {{impfstoff}} a été cessé"
+    },
+    "TERMINFINDUNG": {
+        "TERMIN_ANDERER_ODI": "La personne a un rendez-vous dans un autre lieu de vaccination. Voulez-vous remplacer ce rendez-vous?",
+        "ABBRECHEN": "Annuler",
+        "UEBERSCHREIBEN": "Remplacer"
+    },
+    "ADMIN": {
+        "DATUM": "Date",
+        "BUCHUNGEN_TERMIN_1": "Prise du RDV 1",
+        "BUCHUNGEN_TERMIN_1_SHORT": "Prise du RDV 1",
+        "BUCHUNGEN_TERMIN_2": "Prise du RDV 2",
+        "BUCHUNGEN_TERMIN_2_SHORT": "Prise du RDV 2",
+        "BUCHUNGEN_TERMIN_N": "Prise du RDV N",
+        "BUCHUNGEN_TERMIN_N_SHORT": "Prise du RDV N",
+        "KAPAZITAET_TERMIN_1": "Capacité RDV 1",
+        "KAPAZITAET_TERMIN_1_SHORT": "Capacité RDV 1",
+        "KAPAZITAET_TERMIN_2": "Capacité RDV 2",
+        "KAPAZITAET_TERMIN_2_SHORT": "Capacité RDV 2",
+        "KAPAZITAET_TERMIN_N": "Capacité RDV N",
+        "KAPAZITAET_TERMIN_N_SHORT": "Capacité RDV N",
+        "FREIE_TERMIN_1_SHORT": "1. RDV disp.",
+        "FREIE_TERMIN_1": "1. RDV disponible",
+        "FREIE_TERMIN_2_SHORT": "2. RDV disp.",
+        "FREIE_TERMIN_2": "2. RDV disponible",
+        "FREIE_TERMIN_N_SHORT": "N. RDV disp.",
+        "FREIE_TERMIN_N": "N. RDV disponible",
+        "IMPFUNGEN_1_SHORT": "Vacc. 1",
+        "IMPFUNGEN_1": "Vaccination 1",
+        "IMPFUNGEN_2_SHORT": "Vacc. 2",
+        "IMPFUNGEN_2": "Vaccination 2",
+        "IMPFUNGEN_N_SHORT": "Vacc. N",
+        "IMPFUNGEN_N": "Vaccination N",
+        "TOTAL": "Total",
+        "ANZAHL_REGISTRIERUNGEN": "Nombre de enregistrements",
+        "VERSION": "Version"
+    },
+    "NAVIGATION_SERVICE": {
+        "PERSON_BEREITS_KONTROLLIERT": "{{person}} a déjà été vérifié et est prêt pour la vaccination",
+        "PERSON_BEREITS_GEIMPFT": "{{person}} a déjà été entièrement vacciné"
+    },
+    "IMPFDOSSIER_SUMMARY": {
+        "TITLE": "Dossiers de vaccination",
+        "IMPFUNGSDATEN_LETZTE_IMPFUNG": "Dernière vaccination avec le vaccin {{impfstoff}} le {{timestampImpfung}}",
+        "IMPFUNG_AUSSTEHEND": "Pas de vaccination encore effectuée"
+    },
+    "GEIMPFT": {
+        "TITLE": "{{person}} a été vacciné de la manière suivante:",
+        "BEMERKUNGENIMPFUNG": "Remarques:",
+        "IMPFUNGSDATEN": "Vaccination {{impffolge}} avec le vaccin {{impfstoff}} le {{timestampImpfung}}",
+        "IMPFUNG_VERZICHTET_GRUND": "Raison pour laquelle la deuxième vaccination a été abandonnée",
+        "IMPFUNG_VERZICHTET": "La deuxième vaccination a été abandonnée le {{datum}}",
+        "IMPFUNG_GEHOERT_ZU_GRUNDIMMUNISIERUNG": "La vaccination fait partie de l’immunisation de base",
+        "IMPFUNG_GEHOERT_NICHT_ZU_GRUNDIMMUNISIERUNG": "Rappel",
+        "SCHWANGER": "Pendant la grossesse",
+        "SCHON_ABGESCHLOSSEN": "La deuxième vaccination n'a pas été faite. Le dossier a été fermé le {{datum}}.",
+        "ZWEITE_IMPFUNG_WAHRNEHMEN": "Administrer quand même la seconde injection",
+        "ERKRANKUNG_ENTFERNEN": "Supprimer la maladie COVID-19 enregistrée",
+        "WEITERE_IMPFUNG_WAHRNEHMEN": "Administrer une injection supplémentaire",
+        "WEITERE_IMPFUNG_WAHRNEHMEN_AFFENPOCKEN": "Administrer une injection supplémentaire contre la variole du singe",
+        "WEITERE_IMPFUNG_WAHRNEHMEN_FSME": "Administrer une injection supplémentaire contre la FSME",
+        "IMPFUNG_AUSSTEHEND": "Vaccination {{impffolge}} en attente",
+        "IMPFDOKUMENTATION": "Télécharger la documentation de vaccination",
+        "SPEICHERN": "Enregistrer les remarques",
+        "GOTO_KONTROLLE": "Au contrôle",
+        "IMPFAUSWEIS": {
+            "SPEICHERN": "Sauvegarder",
+            "NO_API_TOKEN": "La création de certificat n'est pas possible pour le moment, veuillez réessayer plus tard ou contacter le support cantonal.",
+            "NO_API_TOKEN_SHORT": "La création de certificat n'est pas possible pour le moment, veuillez réessayer plus tard",
+            "DOWNLOAD": "Télécharger",
+            "GENERATE_AND_DOWNLOAD": "Générer et télécharger",
+            "FORCED_GENERATION_INFO": "La création du certificat sur place annule l'envoi automatique par voie postale. Veuillez donner le document à la personne vaccinée pour qu'elle l'emporte avec elle.",
+            "TITLE": "Certificat COVID-19",
+            "NO_ZERTIFIKAT_FOR_NEWEST_IMPFUNG": "La dernière vaccination ne donne pas droit à un certificat."
+        },
+        "EXTERNE_IMPFUNGEN": {
+            "TITLE": "Certificat de vaccination externe",
+            "NICHT_KONTROLLIERT": "Pas encore vérifié"
+        },
+        "ERKRANKUNGEN": {
+            "TITLE": "Maladie(s) Covid:",
+            "ORIGIN": {
+                "EXT_ZERT": "certificat externe",
+                "GRUNDIMMUNISIERUNG": "immunisation de base",
+                "ERFASST_IMPFLING": "auto-déclaration"
+            }
+        },
+        "ZERTIFIKATSLISTE_TITEL": "Tous les certificats COVID-19"
+    },
+    "EXTERN_GEIMPFT": {
+        "EXTERN_GEIMPFT": "La person a-t'elle déjâ été vaccinée contre le Covid-19 hors de Vacme?",
+        "GENESEN": "A été infecté par Covid-19 et s'est rétabli",
+        "KONTROLLIERT": "Je confirme avoir vérifié le certificat de vaccination externe"
+    },
+    "APPMESSAGE": {
+        "ADMINISTRATION": {
+            "TITLE": "Administration des messages d'application",
+            "NEW": "Nouveau message",
+            "STATUS": "Status",
+            "MESSAGE_TITLE": "Titre",
+            "ZEIT_FENSTER": "Créneau horaire",
+            "DATE": "De {{vonZeit}}, à {{bisZeit}}",
+            "NACHRICHT_BEARBEITEN": "Modifier le message",
+            "SPEICHERN": "Sauvegarder le message",
+            "BEARBEITEN": {
+                "TITLE": "Titre",
+                "VON": "De",
+                "BIS": "À",
+                "STATUS": "Status",
+                "CONTENT": "Contenu",
+                "ERROR": "Erreur",
+                "WARNING": "Avertissement",
+                "INFO": "Info",
+                "VORSCHAU": "Prévisualisation"
+            },
+            "ERROR_STATUS": "Erreur",
+            "INFO_STATUS": "Info",
+            "WARNING_STATUS": "Avertissement",
+            "ERSTELLEN": "Créer",
+            "ZEIT_STATUS": "Status temporel",
+            "ZEIT_FUTURE": "Futur",
+            "ZEIT_PAST": "Passé",
+            "ZEIT_PRESENT": "Présent"
+        }
+    },
+    "ZERTIFIKAT_TOKEN": {
+        "DELETE_ALL": "Effacer tous les tokens",
+        "HOCHLADEN": "Télécharger le token pour les certificats covid",
+        "OK": "Il y a déjà un token valide pour les certificats covid",
+        "NOK": "Aucun token pour les certificats covid n'a été téléchargé",
+        "LINK_TEXT": "Outil fédéral pour le certificat covid",
+        "LINK": "https://www.covidcertificate.admin.ch",
+        "INFO": "Connectez vous sur la page suivante et lancez la fonction 'Générer un nouvel OTP'",
+        "TITLE": "Ajouter un nouveau token",
+        "TOKEN": "Token",
+        "SAVE": "Sauvegarder le token"
+    },
+    "UMFRAGE": {
+        "TITLE": "Umfrage",
+        "STICHPROBE": "Stichprobe",
+        "GROUP": "Gruppe",
+        "LIMIT": "Limit",
+        "DOWNLOAD": "Stichprobe herunterladen",
+        "SMS": "SMS",
+        "SMS_SEND": "SMS senden",
+        "SMS_SEND_REMINDER": "Reminder SMS senden",
+        "SMS_SUCCESS": "Umfrage erfolgreich versendet"
+    },
+    "VALIDATIONERROR": {
+        "EXTERNGEIMPFTUNVOLLSTAENDIG": "Immunisation externe incomplète. Choisissez \"Non\" ou complétez les informations.",
+        "ZULASSUNG": "Ce vaccin n'est pas agréé",
+        "MUST_BE_LAST_IMPFUNG": "Seulement la dernière vaccination est permit"
+    },
+    "ACCOUNT_DEAKTIVIERT": "Votre compte est désactivé."
+}

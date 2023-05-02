@@ -1,0 +1,57 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<lib-collapsible-content [opened]="!hideOdiFilters">
+    <div class="summary-box filter-form-container">
+        <form [formGroup]="odiFilterFormGroup" (submit)="filterOdis.emit()">
+            <div class="sort-and-filter">
+                <div>
+                    <!-- Sortierung der OdI waehlen -->
+                    <lib-input-radio
+                        [showGroupLabel]="true"
+                        [columnDisplay]="true"
+                        key="OVERVIEW.ORTWAHL_FILTER.SORTIEREN.TITLE"
+                        formControlName="sortTyp"
+                        [options]="options"
+                        translationPrefix="OVERVIEW.ORTWAHL_FILTER.SORTIEREN"></lib-input-radio>
+                </div>
+                <!-- Filterung der OdI -->
+                <div>
+                    <span style="font-weight: 400;" translate>OVERVIEW.ORTWAHL_FILTER.FILTERN.TITLE</span>
+                    <lib-input-checkbox formControlName="impfzentrum"
+                                        key="OVERVIEW.ORTWAHL_FILTER.FILTERN.IMPFZENTRUM"></lib-input-checkbox>
+                    <lib-input-checkbox formControlName="apotheke"
+                                        key="OVERVIEW.ORTWAHL_FILTER.FILTERN.APOTHEKE"></lib-input-checkbox>
+                    <lib-input-checkbox formControlName="spital"
+                                        key="OVERVIEW.ORTWAHL_FILTER.FILTERN.SPITAL"></lib-input-checkbox>
+                    <lib-input-checkbox formControlName="hauspraxis"
+                                        key="OVERVIEW.ORTWAHL_FILTER.FILTERN.HAUSARZTPRAXIS"></lib-input-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <!-- abbrechen und Filter resetten -->
+                <lib-button buttonKind="go-back" class="button-no-margin-bottom"
+                            (clickIfEnabled)="resetOdiFilter.emit()"
+                            translationKey="OVERVIEW.ORTWAHL_FILTER.ZURUEKSETZEN"></lib-button>
+                <!-- weiter -->
+                <lib-button buttonKind="submit" class="button-no-margin-bottom"
+                            translationKey="OVERVIEW.ORTWAHL_FILTER.ANWENDEN">
+                </lib-button>
+            </div>
+        </form>
+    </div>
+</lib-collapsible-content>

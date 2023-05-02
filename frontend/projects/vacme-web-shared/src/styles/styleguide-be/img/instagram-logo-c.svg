@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.783 30.784">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ebb500;
+      }
+    </style>
+  </defs>
+  <g id="instagram-logo" transform="translate(-0.001)">
+    <g id="Gruppe_158" data-name="Gruppe 158">
+      <g id="Gruppe_157" data-name="Gruppe 157">
+        <path id="Pfad_6" data-name="Pfad 6" class="cls-1" d="M22.937,26.019a3.076,3.076,0,1,0-3.08-3.082A3.086,3.086,0,0,0,22.937,26.019Z" transform="translate(-7.546 -7.545)"/>
+        <path id="Pfad_7" data-name="Pfad 7" class="cls-1" d="M33.859,16.927V13.96h-.386l-2.582.008.01,2.968Z" transform="translate(-11.739 -5.305)"/>
+        <path id="Pfad_8" data-name="Pfad 8" class="cls-1" d="M15.392,0A15.392,15.392,0,1,0,30.784,15.392,15.409,15.409,0,0,0,15.392,0Zm8.754,13.6v7.167a3.387,3.387,0,0,1-3.383,3.384H10.022a3.386,3.386,0,0,1-3.383-3.384V10.022a3.386,3.386,0,0,1,3.383-3.383h10.74a3.387,3.387,0,0,1,3.384,3.383Z"/>
+        <path id="Pfad_9" data-name="Pfad 9" class="cls-1" d="M25.294,23.725a4.788,4.788,0,1,1-9.224-1.8H13.457V29.1a1.677,1.677,0,0,0,1.678,1.676h10.74A1.678,1.678,0,0,0,27.553,29.1V21.929H24.938A4.723,4.723,0,0,1,25.294,23.725Z" transform="translate(-5.114 -8.333)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,1 @@
+update QRTZ_CRON_TRIGGERS set CRON_EXPRESSION='15 */10 * * * ?' where TRIGGER_NAME='1_ch.dvbern.oss.vacme.scheduler.ScheduledTaskService_ScheduledInvoker_scheduleGlobalNoTermin_eff479bf3f086442701ce1fe2ed2832782b87686_trigger';

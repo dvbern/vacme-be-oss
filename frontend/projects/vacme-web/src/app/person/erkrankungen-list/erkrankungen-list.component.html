@@ -1,0 +1,37 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<ng-container *ngIf="erkrankungen?.length">
+    <p class="margin-top-30" style="margin-bottom: 0;">
+        <span translate>GEIMPFT.ERKRANKUNGEN.TITLE</span>
+    </p>
+    <ul style="margin: 0;">
+        <li *ngFor="let erkrankung of erkrankungen!">
+            <span class="margin-top-15">
+                <span>{{erkrankung.date
+                    | date : dateUtil.dateFormatLong(this.translateService.currentLang)
+                    :undefined: this.translateService.currentLang}}</span>
+                <span style="margin-left: 4px;">
+                    <span>(</span>
+                    <span translate>GEIMPFT.ERKRANKUNGEN.ORIGIN.{{erkrankung.erkrankungdatumHerkunft}}</span>
+                    <span>)</span>
+                </span>
+            </span>
+        </li>
+    </ul>
+
+</ng-container>

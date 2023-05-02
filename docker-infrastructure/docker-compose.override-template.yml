@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+
+  db:
+    ports:
+      - 3306:3306
+    #    volumes:
+    #      # DB-Dumps erstellen/einspielen
+    #      - "./developer_local_settings/db-dump/:/dump/:rw"
+
+  keycloak:
+    environment:
+      - DEBUG=true
+      - DEBUG_PORT='*:8787'
+    ports:
+      - 8180:8080
+      - 8787:8787
+    # Volumes einbinden: noetig fuer Keycloak-Theme-Entwicklung
+    volumes:
+      - type: bind
+        source: ./keycloak/copy/keycloak/themes/vacme
+        target: /opt/jboss/keycloak/themes/vacme
+      - type: bind
+        source: ./keycloak/copy/keycloak/themes/vacme-zh
+        target: /opt/jboss/keycloak/themes/vacme-zh
+      - type: bind
+        source: ./keycloak/copy/keycloak/themes/theme-development.cli
+        target: /opt/jboss/startup-scripts/theme-development.cli

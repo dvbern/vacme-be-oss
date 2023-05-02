@@ -1,0 +1,28 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<form [formGroup]="formGroup" [hidden]="!jobStatistikErstimpfungenEnabled()">
+    <div style="display:flex; justify-content: space-between">
+        <lib-input-text key="reports.abrechnung.von" style="flex: 1"
+                        formControlName="abrechnungFrom"></lib-input-text>
+        <lib-input-text key="reports.abrechnung.bis" style="flex: 1"
+                        formControlName="abrechnungTo"></lib-input-text>
+    </div>
+    <p *ngIf="jobStatistikErstimpfungenEnabled()">
+        <a (click)="runJobStatistikErstimpfungen()" translate>SYSTEM_ADMINISTRATION.RUN_JOB_STATISTIK_ERSTIMPFUNGEN</a>
+    </p>
+</form>

@@ -1,0 +1,37 @@
+# http://editorconfig.org
+root = true
+
+[*.{java,xml}]
+indent_style = tab
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.scss]
+indent_style = tab
+
+# Kompatibility zu maven-dependency-plugin/maven-release-plugin... und damit zu jgitflow
+[pom.xml]
+indent_style = space
+
+[*.yml]
+indent_style = space
+indent_size = 2
+
+[{package.json,package-lock.json}]
+# Diverse Generator-Tools und Plugins nutzen das als Default
+indent_size = 2
+
+[*.xlf]
+# Diverse Generator-Tools und Plugins nutzen das als Default
+indent_size=2
+
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false
+
+
+[*.sh]
+end_of_line = lf

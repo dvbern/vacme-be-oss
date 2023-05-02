@@ -1,0 +1,31 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<div class='full-wdith'>
+    <h4 class='i5' translate>Application Health</h4>
+
+        <div *ngIf="isUserInroleAsRegistrationOi()">
+            <p>
+                <a (click)="getInkonsistenzenTermine()">Datenbank Inkonsistenzen Termine</a>
+                <br/>
+                <label>
+                    <input [(ngModel)]="autokorrektur" type="checkbox"/>
+                </label>&nbsp; Inkonsistenzen bei Terminen automatisch korrigieren
+            </p>
+            <app-registrierung-termine-impfungen [itemList]="resultInkonsistenzenTermine" [showImpfungen]="false"></app-registrierung-termine-impfungen>
+        </div>
+
+</div>

@@ -1,0 +1,78 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class="daten-korrektur">
+
+    <form *ngIf="korrekturDashboard" [formGroup]="formGroup" (ngSubmit)="correctIfValid()">
+
+        <div class="row">
+            <h3 class="section-title" translate>FACH-ADMIN.DATEN_KORREKTUR.IMPFUNG.TITLE</h3>
+        </div>
+
+        <div class="row">
+            <lib-input-select formControlName="impfung"
+                              [options]="availableImpfungAndImpffolgeOptions()"
+                              key="FACH-ADMIN.DATEN_KORREKTUR.IMPFUNG.IMPFUNG_UND_NR"
+                              translationPrefix="FACH-ADMIN.DATEN_KORREKTUR.IMPFUNG"
+                              [noTranslate]="true"
+                              undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN">
+            </lib-input-select>
+        </div>
+
+        <div class="row">
+            <div class="information-row">
+                <div class="information-first">
+                    <lib-input-select
+                        formControlName="impfstoff"
+                        (change)="impfstoffSelectChange()"
+                        key="impfdok.impfstoff"
+                        [options]="impfstoffOptions"
+                        undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                        [noTranslate]="true">
+                    </lib-input-select>
+                </div>
+
+                <div *ngIf="impfstoffInformationsLink" class="syringe-second">
+                    <div class="information-box">
+                        <img class="information-img information-center"
+                             (click)="openImpfstoffInformation()"
+                             [title]="impfstoffInformationsLink"
+                             src="/assets/img/Help Icon.svg"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <lib-input-text key="impfdok.lot"
+                            formControlName="lot"></lib-input-text>
+        </div>
+
+        <div class="row">
+            <lib-input-text key="impfdok.menge"
+                            formControlName="menge"></lib-input-text>
+        </div>
+
+
+        <lib-button buttonKind="submit" [disabled]="!enabled()" *ngIf="hasRequiredRole()"
+                    translationKey="FACH-ADMIN.DATEN_KORREKTUR.KORRIGIEREN"></lib-button>
+
+        <lib-button buttonKind="secondary" (clickIfEnabled)="reset()"
+                    translationKey="OVERVIEW.ABBRECHEN"></lib-button>
+
+    </form>
+</div>

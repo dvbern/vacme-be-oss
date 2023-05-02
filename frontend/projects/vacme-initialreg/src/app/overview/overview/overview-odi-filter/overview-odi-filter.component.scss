@@ -1,0 +1,40 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+@import "projects/vacme-web-shared/src/styles/vacme-variables";
+
+.filter-form-container {
+
+    margin-top: 0;
+    margin-bottom: 30px;
+
+    .sort-and-filter {
+        display: flex;
+        flex-direction: row;
+
+        @media screen and (max-width: 767px) {
+            flex-direction: column;
+        }
+
+        > * {
+            width: 100%;
+        }
+
+        ::ng-deep {
+            .radiogroup-container {
+                margin-top: 0;
+            }
+
+            .checkbox-container input[type=checkbox], .checkbox-container label {
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+
+            input[type=checkbox] + label[for], input[type=radio] + label[for] {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+}

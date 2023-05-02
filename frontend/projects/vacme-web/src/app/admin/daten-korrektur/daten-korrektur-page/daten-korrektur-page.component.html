@@ -1,0 +1,189 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='detailpage daten-korrektur-page'>
+
+    <div class="main-column" *ngIf="hasRequiredRole()">
+        <h2 translate>FACH-ADMIN.DATEN_KORREKTUR.TITLE</h2>
+
+        <ng-template *ngIf="korrekturDashboard; else search"></ng-template>
+
+        <app-daten-korrektur-impfung-daten *ngIf="showImpfungDatenKorrektur()"
+                                           [korrekturDashboardJax]="korrekturDashboard"
+                                           (finished)="finished($event)">
+        </app-daten-korrektur-impfung-daten>
+
+        <app-daten-korrektur-odi *ngIf="showImpfungOrtKorrektur()"
+                                 [korrekturDashboardJax]="korrekturDashboard"
+                                 (finished)="finished($event)">
+        </app-daten-korrektur-odi>
+
+        <app-daten-korrektur-impfung-verabreichung *ngIf="showImpfungVerabreichungKorrektur()"
+                                                   [korrekturDashboard]="korrekturDashboard"
+                                                   (finished)="finished($event)">
+        </app-daten-korrektur-impfung-verabreichung>
+
+        <app-daten-korrektur-impfung-datum *ngIf="showImpfungDatumKorrektur()"
+                                           [korrekturDashboardJax]="korrekturDashboard"
+                                           (finished)="finished($event)">
+        </app-daten-korrektur-impfung-datum>
+
+        <app-daten-korrektur-impfung-loeschen *ngIf="showImpfungLoeschen()"
+                                              [korrekturDashboard]="korrekturDashboard"
+                                              (finished)="finished($event)">
+        </app-daten-korrektur-impfung-loeschen>
+
+        <app-daten-korrektur-account-loeschen *ngIf="showAccountLoeschen()"
+                                              [korrekturDashboard]="korrekturDashboard"
+                                              (finished)="finished($event)">
+        </app-daten-korrektur-account-loeschen>
+
+        <app-daten-korrektur-personendaten *ngIf="showPersonendatenKorrektur()"
+                                           [korrekturDashboard]="korrekturDashboard"
+                                           (finished)="finished($event)">
+        </app-daten-korrektur-personendaten>
+
+        <app-daten-korrektur-zertifikat *ngIf="showZertifikatKorrektur()"
+                                        [korrekturDashboard]="korrekturDashboard"
+                                        (finished)="finished($event)">
+        </app-daten-korrektur-zertifikat>
+
+        <app-daten-korrektur-zertifikat-revokeandrecreate *ngIf="showZertifikatRevokeAndRecreateKorrektur()"
+                                                          [korrekturDashboard]="korrekturDashboard"
+                                                          (finished)="finished($event)">
+        </app-daten-korrektur-zertifikat-revokeandrecreate>
+
+        <app-daten-korrektur-email *ngIf="showEmailKorrektur()"
+                                   [korrekturDashboardJax]="korrekturDashboard"
+                                   (finished)="finished($event)">
+        </app-daten-korrektur-email>
+
+        <app-daten-korrektur-selbszahlende *ngIf="showImpfungSelbstzahlendKorrektur()"
+                                           [korrekturDashboard]="korrekturDashboard"
+                                           (finished)="finished($event)"></app-daten-korrektur-selbszahlende>
+
+        <app-daten-korrektur-onboarding *ngIf="showOnboardingKorrektur()"
+                                        [korrekturDashboard]="korrekturDashboard"
+                                        (finished)="finished($event)"></app-daten-korrektur-onboarding>
+
+        <ng-template #search>
+            <form [formGroup]="searchFormGroup" (ngSubmit)="searchIfValid()">
+                <div class="row">
+                    <lib-input-text [formGroup]="searchFormGroup" key="FACH-ADMIN.DATEN_KORREKTUR.REGISTRIERUNGSNUMMER"
+                                    formControlName="registrierungsNummer"
+                    ></lib-input-text>
+                </div>
+                <div class="row">
+                    <lib-input-select [formGroup]="searchFormGroup"
+                                      formControlName="datenKorrekturTyp"
+                                      [options]="datenKorrekturTypen"
+                                      key="FACH-ADMIN.DATEN_KORREKTUR.KORREKTUR_TYP"
+                                      translationPrefix="FACH-ADMIN.DATEN_KORREKTUR"
+                                      undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN">
+                    </lib-input-select>
+                </div>
+                <div class="row" *ngIf="showAuswahlKrankheit()">
+                    <lib-input-select [formGroup]="searchFormGroup"
+                                      formControlName="krankheit"
+                                      [options]="krankheitTypen"
+                                      key="FACH-ADMIN.DATEN_KORREKTUR.KRANKHEIT"
+                                      translationPrefix="KRANKHEITEN"
+                                      undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"></lib-input-select>
+                </div>
+                <a *ngIf="showPersonalienSearch()" (click)="navigateToSearch()" translate>
+                    FACH-ADMIN.DATEN_KORREKTUR.SUCHE_MIT_PERSONALIEN
+                </a>
+                <div class="row">
+                    <lib-button buttonKind="submit" translationKey="FACH-ADMIN.DATEN_KORREKTUR.OPEN_MASK"></lib-button>
+                </div>
+            </form>
+        </ng-template>
+
+    </div>
+
+    <div class='context-column'>
+        <div class='row step-1-text' *ngIf="korrekturDashboard" style="display: block;">
+            {{ korrekturDashboard.vorname }} {{ korrekturDashboard.name }}
+            <p style="margin-top: 8px; margin-bottom: 0;" title="User-ID: {{korrekturDashboard.benutzerId}}">
+                {{ korrekturDashboard.registrierungsnummer }}
+            </p>
+            <p style="margin-bottom: 0;">{{korrekturDashboard.telefon}}</p>
+            <p style="margin-bottom: 0;">{{korrekturDashboard.mail}}</p>
+            <p><span translate>REG_CODE.EINGANG</span><span translate> {{korrekturDashboard.eingang}}</span></p>
+
+            <div *ngIf="korrekturDashboard.externGeimpft as externesZertifikat" style="margin-top: 16px;">
+                <span translate>GEIMPFT.EXTERNE_IMPFUNGEN.TITLE</span>
+                <p style="margin-top: 8px; margin-bottom: 0;">
+                    <span translate>EXTERN_GEIMPFT.ANZAHL_IMPFUNGEN</span>
+                    <span>: </span>
+                    <span>{{externesZertifikat.anzahlImpfungen}}</span>
+                </p>
+            </div>
+
+            <ng-container *ngIf="korrekturDashboard.impfung1IfEditableForRole">
+                <ng-container
+                    *ngTemplateOutlet="impfInfos; context: { impffolgeNr: korrekturDashboard.impfung1IfEditableForRole.impfungNr,
+                    impffolge: 'ERSTE_IMPFUNG',
+                     impfung: korrekturDashboard.impfung1IfEditableForRole}"></ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="korrekturDashboard.impfung2IfEditableForRole">
+                <ng-container
+                    *ngTemplateOutlet="impfInfos; context: { impffolgeNr: korrekturDashboard.impfung2IfEditableForRole.impfungNr,
+                    impffolge: 'ZWEITE_IMPFUNG',
+                     impfung: korrekturDashboard.impfung2IfEditableForRole}"></ng-container>
+            </ng-container>
+
+
+            <ng-container *ngIf="korrekturDashboard.impfdossiereintraegeEditableForRole">
+                <ng-container *ngFor="let eintrag of korrekturDashboard.impfdossiereintraegeEditableForRole">
+                    <ng-container
+                        *ngTemplateOutlet="impfInfos; context: { impffolgeNr: eintrag.impffolgeNr,
+                        impffolge: 'BOOSTER_IMPFUNG',
+                     impfung: eintrag.impfung}"></ng-container>
+                </ng-container>
+            </ng-container>
+
+        </div>
+
+    </div>
+</div>
+
+
+<ng-template #impfInfos let-impffolgeNr="impffolgeNr" let-impffolge="impffolge" let-impfung="impfung">
+    <div style="margin-top: 16px;">
+        <span translate="FACH-ADMIN.DATEN_KORREKTUR.IMPFUNG.IMPFUNG_UND_NR"></span>
+        <span>&nbsp;</span>
+        <span [title]="impffolge">{{ impffolgeNr }}</span>
+        <ng-container *ngIf="impfung">
+            <p style="margin-top: 0px; margin-bottom: 0;">
+                {{ impfung.impfstoff?.displayName }}
+            </p>
+            <p style="margin-bottom: 0;" *ngIf="impfung.ortDerImpfung">
+                {{ impfung.ortDerImpfung }}
+            </p>
+            <p style="margin-bottom: 0;" *ngIf="impfung.timestampImpfung">
+                {{ getDateString(impfung.timestampImpfung) }}
+            </p>
+            <p style="margin-bottom: 0;">
+                {{'FACH-ADMIN.DATEN_KORREKTUR.DURCHFUEHRENDE_PERSON' | translate}}
+                {{ impfung.durchfuehrendePerson}}
+            </p>
+        </ng-container>
+
+    </div>
+</ng-template>

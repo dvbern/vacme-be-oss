@@ -1,0 +1,720 @@
+/*
+ * Copyright (c) 2020 DV Bern AG, Switzerland
+ *
+ * Das vorliegende Dokument, einschliesslich aller seiner Teile, ist urheberrechtlich
+ * geschuetzt. Jede Verwertung ist ohne Zustimmung der DV Bern AG unzulaessig. Dies gilt
+ * insbesondere fuer Vervielfaeltigungen, die Einspeicherung und Verarbeitung in
+ * elektronischer Form. Wird das Dokument einem Kunden im Rahmen der Projektarbeit zur
+ * Ansicht uebergeben ist jede weitere Verteilung durch den Kunden an Dritte untersagt.
+ *
+ */
+
+:root {
+	--vacme-accent: #ea161f;
+	--vacme-sand: #FAF1E3;
+	--vacme-withsand: #FCF8F3;
+	--vacme-white: #FFFFFF;
+	--vacme-darkSand: #F7E9D2;
+	--vacme-black: #000000;
+	--vacme-cappuchino: #EBD3Ae;
+}
+
+
+/* roboto-300 - latin */
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 300;
+	src: url('../fonts/roboto-v20-latin-300.eot'); /* IE9 Compat Modes */
+	src: local('Roboto Light'), local('Roboto-Light'),
+	url('../fonts/roboto-v20-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/roboto-v20-latin-300.woff2') format('woff2'), /* Super Modern Browsers */ url('../fonts/roboto-v20-latin-300.woff') format('woff'), /* Modern Browsers */ url('../fonts/roboto-v20-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */ url('../fonts/roboto-v20-latin-300.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+
+/* roboto-regular - latin */
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../fonts/roboto-v20-latin-regular.eot'); /* IE9 Compat Modes */
+	src: local('Roboto'), local('Roboto-Regular'),
+	url('../fonts/roboto-v20-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/roboto-v20-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */ url('../fonts/roboto-v20-latin-regular.woff') format('woff'), /* Modern Browsers */ url('../fonts/roboto-v20-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */ url('../fonts/roboto-v20-latin-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+
+/* roboto-500 - latin */
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 500;
+	src: url('../fonts/roboto-v20-latin-500.eot'); /* IE9 Compat Modes */
+	src: local('Roboto Medium'), local('Roboto-Medium'),
+	url('../fonts/roboto-v20-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/roboto-v20-latin-500.woff2') format('woff2'), /* Super Modern Browsers */ url('../fonts/roboto-v20-latin-500.woff') format('woff'), /* Modern Browsers */ url('../fonts/roboto-v20-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */ url('../fonts/roboto-v20-latin-500.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+
+html > body {
+
+	/*background: linear-gradient(146.02deg, #E3EBEF 0%, #CAD1D3 100%) fixed !important;*/
+	background-color: var(--vacme-white) !important;
+	font-family: Roboto, sans-serif !important;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1440px;
+	width: 100%;
+
+}
+
+.vacme-account {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	font-size: 12px;
+	line-height: 1.66666667;
+	color: #363636;
+	font-family: Roboto, sans-serif !important;
+	box-sizing: border-box;
+	padding-top: 0;
+	background-color: var(--vacme-white) !important;
+}
+
+.account-pf-page-header {
+
+	font-size: 12px;
+	line-height: 1.66666667;
+	font-family: Roboto, sans-serif !important;
+	text-align: center;
+	margin-bottom: 40px;
+	overflow: visible;
+	white-space: nowrap;
+	box-sizing: border-box;
+	padding-top: 42px;
+	margin-left: 20px;
+	margin-top: -25px;
+	color: var(--vacme-black);
+}
+
+/*.login-pf-page .btn-primary {*/
+/*	margin-top: 0;*/
+/*	background-color: var(--vacme-red);*/
+/*	background-image: none;*/
+/*	border: none;*/
+/*	border-radius: 4px;*/
+/*	box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);*/
+/*	text-transform: uppercase;*/
+/*	height: 36px;*/
+/*}*/
+
+#vacmedivider {
+	border-top: 3px solid #bbb;
+	margin-left: 17px;
+	margin-right: 17px;
+}
+
+
+
+#kc-locale {
+	display: flex;
+	justify-content: flex-end;
+	width: 261px;
+	padding-top: 10px;
+	right: 24px;
+	text-align: right;
+	z-index: 9999;
+}
+
+#kc-locale-wrapper {
+	min-width: 90px;
+}
+
+
+
+.kc-locale-item {
+	text-transform: uppercase;
+	text-decoration: none;
+	font-family: Roboto, sans-serif;
+	font-style: normal;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #000;
+	display: inline-block;
+	height: 21px;
+	font-weight: 400;
+	letter-spacing: .025em;
+	border-bottom: none;
+	margin: 0 11px;
+}
+
+.kc-locale-item:hover {
+	border-bottom: none;
+}
+
+.kc-locale-item:after {
+	display: block;
+	content: "";
+	border-bottom: 2px solid #000;
+	transform: scaleX(0);
+	transition: transform .1s ease-in-out;
+}
+
+.kc-locale-divider {
+	font-weight: 500;
+	display: inline-block;
+	font-size: 14px;
+}
+
+.kc-locale-item:hover:after {
+	transform: scale(1);
+}
+
+.kc-locale-item-active:after {
+	border-bottom: 2px solid rgba(234, 22, 31, .77);
+	transform: scaleX(1);
+}
+
+#kc-header {
+	box-sizing: border-box;
+	padding-top: 52px;
+	background-image: url(../img/Kanton-Bern_50.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	margin-left: 20px;
+	margin-top: 7px;
+}
+
+#kc-header-wrapper {
+	font-size: 16px;
+	line-height: 17px;
+	letter-spacing: 0.01rem;
+	word-spacing: 0.025rem;
+	font-family: 'Roboto', serif;
+	font-style: normal;
+	font-weight: 400;
+	color: rgba(0, 0, 0, 1);
+	text-align: left;
+	text-transform: none;
+	position: absolute;
+	top: 90px;
+}
+
+@media screen and (max-width: 1119px) {
+	#kc-header-wrapper {
+		/*margin-top: 12px;*/
+		max-width: 210px;
+		font-size: 12px;
+		line-height: 13px;
+		letter-spacing: 0.01rem;
+		word-spacing: 0.025rem;
+	}
+}
+
+#kc-page-title {
+	font-family: Roboto, serif;
+	font-size: 36px;
+	font-style: normal;
+	font-weight: 200;
+	line-height: 42px;
+	letter-spacing: 0.015em;
+	text-align: left;
+}
+
+#kc-header {
+	color: var(--vacme-black);
+}
+
+.kc-dropdown > a {
+	color: var(--vacme-black) !important;
+}
+
+.kc-dropdown {
+	position: absolute;
+	top: 14px;
+	right: 20px;
+	text-align: right;
+	z-index: 9999;
+}
+
+.kc-signOut > a {
+	font-size: 14px;
+	letter-spacing: 0.01rem;
+	word-spacing: 0.025rem;
+	font-family: "Roboto", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	color: #000000;
+	display: inline-block;
+	text-decoration: none !important;
+	height: 18px;
+	line-height: 1.5;
+	margin: 0 calc(0.25vw + 15px) 0 calc(0.25vw + 15px);
+}
+
+#kc-page-title {
+	font-family: Roboto, serif;
+	font-size: 36px;
+	font-style: normal;
+	font-weight: 200;
+	line-height: 42px;
+	letter-spacing: 0.015em;
+	text-align: left;
+}
+
+/* Hiding Mehrfachauthentifizierung menu item */
+.bs-sidebar > ul > li:nth-child(3) {
+	display: none;
+}
+
+/* Hiding Sessions menu item */
+.bs-sidebar > ul > li:nth-child(4) {
+	display: none;
+}
+
+/* Hiding Application menu item */
+.bs-sidebar > ul > li:nth-child(5) {
+	display: none;
+}
+
+/* Logo Wrapper - replace existing logo with custom */
+.navbar-title {
+	background-image: url('../img/Kanton-Bern.svg');
+	height: 25px;
+	background-repeat: no-repeat;
+	width: 123px;
+	margin: 3px 10px 5px;
+}
+
+/* Navbar */
+.navbar-pf {
+	background-color: #211e1e;
+}
+
+/*Style for inputfield*/
+input[type='text'], input[type='text']:focus, input[type='password'], input[type='password']:focus {
+	/*input, input[type='text'], input:focus, input[type='text']:focus {*/
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: inline-block;
+	outline: none;
+	width: 100%;
+	max-width: 800px;
+	height: 59px;
+	padding-right: 30px;
+	padding-left: 23px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	color: #000 !important;
+	border-radius: 0;
+	border: 1px solid #000;
+	border-left: 6px solid #000;
+	-webkit-box-shadow: none;
+	box-shadow: none !important;
+}
+
+input:disabled,
+input[readonly],
+textarea:disabled,
+textarea[readonly] {
+	background-color:#e6e6e6;
+}
+
+input::-webkit-input-placeholder {
+	opacity: 1;
+	color: #707070
+}
+
+input:-ms-input-placeholder {
+	opacity: 1;
+	color: #707070
+}
+
+input::placeholder {
+	opacity: 1;
+	color: #707070
+}
+
+
+input:placeholder-shown, input[type='text']:placeholder-shown {
+	border: 1px solid #707070;
+	border-left: 1px solid #707070;
+	color: #707070;
+	padding-left: 28px;
+}
+
+input:placeholder-shown + label, input[type='text']:placeholder-shown + label {
+	opacity: 0;
+	-webkit-transform: translateY(28px);
+	-ms-transform: translateY(28px);
+	transform: translateY(28px);
+}
+
+div.inputfield {
+	position: relative;
+}
+
+input.has-error {
+	border-color: #ea161f;
+}
+
+input.notice {
+	padding-right: 62px !important;
+}
+
+label.floating-label {
+	font-size: 13px;
+	line-height: 17px;
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	position: absolute;
+	-webkit-transform: translateY(8px);
+	-ms-transform: translateY(8px);
+	transform: translateY(8px);
+	-webkit-transition: all 250ms ease-out;
+	transition: all 250ms ease-out;
+	top: 1px;
+	left: 44px;
+	background-color: #fff;
+	padding: 2px 5px;
+	opacity: 1;
+}
+
+/*Style for button*/
+button.go-next {
+	text-align: center;
+	color: rgba(255, 255, 255, 1);
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 26px;
+	line-height: 125%;
+	background-color: rgba(78, 78, 78, 0.95);
+	display: inline-block;
+	height: 49px;
+	border-radius: 49px;
+	border: none;
+	/*padding: 12px 30px 12px 0px;*/
+	vertical-align: middle;
+	margin: 0 10px 10px 0;
+	-webkit-transition: all 250ms ease-in-out;
+	transition: all 250ms ease-in-out;
+	cursor: pointer;
+	overflow: hidden;
+	min-width: 250px;
+}
+
+
+@media screen and (max-width: 767px) {
+
+	button.go-next {
+		margin-top: 20px;
+		margin-right: 0;
+		margin-bottom: 20px;
+		margin-left: 0;
+		width: 100%;
+	}
+}
+
+a.go-back {
+	overflow:hidden;
+	text-align:center;
+	font-family: 'Roboto'; font-style: normal; font-weight: 500;
+	font-size: 16px; line-height: 26px;
+	line-height: 125%;
+	background-color: rgba(255,255,255,1);
+	color: rgba(112,112,112,1);
+	display: inline-block;
+	height: 49px;
+	border-radius: 49px;
+	border: 1px solid #4E4E4E;
+	padding: 12px 0px 12px 30px ;
+	vertical-align: middle;
+	margin: 40px 30px 40px -1px;
+	-webkit-transition: all 250ms ease-in-out;
+	transition: all 250ms ease-in-out;
+	cursor: pointer;
+}
+
+
+@media screen and (max-width: 767px) {
+
+	a.go-back {
+		margin-top: 20px;
+		margin-right: 0;
+		margin-bottom: 20px;
+		margin-left: 0;
+		width: 100%;
+	}
+
+}
+
+.container {
+	padding-right: 0;
+	padding-left: 20px;
+}
+
+#kc-form-buttons {
+	text-align: left !important;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.content-area {
+	height: 100%;
+	border: none;
+}
+
+.bs-sidebar {
+	 background-color: var(--vacme-white) !important;
+}
+
+.bs-sidebar ul li a {
+	background-image: none;
+	border-width: 0;
+	height: 44px;
+	font-style: normal;
+	font-weight: 300;
+	padding-top: 7px;
+}
+
+.bs-sidebar ul li.active a {
+	background-image: none;
+	border-width: 0;
+	background-size: 30px;
+	margin-right: 20px;
+	background-color: rgba(252,248,243,1);
+	border-left: 6px solid var(--vacme-accent);
+	height: 44px;
+	color: var(--vacme-accent);
+	font-style: normal;
+	font-weight: 500;
+	padding-top: 7px;
+}
+
+#vacme-header {
+	box-shadow: 0 0 2px 2px #fff;
+	background-color: #fff;
+	border-bottom: 1px solid #dedede;
+	max-width: 1350px;
+	height: 170px;
+	margin: 0 45px;
+}
+
+#vacme-header-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+#vacme-branding {
+	margin-top: 47px;
+	margin-bottom: 29px;
+}
+
+#vacme-branding img {
+	width: 150px;
+	cursor: pointer;
+}
+
+#vacme-branding a {
+	border-bottom: none;
+}
+
+#vacme-branding a div {
+	font-size: 16px;
+	line-height: 17px;
+	letter-spacing: .01rem;
+	word-spacing: .025rem;
+	font-family: Roboto, sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	color: #000;
+	margin-top: 19px;
+	max-width: 335px;
+	text-decoration: underline;
+}
+
+#vacme-branding a div:hover {
+	text-decoration-color: var(--vacme-accent);
+}
+
+@media screen and (max-width: 1119px) {
+	#vacme-header {
+		padding-top: 10px;
+		max-width: 979px;
+		margin-left: 30px;
+		margin-right: 30px;
+		width: calc(100% - 60px);
+	}
+
+	#vacme-branding a div {
+		margin-top: 12px;
+		max-width: 210px;
+		line-height: 13px;
+		letter-spacing: .01rem;
+		word-spacing: .025rem;
+		font-size: 12px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	#vacme-branding img {
+		width: 110px;
+	}
+
+	#vacme-header {
+		height: 124px;
+		margin-left: 20px;
+		margin-right: 20px;
+		width: calc(100% - 40px);
+	}
+
+	#vacme-branding {
+		margin-top: 19px;
+	}
+
+	#kc-locale {
+		flex-wrap: wrap-reverse;
+		flex-direction: row;
+		align-content: flex-end;
+		padding-top: 0;
+	}
+
+	#kc-locale-wrapper {
+		max-height: 24px;
+	}
+
+	.kc-signOut {
+		padding-top: 16px;
+	}
+}
+
+
+a {
+	font-size: 16px;
+	color: #000;
+	text-decoration: none !important;
+	border-bottom: 1px solid #000;
+	display: inline;
+	cursor: pointer;
+	margin-top: 10px;
+	font-weight: 300;
+}
+
+a:hover {
+	border-bottom: 1px solid var(--vacme-accent);
+	color: #000 !important;
+}
+
+.alert-error {
+	border-color: var(--vacme-accent);
+	font-weight: 500;
+	color: var(--vacme-accent);
+	font-size: 14px;
+}
+
+.pficon-error-circle-o:before {
+	color: var(--vacme-accent);
+}
+
+.go-back *, button.go-next *, button.submit * {
+	transition: all .25s ease-in-out;
+	display: inline-block;
+}
+
+button.go-next img:first-of-type, button.submit img:first-of-type {
+	transform: translate(-35px);
+	opacity: 0;
+}
+
+button.go-next:hover img:first-of-type, button.submit:hover img:first-of-type {
+	transform: translate(32px);
+	opacity: 1;
+}
+
+button.go-next:hover img:last-of-type, button.submit:hover img:last-of-type {
+	transform: translate(65px);
+	opacity: 0;
+}
+
+button.go-next img:last-of-type, button.submit img:last-of-type {
+	transform: translate(0);
+	opacity: 1;
+}
+
+button.go-next span, button.submit span {
+	transform: translate(0);
+}
+
+button.go-next:hover span, button.submit:hover span {
+	transform: translate(35px);
+}
+
+a.go-back img:first-of-type {
+	-webkit-transform: translate(0px,0px);
+	-ms-transform: translate(0px,0px);
+	transform: translate(0px,0px);
+	opacity:1;
+}
+a.go-back span {
+	-webkit-transform: translate(5px,0px);
+	-ms-transform: translate(5px,0px);
+	transform: translate(5px,0px);
+}
+a.go-back img:last-of-type {
+	-webkit-transform: translate(35px,0px);
+	-ms-transform: translate(35px,0px);
+	transform: translate(35px,0px);
+	opacity:0;
+}
+a.go-back:hover img:first-of-type {
+	-webkit-transform: translate(-70px,0px);
+	-ms-transform: translate(-70px,0px);
+	transform: translate(-70px,0px);
+	opacity:0;
+}
+a.go-back:hover span {
+	-webkit-transform: translate(-35px,0px);
+	-ms-transform: translate(-35px,0px);
+	transform: translate(-35px,0px);
+}
+a.go-back:hover img:last-of-type {
+	-webkit-transform: translate(-30px,0px);
+	-ms-transform: translate(-30px,0px);
+	transform: translate(-30px,0px);
+	opacity:1;
+}
+
+
+a.go-back:hover {
+	border-bottom: 1px solid #4E4E4E;
+}
+
+
+button.secondary {
+	font-family: 'Roboto'; font-style: normal; font-weight: 500;
+	font-size: 16px; line-height: 26px;
+	line-height: 125%;
+	background-color: rgba(255,255,255,1);
+	display: inline-block;
+	height: 49px;
+	border-radius: 49px;
+	border: 1px solid #4E4E4E;
+	padding: 12px 39px 12px 44px ;
+	vertical-align: middle;
+	margin: 40px 30px 40px -1px;
+	transition: all 250ms ease-in-out;
+	text-align:center;
+	cursor:pointer;
+}
+
+button.secondary:hover, button.secondary:focus {
+	-webkit-transform: scale(1.07); -ms-transform: scale(1.07); transform: scale(1.07);
+}
+
+
+a.go-back,
+button.go-next,
+button.secondary {
+	margin-top: 0;
+	margin-right: 30px;
+}

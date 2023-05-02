@@ -1,0 +1,2 @@
+2021-06-29 07:29:02,298 INFO [ch.dvb.oss.vac.ser.KorrekturService] (executor-thread-3421) (bae51c4e-4246-458e-9856-ff20246fdad9) VACME-ZERTIFIKAT-REVOCATION: Zertifikat wird revoked fuer Registrierung 6R3L7A, da der Impfstoff korrigiert wurde
+2021-06-29 07:29:02,298 INFO [ch.dvb.oss.vac.ser.KorrekturService] (executor-thread-3421) (bae51c4e-4246-458e-9856-ff20246fdad9) VACME-ZERTIFIKAT-REVOCATION:Zertifikat wird revoked fuer Registrierung 6R3L7B, da der Impfstoff korrigiert wurde

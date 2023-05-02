@@ -1,0 +1,27 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+.prio {
+    margin-top: 20px;
+}
+
+.prio2 {
+    margin-top: 7px;
+}
+
+.personalcode,
+.priorisierung {
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    font-size: 38px;
+    margin-top: 16px;
+}
+
+.user {
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    font-size: 24px;
+    line-height: 28px; // otherwise the g is cut
+}

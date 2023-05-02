@@ -1,0 +1,78 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<div class='step-1-text step-1-text-center impfdossier-item' [ngClass]="{'pointer': !fachapp}">
+
+    <!--
+    TODO
+    The hope is that we can re-use this component in portal and fach-app, currently there is however no information overlap
+    -->
+    <ul *ngIf="fachapp else portal" class="impfdossier-item-list-content">
+        <li>
+            {{getLetzteImpfungAm(impfdossierSummary?.letzteImpfung)}}
+        </li>
+        <li *ngIf="impfdossierSummary?.letzteImpfung && hasRoleDokumentation()">
+            <a (click)="triggerDownloadImpfdokumentation()" translate>GEIMPFT.IMPFDOKUMENTATION</a>
+        </li>
+
+    </ul>
+
+    <ng-template #portal>
+        <div class="impfdossier-item-flex-container">
+            <div>
+                <h4>
+                    <span>{{getDossierTitle()}}</span>
+                </h4>
+                <ng-container *ngIf="hasExterneImpfungFrageBeantwortet()">
+                    <p *ngIf="hasNoFreigabeAndIsNotInBoosterstatus()"
+                       [translate]="'IMPFDOSSIERS_OVERVIEW.IMPFDOSSIER_SUMMARY_LIST_ITEM.NO_FREIGABE_GRUNDIMMUNISIERUNG'">
+                    </p>
+                    <p *ngIf="hasNoFreigabeAndIsInBoosterstatus() && isBoosterFreigabeNotificationDisabled()"
+                       [translate]="'IMPFDOSSIERS_OVERVIEW.IMPFDOSSIER_SUMMARY_LIST_ITEM.NO_FREIGABE_NO_BENACHRICHTIGUNG'">
+                    </p>
+                    <ng-container *ngIf="hasNoFreigabeAndIsInBoosterstatus() && !isBoosterFreigabeNotificationDisabled()"
+                                  [ngSwitch]="getKrankheit()">
+                        <p *ngSwitchCase="krankheiten.FSME"
+                           [translate]="'IMPFDOSSIERS_OVERVIEW.IMPFDOSSIER_SUMMARY_LIST_ITEM.NO_FREIGABE_FSME'"
+                           [translateParams]="{date: impfdossierSummary?.freigabeNaechsteImpfung | date: dateUtil.dateFormatLong(translationService.currentLang)}"></p>
+                        <p *ngSwitchDefault
+                           [translate]="'IMPFDOSSIERS_OVERVIEW.IMPFDOSSIER_SUMMARY_LIST_ITEM.NO_FREIGABE'"></p>
+                    </ng-container>
+                    <p *ngIf="showNoFreieTermine()"
+                       [translate]="'IMPFDOSSIERS_OVERVIEW.IMPFDOSSIER_SUMMARY_LIST_ITEM.NO_FREIE_TERMINE'">
+                    </p>
+                    <ng-container *ngIf="showTermineAvailable()">
+                        <p [translate]="'IMPFDOSSIERS_OVERVIEW.IMPFDOSSIER_SUMMARY_LIST_ITEM.TERMINE_VERFUEGBAR_BUCHEN'"></p>
+                    </ng-container>
+                    <p *ngIf="showTermin()">
+                        {{getTerminText()}}
+                    </p>
+                </ng-container>
+            </div>
+            <div class="impfdossier-item-button">
+                <lib-button class="no-margin">
+                    <span class="hide-for-small-only"
+                          [translate]="'IMPFDOSSIERS_OVERVIEW.IMPFDOSSIER_SUMMARY_LIST_ITEM.TO_DOSSIER'"></span>
+                    <img class="hide-for-medium"
+                         width="24"
+                         src="../img/go-next.svg"
+                         alt="{{'IMPFDOSSIERS_OVERVIEW.IMPFDOSSIER_SUMMARY_LIST_ITEM.TO_DOSSIER' | translate}}">
+                </lib-button>
+            </div>
+        </div>
+    </ng-template>
+</div>
+
