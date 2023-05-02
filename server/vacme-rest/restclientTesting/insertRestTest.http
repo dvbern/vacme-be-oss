@@ -1,0 +1,120 @@
+### Hello-Resteasy
+GET http://localhost:8080/api/v1/hello-resteasy
+
+### Step 1: Registrierung mit Username hansli schreiben
+POST http://localhost:8080/api/v1/reg/registration/registrieren
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+    "ampelColor": "GREEN",
+	"risikogruppe": true,
+	"beruflicheTaetigkeit": "ANDERE",
+	"lebensumstaende": "ANDERE",
+	"adresse": {
+		"adresse1": "string",
+		"adresse2": "string",
+		"ort": "string",
+		"plz": "string"
+	},
+	"bemerkung": "string",
+	"geburtsdatum": "1930-12-11",
+    "geschlecht": "MAENNLICH",
+	"mail": "hansli@mailbucket.dvbern.ch",
+	"name": "string",
+	"telefon": "string",
+	"vorname": "string",
+	"krankenkasse": "KPT",
+	"krankenkasseKartenNr": "12345678"
+}
+
+### Step 2: Registrierung mit Registrierungsnummer 12345 lesen
+GET http://localhost:8080/api/v1/dossier/dashboard/N8XV4
+
+### Step 3: Liste der vorhandenen Orte der Impfung anzeigen (nur Displayname)
+GET http://localhost:8080/api/v1/reg/dossier/odi/all
+
+### Step 3a: Liste der vorhandenen Orte der Impfung anzeigen (fuer Management)
+GET http://localhost:8080/api/v1/ortderimpfung/management/all
+
+### Step 3b: Ort der Impfung erstellen
+PUT http://localhost:8080/api/v1/ortderimpfung/management/erfassen
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+	"abrechnungsnummer": "string",
+	"adresse": {
+		"adresse1": "string",
+		"adresse2": "string",
+		"ort": "string",
+		"plz": "string"
+	},
+	"mobilerOrtDerImpfung": false,
+	"name": "Impfzentrum Bern Insel",
+	"oeffentlich": true,
+	"terminverwaltung": true,
+	"typ": "IMPFZENTRUM"
+}
+
+### Step 3c: Ort der Impfung aktualisieren
+PUT http://localhost:8080/api/v1/ortderimpfung/management/aktualisieren
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+	"timestampErstellt": "2020-12-15T20:11:26.722Z",
+	"timestampMutiert": "2020-12-15T20:11:26.722Z",
+	"userErstellt": "string",
+	"userMutiert": "string",
+	"version": 0,
+	"id": "b835ec19-4906-43e7-b7d3-dcf38f80eee3",
+	"abrechnungsnummer": "string",
+	"adresse": {
+		"adresse1": "string",
+		"adresse2": "string",
+		"ort": "string",
+		"plz": "string"
+	},
+	"mobilerOrtDerImpfung": true,
+	"name": "string",
+	"oeffentlich": true,
+	"terminverwaltung": true,
+	"typ": "ALTERSHEIM"
+}
+
+### Step 4: Freie Termine fuer meinen OrtDerImpfung anzeigen
+GET http://localhost:8080/api/v1/reg/dossier/termine/frei/819bf50a-ad4c-4353-b013-3d7651680292
+
+### Step 5: Termine buchen
+PUT http://localhost:8080/api/v1/reg/dossier/buchen
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+	"registrierungsnummer": "G8GZ42",
+	"slot1Id": "25137e96-2b72-4b90-bfaf-f8e45117aaac",
+	"slot2Id": "be752a37-1de7-4eba-b747-300dd3188df8"
+}
+
+
+### ApplicationProperty PRIO_FREIGEGEBEN_BIS lesen
+GET http://localhost:8080/api/v1/properties/find/PRIO_FREIGEGEBEN_BIS
+
+### Alle ApplicationProperties lesen
+GET http://localhost:8080/api/v1/properties/all
+
+### ApplicationProperty speichern
+PUT http://localhost:8080/api/v1/properties/save
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+	"name": "PRIO_FREIGEGEBEN_BIS",
+	"value": "B"
+}

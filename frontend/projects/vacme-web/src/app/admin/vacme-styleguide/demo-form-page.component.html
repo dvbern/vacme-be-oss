@@ -1,0 +1,364 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='full-wdith'>
+
+    <div class='dln-header'>
+        <h4>VacMe Formularelemente</h4>
+
+        <p class='link-li'>
+            <a class="link-li text-link" routerLink="../styleguide">Styleguide</a>
+        </p>
+
+    </div>
+
+    <h2>NgModel</h2>
+
+    <div class="row ampel">
+        <p translate>IMPFAEHIGKEIT.RESULT</p>
+        <lib-ampel [(color)]="ampelColor"></lib-ampel>
+    </div>
+
+    <div class="row">
+        <lib-warningbox *ngIf="ampelColor === 'RED'" [critical]="true">
+            <span class="critical" translate>IMPFAEHIGKEIT.RED_WARNING</span>
+        </lib-warningbox>
+        <lib-warningbox *ngIf="ampelColor === 'ORANGE'">
+            <span translate>IMPFAEHIGKEIT.ORANGE_WARNING</span>
+        </lib-warningbox>
+        <lib-warningbox *ngIf="ampelColor === 'GREEN'" [success]="true">
+            <span translate>IMPFAEHIGKEIT.GREEN_WARNING</span>
+        </lib-warningbox>
+    </div>
+
+
+    <div class="row">
+
+        <div class="checkbox-container" *ngIf="isPass()">
+            <input id="checkbox-consent" type="checkbox" [(ngModel)]="consent">
+            <label for="checkbox-consent">
+
+                {{ 'IMPFAEHIGKEIT.CONSENT_CHECK_1' | translate }} <a class="text-link" target="_blank"
+                                                                     href="{{ 'IMPFAEHIGKEIT.LINK_CONSENT' | translate }}"
+                                                                     translate>IMPFAEHIGKEIT.LINK_CONSENT_TEXT</a> {{ 'IMPFAEHIGKEIT.CONSENT_CHECK_2' | translate }}
+            </label>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <pre style="float: left; clear: both;">{{'selected id: ' + (ortDerImfpungId | json)}}</pre>
+        <pre style="float: left; clear: both;">{{'selected object: ' + (ortDerImfpung | json)}}</pre>
+    </div>
+    <div class="row">
+        <select [(ngModel)]="ortDerImfpungId"
+                (change)="chooseItem()">
+            <option [ngValue]="undefined" translate>OVERVIEW.IMPFORT_LABEL</option>
+            <option *ngFor="let ort of ortDerImpfungList"
+                    [ngValue]="ort.id">
+                {{ort.name}}
+            </option>
+        </select>
+    </div>
+
+    <div class="row">
+        <lib-button buttonKind="submit" [disabled]="!consent" (clickIfEnabled)="submitNgForm()"
+                    translationKey="IMPFAEHIGKEIT.SEND">
+        </lib-button>
+    </div>
+
+
+    <div class="space"></div>
+    <h2>NgModel mit ngSubmit und disabled</h2>
+    <form (ngSubmit)="submitNgSubmitForm()">
+
+        <div class="row ampel">
+            <p translate>IMPFAEHIGKEIT.RESULT</p>
+            <lib-ampel [(color)]="ampelColor"></lib-ampel>
+        </div>
+
+        <div class="row">
+            <pre>{{'submitbutton enabled = ' + isPass()}}</pre>
+            <lib-button buttonKind="submit" [disabled]="!isPass()" translationKey="IMPFAEHIGKEIT.SEND">
+            </lib-button>
+        </div>
+
+    </form>
+
+
+    <div class="space"></div>
+    <h2>Reactive Forms</h2>
+
+    <form [formGroup]="formGroup" (ngSubmit)="submitIfValid()">
+        <div class="row">
+            <a (click)="formGroup.disable()" class="text-link margin-right-15">disable form</a>
+            <a (click)="formGroup.enable()" class="text-link margin-right-15">enable form</a>
+            <a (click)="setRandomValues()" class="text-link margin-right-15">set some values</a>
+            <a (click)="setNullValues()" class="text-link margin-right-15">reset form</a>
+            <a (click)="showValidation()" class="text-link margin-right-15">show validation</a>
+        </div>
+        <hr>
+        <lib-form-control-ampel formControlName="ampelColorControl"></lib-form-control-ampel>
+
+        <div class="row">
+            <lib-warningbox *ngIf="formGroup.value.ampelColorControl === 'RED'" [critical]="true">
+                <span class="critical" translate>IMPFAEHIGKEIT.RED_WARNING</span>
+            </lib-warningbox>
+            <lib-warningbox *ngIf="formGroup.value.ampelColorControl === 'ORANGE'">
+                <span translate>IMPFAEHIGKEIT.ORANGE_WARNING</span>
+            </lib-warningbox>
+            <lib-warningbox *ngIf="formGroup.value.ampelColorControl === 'GREEN'" [success]="true">
+                <span translate>IMPFAEHIGKEIT.GREEN_WARNING</span>
+            </lib-warningbox>
+        </div>
+
+        <div class="row">
+            <lib-input-text key="registrierung.name" [focusOnShow]="true"
+                            formControlName="name"></lib-input-text>
+        </div>
+        <div class="row">
+            <lib-input-text key="registrierung.vorname"
+                            noticeText="REGISTRIERUNG.NAME_HINT"
+                            formControlName="vorname"></lib-input-text>
+        </div>
+
+        <div class="row">
+            <lib-input-checkbox key="registrierung.immobil"
+                                formControlName="immobil"></lib-input-checkbox>
+        </div>
+
+        <div class="row">
+            <lib-input-text key="registrierung.geburtsdatum"
+                            formControlName="geburtsdatum"></lib-input-text>
+        </div>
+
+        <div class="row">
+            <lib-form-control-ampel formControlName="externGeimpft"
+                                    [showGroupLabel]="true" labelKey="EXTERN_GEIMPFT.EXTERN_GEIMPFT"
+                                    translationPrefix="EXTERN_GEIMPFT.EXTERN_GEIMPFT_OPTION"
+                                    [options]="[{label: 'true', value: true},{label:'false', value: false}]"
+                                    [focusOnShow]="false"></lib-form-control-ampel>
+        </div>
+
+        <div class="row">
+            <pre style="float: right">{{onOdiChangeOutput | json}}</pre>
+        </div>
+
+        <div class="row">
+            <lib-input-select key="IMPFDOK.odi" formControlName="odi"
+                              (change)="onOdiChange($event)"
+                              [options]="odiOptions" [noTranslate]="true"
+                              undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"></lib-input-select>
+        </div>
+
+        <div class="row">
+            <lib-input-typeahead-form
+                [listOfObjects]="odiOptions"
+                formControlName="odi2"
+                labelKey="IMPFDOK.ODI">
+            </lib-input-typeahead-form>
+        </div>
+
+        <div class="row">
+            <pre style="float: right">{{formGroup.get('odi2')?.value | json}}</pre>
+        </div>
+
+        <div class="row">
+            <lib-input-select key="IMPFDOK.verabreichung_art" formControlName="verabreichung_art"
+                              [options]="verabreichungArtOptions"
+                              undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                              translationPrefix="IMPFDOK.VERAB_ART"></lib-input-select>
+        </div>
+
+        <div class="row">
+            <lib-input-radio style="width: 30%;"
+                             [showGroupLabel]="false"
+                             key="impfdok.verabreichungOrtLr"
+                             formControlName="verabreichung_ort_lr"
+                             [options]="verabreichungOrtLROptions"
+                             translationPrefix="IMPFDOK.LINKS_RECHTS"></lib-input-radio>
+        </div>
+        <div class="row">
+            <lib-input-radio
+                formControlName="grundimmunisierung"
+                key="IMPFDOK.GRUNDIMMUNISIERUNG"
+                [showGroupLabel]="false"
+                [options]="[{label:'false', value: false}, {label: 'true', value: true}]"
+                [noTranslate]="false"
+                [columnDisplay]="true"
+                translationPrefix="IMPFDOK.GRUNDIMMUNISIERUNG_OPTION"></lib-input-radio>
+        </div>
+
+        <div class="row">
+            <lib-input-radio
+                key="impfdok.verabreichungOrtLr"
+                formControlName="radioVertical"
+                [options]="verabreichungOrtLROptions"
+                [columnDisplay]="true"
+                translationPrefix="IMPFDOK.LINKS_RECHTS"></lib-input-radio>
+        </div>
+
+        <div class="row">
+            <lib-input-textarea key="registrierung.bemerkungen"
+                                formControlName="bemerkungen" maxlength="1300"></lib-input-textarea>
+        </div>
+
+        <div class="row">
+            <lib-input-checkbox key="registrierung.agb"
+                                formControlName="agb"></lib-input-checkbox>
+        </div>
+
+        <div class="row">
+            <lib-input-checkbox key="registrierung.einwilligung"
+                                formControlName="einwilligung"></lib-input-checkbox>
+        </div>
+
+        <div class="row">
+            <lib-input-checkbox key="registrierung.abgleich_elektronischer_impfausweis"
+                                formControlName="abgleichElektronischerImpfausweis"></lib-input-checkbox>
+        </div>
+
+
+        <div class="row">
+            <lib-button buttonKind="submit" translationKey="REGISTRIERUNG.SAVEBUTTON"></lib-button>
+        </div>
+
+    </form>
+
+    <pre>{{formGroup.enabled | json}}</pre>
+    <pre>{{formGroup.value | json}}</pre>
+
+
+    <div class="space"></div>
+    <h2>Buttons</h2>
+    <h4>Navigate Buttons (routerLink)</h4>
+    <div class="row">
+        <lib-button-navigate buttonKind="go-back" goto="../styleguide"
+                             translationKey="IMPFDOK.ZURUECK"></lib-button-navigate>
+        <lib-button-navigate [disabled]="true" buttonKind="go-next" goto="../styleguide">Weiter</lib-button-navigate>
+    </div>
+
+    <h4>Normal Buttons</h4>
+    <div class="row">
+        <lib-button buttonKind="go-back" (clickIfEnabled)="log('go-back')">Back</lib-button>
+        <lib-button buttonKind="go-next" (clickIfEnabled)="log('go-next')">Next</lib-button>
+        <lib-button buttonKind="submit" (clickIfEnabled)="log('submit')">Submit</lib-button>
+        <lib-button buttonKind="primary" (clickIfEnabled)="log('primary')">Primary</lib-button>
+        <lib-button buttonKind="secondary" (clickIfEnabled)="log('secondary')">Secondary</lib-button>
+    </div>
+    <h4>Disabled Buttons</h4>
+    <div class="row">
+        <lib-button buttonKind="go-back" [disabled]="true" (clickIfEnabled)="log('go-back')">Back</lib-button>
+        <lib-button buttonKind="go-next" [disabled]="true" (clickIfEnabled)="log('go-next')">Next</lib-button>
+        <lib-button buttonKind="submit" [disabled]="true" (clickIfEnabled)="log('submit')">Submit</lib-button>
+        <lib-button buttonKind="primary" [disabled]="true" (clickIfEnabled)="log('primary')">Primary</lib-button>
+        <lib-button buttonKind="secondary" [disabled]="true" (clickIfEnabled)="log('secondary')">Secondary</lib-button>
+    </div>
+
+    <h4>Normal Buttons (clickIfEnabled)</h4>
+    <div class="row">
+        <lib-button secondary (clickIfEnabled)="showConfirmDialog();">Question Dialog</lib-button>
+        <lib-button secondary (clickIfEnabled)="showErrorDialog();">Warning Dialog</lib-button>
+        <lib-button secondary (clickIfEnabled)="showInfoDialog();">Info Dialog</lib-button>
+        <lib-button secondary (clickIfEnabled)="showSuccessDialog();">Success Dialog</lib-button>
+    </div>
+    <div class="row">
+        <lib-button secondary (clickIfEnabled)="showConfirmDialog();" [disabled]="true">Question Dialog</lib-button>
+        <lib-button secondary (clickIfEnabled)="showErrorDialog();" [disabled]="true">Warning Dialog</lib-button>
+        <lib-button secondary (clickIfEnabled)="showInfoDialog();" [disabled]="true">Info Dialog</lib-button>
+        <lib-button secondary (clickIfEnabled)="showSuccessDialog();" [disabled]="true">Success Dialog</lib-button>
+    </div>
+
+    <h4>Long Text Buttons</h4>
+    <div class="row">
+        <lib-button class="button-auto-height" (clickIfEnabled)="showConfirmDialog();">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</lib-button>
+    </div>
+
+    <h4>Backend Exception Handling</h4>
+    <p>Erklärung: ResponseType | Handling-Strategie | Use Case | erwartete Fehlermeldung</p>
+    <div class="row">
+        <lib-button secondary (clickIfEnabled)="triggerBackendExceptionNormal(true, 'none');">GET (any)
+            <span style="font-weight: 300"> (Normalfall)</span>
+        </lib-button>
+        <small>Das Impfdatum muss zwischen der vorherigen und der nachfolgenden Impfung liegen
+        </small>
+    </div>
+    <div class="row">
+        <lib-button secondary
+                    (clickIfEnabled)="triggerBackendExceptionNormal(true, 'manualsimple');">GET (any) ** manuell **
+            <span style="font-weight: 300"> (wie bei nextFreieTermin in OverviewPage)</span>
+        </lib-button>
+        <small>** manuelles Errorhandling **</small>
+    </div>
+    <div class="row">
+        <lib-button secondary (clickIfEnabled)="triggerBackendExceptionDownload(true, 'none');">GET ('blob' as any)
+            <span style="font-weight: 300"> Wie Terminbestaetigung</span>
+        </lib-button>
+        <small>Kein offener Termin. Bestätigung kann nicht generiert werden.</small>
+    </div>
+    <div class="row">
+        <lib-button secondary
+                    (clickIfEnabled)="triggerBackendExceptionDownload(true, 'manualsimple');">GET ('blob' as any) ** manuell **
+        </lib-button>
+        <small>** manuelles Errorhandling ** </small>
+    </div>
+    <div class="row">
+        <lib-button secondary
+                    (clickIfEnabled)="triggerBackendExceptionDownload(true, 'manualblob');">GET ('blob' as any) ** manuell + text **
+            <span style="font-weight: 300"> Wie Terminbestaetigung in Overview</span>
+        </lib-button>
+        <small>** manuelles Errorhandling ** Das Dokument konnte nicht heruntergeladen werden. Die angezeigten Daten sind evtl. nicht aktuell. Bitte laden Sie die Seite neu</small>
+    </div>
+    <div class="row">
+        <lib-button secondary (clickIfEnabled)="triggerBackendExceptionUpload(true, 'none');">POST ('blob')
+            <span style="font-weight: 300"> Wie im Massenimport</span>
+        </lib-button>
+        <small>Ungültiger Zustand: 7</small>
+    </div>
+    <div class="row">
+        <lib-button secondary
+                    (clickIfEnabled)="triggerBackendExceptionUpload(true, 'manualsimple');">POST ('blob') ** manuell **
+        </lib-button>
+        <small>** manuelles Errorhandling **</small>
+    </div>
+    <div class="row">
+        <lib-button secondary
+                    (clickIfEnabled)="triggerBackendExceptionUpload(true, 'manualblob');">POST ('blob') ** manuell + text **
+            <span style="font-weight: 300"> Wie früher im Massenimport</span>
+        </lib-button>
+        <small>** manuelles Errorhandling ** Das Dokument konnte nicht heruntergeladen werden. Die angezeigten Daten sind evtl. nicht aktuell. Bitte laden Sie die Seite neu</small>
+    </div>
+
+
+    <div class="space"></div>
+    <h2>Layout-Elements</h2>
+
+    <lib-accordion [initiallyOpen]="false">
+        <span class="title">Akkordeon</span>
+        <div>Das Akkordeon (von französisch accordéon), auch Ziehharmonika, Handharmonika oder Schifferklavier genannt, ist ein Handzuginstrument, bei dem der Ton bei Zug oder Druck auf einen Balg durch freischwingende, durchschlagende Zungen erzeugt wird und das nicht nur Einzeltöne hervorbringt, sondern auch (mechanisch voreingestellte) Akkorde. Der Name Akkordeon geht zurück auf den Wiener Instrumentenbauer Cyrill Demian, der seine Ziehharmonika durch Hinzufügen von in Akkorden zusammengefassten Bässen verbesserte und unter dem Namen Accordion (1829) patentieren ließ.</div>
+    </lib-accordion>
+
+    <h4>Collapsible Component</h4>
+    <div (click)="collapsibleComponentOpen = !collapsibleComponentOpen">
+        <img *ngIf="!collapsibleComponentOpen" class="filter-img" src="../img/filter_neutral.svg">
+        <img *ngIf="collapsibleComponentOpen" class="filter-img" src="../img/filter_active.svg">
+    </div>
+    <lib-collapsible-content [opened]="collapsibleComponentOpen">
+        <div>Ein Aufklapp-Bilderbuch oder Pop-up-Buch (manchmal auch Stehauf-Bilderbuch oder Aufpoppbuch) ist ein Buch, das beim Aufschlagen einer Seite ein durch Falttechnik integriertes Element „herausspringen“ und somit räumlich erscheinen lässt. Manchmal wird der Effekt noch verstärkt, indem mithilfe von kleinen Papphebeln interaktiv in das Bildgeschehen eingegriffen werden kann, zum Beispiel können Türchen geöffnet und geschlossen oder ein Element in Form eines Autos kann hin und her geschoben werden.</div>
+    </lib-collapsible-content>
+
+</div>

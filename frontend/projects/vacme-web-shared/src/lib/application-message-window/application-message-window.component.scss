@@ -1,0 +1,49 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+@import '../../../src/styles/vacme-variables';
+
+div.alert-box {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.white-text.content {
+    margin-top: 5px;
+}
+.white-text.title {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.small-alert-box {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin: 5px 0px;
+    cursor: pointer;
+}
+.small-alert-box-img {
+    height: 26px;
+    width: 26px;
+    padding: 2px;
+}
+.small-alert-box-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    padding: 2px;
+}
+
+.warning {
+    background-color: $color-ampel-orange;
+}
+.error {
+    background-color: $color-ampel-red;
+}
+.info {
+    background-color: $color-ampel-green;
+}

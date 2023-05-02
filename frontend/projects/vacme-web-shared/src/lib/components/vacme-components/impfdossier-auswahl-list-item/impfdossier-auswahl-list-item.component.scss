@@ -1,0 +1,28 @@
+:host {
+    .auswahl-item {
+        display: flex;
+        justify-content: space-between;
+		margin-bottom: 30px;
+
+        .title-and-description {
+            margin-right: 35px;
+        }
+
+        .auswahl-button {
+            align-self: center;
+        }
+
+        @media screen and (max-width: 767px) {
+            flex-direction: column;
+
+            .title-and-description {
+                margin-right: 0;
+
+                margin-bottom: 18px;
+            }
+        }
+
+    }
+
+
+}

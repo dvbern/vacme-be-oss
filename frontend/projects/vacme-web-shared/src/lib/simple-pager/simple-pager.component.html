@@ -1,0 +1,36 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class="row" [ngClass]="disabled ? 'disabled' : ''">
+    <div *ngIf="pagerState === state.DISPLAY_NEXT" style="text-align: right;">
+        <a disabled (click)="emitEvent(event.NEXT)" translate>PAGER.NAECHSTE</a>
+    </div>
+    <div *ngIf="pagerState === state.DISPLAY_PREVIOUS">
+        <a (click)="emitEvent(event.PREVIOUS)" translate>PAGER.VORHERIGE</a>
+    </div>
+    <div *ngIf="pagerState === state.DISPLAY_NEXT_AND_PREVIOUS">
+        <div style="float: left;">
+            <a (click)="emitEvent(event.PREVIOUS)" translate>PAGER.VORHERIGE</a>&nbsp;&nbsp;
+        </div>
+        <div style="text-align: right; float: right;">
+            <a (click)="emitEvent(event.NEXT)" translate>PAGER.NAECHSTE</a>
+        </div>
+    </div>
+    <div *ngIf="pagerState === state.DISPLAY_CLEAR_FILTER">
+        <a (click)="emitEvent(event.CLEAR_FILTER)" translate>PAGER.LOESCHEN</a>
+    </div>
+</div>

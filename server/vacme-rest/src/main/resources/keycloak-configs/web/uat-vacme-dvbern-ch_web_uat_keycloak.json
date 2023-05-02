@@ -1,0 +1,8 @@
+{
+	"realm": "vacme-web",
+	"auth-server-url": "https://impfen-vacme-uat.dvbern.ch/auth/",
+	"ssl-required": "external",
+	"resource": "vacme-web-app-uat",
+	"public-client": true,
+	"confidential-port": 0
+}

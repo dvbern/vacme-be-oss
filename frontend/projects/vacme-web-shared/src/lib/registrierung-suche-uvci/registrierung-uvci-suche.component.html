@@ -1,0 +1,63 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<div class='main-column'>
+    <div class="suche-box">
+        <h4 class='i5' translate>CALLCENTER.UVCI-SUCHE.TITLE</h4>
+
+        <form [formGroup]="personalienGroup">
+            <div class="row">
+                <lib-input-text key="registrierung.name"
+                                [autocomplete]="false"
+                                formControlName="name"></lib-input-text>
+            </div>
+            <div class="row">
+                <lib-input-text key="registrierung.vorname"
+                                [autocomplete]="false"
+                                formControlName="vorname"></lib-input-text>
+            </div>
+            <div class="row">
+                <lib-input-text key="registrierung.geburtsdatum"
+                                formControlName="geburtsdatum"></lib-input-text>
+            </div>
+            <div class="row">
+                <lib-input-text key="CALLCENTER.UVCI-SUCHE.UVCI-LABEL"
+                                formControlName="uvci" libInputTrim [trim]="true"></lib-input-text>
+            </div>
+            <lib-button buttonKind="submit" translationKey="CALLCENTER.PERSONALIEN-SUCHE.SUCHEN"
+                        (clickIfEnabled)="personalienSuchen()"
+            ></lib-button>
+        </form>
+    </div>
+    <div *ngIf="searched">
+        <h4 class='i5' style="margin-bottom: 30px" translate>CALLCENTER.PERSONALIEN-SUCHE.RESULTS</h4>
+
+        <div *ngIf="hasNoResults()" translate>CALLCENTER.PERSONALIEN-SUCHE.NO-RESULT</div>
+        <ul *ngFor="let group of getResultGroups()">
+            <li *ngIf="group.get('daten')?.value as result" class="ergebnis-li">
+                <span>{{result.name}}</span>
+                <span>&nbsp;</span>
+                <span>{{result.vorname}}</span>
+                <span>: &nbsp;</span>
+                <span>{{result.regNummer}}</span>
+
+                <lib-button translationKey="CALLCENTER.UVCI-SUCHE.OPEN-RESULT" buttonKind="primary"
+                            class="button-no-margin" style="margin-left: 30px;"
+                            (clickIfEnabled)="navigateToPersonendatenEdit(group)"></lib-button>
+            </li>
+        </ul>
+    </div>
+</div>

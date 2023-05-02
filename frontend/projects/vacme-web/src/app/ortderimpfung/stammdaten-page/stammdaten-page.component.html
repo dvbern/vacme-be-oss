@@ -1,0 +1,193 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='detailpage'>
+    <div class="main-column">
+        <h4 class='i5' *ngIf="!isBearbeitung()">
+            <span translate>FACH-APP.ODI.STAMMDATEN.REGISTRIERUNG</span>
+            <span *ngIf="doesExist()"> ({{this.ortDerImpfungCode}})</span>
+        </h4>
+        <h4 class='i5' *ngIf="isBearbeitung()">
+            <span translate>FACH-APP.ODI.STAMMDATEN.BEARBEITUNG</span>
+            <span> ({{this.ortDerImpfung?.identifier}})</span>
+        </h4>
+
+        <form [formGroup]="formGroup">
+
+            <div class="row" *ngIf="!isBearbeitung() && !doesExist()">
+                <lib-input-text key="FACH-APP.ODI.STAMMDATEN.IDENTIFIER"
+                                formControlName="identifier"></lib-input-text>
+                <lib-button buttonKind="submit" (clickIfEnabled)="checkExistence()">
+                    {{'FACH-APP.ODI.STAMMDATEN.CODE_UEBERPRUEFEN' | translate}}
+                </lib-button>
+            </div>
+            <div *ngIf="doesExist()">
+                <div class="row">
+                    <lib-input-text key="FACH-APP.ODI.STAMMDATEN.NAME"
+                                    formControlName="name"></lib-input-text>
+                </div>
+                <form [formGroup]="formGroupAdresse">
+                    <div class="row">
+                        <lib-input-text key="FACH-APP.ODI.STAMMDATEN.ADRESSE1"
+                                        formControlName="adresse1"></lib-input-text>
+                    </div>
+                    <div class="row">
+                        <lib-input-text key="FACH-APP.ODI.STAMMDATEN.ADRESSE2"
+                                        formControlName="adresse2"></lib-input-text>
+                    </div>
+                    <div class="row" style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                        <lib-input-text style="flex: 1;" key="FACH-APP.ODI.STAMMDATEN.PLZ"
+                                        formControlName="plz"></lib-input-text>
+                        <div style="flex: 1;"></div>
+                        <lib-input-text style="flex: 2;" key="FACH-APP.ODI.STAMMDATEN.ORT"
+                                        formControlName="ort"></lib-input-text>
+                    </div>
+                </form>
+                <div class="row" style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                    <lib-input-checkbox style="flex: 2;" key="FACH-APP.ODI.STAMMDATEN.OEFFENTLICH"
+                                        formControlName="oeffentlich"></lib-input-checkbox>
+
+                    <lib-input-checkbox *ngIf="hasMobileOrtDerImpfung()" style="flex: 2;" key="FACH-APP.ODI.STAMMDATEN.MOBILER-ODI"
+                                        formControlName="mobilerOrtDerImpfung"></lib-input-checkbox>
+
+                    <lib-input-checkbox style="flex: 3;" key="FACH-APP.ODI.STAMMDATEN.TERMINVERWALTUNG"
+                                        formControlName="terminverwaltung"></lib-input-checkbox>
+
+
+                </div>
+
+                <div class="row">
+                    <lib-input-text *ngIf="!hasTermine()" key="FACH-APP.ODI.STAMMDATEN.EXTERNER_BUCHUNGSLINK"
+                                    formControlName="externerBuchungslink" noticeText="FACH-APP.ODI.STAMMDATEN.EXTERNER_BUCHUNGSLINK_HINT"></lib-input-text>
+                </div>
+
+                <div class="row" style="display: flex; flex-direction: row; justify-content: space-evenly;">
+
+
+                    <lib-input-checkbox style="flex: 4;" key="FACH-APP.ODI.STAMMDATEN.PERSONALISIERTER_IMPF_REPORT"
+                                        formControlName="personalisierterImpfReport"></lib-input-checkbox>
+
+                    <lib-input-checkbox style="flex: 3;" key="FACH-APP.ODI.STAMMDATEN.DEAKTIVIERT"
+                                        formControlName="deaktiviert"></lib-input-checkbox>
+                </div>
+
+                <div class="row">
+                    <lib-input-checkbox  key="FACH-APP.ODI.STAMMDATEN.BOOSTER"
+                                        formControlName="booster"></lib-input-checkbox>
+
+                    <lib-input-checkbox  key="FACH-APP.ODI.STAMMDATEN.IMPFUNG_GEGEN_BEZAHLUNG"
+                                         formControlName="impfungGegenBezahlung"
+                                         *ngIf="hasTerminbuchungFuerSelbstzahler()"></lib-input-checkbox>
+
+                    <lib-input-multi-select formControlName="impfstoffe"
+                                            key="FACH-APP.ODI.STAMMDATEN.BOOSTER_IMPFSTOFF"
+                                            [options]="impfstoffOptions">
+                    </lib-input-multi-select>
+
+                </div>
+
+                <div class="row">
+                    <lib-input-text key="FACH-APP.ODI.STAMMDATEN.ZSR-NUMMER"
+                                    formControlName="zsrNummer"></lib-input-text>
+                </div>
+                <div class="row">
+                    <lib-input-text key="FACH-APP.ODI.STAMMDATEN.GLN-NUMMER"
+                                    formControlName="glnNummer"></lib-input-text>
+                </div>
+                <div class="row">
+                    <lib-input-select
+                        id="typSelect"
+                        formControlName="typ"
+                        key="FACH-APP.ODI.STAMMDATEN.TYP-TEXT"
+                        [options]="typOptions"
+                        undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                        translationPrefix="FACH-APP.ODI.STAMMDATEN.TYP"></lib-input-select>
+                </div>
+                <div class="row">
+                    <lib-input-textarea key="FACH-APP.ODI.STAMMDATEN.KOMMENTAR"
+                                        formControlName="kommentar" maxlength="1300"></lib-input-textarea>
+                </div>
+                <div class="row" *ngIf="isAsRegistrationOi() && fachverantwortungbabMap">
+                    <lib-input-typeahead-form
+                        id="fachverantwortungbab"
+                        formControlName="fachverantwortungbab"
+                        [listOfObjects]="fachverantwortungbabMap"
+                        labelKey="FACH-APP.ODI.STAMMDATEN.FACHVERANTWORTUNGBAB">
+                    </lib-input-typeahead-form>
+                </div>
+                <div class="row" *ngIf="isAsRegistrationOi() && organisationsverantwortungMap">
+                    <lib-input-typeahead-form
+                        id="organisationsverantwortung"
+                        formControlName="organisationsverantwortung"
+                        [listOfObjects]="organisationsverantwortungMap"
+                        labelKey="FACH-APP.ODI.STAMMDATEN.ORGANISATIONSVERANTWORTUNG">
+                    </lib-input-typeahead-form>
+                </div>
+
+                <!-- Kundengruppe -->
+                <div class="row">
+                    <lib-input-select
+                            id="kundengruppeSelect"
+                            formControlName="kundengruppe"
+                            key="FACH-APP.ODI.STAMMDATEN.KUNDENGRUPPE"
+                            [options]="kundengruppeOptions"
+                            undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                            translationPrefix="FACH-APP.ODI.KUNDENGRUPPE"></lib-input-select>
+                </div>
+
+                <div class='next-back-buttons'>
+                    <lib-button-navigate buttonKind="go-back"
+                                         goto="/"
+                                         translationKey="IMPFDOK.ZURUECK"></lib-button-navigate>
+
+                    <lib-button buttonKind="submit" (clickIfEnabled)="submitIfValid()">
+                        {{'FACH-APP.ODI.STAMMDATEN.SPEICHERN' | translate }}
+                    </lib-button>
+                </div>
+
+            </div>
+
+
+        </form>
+
+        <div class="space"></div>
+        <div class="row" *ngIf="hasRoleBenutzerverwalter() && ortDerImpfung">
+            <h4 class='i5' translate>FACH-APP.ODI.BENUTZER.TITEL</h4>
+            <app-benutzerliste [ortDerImfpung]="ortDerImpfung"></app-benutzerliste>
+        </div>
+
+    </div>
+    <div class="context-column">
+
+        <div class="row step-1-text" style="display: block;" *ngIf="isBearbeitung() && hasTermine()">
+            <p translate>FACH-APP.ODI.TERMINVERWALTUNG.TITLE</p>
+            <lib-button buttonKind="secondary" [disabled]="formGroup.dirty"
+                        style="flex: 2; margin-left: auto; margin-top: unset; margin-bottom: unset; margin-right: unset;"
+                        (clickIfEnabled)="termineBearbeiten()"
+                        translationKey="FACH-APP.ODI.STAMMDATEN.TERMINE_BEARBEITEN"></lib-button>
+        </div>
+
+        <div class="row step-1-text" style="display: block;" *ngIf="isBearbeitung() && isOeffentlich() && isAsRegistrationOi()">
+            <p translate>FACH-APP.ODI.ODI_FILTER.TITLE</p>
+            <lib-button buttonKind="secondary" [disabled]="formGroup.dirty"
+                        style="flex: 2; margin-left: auto; margin-top: unset; margin-bottom: unset; margin-right: unset;"
+                        (clickIfEnabled)="filterBearbeiten()"
+                        translationKey="FACH-APP.ODI.ODI_FILTER.BEARBEITEN"></lib-button>
+        </div>
+
+    </div>
+</div>

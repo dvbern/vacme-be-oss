@@ -1,0 +1,106 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='detailpage'>
+
+    <div class="row" style="display: flex; flex-direction: row; justify-content: center;">
+        <ng-container *ngFor="let monthYear of monthYearCombination; let k=index">
+            <lib-button [buttonKind]="monthYear.month === this.selectedMonat ? 'primary' : 'secondary'"
+                        [ngStyle]="{'flex': k}" (clickIfEnabled)="chooseMonth(monthYear)">
+                {{'FACH-APP.ODI.TERMINVERWALTUNG.MONAT.' + monthYear.month | translate}}
+            </lib-button>
+        </ng-container>
+    </div>
+
+    <div class='main-column'>
+
+        <div class="row">
+            <lib-input-typeahead
+                labelProperty="name"
+                labelKey="OVERVIEW.IMPFORT_LABEL"
+                [listOfObjects]="ortderimpfungenListe"
+                (inputChanged)="chooseItem($event)">
+            </lib-input-typeahead>
+        </div>
+
+        <div class="row">
+            <table class="table" *ngIf="impfzentrumStat">
+                <thead>
+                <tr>
+                    <th title="{{'ADMIN.DATUM' | translate}}" style="min-width: 120px;" translate>ADMIN.DATUM</th>
+                    <th title="{{'ADMIN.BUCHUNGEN_TERMIN_1' | translate}}" translate>ADMIN.BUCHUNGEN_TERMIN_1_SHORT</th>
+                    <th title="{{'ADMIN.BUCHUNGEN_TERMIN_2' | translate}}" translate>ADMIN.BUCHUNGEN_TERMIN_2_SHORT</th>
+                    <th title="{{'ADMIN.BUCHUNGEN_TERMIN_N' | translate}}" translate>ADMIN.BUCHUNGEN_TERMIN_N_SHORT</th>
+                    <th title="{{'ADMIN.KAPAZITAET_TERMIN_1' | translate}}" translate>ADMIN.KAPAZITAET_TERMIN_1_SHORT</th>
+                    <th title="{{'ADMIN.KAPAZITAET_TERMIN_2' | translate}}" translate>ADMIN.KAPAZITAET_TERMIN_2_SHORT</th>
+                    <th title="{{'ADMIN.KAPAZITAET_TERMIN_N' | translate}}" translate>ADMIN.KAPAZITAET_TERMIN_N_SHORT</th>
+                    <th title="{{'ADMIN.FREIE_TERMIN_1' | translate}}" translate>ADMIN.FREIE_TERMIN_1_SHORT</th>
+                    <th title="{{'ADMIN.FREIE_TERMIN_2' | translate}}" translate>ADMIN.FREIE_TERMIN_2_SHORT</th>
+                    <th title="{{'ADMIN.FREIE_TERMIN_N' | translate}}" translate>ADMIN.FREIE_TERMIN_N_SHORT</th>
+                    <th title="{{'ADMIN.IMPFUNGEN_1' | translate}}" translate>ADMIN.IMPFUNGEN_1_SHORT</th>
+                    <th title="{{'ADMIN.IMPFUNGEN_2' | translate}}" translate>ADMIN.IMPFUNGEN_2_SHORT</th>
+                    <th title="{{'ADMIN.IMPFUNGEN_N' | translate}}" translate>ADMIN.IMPFUNGEN_N_SHORT</th>
+                </tr>
+                </thead>
+                <tbody class="upload-name-style">
+                <tr *ngFor="let item of impfzentrumStat.list; let i=index">
+                    <td>{{ item.datum  | date: 'dd. MMM yyyy': undefined: this.translateService.currentLang}}</td>
+                    <td>{{ item.numberTermin1 }}</td>
+                    <td>{{ item.numberTermin2 }}</td>
+                    <td>{{ item.numberTerminN }}</td>
+                    <td>{{ item.kapazitaetTermin1 }}</td>
+                    <td>{{ item.kapazitaetTermin2 }}</td>
+                    <td>{{ item.kapazitaetTerminN }}</td>
+                    <td>{{ item.kapazitaetTermin1! - item.numberTermin1!}}</td>
+                    <td>{{ item.kapazitaetTermin2! - item.numberTermin2!}}</td>
+                    <td>{{ item.kapazitaetTerminN! - item.numberTerminN!}}</td>
+                    <td>{{ item.numberImpfung1 }}</td>
+                    <td>{{ item.numberImpfung2 }}</td>
+                    <td>{{ item.numberImpfungN }}</td>
+                </tr>
+                <tr>
+                    <td><strong translate>ADMIN.TOTAL</strong></td>
+                    <td><strong>{{this.totnumberTermin1}}</strong></td>
+                    <td><strong>{{this.totnumberTermin2}}</strong></td>
+                    <td><strong>{{this.totnumberTerminN}}</strong></td>
+                    <td><strong>{{this.totkapazitaetTermin1}}</strong></td>
+                    <td><strong>{{this.totkapazitaetTermin2}}</strong></td>
+                    <td><strong>{{this.totkapazitaetTerminN}}</strong></td>
+                    <td><strong>{{this.totkapazitaetTermin1 - this.totnumberTermin1}}</strong></td>
+                    <td><strong>{{this.totkapazitaetTermin2 - this.totnumberTermin2}}</strong></td>
+                    <td><strong>{{this.totkapazitaetTerminN - this.totnumberTerminN}}</strong></td>
+                    <td><strong>{{this.totNumberImpfungen1}}</strong></td>
+                    <td><strong>{{this.totNumberImpfungen2}}</strong></td>
+                    <td><strong>{{this.totNumberImpfungenN}}</strong></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class='main-column'>
+        <p translate>ADMIN.ANZAHL_REGISTRIERUNGEN</p>
+        <h2>{{anzahlRegistrierungen}}</h2>
+    </div>
+
+    <div class='main-column'>
+        <p translate>ADMIN.VERSION</p>
+        <span>{{serverVersion}}</span>
+    </div>
+
+    <div class='context-column'></div>
+</div>

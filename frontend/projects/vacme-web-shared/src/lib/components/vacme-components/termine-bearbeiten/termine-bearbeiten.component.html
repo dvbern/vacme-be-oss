@@ -1,0 +1,80 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='full-wdith'>
+    <div class='max-800'>
+        <h1 class="margin-top-30" translate>OVERVIEW.TERMINE-BEARBEITEN</h1>
+
+        <select [(ngModel)]="this.selectedOdiId"
+                (change)="selectOrtDerImpfung()" class="vacme-select"
+                [attr.aria-labelledby]="'impfortLabelId'">
+            <option *ngFor="let option of odiOptions"
+                    [ngValue]="option.value"
+                    [disabled]="option.disabled">
+                {{option.label}}
+            </option>
+        </select>
+
+        <div *ngIf="selectedOdiId !== undefined">
+            <p *ngIf="!isAlreadyGrundimmunisiert()">
+                {{getInfoTextDistanceBetweenImpfungen()}}
+            </p>
+            <lib-termin-overview-item *ngFor="let impffolge of getImpffolgen()"
+                                      [readonly]="isTerminReadOnly(impffolge)"
+                                      [impffolge]="impffolge"
+                                      [ortDerImpfungId]="getOrtDerImpfungId()"
+                                      [registrierungsnummer]="getRegistrierungsnummer()"
+                                      [disableIntervallCheck]="true"
+                                      [hasDeltaChanges]="isDelta(impffolge)"
+                                      [erstTerminAdHoc]="erstTerminAdHoc"
+                                      (nextFreieTermin)="doNextFreieTermin($event)"
+                                      [freigegebenAb]="dashboardJax?.impfdossier?.impfschutzJax?.freigegebenNaechsteImpfungAb">
+            </lib-termin-overview-item>
+
+            <div *ngIf="warnDates()" translate class="summary-box"
+                 [translateParams]="{max: getDaysDiffAbs()}">OVERVIEW.WARNUNG_ZEITABSTAND_OVER
+            </div>
+        </div>
+
+        <!--    Informationen zu dem gebuchten Termin wenn man schon was gebucht hat -->
+        <div class="row termine-bearbeiten actions">
+            <!-- abbrechen -->
+            <lib-button buttonKind="go-back" (clickIfEnabled)="doGoBack()"
+                        class="cancel" translationKey="OVERVIEW.ABBRECHEN"></lib-button>
+
+
+            <div style="flex-grow: 1;">
+                <!-- speichern -->
+                <lib-button buttonKind="submit" [disabled]="!canSave() || noChanges()"
+                            (clickIfEnabled)="doUpdateAppointments()">
+                    {{'OVERVIEW.BUCHEN-AENDERN' | translate}}
+                </lib-button>
+
+            </div>
+
+
+            <!-- annullieren -->
+            <lib-button buttonKind="secondary" class="cancel" *ngIf="showAnnullieren()"
+                        customClass="cancel-button"
+                        (clickIfEnabled)="doCancelAppointments()"
+                        [disabled]="!noChanges() || isPendingSecondImpfung()"
+                        [translationKey]="isImpffolgeBooster() ? 'OVERVIEW.CANCEL_TERMIN_BOOSTER.CONFIRM' : 'OVERVIEW.CANCEL_TERMIN.CONFIRM'"></lib-button>
+
+        </div>
+    </div>
+</div>
+

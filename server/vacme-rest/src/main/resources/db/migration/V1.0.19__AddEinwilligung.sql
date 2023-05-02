@@ -1,0 +1,14 @@
+ALTER TABLE Impfung
+	ADD einwilligung BOOL DEFAULT TRUE NOT NULL;
+
+
+ALTER TABLE Impfung_AUD
+	ADD einwilligung BOOL DEFAULT TRUE NOT NULL;
+
+
+ALTER TABLE Impfung
+	ADD bemerkung VARCHAR(2000) NULL;
+
+
+ALTER TABLE Impfung_AUD
+	ADD bemerkung VARCHAR (2000) NULL;

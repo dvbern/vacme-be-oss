@@ -1,0 +1,1 @@
+ALTER TABLE MassenverarbeitungQueue ADD IF NOT EXISTS impfdossierId VARCHAR(36) NULL;

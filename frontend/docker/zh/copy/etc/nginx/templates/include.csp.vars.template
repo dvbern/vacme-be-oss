@@ -1,0 +1,9 @@
+# See https://securityheaders.com/
+set $cspDefault "default-src 'self'";
+set $cspScript  "script-src 'self'";
+set $cspConnect "connect-src 'self'";
+set $cspFont    "font-src 'self' data:";
+set $cspStyle   "style-src 'self' 'unsafe-inline'";
+set $cspImg     "img-src 'self' data: blob:";
+set $cspFrame   "frame-ancestors 'self' ${ADDITIONAL_FRAME_ANCESTORS}";
+set $cspFrameKeycloak   "frame-ancestors 'self' http://localhost:4200 http://localhost:4222";

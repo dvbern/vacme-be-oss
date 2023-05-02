@@ -1,0 +1,131 @@
+
+.row {
+    margin-bottom: 40px;
+}
+
+.kommentar {
+    font-weight: bold;
+}
+
+::ng-deep {
+    .alert-box {
+        ul {
+            margin-top: 10px; // overrides the 36px
+        }
+    }
+}
+
+.abgeschlossen-info {
+    text-align: center;
+    font-weight: bold;
+    margin: 30px auto;
+
+    h2 {
+        margin: 0 auto;
+    }
+}
+
+.impfausweis-title {
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+.help-icon {
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
+}
+
+.impfausweis-title-container {
+    display: flex;
+    justify-content: center;
+}
+
+.impfausweis-wait-text {
+    line-height: 30px;
+    font-size: 14px;
+    margin: 0;
+    font-family: "Roboto", "arial", sans-serif;;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.impfausweis-button {
+    width: available;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.impfausweis-wait-icon {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    animation: spin 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.impfausweis-wait {
+    display: flex;
+    margin: 20px 50px 18px 0;
+}
+
+.download {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.downloadLinkText {
+    font-size: 16px;
+}
+
+.daten-anpassen {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.center {
+    max-width: 800px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.history-icon {
+    background: transparent url('/assets/img/order-history.svg') center right no-repeat;
+    background-size: 24px 24px;
+    padding-right: 24px;
+}
+
+
+.odi-wahl-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .select-container{
+        flex-grow: 1;
+    }
+    .filter-button{
+        margin-left: 10px;
+        cursor: pointer;
+    }
+}
+
+.filter-img {
+    height: 59px;
+}
