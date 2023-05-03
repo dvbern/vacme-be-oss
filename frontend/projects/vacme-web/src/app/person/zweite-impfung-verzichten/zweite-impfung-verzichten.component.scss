@@ -1,0 +1,24 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+.swal-content-vacme-style,
+.swal-content-vacme-style div {
+    text-align: left;
+    letter-spacing: 0 !important;
+
+
+    ::ng-deep {
+        input[type=radio] {
+            // Abstand zwischen Radiobutton und Text groesser als sonst
+            margin-right: 13px;
+        }
+        input[type=checkbox] {
+            // Abstand zwischen Radiobutton und Text groesser als sonst
+            margin-right: 5px;
+        }
+    }
+}
+
+

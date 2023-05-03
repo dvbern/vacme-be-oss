@@ -1,0 +1,237 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+@import '../../../../../vacme-web-shared/src/styles/vacme-variables';
+
+$cell-border-color: $color-be-func-line-grey;
+$row-border: 1px solid $cell-border-color;
+$row-spacing: 12px;
+
+:host {
+
+    .loading {
+        opacity: 0.5;
+    }
+
+
+    table {
+        tr {
+            border-top-width: 0px;
+            border-bottom-width: 0px;
+
+            &.spacer-row {
+                height: $row-spacing;
+            }
+        }
+    }
+
+    .white-col {
+        background-color: #fff;
+        border-bottom: $row-border;
+        border-top: $row-border;
+    }
+
+    .no-border-bottom {
+        border-bottom: 0px;
+    }
+
+    .no-border-top {
+        border-top: 0px;
+    }
+
+    table tr td,
+    table tr th {
+        padding: 0 !important;
+        margin: 0 !important;
+
+        &.slot-td {
+            width: 50px;
+            border-top: 1px solid $cell-border-color;
+            border-bottom: 1px solid $cell-border-color;
+        }
+
+        input {
+            border-width: 0 0 1px 1px; // nur innere Raender
+            border-color: $cell-border-color;
+            width: 50px;
+            height: 40px;
+            padding: 1px;
+            margin: 0px;
+            text-align: center;
+
+            &:focus {
+                outline-offset: -4px !important;
+                border-left-width: 5px; // eigentlich die Outline, aber links fehlt ein Pixel
+
+                &.empty {
+                    color: #000 !important;
+                }
+            }
+
+            &.empty {
+                color: rgba(200, 200, 200, 0) !important;
+            }
+
+
+            &.kapazitaet1 {
+                border-top-width: 0;
+            }
+
+            &.kapazitaet2 {
+            }
+
+            &.kapazitaetN {
+                border-bottom-width: 0;
+            }
+
+            &.invalid {
+                padding-right: 1px !important; // overriding other styles...
+                border-width: 4px 4px 4px 5px !important; // roter Rand
+
+                &:focus {
+                    // invalid+focus: nur roten Rand anzeigen!
+                    outline: none !important;
+                    outline-width: 0 !important;
+                }
+            }
+
+        }
+
+
+        &:last-child input {
+            border-right-width: 1px;
+        }
+
+
+        .col0-i-ii {
+            width: 30px;
+            height: 40px;
+            padding: 1px;
+            margin: 0px;
+            text-align: center;
+            display: grid;
+            align-items: center;
+        }
+
+        .col0-date {
+            height: 80px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            padding: 0 4px;
+        }
+
+        .col0-date-flat {
+            height: 40px;
+        }
+
+        .day-2-fields {
+
+            > * {
+                width: 100%;
+                // display: block;
+            }
+
+            &.col-impffolge {
+                width: 80px;
+            }
+
+            &.col-terminabsage {
+                width: 30px;
+            }
+
+            &.col-summe {
+                width: 35px;
+                text-align: right;
+            }
+
+            .cell-time {
+                color: $color-be-red;
+                display: block;
+                font-weight: bold;
+                position: absolute;
+                margin-left: 7px;
+                margin-top: -15px;
+                font-size: 13px;
+            }
+
+        }
+
+        .th-von,
+        .th-bis {
+
+            width: 50px;
+            height: 30px;
+            padding: 1px;
+            margin: 0;
+            text-align: center
+        }
+
+
+    }
+
+
+    /** CELL COLORS
+    - alternating row colors (5%)
+    - darker off times (8%)
+    - grey disabled
+    */
+    $odd-darkness: 0%;
+    $offtime-darkness: 8%;
+    $normal-color: $color-be-sand;
+    $disabled-color: $color-disabled-background;
+
+    table thead tr th.offtime,
+    table tbody tr.offtime .white-col {
+        background-color: darken(#fff, $offtime-darkness);
+    }
+
+    table tr td {
+        input {
+            background-color: $normal-color;
+
+            &.offtime {
+                background-color: darken($normal-color, $offtime-darkness);
+
+                &:disabled {
+                    background-color: darken($disabled-color, $offtime-darkness);
+                }
+            }
+
+            &:disabled {
+                background-color: $disabled-color;
+            }
+        }
+    }
+
+    table tr:nth-child(even) td {
+        input {
+            background-color: darken($normal-color, $odd-darkness);
+
+            &.offtime {
+                background-color: darken(darken($normal-color, $odd-darkness), $offtime-darkness);
+
+                &:disabled {
+                    background-color: darken(darken($disabled-color, $odd-darkness), $offtime-darkness);
+                }
+            }
+
+            &:disabled {
+                background-color: darken($disabled-color, $odd-darkness);
+            }
+        }
+    }
+
+}
+
+
+.absagen {
+    height: 40px;
+    padding: 1px;
+    margin: 0px;
+    text-align: center;
+    display: grid;
+    align-items: center;
+}

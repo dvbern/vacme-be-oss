@@ -1,0 +1,1 @@
+CREATE INDEX IX_Registrierung_geburtsdatum on Registrierung(geburtsdatum, id);

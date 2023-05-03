@@ -1,0 +1,42 @@
+<!--/*-->
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="narrative.css"/>
+</head>
+<body>
+<!--*/-->
+<div>
+    <p><b>Generated Narrative</b></p>
+    <div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%">
+        <p style="margin-bottom: 0px">Resource Practitioner</p>
+        <p style="margin-bottom: 0px">Profile:
+            <a href="http://fhir.ch/ig/ch-core/StructureDefinition-ch-core-practitioner-epr.html">CH Core Practitioner Profile EPR</a>
+        </p>
+    </div>
+    <table border="0">
+    <tbody>
+        <tr th:each="issue : ${resource.identifier}">
+            <td style="font-weight: bold;">Identifier</td>
+            <td th:text="${issue.value}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Active</td>
+            <td th:text="${resource.active}"></td>
+        </tr>
+        <tr th:if="${not resource.name.empty}">
+            <td style="font-weight: bold;">Name</td>
+            <td th:narrative="${resource.name[0]}"></td>
+        </tr>
+        <tr th:each="issue : ${resource.telecom}">
+            <td style="font-weight: bold;">Telecom</td>
+            <td th:text="${issue.system}"></td>
+            <td th:text="${issue.value}"></td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+
+<!--/*-->
+</body>
+</html>
+<!--*/-->

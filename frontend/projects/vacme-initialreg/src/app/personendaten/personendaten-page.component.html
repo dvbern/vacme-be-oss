@@ -1,0 +1,186 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='full-wdith'>
+    <div class='max-800'>
+        <h4 class='i5' translate>REGISTRIERUNG.PERSONENDATEN</h4>
+
+        <form [formGroup]="formGroup" (ngSubmit)="submitIfValid()">
+
+            <div class="row" *ngIf="showAmpel()">
+                <lib-form-control-ampel formControlName="ampelColor"
+                                        [formControl]="ampelColor"></lib-form-control-ampel>
+            </div>
+
+            <div class="row" *ngIf="showAmpel()">
+                <lib-warningbox *ngIf="ampelColor.value === 'RED'" [critical]="true">
+                    <span class="critical" translate>IMPFAEHIGKEIT.RED_WARNING</span>
+                </lib-warningbox>
+                <lib-warningbox *ngIf="ampelColor.value === 'ORANGE'">
+                    <span translate>IMPFAEHIGKEIT.ORANGE_WARNING</span>
+                </lib-warningbox>
+                <lib-warningbox *ngIf="ampelColor.value === 'GREEN'" [success]="true">
+                    <span translate>IMPFAEHIGKEIT.GREEN_WARNING</span>
+                </lib-warningbox>
+            </div>
+
+            <div class="row">
+                <lib-input-select formControlName="geschlecht" key="registrierung.geschlecht"
+                                  translationPrefix="REGISTRIERUNG.GESCHLECHT_OPTION" [options]="geschlechtOptions"
+                                  undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN" [focusOnShow]="true"></lib-input-select>
+            </div>
+            <div class="row">
+                <lib-input-text key="registrierung.name"
+                                noticeText="REGISTRIERUNG.NAME_HINT"
+                                [autocomplete]="false"
+                                formControlName="name"></lib-input-text>
+            </div>
+            <div class="row">
+                <lib-input-text key="registrierung.vorname"
+                                noticeText="REGISTRIERUNG.VORNAME_HINT"
+                                [autocomplete]="false"
+                                formControlName="vorname"></lib-input-text>
+            </div>
+            <div class="row">
+                <lib-input-text key="registrierung.strasse"
+                                formControlName="strasse"></lib-input-text>
+            </div>
+            <div class="row" style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                <lib-input-text style="flex: 1;" key="registrierung.plz"
+                                formControlName="plz"></lib-input-text>
+                <div style="flex: .1;"></div>
+                <lib-input-text style="flex: 2;" key="registrierung.ort"
+                                formControlName="ort"></lib-input-text>
+            </div>
+
+            <div class="row" *ngIf="hasMobileOrtDerImpfung()">
+                <lib-input-checkbox (change)="showImmobilConfirmation()" key="registrierung.immobil"
+                                    formControlName="immobil"></lib-input-checkbox>
+            </div>
+
+            <div class="row">
+                <lib-input-text key="registrierung.mail"
+                                [autocomplete]="false"
+                                formControlName="mail"></lib-input-text>
+            </div>
+
+            <div class="row">
+                <lib-input-text key="registrierung.telefon"
+                                [autocomplete]="false"
+                                formControlName="telefon"></lib-input-text>
+            </div>
+
+            <div class="row">
+
+                <lib-input-select
+                    (change)="krankenkasseSelectChange($event)"
+                    formControlName="krankenkasse"
+                    key="registrierung.krankenkasse"
+                    [options]="kkUtil.krankenkasseOptions()"
+                    [doSortOptions]="false"
+                    undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                    translationPrefix="REGISTRIERUNG.KK_OPTION"></lib-input-select>
+            </div>
+
+            <div class="row">
+                <lib-input-text key="registrierung.kartennummer"
+                                formControlName="kartennummer"></lib-input-text>
+                <span *ngIf="kkUtil.isKrankenkasseSelected(this, 'kartennummer')" class="error"
+                      translate>VALIDATIONERROR.ERGAENZE_KRANKENKASSENNUMMER</span>
+            </div>
+
+            <div class="row" *ngIf="kkUtil.isKrankenkasseAuslandOrKeine(this, 'krankenkasse')">
+                <lib-input-select formControlName="auslandArt" key="registrierung.auslandArt"
+                                  translationPrefix="REGISTRIERUNG.AUSLAND_ART_OPTION"
+                                  [options]="bezugOptions"
+                                  undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"></lib-input-select>
+            </div>
+
+            <div class="row" *ngIf="formGroup.get('schutzstatus')">
+                <lib-input-checkbox key="registrierung.schutzstatus"
+                                    formControlName="schutzstatus"></lib-input-checkbox>
+            </div>
+
+            <div class="row">
+                <lib-input-text key="registrierung.geburtsdatum"
+                                formControlName="geburtsdatum"></lib-input-text>
+            </div>
+
+            <div class="row margin-bottom-15">
+                <span>{{ 'registrierung.krankheiten_intro' | uppercase | translate }}</span>
+            </div>
+
+            <div class="row">
+                <lib-input-select
+                    formControlName="krankheiten"
+                    key="registrierung.krankheiten"
+                    [options]="krankheitenOptions"
+                    undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                    translationPrefix="REGISTRIERUNG.KRANKHEITEN_OPTION"
+                    [addOptgroup]="true"></lib-input-select>
+            </div>
+
+            <div class="row">
+                <lib-input-textarea key="registrierung.bemerkungen"
+                                    formControlName="bemerkungen"></lib-input-textarea>
+            </div>
+
+            <div class="row">
+                <lib-input-select formControlName="lebensumstaende"
+                                  key="registrierung.lebensumstaende" undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                                  translationPrefix="REGISTRIERUNG.LEBENSUMSTAENDE_OPTION"
+                                  [options]="fragebogenUtil.lebensumstaendeOptions()" [addOptgroup]="true"
+                ></lib-input-select>
+            </div>
+
+            <div class="row form-group">
+                <lib-input-select formControlName="beruflicheTaetigkeit"
+                                  key="registrierung.beruf" undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                                  translationPrefix="REGISTRIERUNG.BERUF_OPTION"
+                                  [options]="beruflicheTaetigkeit" [addOptgroup]="true"
+                ></lib-input-select>
+            </div>
+
+            <div class="row" *ngIf="!hasRoleCallCenter()">
+                <lib-input-checkbox key="registrierung.agb"
+                                    formControlName="agb"></lib-input-checkbox>
+            </div>
+
+            <div class="row" *ngIf="!hasRoleCallCenter()">
+                <lib-input-checkbox key="registrierung.einwilligung"
+                                    formControlName="einwilligung"></lib-input-checkbox>
+            </div>
+
+            <div class="row" *ngIf="formGroup.get('abgleichElektronischerImpfausweis')">
+                <lib-input-checkbox key="registrierung.abgleich_elektronischer_impfausweis"
+                                    formControlName="abgleichElektronischerImpfausweis"></lib-input-checkbox>
+            </div>
+
+            <div class="row" *ngIf="formGroup.get('contactTracing') && hasContactTracingEnabled()">
+                <lib-input-checkbox key="registrierung.contact_tracing"
+                                    formControlName="contactTracing"></lib-input-checkbox>
+            </div>
+
+            <div class="row">
+                <lib-button buttonKind="submit" [disabled]="!isSaveEnabled()"
+                            translationKey="REGISTRIERUNG.SAVEBUTTON"></lib-button>
+            </div>
+
+        </form>
+
+    </div>
+</div>

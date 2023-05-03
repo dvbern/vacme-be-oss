@@ -1,0 +1,62 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div>
+    <div class="main-column" *ngIf="isAsRegistrationOi()">
+        <h4 class='i5' translate>FACH-APP.ODI.ODI_FILTER.BEARBEITEN</h4>
+
+            <ng-container *ngFor="let filterGroup of getFilterGroups()">
+                <form [formGroup]="filterGroup" class="filter-form-item">
+                    <div class="filter-form-item-part">
+                        <div style="display: flex" class="filter-form-item-part">
+                            <lib-input-select
+                                class="filter-form-item-part"
+                                formControlName="typ"
+                                key="fach-app.odi.odi_filter.typ"
+                                [options]="filterTypOptions"
+                                undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                                translationPrefix="FACH-APP.ODI.ODI_FILTER.TYP_ENUM"></lib-input-select>
+                            <lib-input-text
+                                class="filter-form-item-part"
+                                key="FACH-APP.ODI.ODI_FILTER.STRING_ARGUMENT"
+                                formControlName="stringArgument"></lib-input-text>
+                        </div>
+                        <div style="display: flex" class="filter-form-item-part">
+                            <lib-input-text
+                                class="filter-form-item-part"
+                                key="FACH-APP.ODI.ODI_FILTER.MINIMAL_WERT"
+                                formControlName="minimalWert"></lib-input-text>
+                            <lib-input-text
+                                class="filter-form-item-part"
+                                key="FACH-APP.ODI.ODI_FILTER.MAXIMAL_WERT"
+                                formControlName="maximalWert"></lib-input-text>
+                        </div>
+                    </div>
+                    <lib-button
+                        translationKey="X"
+                        (clickIfEnabled)="removeFilter(filterGroup)"></lib-button>
+                </form>
+            </ng-container>
+
+            <lib-button buttonKind="secondary"
+                        translationKey="FACH-APP.ODI.ODI_FILTER.NEW"
+                        (clickIfEnabled)="addFilter()"></lib-button>
+            <lib-button buttonKind="primary"
+                        translationKey="FACH-APP.ODI.ODI_FILTER.SAVE"
+                        (clickIfEnabled)="save()"></lib-button>
+    </div>
+</div>

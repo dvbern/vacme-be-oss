@@ -1,0 +1,67 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='full-wdith'>
+    <h4 class='i5' *ngIf="!this.editUserMode" translate>FACH-APP.ODI.BENUTZER.REGISTRIERUNG</h4>
+    <h4 class='i5' *ngIf="this.editUserMode" translate>FACH-APP.ODI.BENUTZER.BEARBEITUNG</h4>
+
+
+    <form [formGroup]="formGroup" (ngSubmit)="submitIfValid()">
+        <div class="row" *ngIf="this.editUserMode">
+            <lib-input-text key="FACH-APP.ODI.BENUTZER.USERNAME"
+                            formControlName="username"></lib-input-text>
+        </div>
+        <div class="row">
+            <lib-input-text key="FACH-APP.ODI.BENUTZER.LASTNAME"
+                            formControlName="lastName"></lib-input-text>
+        </div>
+        <div class="row">
+            <lib-input-text key="FACH-APP.ODI.BENUTZER.FIRSTNAME"
+                            formControlName="firstName"></lib-input-text>
+        </div>
+        <div class="row">
+            <lib-input-text key="FACH-APP.ODI.BENUTZER.EMAIL"
+                            formControlName="email"></lib-input-text>
+        </div>
+        <div class="row">
+            <lib-input-text key="FACH-APP.ODI.BENUTZER.PHONE"
+                            formControlName="phone"></lib-input-text>
+        </div>
+        <div class="row">
+            <lib-input-text key="FACH-APP.ODI.BENUTZER.GLNNUMMER"
+                            formControlName="glnNummer"></lib-input-text>
+        </div>
+<!--  nur benutzer die nicht in einer Admin rolle sind haben das select wo man etwas anpsasen kann-->
+        <div class="row" *ngIf="!editeduserIsInAdminRoleOrDisabled() && rolleOptions">
+            <lib-input-select
+                id="rolleSelect"
+                formControlName="fachRolle"
+                key="FACH-APP.ODI.BENUTZER.ROLLE-TEXT"
+                [options]="rolleOptions"
+                undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                translationPrefix="FACH-APP.ODI.BENUTZER.ROLLE"></lib-input-select>
+        </div>
+        <div class="row">
+            <lib-button buttonKind="go-back" (clickIfEnabled)="back()" translationKey="OVERVIEW.ABBRECHEN"></lib-button>
+            <lib-button buttonKind="submit" [disabled]="this.editeduserIsInAdminRoleOrDisabled()" translationKey="FACH-APP.ODI.BENUTZER.SPEICHERN"></lib-button>
+        </div>
+
+
+    </form>
+
+</div>
+

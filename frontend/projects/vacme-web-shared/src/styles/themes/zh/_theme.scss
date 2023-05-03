@@ -1,0 +1,49 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+/*
+
+ZH specific styles
+
+ */
+
+$color-accent: #0076bd;
+
+a.language.active::after {
+    border-color: $color-accent;
+}
+
+a:hover, a:focus, a.text-link:hover, a.text-link:focus,
+a.text-link-list:hover, a.text-link-list:focus {
+    border-color: $color-accent;
+    text-decoration-color: $color-accent;
+}
+
+img.logo {
+    height: 68px;
+    max-width: unset;
+}
+
+
+@media screen and (max-width: 1119px) {
+    img.logo {
+        height: 58px;
+        max-width: 50vw;
+    }
+}
+
+@media screen and (max-width: 374px) {
+    img.logo {
+        max-width: 40vw;
+    }
+}
+
+img.logo-oe-footer {
+    max-width: unset;
+}
+
+li::before {
+    background-color: $color-accent;
+}

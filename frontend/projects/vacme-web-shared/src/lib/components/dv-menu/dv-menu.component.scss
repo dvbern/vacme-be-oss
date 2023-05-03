@@ -1,0 +1,110 @@
+.dv-menu {
+    &-dropdown {
+        background: #dddddd;
+
+    }
+
+    &-item {
+        .service-menue {
+            position: relative;
+        }
+    }
+
+    &-content {
+
+        flex-direction: row;
+        align-items: flex-end; // damit die Sprache und der Rest auf derselben Grundlinie stehen
+        justify-items: flex-start;
+
+        &-mobile {
+            flex-direction: column-reverse;
+            align-items: flex-start; // rechtsbuendig wegen column-reverse
+            justify-items: flex-end;
+            flex-wrap: wrap-reverse;
+
+            .language-selector {
+                margin-left: 0 !important;
+
+                span {
+                    display: inline-block !important;
+                }
+            }
+
+            .dv-menu-item {
+                box-sizing: border-box;
+                padding-bottom: 10px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                margin-bottom: 17px;
+                align-items: center;
+            }
+        }
+
+        &,
+        &-mobile {
+            transition: all 100ms;
+            display: flex;
+
+        }
+    }
+
+    &-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        height: 170px;
+
+        div.signet-oe-2 {
+            overflow: hidden; // sonst rutscht das Logo auf winzigen Screens links raus und nimmt den Text mit
+            flex-shrink: 0; // sonst wird der Platz fuer das Logo zu klein
+        }
+
+        &::before { // fuer den Umgebungs-Key, nicht auf prod
+            position: absolute; // sonst wird das Logo verschoben
+            left: 0;
+        }
+
+        &-uat {
+            background: red;
+            &::before {
+                content: 'UAT';
+            }
+        }
+        &-local {
+            background: #00800029;
+            &::before {
+                content: 'LOCAL DEV';
+            }
+        }
+
+        &-dev {
+            background: #ffe554a8;
+            &::before {
+                content: 'DEV';
+            }
+        }
+        &-demo {
+            background: #f16c40;
+            &::before {
+                content: 'DEMO';
+            }
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        &-container {
+            height: 124px;
+        }
+    }
+}
+
+
+:host {
+    height: 100%;
+}
+
+.logout {
+    margin-left: 40px; // sonst ist das Icon ausserhalb und dann bricht es auf mobile zu spaet um
+}

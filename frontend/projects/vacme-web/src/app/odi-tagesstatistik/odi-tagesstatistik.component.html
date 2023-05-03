@@ -1,0 +1,129 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class="odi-tagesstatistik" [class.loading]="loading">
+
+    <p class="text-center">{{odi.name}}</p>
+
+    <!-- PENDENT -->
+    <table *ngIf="'pendentTermin' as tablePrefix">
+        <thead>
+        <th translate>FACH-APP.START-PAGE.TAGES-STATISTIK.PENDENT.TITLE</th>
+        <th class="numbers" translate>FACH-APP.START-PAGE.TAGES-STATISTIK.PENDENT.TOTAL</th>
+        <th class="numbers" translate>FACH-APP.START-PAGE.TAGES-STATISTIK.PENDENT.IMPFUNG-1</th>
+        <th class="numbers" translate>FACH-APP.START-PAGE.TAGES-STATISTIK.PENDENT.IMPFUNG-2</th>
+        <th class="numbers">
+            <span translate>FACH-APP.START-PAGE.TAGES-STATISTIK.PENDENT.IMPFUNG-N</span>
+            <sup>**</sup>
+        </th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let impfstoff of impfstoffInfos">
+            <td>{{getZeilenLabel(impfstoff.displayName)}}</td>
+            <td class="numbers">{{this.zeileSummieren(tablePrefix, impfstoff.name)}}</td>
+            <td class="numbers"
+                [class.empty]="!!impfstoff.displayName">{{this.getCellValue(tablePrefix, IMPFFOLGE_1, impfstoff.name)}}</td>
+            <td class="numbers">{{this.getCellValue(tablePrefix, IMPFFOLGE_2, impfstoff.name)}}</td>
+            <td class="numbers">{{this.getCellValue(tablePrefix, IMPFFOLGE_N, impfstoff.name)}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td translate>FACH-APP.START-PAGE.TAGES-STATISTIK.PENDENT.TOTAL</td>
+            <td class="numbers">{{this.getTotal(tablePrefix)}}</td>
+            <td class="numbers">{{this.spalteSummieren(tablePrefix, IMPFFOLGE_1)}}</td>
+            <td class="numbers">{{this.spalteSummieren(tablePrefix, IMPFFOLGE_2)}}</td>
+            <td class="numbers">{{this.spalteSummieren(tablePrefix, IMPFFOLGE_N)}}</td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <!-- DURCHGEFUEHRT -->
+    <table *ngIf="'durchgefuehrtImpfung' as tablePrefix">
+        <thead>
+        <th translate>FACH-APP.START-PAGE.TAGES-STATISTIK.DURCHGEFUEHRT.TITLE</th>
+        <th class="numbers" translate>FACH-APP.START-PAGE.TAGES-STATISTIK.DURCHGEFUEHRT.TOTAL</th>
+        <th class="numbers" translate>FACH-APP.START-PAGE.TAGES-STATISTIK.DURCHGEFUEHRT.IMPFUNG-1</th>
+        <th class="numbers" translate>FACH-APP.START-PAGE.TAGES-STATISTIK.DURCHGEFUEHRT.IMPFUNG-2</th>
+        <th class="numbers">
+            <span translate>FACH-APP.START-PAGE.TAGES-STATISTIK.DURCHGEFUEHRT.IMPFUNG-N</span>
+            <sup>**</sup>
+        </th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let impfstoff of impfstoffInfos" [class.hiddenrow]="!impfstoff.displayName">
+            <td>{{getZeilenLabel(impfstoff.displayName)}}</td>
+            <td class="numbers">{{this.zeileSummieren(tablePrefix, impfstoff.name)}}</td>
+            <td class="numbers">{{this.getCellValue(tablePrefix, IMPFFOLGE_1, impfstoff.name)}}</td>
+            <td class="numbers">{{this.getCellValue(tablePrefix, IMPFFOLGE_2, impfstoff.name)}}</td>
+            <td class="numbers">{{this.getCellValue(tablePrefix, IMPFFOLGE_N, impfstoff.name)}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td translate>FACH-APP.START-PAGE.TAGES-STATISTIK.DURCHGEFUEHRT.TOTAL</td>
+            <td class="numbers">{{this.getTotal(tablePrefix)}}</td>
+            <td class="numbers">{{this.spalteSummieren(tablePrefix, IMPFFOLGE_1)}}</td>
+            <td class="numbers">{{this.spalteSummieren(tablePrefix, IMPFFOLGE_2)}}</td>
+            <td class="numbers">{{this.spalteSummieren(tablePrefix, IMPFFOLGE_N)}}</td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <!-- TOTAL -->
+    <table *ngIf="'total' as tablePrefix">
+        <thead>
+        <th>
+            <span translate>FACH-APP.START-PAGE.TAGES-STATISTIK.GEPLANT.TITLE</span>
+            <span>&nbsp;</span>
+            <a (click)="showDetailStats()" translate>FACH-APP.START-PAGE.TAGES-STATISTIK.DETAILLINK</a>
+        </th>
+        <th class="numbers" translate>FACH-APP.START-PAGE.TAGES-STATISTIK.GEPLANT.TOTAL</th>
+        <th class="numbers" translate>FACH-APP.START-PAGE.TAGES-STATISTIK.GEPLANT.IMPFUNG-1</th>
+        <th class="numbers" translate>FACH-APP.START-PAGE.TAGES-STATISTIK.GEPLANT.IMPFUNG-2</th>
+        <th class="numbers">
+            <span translate>FACH-APP.START-PAGE.TAGES-STATISTIK.GEPLANT.IMPFUNG-N</span>
+            <sup>**</sup>
+        </th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let impfstoff of impfstoffInfos">
+            <td>{{getZeilenLabel(impfstoff.displayName)}}</td>
+            <td class="numbers">{{this.zeileSummieren(tablePrefix, impfstoff.name)}}</td>
+            <td class="numbers">{{this.getCellValue(tablePrefix, IMPFFOLGE_1, impfstoff.name)}}</td>
+            <td class="numbers">{{this.getCellValue(tablePrefix, IMPFFOLGE_2, impfstoff.name)}}</td>
+            <td class="numbers">{{this.getCellValue(tablePrefix, IMPFFOLGE_N, impfstoff.name)}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td translate>FACH-APP.START-PAGE.TAGES-STATISTIK.GEPLANT.TOTAL</td>
+            <td class="numbers">{{this.getTotal(tablePrefix)}}</td>
+            <td class="numbers">{{this.spalteSummieren(tablePrefix, IMPFFOLGE_1)}}</td>
+            <td class="numbers">{{this.spalteSummieren(tablePrefix, IMPFFOLGE_2)}}</td>
+            <td class="numbers">{{this.spalteSummieren(tablePrefix, IMPFFOLGE_N)}}</td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <p style="line-height: 1.2;">
+        <small><i translate [innerHTML]="'FACH-APP.START-PAGE.TAGES-STATISTIK.HINT' | translate"></i></small>
+    </p>
+    <p style="line-height: 1.2;">
+        <small><i translate>FACH-APP.START-PAGE.TAGES-STATISTIK.HINT2</i></small>
+    </p>
+</div>

@@ -1,0 +1,50 @@
+{
+    "LANDINGPAGE": {
+        "TITLE": "Welcome to the COVID-19 portal of the Canton of Zurich",
+        "ONBOARDING_WELCOME": "Did you receive a letter from the Zurich department of health to register on the COVID-19 portal?"
+    },
+    "IMPFAEHIGKEIT": {
+        "INTRO": "Make a self-evaluation based on the information by the FOPH and the Canton of Zurich, to find out, whether you are currently eligible for a COVID-19 vaccination.",
+        "LINK_QUESTIONS": "https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/gesundheit/corona/impfung/registrierungstool/selbsteinschaetzung_en.pdf",
+        "LINK_QUESTIONS_TEXT": "Questionnaire Self-evaluation Canton of Zurich",
+        "LINK_CONSENT": "https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/gesundheit/corona/impfung/registrierungstool/info_zur_covid_19_impfung_en.pdf",
+        "LINK_CONSENT_TEXT": "Information on the vaccination of the Canton of Zurich",
+        "HINWEIS": "Do you already have an account? You will find the VacMe code in the VacMe SMS with the registration code, the registration confirmation and the vaccination documentation."
+    },
+    "OVERVIEW": {
+        "BOOSTER_HELP_HREF": "https://www.zh.ch/en/gesundheit/coronavirus/coronavirus-impfung.html",
+        "PRIO_NICHT_FREIGEGEBEN_LINK": "https://www.zh.ch/coronaimpfung",
+        "PRIO_NICHT_FREIGEGEBEN_LINK_TEXT": "www.zh.ch/coronaimpfung",
+        "NICHT_VERWALTETER_ODI": "Vaccination at a location not listed here (doctor’s office)",
+        "NICHT_VERWALTETER_ODI_HINT_1": "Please contact your GP to make an appointment. Please note that GP’s surgeries only vaccinate their own patients.",
+        "NICHT_VERWALTETER_ODI_HINT_2": "If you do not have a GP or if vaccinations are not available at your GP’s surgery, please select \"Change selection\" and book appointments at another location.",
+        "ZERTIFIKAT_HELP_HREF": "http://zh.ch/covidzertifikat",
+        "FREIGEGEBEN_BOOSTER_NICHT": "Not yet available. You will be informed as soon as you can book your booster vaccination.",
+        "REGISTRATION_TYPE": {
+            "ONLINE_REGISTRATION": "A portal login already exists for this registration (online registration or completed onboarding)"
+        }
+    },
+    "REGISTRIERUNG": {
+        "AGB": "I agree to the <a class='text-link' target='_blank' href='https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/gesundheit/corona/impfung/registrierungstool/nutzungsbedingungen_en.pdf'>the Terms of Use</a>.",
+        "EINWILLIGUNG": "I have read the <a class='text-link' target='_blank' href='https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/gesundheit/corona/impfung/registrierungstool/einverstaendniserklaerung_en.pdf'>Declaration of consent</a> and agree to it.",
+        "BERUF_OPTION": {
+            "GES_PERSONAL_MIT_PAT_KONTAKT_INTENSIV": "Health care worker with direct patient contact (retirement or nursing home, home for disabled people, hospitals and clinics, Spitex)",
+            "GES_PERSONAL_MIT_PAT_KONTAKT": "Health care worker with direct patient contact (doctors’ offices, dental practice and further outpatient service providers)"
+        },
+        "GESCHLECHT_OPTION": {
+            "ANDERE": "Other"
+        }
+    },
+    "FOOTER": {
+        "CAPTION": "COVID-19 vaccination Canton of Zurich",
+        "COPYRIGHT": "© 2021 - COVID-19 vaccination of the Canton of Zurich"
+    },
+    "UMFRAGE": {
+        "AKTUELL_DATEN": "Is your data still up to date?",
+        "AKTUELL_DATEN_TEXT": "We have stored the following information about you. Please check them and correct them if necessary. By doing so, you help us to keep VacMe up to date.",
+        "AKTUELL_DATEN_BUTTON": "Confirm"
+    },
+    "ERKRANKUNGEN": {
+        "FREIGABE_ENTFERNT": "Due to your recent vaccination or Covid illness, your vaccination protection is still sufficient. A vaccination is not necessary at the moment."
+    }
+}

@@ -1,0 +1,10 @@
+# See e.g.: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+image/apng apng
+image/bmp bmp
+image/gif gif
+image/x-icon ico cur
+image/jpeg jpg jpeg jfif pjpeg pjp
+image/png png
+image/svg+xml svg
+image/tiff tif tiff
+image/webp webp

@@ -1,0 +1,25 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+.zertifikat-per-post {
+
+    &-link-container {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+    }
+
+    &-link {
+        text-align: center;
+        padding: 5px;
+        width: 80%;
+        font-size: 15px;
+
+        a {
+            margin-left: 10px
+        }
+    }
+}

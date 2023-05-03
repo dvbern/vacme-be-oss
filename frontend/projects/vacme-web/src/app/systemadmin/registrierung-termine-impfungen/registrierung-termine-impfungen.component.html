@@ -1,0 +1,62 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<p *ngIf="itemList">
+    Gefunden: {{itemList.length}} Faelle
+</p>
+<ng-container *ngIf="itemList && itemList.length > 0">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Registrierungsnummer</th>
+
+            <th>Termin 1</th>
+            <th>Termin 1 ODI</th>
+            <th></th>
+            <th *ngIf="showImpfungen">Impfung 1</th>
+            <th *ngIf="showImpfungen"></th>
+
+            <th>Termin 2</th>
+            <th>Termin 2 ODI</th>
+            <th></th>
+            <th *ngIf="showImpfungen">Impfung 2</th>
+            <th *ngIf="showImpfungen"></th>
+
+            <th *ngIf="showInfo">Info</th>
+        </tr>
+        </thead>
+        <tbody class="upload-name-style">
+        <tr *ngFor="let item of getItemListSorted(); let i=index">
+            <td>{{ item.registrierungsnummer }}</td>
+
+            <td>{{ toDate(item.termin1Datum) }}</td>
+            <td>{{ getOdiName(item.termin1Odi) }}</td>
+            <td>{{ item.termin1Gebucht }}</td>
+            <td *ngIf="showImpfungen">{{ toDate(item.impfung1Datum) }}</td>
+            <td *ngIf="showImpfungen">{{ item.impfung1Impfstoff }}</td>
+
+            <td>{{ toDate(item.termin2Datum) }}</td>
+            <td>{{ getOdiName(item.termin2Odi) }}</td>
+            <td>{{ item.termin2Gebucht }}</td>
+            <td *ngIf="showImpfungen">{{ toDate(item.impfung2Datum) }}</td>
+            <td *ngIf="showImpfungen">{{ item.impfung2Impfstoff }}</td>
+
+            <td *ngIf="showInfo">{{item.info}}</td>
+        </tr>
+        </tbody>
+    </table>
+</ng-container>

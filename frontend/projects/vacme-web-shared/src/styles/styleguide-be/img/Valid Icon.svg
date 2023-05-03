@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3d8608;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-2, .cls-3 {
+        stroke: #fff;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Gruppe_1099" data-name="Gruppe 1099" transform="translate(-859 -738)">
+    <g id="Gruppe_1098" data-name="Gruppe 1098" transform="translate(-2)">
+      <circle id="Ellipse_85" data-name="Ellipse 85" class="cls-1" cx="15.5" cy="15.5" r="15.5" transform="translate(861 738)"/>
+    </g>
+    <g id="check" transform="translate(866.075 745.545)">
+      <path id="Pfad_222" data-name="Pfad 222" class="cls-2" d="M16.175,2.239l-8.8,8.8L3.248,6.92A.715.715,0,0,0,2.691,6.7h0a.715.715,0,0,0-.557.223.775.775,0,0,0,0,1.059l4.68,4.68a.715.715,0,0,0,.557.223h0a.715.715,0,0,0,.557-.223L17.29,3.3a.706.706,0,0,0,0-1A.793.793,0,0,0,16.175,2.239Z" transform="translate(0 0)"/>
+      <g id="Gruppe_1097" data-name="Gruppe 1097" transform="translate(1.925 2.037)">
+        <path id="Pfad_223" data-name="Pfad 223" class="cls-3" d="M16.175,2.239l-8.8,8.8L3.248,6.92A.715.715,0,0,0,2.691,6.7h0a.715.715,0,0,0-.557.223.775.775,0,0,0,0,1.059l4.68,4.68a.715.715,0,0,0,.557.223h0a.715.715,0,0,0,.557-.223L17.29,3.3a.706.706,0,0,0,0-1A.793.793,0,0,0,16.175,2.239Z" transform="translate(-1.925 -2.037)"/>
+      </g>
+    </g>
+  </g>
+</svg>

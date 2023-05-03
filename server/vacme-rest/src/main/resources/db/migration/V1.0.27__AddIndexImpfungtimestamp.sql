@@ -1,0 +1,1 @@
+CREATE INDEX IX_Impfung_timestamp_impfung ON Impfung(timestampImpfung);

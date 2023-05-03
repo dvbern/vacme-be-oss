@@ -1,0 +1,37 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<div class='form-group' [ngClass]="{'invalid': formControl.touched && formControl.invalid,
+ 'nolabel': !showGroupLabel, 'autofocus': this.focusOnShow}">
+    <div class="radiogroup-container" [ngClass]="columnDisplay ? 'display-column' : ''">
+        <span class="fieldlabel" *ngIf="showGroupLabel">{{key | uppercase | translate}}</span>
+
+        <label *ngFor="let option of options">
+            <input type="radio" class="focusable-field r1" [name]="'radiogroup' + key" [value]=option.value
+                   [formControl]="formControl"
+                   [ngClass]="{'invalid': formControl.invalid && formControl.touched}"
+                   [attr.aria-describedby]="getValidationId()">
+            <span>{{ noTranslate
+                ? option.label
+                : ((translationPrefix ? translationPrefix + '.' : '') + (option.label | uppercase))
+                    | translate: translateParams }}</span>
+        </label>
+    </div>
+    <div *ngIf="columnDisplay" [ngStyle]="{height: '1px'}"></div>
+    <lib-validationmessages *ngIf="formControl.touched" [errors]="formControl.errors"
+                            [myid]="getValidationId()"></lib-validationmessages>
+
+</div>

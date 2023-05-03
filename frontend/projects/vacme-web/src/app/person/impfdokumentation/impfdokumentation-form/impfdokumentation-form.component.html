@@ -1,0 +1,384 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<form [formGroup]="formGroup" (ngSubmit)="submitIfValid()">
+
+    <div *ngIf="baseData?.accessOk === undefined" class="full-wdith">
+        <h2 class='i5'>Daten werden geladen</h2>
+    </div>
+
+    <div *ngIf="baseData?.accessOk === false" class="full-wdith">
+        <h2 class='i5' translate>IMPFDOK.NO_ACCESS</h2>
+    </div>
+
+    <div *ngIf="!!baseData?.accessOk">
+
+        <ng-container *ngIf="showFrageImpfungNachtragen() && nachtragOptions">
+            <div class="row">
+                <lib-input-radio
+                    [showGroupLabel]="false"
+                    key="impfungNachtragen"
+                    formControlName="impfungNachtragen"
+                    id="impfungNachtragen"
+                    [options]="nachtragOptions"
+                    [translateParams]="{n: this.impffolgeNr}"
+                    translationPrefix="IMPFDOK.NACHTRAG_IMPFUNG_N"></lib-input-radio>
+            </div>
+
+            <ng-container *ngIf="showNachtragen()">
+                <div class="row">
+                    <lib-warningbox *ngIf="showFrageImpfungNachtragen()">
+                        <span translate [translateParams]="{n: impffolgeNr, m: impffolgeNr + 1}">
+                        IMPFDOK.NACHTRAG_IMPFUNG_N.ERSTE_IMPFUNG_ERFASSEN
+                        </span>
+                    </lib-warningbox>
+                </div>
+
+                <div class="row">
+                    <lib-input-text
+                        key="IMPFDOK.NACHTRAG_IMPFUNG_N.DATUM_ERSTE_IMPFUNG"
+                        [translateParams]="{n: baseData?.impffolgeNr}"
+                        formControlName="datumFallsNachtrag"></lib-input-text>
+                </div>
+
+                <div class="row">
+                    <lib-input-checkbox key="IMPFDOK.NACHTRAG_IMPFUNG_N.EXTERN"
+                                        [translateParams]="{n: baseData?.impffolgeNr}"
+                                        formControlName="extern"></lib-input-checkbox>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <!-- selbstzahlende -->
+        <div class="row">
+            <lib-input-radio
+                [showGroupLabel]="true"
+                key="IMPFDOK.SELBSTZAHLENDE"
+                formControlName="selbstzahlende"
+                [options]="selbstzahlendeOptions"
+                translationPrefix="IMPFDOK.SELBSTZAHLENDE_OPTION">
+            </lib-input-radio>
+        </div>
+
+        <div class="row">
+            <lib-input-typeahead-form
+                [listOfObjects]="odiOptions"
+                formControlName="odi"
+                labelKey="IMPFDOK.ODI"
+                (inputChanged)="odiSelectChange($event.item.value)">
+            </lib-input-typeahead-form>
+            <lib-warningbox *ngIf="isNotSameODI()" [critical]="true">
+                {{isNotSameODIWarnText()}}
+            </lib-warningbox>
+        </div>
+
+        <div class="row">
+            <lib-input-typeahead-form
+                [listOfObjects]="verantwortlichenOptions"
+                labelProperty="displayname"
+                valueProperty="benutzerId"
+                formControlName="verantwortlich"
+                labelKey="IMPFDOK.VERANTWORTLICH">
+            </lib-input-typeahead-form>
+        </div>
+
+        <div class="row">
+            <lib-input-typeahead-form
+                [listOfObjects]="durchfuehrendenOptions"
+                labelProperty="displayname"
+                valueProperty="benutzerId"
+                formControlName="durchfuehrend"
+                labelKey="IMPFDOK.DURCHFUEHREND">
+            </lib-input-typeahead-form>
+        </div>
+
+        <div class="syringe-row">
+            <div class="syringe-first">
+                <lib-input-select
+                    formControlName="impfstoff"
+                    (change)="impfstoffSelectChange()"
+                    key="impfdok.impfstoff"
+                    [options]="impfstoffOptions"
+                    undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                    [noTranslate]="true"></lib-input-select>
+            </div>
+            <div class="syringe-second">
+                <div [ngClass]="{'syringe-box': !this.impfstoffInformationsLink, 'information-box': this.impfstoffInformationsLink}"
+                     [style.background]="impfstoffBackgroundColor">
+                    <img class="syringe-img syringe-center" src="/assets/img/syringe.svg"/>
+                </div>
+            </div>
+
+            <div *ngIf="impfstoffInformationsLink" class="syringe-second">
+                <div class="information-box">
+                    <img class="information-img syringe-center"
+                         [title]="impfstoffInformationsLink"
+                         (click)="openImpfstoffInformation()" src="/assets/img/Help Icon.svg"/>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <lib-input-text key="impfdok.lot"
+                            formControlName="lot"></lib-input-text>
+        </div>
+
+        <div class="row form-row-3-cols">
+            <div style="flex: 1;">
+                <lib-input-checkbox key="IMPFDOK.KEIN_FIEBER_KEINE_KONTRAINDI.LABEL" class="checkboxImpfdok"
+                                    formControlName="kein_fieber_keine_kontraindikation"></lib-input-checkbox>
+                <ul class="checkbox-criteria" [ngSwitch]="getKrankheit()">
+                    <ng-container *ngSwitchCase="krankheiten.FSME">
+                        <li>{{ 'IMPFDOK.KEIN_FIEBER_KEINE_KONTRAINDI.KEINE_ALLERGIEN_1' | translate }}
+                            <a class="info-icon" (click)="allergieInfoExpanded = !allergieInfoExpanded">i</a>
+                            {{ 'IMPFDOK.KEIN_FIEBER_KEINE_KONTRAINDI.KEINE_ALLERGIEN_2' | translate }}
+                        </li>
+                        <li translate>IMPFDOK.KEIN_FIEBER_KEINE_KONTRAINDI.KEINE_WIRKUNGEN_FSME</li>
+                        <li translate>IMPFDOK.KEIN_FIEBER_KEINE_KONTRAINDI.KEIN_REGELMAESSIGE_MEDIKAMENTE_FSME</li>
+                        <li translate>IMPFDOK.KEIN_FIEBER_KEINE_KONTRAINDI.KEINE_REAKTION_FSME</li>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                        <li translate>{{'IMPFDOK.KEIN_FIEBER_KEINE_KONTRAINDI.KEINE_NEUE_ERKRANKUNGEN_'
+                        + this.getKrankheit()}}</li>
+                        <li>{{ 'IMPFDOK.KEIN_FIEBER_KEINE_KONTRAINDI.KEINE_ALLERGIEN_1' | translate }}
+                            <a class="info-icon" (click)="allergieInfoExpanded = !allergieInfoExpanded">i</a>
+                            {{ 'IMPFDOK.KEIN_FIEBER_KEINE_KONTRAINDI.KEINE_ALLERGIEN_2' | translate }}
+                        </li>
+                        <li translate>IMPFDOK.KEIN_FIEBER_KEINE_KONTRAINDI.KEINE_REAKTIONEN</li>
+                    </ng-container>
+                </ul>
+            </div>
+
+
+            <div style="flex: 1;">
+                <lib-input-checkbox key="IMPFDOK.KEINE_BESONDEREN_UMSTAENDE.LABEL"
+                                    class="checkboxImpfdok"
+                                    formControlName="keine_besonderen_umstaende"></lib-input-checkbox>
+                <ul class="checkbox-criteria" [ngSwitch]="getKrankheit()">
+                    <ng-container *ngSwitchCase="krankheiten.FSME">
+                        <li translate>IMPFDOK.KEINE_BESONDEREN_UMSTAENDE.KEIN_BLUTVERDUENNUNG_FSME</li>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                        <li translate>IMPFDOK.KEINE_BESONDEREN_UMSTAENDE.KEIN_BLUTVERDUENNUNG</li>
+                    </ng-container>
+                </ul>
+
+            </div>
+
+            <div style="flex: 1;">
+                <lib-input-checkbox style="flex: 0.7;" key="IMPFDOK.EINWILLIGUNG.LABEL"
+                                    class="checkboxImpfdok"
+                                    formControlName="einwilligung"></lib-input-checkbox>
+                <ul class="checkbox-criteria" [ngSwitch]="getKrankheit()">
+                    <ng-container *ngSwitchCase="krankheiten.AFFENPOCKEN">
+                        <li class="red-color" translate>IMPFDOK.EINWILLIGUNG.OHNE_VORBEHALT_AFFENPOCKEN</li>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                        <li translate>IMPFDOK.EINWILLIGUNG.OHNE_VORBEHALT</li>
+                        <li translate>IMPFDOK.EINWILLIGUNG.MIT_VORBEHALT</li>
+                    </ng-container>
+                </ul>
+            </div>
+
+        </div>
+
+        <div *ngIf="allergieInfoExpanded" class="row" style="margin-bottom: 2em;">
+            <div class="step-1-text margin-top-30 margin-bottom-30"
+                 style="display: flex; justify-content: space-between;">
+                <p style="margin-bottom: 0; margin-top: 0;" translate>
+                    {{'IMPFDOK.KEIN_FIEBER_KEINE_KONTRAINDI.KEINE_ALLERGIEN_INFO_' + this.getTranslatedKrankheit()}}</p>
+                <div class="close-icon" (click)="toggleInfo($event)"></div>
+
+            </div>
+        </div>
+
+        <div class="row-attributen" *ngIf="canSelectSchwanger()">
+            <lib-input-radio
+                formControlName="schwanger"
+                [options]="optionalTrueFalseOptions"
+                [noTranslate]="false"
+                key="IMPFDOK.SCHWANGER"
+                [showGroupLabel]="true"
+                translationPrefix="IMPFDOK.OPTIONAL-TRUE-FALSE-OPTION"></lib-input-radio>
+        </div>
+
+        <div class="row-attributen" *ngIf="canSelectAttributeFuerFSME()">
+            <lib-input-radio
+                formControlName="zeckenstich"
+                [options]="optionalTrueFalseOptions"
+                [noTranslate]="false"
+                key="IMPFDOK.ZECKENSTICH"
+                [showGroupLabel]="true"
+                translationPrefix="IMPFDOK.OPTIONAL-TRUE-FALSE-OPTION"></lib-input-radio>
+        </div>
+
+        <div class="row-attributen">
+            <lib-input-radio
+                formControlName="immunsupprimiert"
+                [options]="optionalTrueFalseOptions"
+                [noTranslate]="false"
+                key="IMPFDOK.IMMUNSUPPRIMIERT"
+                [showGroupLabel]="true"
+                translationPrefix="IMPFDOK.OPTIONAL-TRUE-FALSE-OPTION"></lib-input-radio>
+        </div>
+
+        <div class="row-attributen" *ngIf="canSelectAttributeFuerAffenpocken()">
+            <lib-input-radio
+                formControlName="risikoreichesSexualleben"
+                [options]="optionalTrueFalseOptions"
+                [noTranslate]="false"
+                key="IMPFDOK.RISIKOREICHES_SEXUALLEBEN"
+                [showGroupLabel]="true"
+                translationPrefix="IMPFDOK.OPTIONAL-TRUE-FALSE-OPTION"></lib-input-radio>
+        </div>
+
+        <div class="row-attributen" *ngIf="canSelectAttributeFuerAffenpocken()">
+            <lib-input-radio
+                formControlName="impfungAusBeruflichenGruenden"
+                [options]="optionalTrueFalseOptions"
+                [noTranslate]="false"
+                key="IMPFDOK.IMPFUNG_AUS_BERUFLICHEN_GRUENDEN"
+                [showGroupLabel]="true"
+                translationPrefix="IMPFDOK.OPTIONAL-TRUE-FALSE-OPTION"></lib-input-radio>
+        </div>
+
+        <div class="row-attributen" *ngIf="canSelectAttributeFuerAffenpocken()">
+            <lib-input-radio
+                formControlName="kontaktMitPersonAusRisikogruppe"
+                [options]="optionalTrueFalseOptions"
+                [noTranslate]="false"
+                key="IMPFDOK.KONTAKT_MIT_PERSON_AUS_RISIKOGRUPPE"
+                [showGroupLabel]="true"
+                translationPrefix="IMPFDOK.OPTIONAL-TRUE-FALSE-OPTION"></lib-input-radio>
+        </div>
+
+        <div class="row" *ngIf="showWarningIfSchwanger()">
+            <lib-warningbox>
+                <span translate>IMPFDOK.SCHWANGER_WARNUNG </span>
+            </lib-warningbox>
+        </div>
+
+        <div class="row form-row-3-cols">
+            <div>
+                <lib-input-select
+                    id="verabreichung_artSelect"
+                    formControlName="verabreichung_art"
+                    key="impfdok.verabreichung_art"
+                    [options]="verabreichungArtOptions"
+                    undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                    translationPrefix="IMPFDOK.VERAB_ART"></lib-input-select>
+            </div>
+
+            <div>
+                <lib-input-select
+                    id="verabreichung_ortSelect"
+                    formControlName="verabreichung_ort"
+                    key="impfdok.verabreichung_ort"
+                    [options]="verabreichungOrtOptions"
+                    undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                    translationPrefix="IMPFDOK.VERAB_ORT"></lib-input-select>
+            </div>
+
+            <lib-input-radio
+                key="impfdok.verabreichungOrtLr"
+                [showGroupLabel]="false"
+                formControlName="verabreichung_ort_lr"
+                [options]="verabreichungOrtLROptions"
+                [selectedValue]="verarbreichungsSeiteSelectedVal"
+                translationPrefix="IMPFDOK.LINKS_RECHTS"></lib-input-radio>
+        </div>
+
+        <div class="row">
+            <lib-input-text key="impfdok.menge" formControlName="menge"></lib-input-text>
+        </div>
+
+
+        <div class="row">
+            <lib-input-textarea key="registrierung.bemerkungen"
+                                formControlName="bemerkung"></lib-input-textarea>
+        </div>
+
+        <div class="row" *ngIf="showSchnellschema()">
+            <lib-input-radio
+                formControlName="schnellschema"
+                key="IMPFDOK.IMPF_SCHEMA"
+                [columnDisplay]="true"
+                translationPrefix="IMPFDOK.IMPF_SCHEMA_OPTION"
+                [options]="[{label:'KONVENTIONELL', value: false}, {label: 'SCHNELLSCHEMA', value: true}]"></lib-input-radio>
+        </div>
+
+        <div class="row" *ngIf="canSelectGrundimmunisierung()">
+            <lib-input-radio
+                formControlName="grundimmunisierung"
+                id="grundimmunisierung"
+                key="IMPFDOK.GRUNDIMMUNISIERUNG"
+                [showGroupLabel]="false"
+                [options]="[{label:'false', value: false}, {label: 'true', value: true}]"
+                [noTranslate]="false"
+                [columnDisplay]="true"
+                translationPrefix="IMPFDOK.GRUNDIMMUNISIERUNG_OPTION"></lib-input-radio>
+        </div>
+
+    </div>
+
+    <div *ngIf="!!baseData?.accessOk" translate>IMPFDOK.SPEICHERN_WARN</div>
+
+
+    <div style="display: flex;">
+
+        <!-- abbrechen -->
+        <lib-button buttonKind="go-back"
+                    (clickIfEnabled)="onBack()"
+                    translationKey="IMPFDOK.ZURUECK"></lib-button>
+
+        <div style="flex-grow: 1;">
+            <!-- geimpft -->
+            <lib-button buttonKind="submit"
+                        [disabled]="!!saved"
+                        *ngIf="!!baseData?.accessOk && !showNachtragen()"
+                        translationKey="IMPFDOK.SPEICHERN"></lib-button>
+        </div>
+
+        <div style="flex-grow: 1;">
+            <!-- Nachtrag erste Impfung -->
+            <lib-button buttonKind="submit"
+                        [disabled]="!!saved"
+                        *ngIf="!!baseData?.accessOk && showNachtragen()"
+                        translationKey="IMPFDOK.NACHTRAG_IMPFUNG_N.IMPFUNG_1_NACHTRAGEN"></lib-button>
+        </div>
+
+        <!-- nicht geimpft -->
+        <div>
+            <lib-button buttonKind="secondary"
+                        (clickIfEnabled)="onNotVaccinated()"
+                        translationKey="IMPFDOK.ZURUEK_ZU_KONTROLLE"
+                        *ngIf="!!baseData?.accessOk && !showEsKannNichtGeimpftWerden() && canReset()"></lib-button>
+
+            <app-zweite-impfung-verzichten
+                [showAufZweiteImpfungVerzichten]="showAufZweiteImpfungVerzichten()"
+                [showEsKannNichtGeimpftWerden]="showEsKannNichtGeimpftWerden()"
+                [disableEsKannNichtGeimpftWerden]="!canReset()"
+                [impffolge]="impffolge"
+                [registrierungsnummer]="baseData?.dashboardJax?.registrierungsnummer">
+            </app-zweite-impfung-verzichten>
+        </div>
+
+
+    </div>
+</form>

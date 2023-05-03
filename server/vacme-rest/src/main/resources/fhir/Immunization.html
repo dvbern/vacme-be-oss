@@ -1,0 +1,65 @@
+<!--/*-->
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="narrative.css"/>
+</head>
+<body>
+<!--*/-->
+<div>
+    <p><b>Generated Narrative</b></p>
+    <div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%">
+        <p style="margin-bottom: 0px">Resource "Immunization" </p>
+        <p style="margin-bottom: 0px">Profile:
+            <a href="http://fhir.ch/ig/ch-core/StructureDefinition-ch-vacd-immunization.html">CH VACD Immunization Profile</a>
+        </p>
+    </div>
+    <table border="0">
+    <tbody>
+        <tr th:each="issue : ${resource.identifier}">
+            <td style="font-weight: bold;">Identifier</td>
+            <td th:text="${issue.value}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Status</td>
+            <td th:text="${resource.status}"></td>
+        </tr>
+        <tr th:each="issue : ${resource.vaccineCode.coding}">
+            <td style="font-weight: bold;">Vaccine Code</td>
+            <td th:text="${issue.display}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">OccurenceTime</td>
+            <td th:text="${resource.OccurrenceDateTimeType}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">RecordedTime</td>
+            <td th:text="${resource.recorded}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">LotNumber</td>
+            <td th:text="${resource.lotNumber}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">DoseQuanitity</td>
+            <td th:text="${resource.doseQuantity.value}"></td>
+        </tr>        
+        <tr th:each="issue : ${resource.site.coding}">
+            <td style="font-weight: bold;">Site Code</td>
+            <td th:text="${issue.display}"></td>
+        </tr>
+        <tr th:each="issue : ${resource.route.coding}">
+            <td style="font-weight: bold;">Route Code</td>
+            <td th:text="${issue.display}"></td>
+        </tr>        
+        <tr th:each="issue : ${resource.protocolApplied}">
+            <td style="font-weight: bold;">Dose Numnber</td>
+            <td th:text="${issue.doseNumberPositiveIntType.value}"></td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+
+<!--/*-->
+</body>
+</html>
+<!--*/-->

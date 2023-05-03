@@ -1,0 +1,70 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+
+.elektronisch-ausweis {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: end;
+}
+
+.impfausweis-title {
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+.help-icon {
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
+}
+
+.impfausweis-title-container {
+    display: flex;
+    justify-content: center;
+}
+
+.impfausweis-wait-text {
+    line-height: 30px;
+    font-size: 14px;
+    margin: 0;
+    font-family: "Roboto", "arial", sans-serif;;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.impfausweis-button {
+    width: available;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.impfausweis-wait-icon {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    animation:spin 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.impfausweis-wait {
+    display: flex;
+    margin: 20px 50px 18px 0;
+}
+
+.downloadLinkText{
+    font-size: 16px;
+}
