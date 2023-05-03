@@ -1,0 +1,35 @@
+embed-server --std-out=echo --server-config=standalone-ha.xml
+
+# Change the socket binding for https-admin if another port has been specified using the KEYCLOAK_ADMIN_PORT env variable
+if (outcome == success) of /:resolve-expression(expression=${env.KEYCLOAK_ADMIN_PORT})
+    /socket-binding-group=standard-sockets/socket-binding=https-admin/:add(port=${env.KEYCLOAK_ADMIN_PORT})
+
+    /subsystem=undertow/server=default-server/https-listener=https-admin:add(socket-binding=https-admin, security-realm=ApplicationRealm, enable-http2=true)
+
+    /subsystem=undertow/configuration=filter/expression-filter=portAccess:add(,expression="path-prefix('/auth/admin') and not equals(%p, ${env.KEYCLOAK_ADMIN_PORT}) -> response-code(403)")
+    /subsystem=undertow/server=default-server/host=default-host/filter-ref=portAccess:add()
+end-if
+
+# it works!
+/subsystem=io/worker=default:write-attribute(name=task-max-threads, value=1024)
+
+# Read-only attributes for keycloak-rate-limit-authenticator
+
+/subsystem=keycloak-server/spi=userProfile/:add
+/subsystem=keycloak-server/spi=userProfile/provider=declarative-user-profile/:add(properties={},enabled=true)
+/subsystem=keycloak-server/spi=userProfile/provider=declarative-user-profile/:map-put(name=properties,key=read-only-attributes,value=limiter_*)
+
+# Allow Admins to reset the limiter counter
+# /subsystem=keycloak-server/spi=userProfile/provider=declarative-user-profile/:map-put(name=properties,key=admin-read-only-attributes,value=limiter_*)
+
+
+#increase db pool size
+/subsystem=datasources/data-source=KeycloakDS:write-attribute(name=initial-pool-size,value=40)
+/subsystem=datasources/data-source=KeycloakDS:write-attribute(name=pool-prefill,value=true)
+/subsystem=datasources/data-source=KeycloakDS:write-attribute(name=max-pool-size,value=40)
+
+#increase pool size for jgroups
+#/subsystem=jgroups/stack=tcp/transport=TCP:map-put(name=properties,key=thread_pool.max_threads, value=200)
+#/subsystem=jgroups/stack=tcp/transport=TCP:map-put(name=properties,key=thread_pool_max_threads, value=200)
+
+stop-embedded-server

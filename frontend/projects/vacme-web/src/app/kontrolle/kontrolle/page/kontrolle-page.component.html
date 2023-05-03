@@ -1,0 +1,122 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<!-- Standardansicht ohne Bearbeitung der Termine-->
+<ng-container *ngIf="!modif">
+    <div class='detailpage'>
+        <div class='main-column'>
+            <h4 class='i5' [title]="impffolge">{{title()}}</h4>
+            <app-kontrolle-form [newPerson]="newPerson"
+                                [showExternGeimpft]="showExternGeimpft()"
+                                [ortDerImpfungList]="ortDerImpfungList"
+
+                                [canSave]="canSave"
+                                (saveEvent)="save()"
+                                (saveFalschePersonEvent)="saveFalschePerson()"
+
+                                [krankheitIdentifier]="krankheit"
+                                (navigateToImpfdokumentationEvent)="navigateToImpfdokumentation();"
+                                (navigateBackEvent)="back()"
+                                (finishedLoading)="onFormLoaded()">
+
+            </app-kontrolle-form>
+        </div>
+
+        <div class='context-column'>
+
+            <div *ngIf="vacmeSettingsService.supportsDossierFileUpload(this.getKrankheit())">
+                <app-kontrolle-upload
+                    [immediateUpload]="newPerson === false"
+                    [regNummer]="regNummer"
+                    [krankheit]="getKrankheit()"
+                    [canSave]="canSave"
+                    [uploadedFiles]="uploadedFiles"
+                ></app-kontrolle-upload>
+            </div>
+
+            <app-person-infos *ngIf="dashboardJax"
+                              [personalien]="personalien">
+            </app-person-infos>
+
+            <app-person-documents *ngIf="regNummer && personalien && dashboardJax"
+                  [krankheit]="getKrankheit()"
+                  [registration]="regNummer"
+                  [status]="personalien.status"
+                  [termininfos]="impfkontrolle"
+                  [hasVacmeImpfung]="boosterUtil.hasDashboardVacmeImpfung(dashboardJax)">
+            </app-person-documents>
+
+            <div *ngIf="vacmeSettingsService.supportsZertifikat(this.getKrankheit())">
+                <div class='row step-1-text margin-top-30' style="display: block"
+                     *ngIf="dashboardJax && dashboardJax.currentZertifikatInfo!.deservesZertifikat && dashboardJax.registrierungsnummer">
+                    <app-person-zertifikat
+                        [registrierungsEingang]="dashboardJax.eingang"
+                        [currentZertifikatInfo]="dashboardJax.currentZertifikatInfo"
+                        [elektronischerImpfausweis]="!!dashboardJax.elektronischerImpfausweis"
+                        [registration]="dashboardJax.registrierungsnummer">
+                    </app-person-zertifikat>
+                </div>
+            </div>
+
+            <div *ngIf="vacmeSettingsService.supportsTerminbuchung(this.getKrankheit())">
+                <div id="termine-anchor"></div>
+                <app-person-termin *ngIf="!!impfkontrolle && !!dashboardJax"
+                   [termine]="impfkontrolle"
+                   [impffolge]="impffolge"
+                   [impffolgeNr]="impfkontrolle.impffolgeNr"
+                   [status]="impfkontrolle.status"
+                   [showTerminumbuchungButtons]="canUmbuchen()"
+                   (adHocTermin1AndSelectTermin2Called)="onAdHocTermin1AndSelectTermin2()"
+                   (termineUmbuchenCalled)="termineUmbuchen()">
+                </app-person-termin>
+            </div>
+            <app-person-impfung *ngIf="dashboardJax"
+                [dashboardJax]="dashboardJax"
+                [impffolge]="impffolge"
+                [supportsImpffolgenEinsUndZwei]="supportsImpffolgenEinsUndZwei()"
+            ></app-person-impfung>
+        </div>
+    </div>
+
+</ng-container>
+
+<!--Ansicht wahrend der Bearbeitung der Termine-->
+<ng-container *ngIf="modif">
+    <div id="terminbuchung-anchor"></div>
+    <lib-termine-bearbeiten [dashboardJax]="dashboardJax" *ngIf="dashboardJax"
+                            [ortDerImpfungList]="ortDerImpfungList"
+                            [selectedOdiId]="selectedOdiId"
+                            [mussAtLeastGebuchtSein]="false"
+                            [mussAtLeastFreigegebenSein]="false"
+                            [erstTerminAdHoc]="erstTerminAdHoc"
+                            (goBack)="exitTerminumbuchung($event)"
+                            (cancelAppointment)="cancelAppointment($event)"
+                            (updateAppointment)="updateAppointment($event)"
+                            (nextFreieTermin)="gotoNextFreienTermin($event)"> <!-- TODO booster erstTerminAdHoc? -->
+
+    </lib-termine-bearbeiten>
+</ng-container>
+<!--<div style="display: block; clear: both">-->
+
+<!--    <pre>-->
+<!--         {{this.terminfindungService.ortDerImpfung === undefined ? 'true' : 'false' }}-->
+<!--    </pre>-->
+<!--<pre>-->
+
+<!--    {{this.terminfindungService.ortDerImpfung | json}}-->
+<!--</pre>-->
+<!--</div>-->

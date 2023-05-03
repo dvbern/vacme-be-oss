@@ -1,0 +1,109 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div [formGroup]="formGroup">
+
+    <!-- JA/NEIN -->
+    <div class="row">
+        <lib-form-control-ampel formControlName="externGeimpft"
+                                [showGroupLabel]="true" labelKey="{{getMainQuestionText()}}" [noTranslateLabel]="true"
+                                translationPrefix="EXTERN_GEIMPFT.EXTERN_GEIMPFT_OPTION"
+                                [options]="[{label: 'true', value: true},{label:'false', value: false}]"
+                                [focusOnShow]="false"></lib-form-control-ampel>
+    </div>
+
+    <ng-container *ngIf="hasBeenGeimpft()">
+
+        <!-- Daten der Impfung bekannt? -->
+        <div *ngIf="showLetzteImpfungDatumUnknown()">
+            <lib-input-checkbox key="EXTERN_GEIMPFT.LETZTE_IMPFUNG_DATUM_UNBEKANNT"
+                                formControlName="letzteImpfungDateUnknown"></lib-input-checkbox>
+        </div>
+
+        <!-- Datum der letzten Impfung -->
+        <div *ngIf="showDatumLetzteImpfung()">
+            <lib-input-text key="EXTERN_GEIMPFT.LETZTE_IMPFUNG_DATUM"
+                            formControlName="letzteImpfungDate"></lib-input-text>
+        </div>
+
+        <!-- Impfstoff -->
+        <div>
+            <lib-input-select
+                formControlName="impfstoff"
+                key="EXTERN_GEIMPFT.IMPFSTOFF"
+                [options]="impfstoffOptions"
+                [doSortOptions]="false"
+                undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                [noTranslate]="true"></lib-input-select>
+        </div>
+
+        <!-- Anzahl -->
+        <div>
+            <lib-input-text key="EXTERN_GEIMPFT.ANZAHL_IMPFUNGEN"
+                            [autocomplete]="false"
+                            formControlName="anzahlImpfungen"></lib-input-text>
+        </div>
+
+        <!-- genesen -->
+        <div *ngIf="showGenesen()">
+            <lib-input-checkbox key="EXTERN_GEIMPFT.GENESEN"
+                                formControlName="genesen"></lib-input-checkbox>
+        </div>
+
+        <!-- Datum des positiven Testdatums -->
+        <div *ngIf="showPositivGetestetDatum()">
+            <lib-input-text key="EXTERN_GEIMPFT.POSITIV_GETESTET_DATUM"
+                            formControlName="positivGetestetDatum"></lib-input-text>
+        </div>
+
+        <!-- Anzahl missing Impfungen bis Grundimmunisierung -->
+        <div *ngIf="getAnzahlMissingImpfungen() as anzahlMissingImpfungen">
+            <img *ngIf="anzahlMissingImpfungen==='BRAUCHT_0_IMPFUNGEN'"
+                 width="30" src="/assets/img/Valid Icon.svg">
+            <img *ngIf="anzahlMissingImpfungen!=='BRAUCHT_0_IMPFUNGEN'"
+                 src="/assets/img/go-next.svg" width="30">
+            <span [translate]="'EXTERN_GEIMPFT.ANZAHL_MISSING.' + anzahlMissingImpfungen"
+                  style="margin-left: 10px;"></span>
+        </div>
+
+        <div *ngIf="showSchnellschema()">
+            <lib-input-checkbox key="EXTERN_GEIMPFT.SCHNELLSCHEMA" formControlName="schnellschema"></lib-input-checkbox>
+        </div>
+
+        <!-- trotzdemVollstaendigGrundimmunisieren -->
+        <div *ngIf="showTrotzdemVollstaendigGrundimmunisieren()">
+            <lib-input-checkbox key="EXTERN_GEIMPFT.TROTZDEM_VOLLSTAENDIG_GRUNDIMMUNISIEREN"
+                                formControlName="trotzdemVollstaendigGrundimmunisieren"></lib-input-checkbox>
+        </div>
+
+        <!-- Validierung: wenn "JA", aber nicht vollstaendig -->
+        <div class="form-validation-container"><!-- sonst kommt das icon oben an der Seite -->
+            <lib-validationmessages *ngIf="formGroup.touched" [errors]="formGroup.errors"
+                                    [myid]="'form'"></lib-validationmessages>
+        </div>
+
+        <!-- kontrolliert -->
+        <div *ngIf="showKontrolliertCheckbox">
+            <lib-input-checkbox key="EXTERN_GEIMPFT.KONTROLLIERT"
+                                formControlName="kontrolliert"></lib-input-checkbox>
+        </div>
+
+    </ng-container>
+
+
+</div>
+

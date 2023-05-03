@@ -1,0 +1,20 @@
+
+<div class="form-group" [ngClass]="{'invalid': formControl.touched && formControl.invalid, 'autofocus': this.focusOnShow}">
+    <label class="fieldlabel" *ngIf="showGroupLabel">{{noTranslateLabel ? labelKey : (labelKey | uppercase | translate)}}</label>
+    <div class="ampel-container button-group">
+        <label *ngFor="let option of options" class="button {{option.label | lowercase}}" [ngClass]="{
+        active: formControl.value === option.value, readonly: formControl.disabled }">
+            <input type="radio" name="ampel" [value]=option.value
+                   [formControl]="formControl"
+                   class="focusable-field"
+                   [ngClass]="{'invalid': formControl.invalid && formControl.touched}"
+                   [attr.aria-describedby]="getValidationId()">
+            <span>{{ noTranslate
+                ? option.label
+                : ((translationPrefix ? translationPrefix + '.' : '') + (option.label | uppercase))
+                    | translate }}</span>
+        </label>
+    </div>
+    <lib-validationmessages *ngIf="formControl.touched" [errors]="formControl.errors"
+                            [myid]="getValidationId()"></lib-validationmessages>
+</div>

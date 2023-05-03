@@ -1,0 +1,52 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='detailpage'>
+    <div class='main-column'>
+        <h4 class='i5' translate>CALLCENTER.REGISTRIERUNG-SUCHEN.TITLE</h4>
+        <form [formGroup]="formGroup" (ngSubmit)="submitIfValid()">
+            <div class="row">
+                <lib-input-text [formGroup]="formGroup" label="callcenter.registrierung-suchen.code"
+                                [focusOnShow]="true" [trim]="true"
+                                class="input-min-height-125"
+                                formControlName="code" placeholder="-----"></lib-input-text>
+            </div>
+
+            <div >
+                <a routerLink="/callcenter/registrierung-suchen" translate >
+                    CALLCENTER.UVCI-SUCHE.TITLE
+                </a>
+            </div>
+            <div *ngIf="onboardingEnabled()" class="margin-top-15">
+                <a routerLink="/callcenter/onboardingcode-suchen" translate>
+                    CALLCENTER.ONBOARDINGCODE-SUCHE.TITLE
+                </a>
+            </div>
+
+            <div class="row">
+                <lib-button buttonKind="submit" translationKey="CALLCENTER.REGISTRIERUNG-SUCHEN.SUCHEN"></lib-button>
+            </div>
+        </form>
+    </div>
+    <div class='context-column'>
+        <div class='row step-1-text'  style="display: block;" translate>
+            <p translate>CALLCENTER.REGISTRIERUNG-SUCHEN.WEITERE_FUNKTIONEN</p>
+            <a class="sidebar-action" (click)="erfassen()" translate>CALLCENTER.REGISTRIERUNG-SUCHEN.REGESTRIEREN-TEXT</a>
+            <a class="sidebar-action" routerLink="/callcenter/personalien-suchen"  translate>CALLCENTER.REGISTRIERUNG-SUCHEN.ADRESSE_ANPASSEN</a>
+        </div>
+    </div>
+</div>

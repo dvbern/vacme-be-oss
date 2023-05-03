@@ -1,0 +1,49 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class="center">
+    <ngx-file-drop dropZoneClassName="filedrop" dropZoneLabel="Drop files here"
+                   (onFileDrop)="dropped($event)"
+                   accept="image/*,.pdf"
+    >
+        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+            <button class="secondary"
+                    style="flex: 2; margin-left: auto; margin-top: unset; margin-bottom: unset; margin-right: unset; max-width: 250px;"
+                    [disabled]="!canSave"
+                    (click)="openFileSelector()">
+                <span translate>FACH-APP.KONTROLLE.UPLOAD_BUTTON</span>
+            </button>
+        </ng-template>
+    </ngx-file-drop>
+    <div class="upload-table">
+        <table class="table">
+            <thead>
+            <tr>
+                <th translate>FACH-APP.UPLOAD.FILENAME</th>
+            </tr>
+            </thead>
+            <tbody class="upload-name-style">
+            <tr *ngFor="let item of uploadedFiles.concat(filesPreparedForUpl); let i=index">
+                <td *ngIf="item.id === undefined">{{ item.name }}</td>
+                <td *ngIf="item.id !== undefined" (click)="downloadDoc(item.id, item.name)">
+                    <strong>{{ item.name }}</strong></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

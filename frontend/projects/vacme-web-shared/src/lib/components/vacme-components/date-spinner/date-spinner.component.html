@@ -1,0 +1,44 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class="date-spinner">
+    <div class="h-space"></div>
+
+    <!-- Pfeil -->
+    <div class="arrow" *ngIf="showBack">
+        <button (click)="spin(-1)"
+                ngbTooltip="{{spinDate(-1) | date: 'EEEE, dd.MM.yyyy': undefined: this.translateService.currentLang}}"
+                placement="bottom">
+            <img class='arrow-right' src='img/go-back.svg' style="margin: 2px 10px;">
+        </button>
+    </div>
+
+    <!-- Tag -->
+    <b class="date">{{datum | date: 'EEEE, dd.MM.yyyy': undefined: this.translateService.currentLang}}</b>
+
+    <!-- Pfeil -->
+    <div class="arrow" *ngIf="showForward">
+        <button (click)="spin(1)"
+                ngbTooltip="{{spinDate(1) | date: 'EEEE, dd.MM.yyyy': undefined: this.translateService.currentLang}}"
+                placement="bottom">
+            <img class='arrow-right' src='img/go-next.svg' style="margin: 2px 10px;">
+        </button>
+    </div>
+    <div class="h-space"></div>
+
+
+</div>

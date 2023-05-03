@@ -1,0 +1,23 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+.red {
+
+    border: 5px solid #ea161f;
+
+}
+
+.invalid-icon {
+    float: right;
+    content: "";
+    height: 31px;
+    width: 31px;
+    right: 16px;
+    top: 33px;
+}
+
+.invalid-text {
+    color: #ea161f;
+}

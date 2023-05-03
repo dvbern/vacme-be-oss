@@ -1,0 +1,8 @@
+### Erstelle Online Registrierungen
+PUT http://localhost:8080/api/v1/web/testdata/createRegistrierungen/1
+
+### Erstelle Online Registrierungen mit Terminen
+PUT http://localhost:8080/api/v1/web/testdata/createRegistrierungenMitTermin/20/01 DVBern Test/2021-07-01/2021-07-28
+
+### Erstelle Online Registrierungen mit Terminen und Impfungen für Onboarding
+PUT http://localhost:8080/api/v1/web/testdata/createRegistrierungenForOnboarding/3/Tolles Impfzentrum 123/2021-07-01/2021-07-28

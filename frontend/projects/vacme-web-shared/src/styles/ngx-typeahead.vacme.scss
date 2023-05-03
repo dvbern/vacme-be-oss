@@ -1,0 +1,86 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+
+@import "../styles/vacme-variables";
+
+/* Styles fuer die Typeahead Komponente ngbTypeahead in der Admin Page */
+
+.typeahead-container {
+    .input-and-clear {
+        display: flex;
+        align-items: center;
+
+
+        .clearbutton {
+            position: absolute;
+            right: 15px;
+            cursor: pointer;
+            margin-left: 10px;
+            height: 35px;
+            padding: 5px;
+
+            &:hover {
+
+            }
+        }
+    }
+
+    &.invalid {
+        .clearbutton {
+            right: 60px;
+        }
+    }
+}
+
+
+.dropdown-menu {
+    z-index: 1000;
+    float: left;
+    min-width: 10rem;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    max-height: 380px !important;
+    overflow-y: auto;
+
+    &.show {
+        display: block;
+    }
+
+    .dropdown-item {
+        display: block;
+        width: 100%;
+        padding: .5rem 1.5rem;
+        clear: both;
+        font-weight: 400;
+        color: #212529;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0;
+
+        &.active {
+            color: #fff;
+            text-decoration: none;
+            background-color: #707070;
+        }
+
+        ngb-highlight.disabled {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+    }
+
+}
+
+/* Typeahead Invalid -> roter Rahmen */
+.typeahead-container.invalid input {
+    border-color: #EA161F;
+}

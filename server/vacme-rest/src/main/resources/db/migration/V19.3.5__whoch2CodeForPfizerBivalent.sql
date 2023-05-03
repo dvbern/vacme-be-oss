@@ -1,0 +1,1 @@
+update Impfstoff set wHoch2Code = 'Comirnaty®' where name = 'Comirnaty Bivalent Original/Omicron BA.1®';

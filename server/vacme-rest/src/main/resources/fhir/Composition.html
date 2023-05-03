@@ -1,0 +1,49 @@
+<!--/*-->
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="narrative.css"/>
+</head>
+<body>
+<!--*/-->
+<div>
+    <p><b>Generated Narrative</b></p>
+    <div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%">
+        <p style="margin-bottom: 0px">Resoucre Composition</p>
+        <p style="margin-bottom: 0px">Profile:
+            <a href="http://fhir.ch/ig/ch-vacd/StructureDefinition/ch-vacd-composition-immunization-administration">CH VACD Immunization Administration Composition Profile</a>
+        </p>
+    </div>
+    <table border="0">
+    <tbody>
+        <tr th:each="issue : ${resource.identifier}" >
+            <td style="font-weight: bold;">Identifier</td>
+            <td th:text="${issue.value}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Status</td>
+            <td th:text="${resource.status}"></td>
+        </tr>
+        <tr th:each="issue : ${resource.type.coding}">
+            <td style="font-weight: bold;">Type</td>
+            <td th:text="${issue.display}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Date</td>
+            <td th:text="${resource.date}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Title</td>
+            <td th:text="${resource.title}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Confidentiality</td>
+            <td th:text="${resource.confidentiality}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--/*-->
+</body>
+</html>
+<!--*/-->

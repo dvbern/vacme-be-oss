@@ -1,0 +1,76 @@
+version: '3.7'
+
+services:
+
+  keycloak:
+    container_name: vacme-keycloak
+    build:
+      context: keycloak
+    env_file:
+      - developer_local_settings/vacme_keycloak_config.env
+    networks:
+      - dbnet
+#    volumes:
+#      - ${CONF_DIR}/keycloak/vacme_realm.json:/tmp/vacme_realm.json
+#      - ${CONF_DIR}/keycloak/set-secrets.sh:/opt/jboss/startup-scripts/set-secrets.sh
+#    command: "-Dkeycloak.profile.feature.upload_scripts=enabled"
+    environment:
+       TZ: "Europe/Zurich"
+       JAVA_OPTS: >-
+         -server -Xms256m -Xmx1024m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m
+         -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true
+         -XX:+UseCompressedOops -XX:+HeapDumpOnOutOfMemoryError
+         -XX:HeapDumpPath=/opt/jboss/keycloak/standalone/log/heapdumps
+         -XX:+PrintHeapAtSIGBREAK -XX:+UnlockDiagnosticVMOptions -XX:LogFile=/tmp/jvm.log
+
+  db:
+    container_name: vacme-mariadb
+    build:
+      context: mariaDb
+    secrets:
+      - vacme_db_superuser_password
+      - vacme_db_password
+    env_file:
+      - developer_local_settings/vacme_db_config.env
+    volumes:
+      - "vacme-database-mariadb-data:/var/lib/mysql"
+    networks:
+      - dbnet
+    environment:
+      TZ: "Europe/Zurich"
+#    command: ['--character-set-server=utf8mb4','--collation=utf8mb4_unicode_ci', '--verbose'] utf8 scheint in 10.5 default aber nicht in 10.3
+
+  db-keycloak:
+    container_name: vacme-mariadb-keycloak
+    build:
+      context: mariaDb
+
+    env_file:
+      - developer_local_settings/vacme_db-keycloak_config.env
+    volumes:
+      - "vacme-database-mariadb-keycloak-data:/var/lib/mysql"
+    networks:
+      - dbnet
+    environment:
+      TZ: "Europe/Zurich"
+    deploy:
+      resources:
+        limits:
+          memory: '256M'
+#    command: ['--character-set-server=utf8mb4','--collation=utf8mb4_unicode_ci', '--verbose'] utf8 scheint in 10.5 default aber nicht in 10.3
+
+
+networks:
+  dbnet:
+
+secrets:
+  vacme_db_superuser_password:
+    file: ./developer_local_settings/vacme_db_superuser_password.txt
+  vacme_db_password:
+    file: ./developer_local_settings/vacme_db_password.txt
+
+volumes:
+  vacme-database-mariadb-data:
+    external: true
+  vacme-database-mariadb-keycloak-data:
+    external: true

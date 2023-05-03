@@ -1,0 +1,8 @@
+{
+	"realm": "vacme-web",
+	"auth-server-url": "http://localhost:8180/auth/",
+	"ssl-required": "external",
+	"resource": "vacme-web-app-localhost",
+	"public-client": true,
+	"confidential-port": 0
+}

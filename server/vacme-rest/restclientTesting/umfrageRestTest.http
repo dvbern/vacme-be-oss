@@ -1,0 +1,19 @@
+### Umfrage erstellen
+POST http://localhost:8080/api/v1/web/umfrage/create
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+  "gruppe": "GRUPPE_1",
+  "limit": 10
+}
+### Umfrage schicken
+POST http://localhost:8080/api/v1/web/umfrage/send
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+  "gruppe": "GRUPPE_1"
+}

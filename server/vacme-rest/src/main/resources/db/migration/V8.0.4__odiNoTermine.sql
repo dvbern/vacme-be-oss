@@ -1,0 +1,2 @@
+ALTER TABLE OrtDerImpfung ADD noFreieTermine BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE OrtDerImpfung_AUD ADD noFreieTermine BOOLEAN NULL;

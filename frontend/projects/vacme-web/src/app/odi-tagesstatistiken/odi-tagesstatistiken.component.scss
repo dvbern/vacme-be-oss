@@ -1,0 +1,19 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+.odi-tagesstatistiken {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    > * {
+        margin: 20px 0 40px 0;
+        width: 100%;
+        max-width: 100%;
+
+    }
+
+
+}

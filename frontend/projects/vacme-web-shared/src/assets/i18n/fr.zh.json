@@ -1,0 +1,50 @@
+{
+    "LANDINGPAGE": {
+        "TITLE": "Bienvenue sur le portail de vaccination du canton de Zurich",
+        "ONBOARDING_WELCOME": "Avez-vous reçu une lettre de la direction de la santé du canton de Zurich pour vous enregistrer sur le portail de vaccination?"
+    },
+    "IMPFAEHIGKEIT": {
+        "INTRO": "Pour savoir si vous pouvez vous faire vacciner, veuillez procéder à une auto-évaluation à l’aide des informations fournies par l’Office fédéral de la santé publique et par le canton de Zurich.",
+        "LINK_QUESTIONS": "https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/gesundheit/corona/impfung/registrierungstool/selbsteinschaetzung_fr.pdf",
+        "LINK_QUESTIONS_TEXT": "Questionnaire d’auto-évaluation du canton de Zurich",
+        "LINK_CONSENT": "https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/gesundheit/corona/impfung/registrierungstool/info_zur_covid_19_impfung_fr.pdf",
+        "LINK_CONSENT_TEXT": "informations sur la vaccination contre le COVID-19 dans le canton de Zurich.",
+        "HINWEIS": "Vous avez déjà un compte ? Vous trouverez le code VacMe dans le SMS de VacMe avec le code d'enregistrement, la confirmation d'enregistrement et la documentation sur la vaccination."
+    },
+    "OVERVIEW": {
+        "BOOSTER_HELP_HREF": "https://www.zh.ch/de/gesundheit/coronavirus/coronavirus-impfung.html",
+        "PRIO_NICHT_FREIGEGEBEN_LINK": "https://www.zh.ch/coronaimpfung",
+        "PRIO_NICHT_FREIGEGEBEN_LINK_TEXT": "www.zh.ch/coronaimpfung",
+        "NICHT_VERWALTETER_ODI": "Vaccination dans un lieu non mentionné ici (cabinet médical)",
+        "NICHT_VERWALTETER_ODI_HINT_1": "Pour prendre rendez-vous, veuillez vous adresser à votre médecin de famille. A noter que, dans les cabinets médicaux, les médecins vaccinent leur propre patientèle uniquement.",
+        "NICHT_VERWALTETER_ODI_HINT_2": "Si vous n’avez pas de médecin de famille ou que le vaccin contre le COVID-19 n’est administré ni dans votre cabinet médical ni dans votre pharmacie, veuillez sélectionner « Modifier la sélection » et prendre rendez-vous dans un autre lieu de vaccination.",
+        "ZERTIFIKAT_HELP_HREF": "http://zh.ch/covidzertifikat",
+        "FREIGEGEBEN_BOOSTER_NICHT": "Vous serez informé dès que vous pourrez réserver une vaccination de rappel (1 ou plus).",
+        "REGISTRATION_TYPE": {
+            "ONLINE_REGISTRATION": "Un Portal-Login existe dejà pour cet enregistrement (enregistrement en ligne ou onboarding complété)"
+        }
+    },
+    "REGISTRIERUNG": {
+        "AGB": "J’accepte les <a class='text-link' target='_blank' href='https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/gesundheit/corona/impfung/registrierungstool/nutzungsbedingungen_fr.pdf'>conditions d’utilisation</a>.",
+        "EINWILLIGUNG": "J’ai lu et accepte la <a class='text-link' target='_blank' href='https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/gesundheit/corona/impfung/registrierungstool/einverstaendniserklaerung_fr.pdf'>déclaration de consentement</a>.",
+        "BERUF_OPTION": {
+            "GES_PERSONAL_MIT_PAT_KONTAKT_INTENSIV": "Personnel de santé ayant des contacts directs avec la patientèle (Maisons de retraite / soins infirmiers / handicapés, hôpitaux et cliniques, Spitex)",
+            "GES_PERSONAL_MIT_PAT_KONTAKT": "Personnel de santé ayant des contacts directs avec la patientèle (cabinets médicaux, cabinets dentaires, pharmacies et autres prestataires de services ambulatoires)"
+        },
+        "GESCHLECHT_OPTION": {
+            "ANDERE": "Autre"
+        }
+    },
+    "FOOTER": {
+        "CAPTION": "COVID-19 Vaccination canton de Zurich",
+        "COPYRIGHT": "© 2021 - COVID-19 Vaccination du canton de Zurich"
+    },
+    "UMFRAGE": {
+        "AKTUELL_DATEN": "Vos données sont-elles encore actuelles ?",
+        "AKTUELL_DATEN_TEXT": "Nous avons enregistré vos données suivantes. Veuillez les vérifier et les corriger si nécessaire. Vous nous aidez ainsi à maintenir VacMe à jour.",
+        "AKTUELL_DATEN_BUTTON": "Confirmer"
+    },
+    "ERKRANKUNGEN": {
+        "FREIGABE_ENTFERNT": "En raison de votre récente vaccination ou maladie Covid, votre protection vaccinale est encore suffisante. Une vaccination n'est pas nécessaire pour le moment."
+    }
+}

@@ -1,0 +1,39 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='detailpage'>
+
+
+    <div class='main-column'>
+        <!-- Formular Impfling: Adresse, Krankenkasennummer, Fragebogen -->
+        <ng-container *ngIf="showAdresseKkFragebogen()">
+            <h4 class='i5 margin-bottom-30' translate>USERPROFILE.TITLE</h4>
+            <app-adresse-kk-fragebogen></app-adresse-kk-fragebogen>
+        </ng-container>
+    </div>
+
+    <div class='context-column'>
+        <div class='row step-1-text' style="display: block;">
+            <p translate>CALLCENTER.REGISTRIERUNG-SUCHEN.WEITERE_FUNKTIONEN</p>
+
+            <!-- Eigener Account: editieren, Passwort aendern, VacMe-Account loeschen -->
+            <lib-account-links></lib-account-links>
+
+        </div>
+    </div>
+
+</div>

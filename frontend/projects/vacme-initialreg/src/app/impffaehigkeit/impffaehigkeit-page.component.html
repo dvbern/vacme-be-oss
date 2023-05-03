@@ -1,0 +1,62 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='full-wdith'>
+    <div class="row">
+        <p translate *ngIf="showHinweis()">IMPFAEHIGKEIT.HINWEIS</p>
+        <h4 class='i5' translate>IMPFAEHIGKEIT.TITLE</h4>
+        <p translate>IMPFAEHIGKEIT.INTRO</p>
+        <p translate>IMPFAEHIGKEIT.TASK</p>
+        <ul>
+            <li><a class="text-link-list" href="{{ 'IMPFAEHIGKEIT.LINK_QUESTIONS' | translate }}" target="_blank"
+                   translate>IMPFAEHIGKEIT.LINK_QUESTIONS_TEXT</a></li>
+        </ul>
+    </div>
+    <div class="row ampel">
+        <p translate>IMPFAEHIGKEIT.RESULT</p>
+        <lib-ampel [(color)]="ampelColor"></lib-ampel>
+    </div>
+
+    <div class="row">
+        <lib-warningbox *ngIf="ampelColor === 'RED'" [critical]="true">
+            <span class="critical" translate>IMPFAEHIGKEIT.RED_WARNING</span>
+        </lib-warningbox>
+        <lib-warningbox *ngIf="ampelColor === 'ORANGE'">
+            <span translate>IMPFAEHIGKEIT.ORANGE_WARNING</span>
+        </lib-warningbox>
+        <lib-warningbox *ngIf="ampelColor === 'GREEN'" [success]="true">
+            <span translate>IMPFAEHIGKEIT.GREEN_WARNING</span>
+        </lib-warningbox>
+    </div>
+
+    <div class="row">
+
+        <div class="checkbox-container" *ngIf="isPass()">
+            <input id="checkbox-consent" type="checkbox" [(ngModel)]="consent">
+            <label for="checkbox-consent">
+
+                {{ 'IMPFAEHIGKEIT.CONSENT_CHECK_1' | translate }} <a class="text-link" target="_blank"
+                                                                     href="{{ 'IMPFAEHIGKEIT.LINK_CONSENT' | translate }}"
+                                                                     translate>IMPFAEHIGKEIT.LINK_CONSENT_TEXT</a> {{ 'IMPFAEHIGKEIT.CONSENT_CHECK_2' | translate }}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <lib-button buttonKind="submit" [disabled]="!consent" (clickIfEnabled)="nextStep()" translationKey="IMPFAEHIGKEIT.SEND">
+        </lib-button>
+    </div>
+</div>

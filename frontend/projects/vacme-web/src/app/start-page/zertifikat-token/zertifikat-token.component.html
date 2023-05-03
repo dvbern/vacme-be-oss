@@ -1,0 +1,52 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div style="display: flex">
+    <a [swal]="uploadToken"
+       class="trigger"
+       translate>ZERTIFIKAT_TOKEN.HOCHLADEN</a>
+    <span *ngIf="hasValidToken">
+        <img width="30" src="/assets/img/Valid Icon.svg" title="{{'ZERTIFIKAT_TOKEN.OK' | translate}}">
+    </span>
+    <span *ngIf="!hasValidToken">
+        <img width="30" src="/assets/img/Invalid Icon.svg" title="{{'ZERTIFIKAT_TOKEN.NOK' | translate}}">
+    </span>
+</div>
+
+<swal #uploadToken
+      [showConfirmButton]="false"
+      [title]="'ZERTIFIKAT_TOKEN.TITLE' | translate">
+
+    <div *swalPortal="swalTargets.content">
+        <p translate>ZERTIFIKAT_TOKEN.INFO</p>
+        <a class="text-link-list" href="{{ 'ZERTIFIKAT_TOKEN.LINK' | translate }}" target="_blank"
+           translate>ZERTIFIKAT_TOKEN.LINK_TEXT</a>
+        <form [formGroup]="formGroup">
+<!--            inpfut for token-->
+            <lib-input-textarea key="zertifikat_token.token"
+                                formControlName="token"></lib-input-textarea>
+            <lib-button buttonKind="primary" (clickIfEnabled)="saveToken()"
+                        translationKey="ZERTIFIKAT_TOKEN.SAVE"></lib-button>
+            <div>
+                <a class="text-link-list token-delete"
+                   (click)="deleteAllTokens()"
+                   translate >ZERTIFIKAT_TOKEN.DELETE_ALL
+                </a>
+            </div>
+        </form>
+    </div>
+</swal>
