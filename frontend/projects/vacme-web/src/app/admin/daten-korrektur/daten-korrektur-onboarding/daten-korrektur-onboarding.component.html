@@ -1,0 +1,47 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<ng-container *ngIf="korrekturDashboard">
+    <div class="row">
+        <h3 class="section-title" translate>FACH-ADMIN.DATEN_KORREKTUR.ONBOARDING</h3>
+    </div>
+
+    <div *ngIf="canSendOnboardingLetter()  else elseBlock">
+
+
+        <!-- Keine gueltige Schweizer Adresse -->
+        <lib-warningbox *ngIf="!isGueltigeSchweizerAdresse()">
+            <span translate>OVERVIEW.KEINE_GUELTIGE_SCHWEIZER_ADRESSE</span>
+        </lib-warningbox>
+
+        <div class="row">
+            <lib-button translationKey="FACH-ADMIN.DATEN_KORREKTUR.ONBOARDING_SEND"
+                        buttonKind="primary"
+                        *ngIf="hasRequiredRole()"
+                        [disabled]="!isGueltigeSchweizerAdresse()"
+                        (clickIfEnabled)="resendOnboardingLetter()"></lib-button>
+
+
+            <lib-button buttonKind="secondary" (clickIfEnabled)="reset()"
+                        translationKey="OVERVIEW.ABBRECHEN"></lib-button>
+        </div>
+    </div>
+
+    <ng-template #elseBlock>
+        <span translate>FACH-ADMIN.DATEN_KORREKTUR.ONBOARDING_NOT_POSSIBLE</span>
+    </ng-template>
+
+</ng-container>

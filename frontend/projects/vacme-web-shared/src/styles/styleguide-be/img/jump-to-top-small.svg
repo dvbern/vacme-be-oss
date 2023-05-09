@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #707070;
+        opacity: 0.5;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        stroke: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Gruppe_997" data-name="Gruppe 997" transform="translate(-1382 -2528)">
+    <rect id="Rechteck_268" data-name="Rechteck 268" class="cls-1" width="30" height="30" transform="translate(1382 2528)"/>
+    <path id="_002-right-arrow-1" data-name="002-right-arrow-1" class="cls-2" d="M11.884.187a.626.626,0,1,0-.889.88l4.51,4.51H.623A.62.62,0,0,0,0,6.2a.626.626,0,0,0,.623.632H15.5l-4.51,4.5a.638.638,0,0,0,0,.889.623.623,0,0,0,.889,0l5.577-5.577a.613.613,0,0,0,0-.88Z" transform="translate(1391 2551.648) rotate(-90)"/>
+  </g>
+</svg>

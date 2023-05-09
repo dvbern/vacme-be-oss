@@ -1,0 +1,25 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+.odiEditButton {
+    border: 1px solid rgba(112, 112, 112, 0.5);
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    width: 100%;
+    padding: 10px 10px 10px 28px;
+
+    span {
+        flex: 1;
+        white-space: nowrap;
+        display: inline-block;
+        margin: auto;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

@@ -1,0 +1,84 @@
+### Project specific ignores ###
+
+# Place .gitignore settings specific to your project here
+/lsp/
+**/jest-cache/
+
+##### Common ignore settings ####
+
+## Local developer / local build settings
+/developer_local_settings/
+build.properties
+docker-compose.override.yml
+
+
+### Build systems ###
+
+## Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+## Gradle
+/local.properties
+.gradle/
+
+## Node.js / NPM
+node_modules/
+debug.log
+npm-debug.log
+
+## Generic build output directories
+dist/
+build/
+
+
+### Editors & IDEs ###
+
+## IntelliJ
+*.iml
+*.iws
+.idea/
+# IntelliJ creates this directory in WAR-modules with WAR-dependencies
+overlays/
+
+## Eclipse
+.metadata
+.settings/
+.loadpath
+.project
+.classpath
+.externalToolBuilders/
+
+## Netbeans
+nbproject/
+
+## Sublime
+*.sublime-workspace
+
+## Visual Studio Code
+.vscode/
+
+
+### Misc ###
+
+## System Files
+.DS_Store
+Thumbs.db
+
+## JVM
+# Fatal Error logs
+hs_err_pid*.log
+# Remote Debugger temp files
+.attach_pid*
+
+## Files, that should never be ignored
+!**/.gitkeep
+!**/.gitignore
+!**/.gitattributes
+!**/.editorconfig
+/server/vacme-rest/.env
+/.tool-versions

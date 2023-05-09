@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>ch.dvbern.oss.maven</groupId>
+        <version>3.0.3</version>
+    </parent>
+
+    <name>VacMe</name>
+    <description>VacMe stands for Vaccinate Me</description>
+
+    <organization>
+        <name>DV Bern AG</name>
+        <url>https://www.dvbern.ch</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>DV Bern AG developers</name>
+            <email>hallo@dvbern.ch</email>
+            <organization>DV Bern AG</organization>
+            <organizationUrl>http://www.dvbern.ch</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/dvbern/vacme.git</connection>
+        <developerConnection>scm:git:ssh://github.com:dvbern/vacme.git</developerConnection>
+        <url>http://github.com/dvbern/vacme</url>
+    </scm>
+
+    <groupId>ch.dvbern.oss.vacme</groupId>
+    <artifactId>vacme</artifactId>
+    <version>19.9.1</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>server</module>
+    </modules>
+
+    <licenses>
+        <license>
+            <name>GNU Affero General Public License</name>
+            <url>http://www.gnu.org/licenses/agpl-3.0.txt</url>
+        </license>
+    </licenses>
+
+    <properties>
+        <compiler-java.version>11</compiler-java.version>
+        <maven-enforcer-plugin.requireMavenVersion.version>[3.6.2,)</maven-enforcer-plugin.requireMavenVersion.version>
+        <maven-enforcer-plugin.requireJavaVersion.version>${compiler-java.version}</maven-enforcer-plugin.requireJavaVersion.version>
+        <!-- quarkus version is pinned via property in some child pom... and enforcer cannot deal with this :( -->
+        <maven-enforcer-plugin.requirePluginVersions.unCheckedPlugins>io.quarkus:quarkus-maven-plugin</maven-enforcer-plugin.requirePluginVersions.unCheckedPlugins>
+        <!--quarkus plugin  requires an <extensions> block. the Maven deploy plugin has a bug that prevents deployAtEnd from working in that case so we have to turn it off-->
+        <!-- https://issues.apache.org/jira/browse/MDEPLOY-226-->
+        <maven-deploy-plugin.deployAtEnd>false</maven-deploy-plugin.deployAtEnd>
+    </properties>
+</project>

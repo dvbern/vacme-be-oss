@@ -1,0 +1,38 @@
+<!--/*-->
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="narrative.css"/>
+</head>
+<body>
+<!--*/-->
+<div>
+    <p><b>Generated Narrative</b></p>
+    <div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%">
+        <p style="margin-bottom: 0px">Resource Past Illness </p>
+        <p style="margin-bottom: 0px">Profile:
+            <a href="http://fhir.ch/ig/ch-vacd/StructureDefinition/ch-vacd-pastillnesses">CH VACD Past Illness Profile</a>
+        </p>
+    </div>
+    <table border="0">
+    <tbody>
+    <tr>
+        <td style="font-weight: bold;">Recorded Time</td>
+        <td th:text="${resource.recordedDate}"></td>
+    </tr>
+    <tr th:if="${not resource.onsetDateTimeType.empty}">
+        <td style="font-weight: bold;">Onset Date Time</td>
+        <td th:text="${resource.onsetDateTimeType}"></td>
+    </tr>
+  
+    <tr th:each="issue : ${resource.code.coding}" >
+        <td style="font-weight: bold;">Covid Illness</td>
+        <td th:text="${issue.display}"></td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+
+<!--/*-->
+</body>
+</html>
+<!--*/-->

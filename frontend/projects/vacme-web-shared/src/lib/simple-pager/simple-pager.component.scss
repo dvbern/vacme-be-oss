@@ -1,0 +1,12 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+@import "../../../src/styles/vacme-variables";
+
+.disabled a {
+    cursor: default;
+    color: $color-be-func-grey;
+    text-decoration-color: $color-be-func-grey;
+}

@@ -1,0 +1,58 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+@import "projects/vacme-web-shared/src/styles/vacme-variables";
+
+.chosen {
+    background-color: $color-be-cappuccino;
+}
+
+.freier-termin {
+    border: 1px solid #ccc;
+    padding: 10px;
+    float: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .date {
+        flex-grow: 1;
+    }
+
+    button.primary {
+        margin: 0;
+    }
+}
+
+.margin-left {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.margin-right {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.date-spinner {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+
+    .h-space {
+        flex-grow: 1;
+    }
+}
+
+.forward {
+    //
+}
+
+.back {
+    //
+}

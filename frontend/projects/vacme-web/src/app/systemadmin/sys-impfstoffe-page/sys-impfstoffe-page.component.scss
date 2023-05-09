@@ -1,0 +1,39 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+:host {
+
+    .hexcolorbalken {
+        height: 25px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .impfempfehlung {
+        display: flex;
+        flex-wrap: wrap;
+
+
+        &-element {
+            width: 40%;
+            margin-right: 10px;
+            min-width: 300px;
+        }
+    }
+
+    .icon {
+        width: auto;
+        vertical-align: middle;
+        height: 28px;
+    }
+
+    .action-button {
+        cursor: pointer;
+        padding: 10px 10px 10px 0;
+
+        span {
+            margin-left: 4px;
+        }
+    }
+}

@@ -1,0 +1,645 @@
+{
+    "NAVIGATION": {
+        "HELP": "Hilfe",
+        "LOGIN": "Login",
+        "LOGOUT": "Logout"
+    },
+    "LANDINGPAGE": {
+        "TITLE": "Willkommen im Impfportal des Kantons Bern",
+        "ONBOARDING_WELCOME": "Haben Sie von der Gesundheitsdirektion Bern einen Brief zur Registrierung auf dem COVID-19 Portal erhalten?",
+        "ONBOARDING_WELCOME_BUTTON": "Dann klicken Sie hier",
+        "ANGEBOT": "Folgende Impfungen können über VacMe wahrgenommen werden:<li>Affenpocken - <a href='https://www.gsi.be.ch/de/start/themen/gesundheit/krankheiten-und-impfungen/uebertragbare-krankheiten-und-impfungen/informationen-zur-affenpockenerkrankung.html' target='_blank'>Infolink</a></li><li>Covid-19 - <a href='https://www.gsi.be.ch/de/start/themen/coronavirus.html' target='_blank'>Infolink</a></li><li>FSME</li>",
+
+        "LOGIN_TEXT": "Ich habe bereits ein Login",
+        "LOGIN_BUTTON": "Login",
+        "ODER": "oder",
+        "REGISTER_TEXT": "Ich bin neu bei VacMe",
+        "REGISTER_BUTTON": "Registrieren",
+        "REGISTER_BUTTON_CONTINUE": "Weiter zur Registrierung",
+        "FSME_TEXT": "Zeckenimpfungen (FSME) ab Mai 2023 auch über Well-App buchen. <a target='_blank' href='https://open.well.ch/VacMeLP'>Download Well-App</a>"
+    },
+    "ONBOARDING": {
+        "TRIGGER": {
+            "MISSING_LOGIN": "Es existiert noch kein Login zu dieser Registrierung.",
+            "SEND": "Brief zum Erstellen eines Logins verschicken",
+            "CONFIRM": {
+                "TEXT": "Soll ein Brief per Post versandt werden, damit die geimpfte Person einen Account erstellen kann?",
+                "CONFIRM": "Brief verschicken",
+                "CANCEL": "Abbrechen"
+            },
+            "BESTAETIGUNG": "Brief wurde in Auftrag gegeben"
+        },
+        "START": {
+            "INTRO": "Verknüpfen Sie hier Ihre bestehenden COVID-19-Impfdaten mit einem VacMe-Konto.",
+            "CODE": "Code",
+            "SEND": "Weiter",
+            "IS_LOGGED_IN": "Sie sind bereits eingeloggt. Wollen Sie die Impfdaten mit diesem Benutzerkonto verknüpfen?",
+            "KEEP_USER": "Ja, mit diesem Benutzerkonto verknüpfen",
+            "LOGOUT": "Nein, neu registrieren"
+
+        },
+        "PROCESS": {
+            "PROGRESS": "Impfdaten werden geladen..."
+        },
+        "SUCCESS": {
+            "TITLE": "Registrierung erfolgreich",
+            "MESSAGE_1": "Sie können nun auf Ihre Impfdokumentation zugreifen."
+        },
+        "ERROR_TIMEOUT": "Die Zeit ist abgelaufen, versuchen Sie es nochmal neu."
+    },
+    "CONFIRMATION": {
+        "YES": "Ja",
+        "NO": "Nein"
+    },
+    "IMPFAEHIGKEIT": {
+        "TITLE": "Selbsteinschätzung",
+        "INTRO": "Nehmen Sie anhand der Informationen des BAG und des Kantons Bern eine Selbsteinschätzung vor, um zu erfahren, ob Sie aktuell zu einer COVID-19 Impfung zugelassen sind.",
+        "TASK": " Bitte gehen Sie den Fragebogen zur Selbsteinschätzung (Link öffnet in einem separaten Fenster) durch. Sobald Sie Ihr Resultat haben, fahren Sie hier fort.",
+        "LINK_QUESTIONS": "https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/de/themen/coronavirus/vacme/Fragebogen_Selbsteinschaetzung.pdf",
+        "LINK_QUESTIONS_TEXT": "Fragebogen Selbsteinschätzung Kanton Bern",
+        "LINK_CONSENT": "https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/de/themen/coronavirus/vacme/Informationen_zur_Impfung.pdf",
+        "LINK_CONSENT_TEXT": "Informationen zur Impfung des Kantons Bern",
+        "CONSENT_CHECK_1": "Ich habe die ",
+        "CONSENT_CHECK_2": " gelesen, verstanden und willige in die Impfung ein.",
+        "RESULT": "Bitte wählen Sie das Resultat aus dem Fragebogen aus.",
+        "SEND": "Weiter zur Registrierung",
+        "RED_WARNING": "Eine Impfung ist aktuell nicht möglich. Wiederholen Sie die Selbsteinschätzung, sobald sich Ihr Gesundheitszustand verändert hat, oder sprechen Sie mit Ihrer Ärztin / Ihrem Arzt.",
+        "ORANGE_WARNING": "Besprechen Sie die Impfung mit Ihrer Ärztin oder Ihrem Arzt. Sie können sich jedoch bereits jetzt für die Impfung registrieren. ",
+        "GREEN_WARNING": "Sie können sich für die Impfung registrieren. "
+    },
+    "IMPFDOSSIERS_OVERVIEW": {
+        "TITLE": "Ihre Impfungen",
+        "IMPFDOSSIER_SUMMARY_LIST_ITEM": {
+            "TERMIN_MANUELL_ABGEMACHT": "Impftermin wurde persönlich vereinbart.",
+            "NO_FREIE_TERMINE": "Aktuell gibt es keine freien Impftermine",
+            "TERMINE_VERFUEGBAR": "Sie sind für die Impfung freigegeben",
+            "TERMINE_VERFUEGBAR_BUCHEN": "Termin buchen",
+            "TERMIN": "Termin am {{date}} | {{time}} Uhr",
+            "NO_FREIGABE_GRUNDIMMUNISIERUNG": "Termin kann nicht gebucht werden",
+            "NO_FREIGABE": "Sie werden informiert, sobald Sie die nächste Impfung buchen können",
+            "NO_FREIGABE_FSME": "Sie werden am {{date}} für die Terminbuchung zur nächsten Impfung benachrichtigt.",
+            "NO_FREIGABE_NO_BENACHRICHTIGUNG": "",
+            "TO_DOSSIER": "Zum Dossier"
+        },
+        "WEITERE_IMPFUNGEN": "Verfügbare Impfungen gegen andere Krankheiten"
+    },
+    "IMPFDOSSIERS_AUSWAHL": {
+        "TITLE": "Verfügbare Impfungen",
+        "AUSWAEHLEN": "Auswählen",
+        "KEINE_IMPFUNGEN": "Keine weiteren Impfungen verfügbar"
+    },
+    "OVERVIEW": {
+        "BOOSTER_TITEL": "Booster-Impfung",
+        "BOOSTER_HELP_HREF": "https://www.be.ch/boostercheck",
+        "DOSSIER_TITEL": "Impfdossier: {{translatedKrankheit}}",
+        "PRIO_NICHT_FREIGEGEBEN_1": "Sie haben sich erfolgreich registriert. Ihre Impfgruppe ist noch nicht freigegeben. Informieren Sie sich auf",
+        "PRIO_NICHT_FREIGEGEBEN_LINK": "https://www.gsi.be.ch/de/start/themen/coronavirus/impfen.html",
+        "PRIO_NICHT_FREIGEGEBEN_LINK_TEXT": "be.ch/corona-impfung",
+        "PRIO_NICHT_FREIGEGEBEN_2": ", ob Ihre Impfgruppe freigegeben ist. Sobald Ihre Impfgruppe freigegeben ist, können Sie über dieses Portal die zwei Impftermine buchen. Die Registrierung ist hiermit abgeschlossen und die Daten sind gespeichert.",
+        "FREIGEGEBEN_BOOSTER_COVID": "Termin buchen",
+        "FREIGEGEBEN_BOOSTER_NICHT_COVID": "Sie werden per {{notificationMethod}} informiert, sobald Sie eine Booster-Impfung (1 oder weitere) buchen können.",
+        "FREIGEGEBEN_BOOSTER_AFFENPOCKEN": "Sie sind für die Impfung freigegeben.",
+        "FREIGEGEBEN_BOOSTER_NICHT_AFFENPOCKEN": "Sie sind im Moment nicht für die Impfung freigegeben.",
+        "FREIGEGEBEN_BOOSTER_FSME": "",
+        "FREIGEGEBEN_BOOSTER_NICHT_FSME": "Sie werden am {{date}} für die Terminbuchung zur nächsten Impfung benachrichtigt.",
+        "FREIGEGEBEN_BOOSTER_SELBSTZAHLER": "Ich möchte trotzdem eine weitere COVID-Auffrischimpfung wahrnehmen und bezahle die Impfung selbst",
+        "EINWILLIGUNGSERKLAERUNG_AFFENPOCKEN": "Mit der Buchung des Impftermins bestätige ich, den Aufklärungsbogen zur <a target='_blank' href='https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/de/themen/gesundheit/krankheiten-impfungen/uebertragbare-krankheiten/affenpocken/aufklaerungsbogen-impfung-gegen-affenpocken-mit-jynneos.pdf'>Affenpocken-Impfung</a> gelesen zu haben und dass ich zu einer Personengruppe gemäss Impfempfehlung gehöre.<br/>Die unterzeichnete <a target='_blank' href='https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/de/themen/gesundheit/krankheiten-impfungen/uebertragbare-krankheiten/affenpocken/fragebogen-affenpockenimpfung.docx'>Einwilligungserklärung</a> ist zum Impftermin mitzubringen! <br/>Bei Fragen kann Ihnen die Impfärztin oder der Impfarzt im Impfzentrum Auskunft geben.",
+        "SELBSTZAHLER_HINT": "Sie haben sich entschieden, eine Impfung wahrzunehmen, welche nicht über die COVID Impfkampagne abgedeckt ist. Beachten Sie bitte, dass Sie diese Impfung selber bezahlen müssen.",
+        "ZWEIDREIWOCHEN": "Die Impfung benötigt {{count}} Impfdosen in einem Abstand von {{desiredDistance}}. Sie müssen immer zwei Termine buchen. Sollte nur eine Impfung notwendig sein, wird der 2. Termin am Tag der Erstimpfung vor Ort gelöscht.",
+        "TERMIN_MANUELL_ABMACHEN": "Bitte vereinbaren Sie persönlich einen Impftermin. Weisen Sie die Terminbestätigung mit Ihrem persönlichen Code am Impfort vor.",
+        "TERMIN_EXTERNER_BUCHUNGSLINK": "Bitte vereinbaren Sie persönlich einen Impftermin unter folgendem Link:<br>{{link}}<br>Weisen Sie die Terminbestätigung mit Ihrem persönlichen Code am Impfort vor.",
+        "TERMIN_MOBILES_IMPFTEAM": "Sie haben sich für die Impfung durch ein mobiles Impfteam entschieden. Das Impfteam kommt bei Ihnen vorbei. Bitte haben Sie Geduld. Dies kann einige Zeit dauern. Es findet keine Terminvorabsprache statt.",
+        "HINT_ODI_TYPE": {
+            "IMPFZENTRUM": "",
+            "KINDER_IMPFZENTRUM": "",
+            "HAUSARZT": "",
+            "ALTERSHEIM": "",
+            "APOTHEKE": "<b>Bitte beachten Sie folgende Hinweise:</b><br/> <ul> <li>Schwangere Personen benötigen für die Impfung in der Apotheke ein ärztliches Attest.</li> <li>Immunsupprimierte Personen und Personen mit Autoimmunerkrankungen können in Apotheken nicht geimpft werden. Bitte wenden Sie sich an Ihren behandelnden Arzt. </li> </ul>",
+            "MOBIL": "",
+            "SPITAL": "",
+            "ANDERE": ""
+        },
+        "BUCHEN": "Buchen",
+        "SELECT": "Auswählen",
+        "IMPFORT_WAEHLEN": "Ihre Impfgruppe ist freigegeben. Wählen Sie Ihren gewünschten Impfort aus.",
+        "IMPFORT_LABEL": "-- Impfort wählen --",
+        "NICHT_VERWALTETER_ODI": "Impfung bei einem hier nicht aufgeführten Ort (Hausarztpraxis / Apotheke)",
+        "NICHT_VERWALTETER_ODI_HINT_1": "Bitte wenden Sie sich für eine Terminvereinbarung an Ihre Hausärztin / Ihren Hausarzt oder Ihre Apothekerin / Ihren Apotheker. Bitte beachten Sie, dass Hausarztpraxen die eigenen Patientinnen und Patienten impfen.",
+        "NICHT_VERWALTETER_ODI_HINT_2": "Sollten Sie keine Hausärztin / Hausarzt haben oder sollten keine Impfungen in Ihrer Hausarztpraxis / Ihrer Apotheke durchgeführt werden, dann wählen Sie bitte «Auswahl ändern» und buchen Sie Termine an einem anderen Ort.",
+        "NICHT_VERWALTETER_ODI_ABSAGEN": "Auswahl ändern",
+        "NO_TERMIN": "(keine Termine)",
+        "NEXT_TERMIN_AM": "nächster Termin am",
+        "ODI_INAKTIV": "(nicht mehr aktiv)",
+        "NOTIFICATION_METHOD_LETTER": "Brief",
+        "NOTIFICATION_METHOD_SMS": "SMS",
+        "TERMIN": "{{i}}. Termin",
+        "TERMIN_N": "Termin",
+        "TERMIN_NOCH_NICHT_ABGEMACHT": "Noch nicht vereinbart",
+        "TERMIN_NOCH_NICHT_GEBUCHT": "Noch nicht gebucht!",
+        "CLEAR_TERMIN": "löschen",
+        "DONE_TERMIN": "geimpft",
+        "PLANNED_TERMIN": "geplant",
+        "MISSED_TERMIN": "verpasst",
+        "WARNUNG_ZEITABSTAND": "Die Impftermine müssen {{min}} bis {{max}} Tage auseinanderliegen",
+        "WARNUNG_ZEITABSTAND_OVER": "Der empfohlene Abstand zwischen den Impfungen beträgt vier Wochen. Mit {{max}} Tagen liegen Sie ausserhalb dieser Bandbreite. Eine Impfung ist trotzdem möglich, wenn Sie damit einverstanden sind.",
+        "PUENKTLICH_COVID": "Bitte erscheinen Sie pünktlich zum Termin. Rechnen Sie mit 1h für die Durchführung der Impfung und nehmen Sie folgende Dokumente mit: <ul><li>persönlicher Code</li><li>amtlicher Ausweis</li><li>Krankenkassenkarte</li><li>Impfausweis («Impfbüchlein»)</li><li>allfällige Zusatzunterlagen, z.B. ärztliches Attest.</li><li>allfälliger Nachweis einer Covid-19 Erkrankung (positiver PCR-Test oder Isolationsanordnung)</li><li>allfälliger Nachweis von Covid-19 Impfungen, die ausserhalb von VacMe durchgeführt wurden</li></ul>",
+        "PUENKTLICH_AFFENPOCKEN": "Bitte erscheinen Sie pünktlich zum Termin und nehmen Sie folgende Dokumente mit: <ul><li>persönlicher Code</li><li>amtlicher Ausweis</li><li>Krankenkassenkarte</li><li>Impfausweis («Impfbüchlein»)</li><li>allfällige Zusatzunterlagen, z.B. ärztliches Attest.</li><li>Die unterzeichnete <a class='text-link-white' target='_blank' href='https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/de/themen/gesundheit/krankheiten-impfungen/uebertragbare-krankheiten/affenpocken/fragebogen-affenpockenimpfung.docx'>Einwilligungserklärung</a></li><li>allfälliger Nachweis von Pockenimpfungen, die ausserhalb von VacMe durchgeführt wurden</li></ul>",
+        "PUENKTLICH_FSME": "Bitte erscheinen Sie pünktlich zum Termin. Rechnen Sie mit 1h für die Durchführung der Impfung und nehmen Sie folgende Dokumente mit: <ul><li>persönlicher Code</li><li>amtlicher Ausweis</li><li>Krankenkassenkarte</li><li>Impfausweis («Impfbüchlein»)</li><li>allfällige Zusatzunterlagen, z.B. ärztliches Attest.</li><li>allfälliger Nachweis von FSME Impfungen, die ausserhalb von VacMe durchgeführt wurden</li></ul>",
+        "KOMMENTAR": "Kommentar vom Impfort:",
+        "DOWNLOAD_REGBESTAETIGUNG": "Bestätigung Ihrer Registrierung herunterladen",
+        "REGBESTAETIGUNG_ERNEUT_SENDEN": "Bestätigung Ihrer Registrierung erneut senden",
+        "DOWNLOAD_TERMINBESTAETIGUNG": "Terminbestätigung herunterladen",
+        "DOWNLOAD_IlLEGAL_STATE": "Das Dokument konnte nicht heruntergeladen werden. Die angezeigten Daten sind evtl. nicht aktuell. Bitte laden Sie die Seite neu",
+        "TERMINBESTAETIGUNG_ERNEUT_SENDEN": "Terminbestätigung erneut senden",
+        "DOWNLOAD_IMPFDOKUMENTATION": "Impfdokumentation herunterladen",
+        "IN_VACME_DOKUMENTIERTE_IMPFUNGEN": "In VacMe dokumentierte Impfungen:",
+        "DOWNLOAD_ZERTIFIKAT": "COVID-19 Zertifikat herunterladen",
+        "ZERTIFIKAT_HELP_HREF": "https://www.gsi.be.ch/de/start/themen/coronavirus/zertifikat.html",
+        "ZERTIFIKAT_N": {
+            "ALLE_ANZEIGEN": "Alle Zertifikate anzeigen",
+            "ALLE_AUSBLENDEN": "Liste der Zertifikate schliessen",
+            "TITLE": "COVID-19 Zertifikat vom {{date}}",
+            "REVOKED": "Revoziert",
+            "DOSIS": "Impfdosis",
+            "IMPFSTOFF": "Impfstoff",
+            "IMPFDATUM": "Impfdatum",
+            "DOWNLOAD": "COVID-19 Zertifikat herunterladen",
+            "UVCI": "UVCI"
+        },
+        "GEIMPFT": "Sie wurden erfolgreich geimpft.",
+        "GEIMPFT_AUTOMATISCH_ABGESCHLOSSEN": "Die zweite Impfung wurde nicht wahrgenommen. Das Dossier wurde abgeschlossen.",
+        "GEIMPFT_AUTOMATISCH_ABGESCHLOSSEN_INFO": "Falls Sie die Impfung doch noch wahrnehmen möchten, wenden Sie sich an einen Impfort Ihrer Wahl.",
+        "GEIMPFT_ZWEITE_IMFPUNG_VERZICHTET": "Auf die zweite Impfung wurde verzichtet.",
+        "EXTERNE_IMPFUNGEN": {
+            "TITLE": "Erfasste Impfungen",
+            "GENESEN": {
+                "TITLE": "War mit Covid-19 infiziert und ist genesen",
+                "JA": "Ja"
+            },
+            "MISSING_IMPFUNGEN": {
+                "TITLE": "Grundimmunisierung"
+            },
+            "EDIT": "Daten anpassen",
+            "ADD": "Wurden Sie bereits ausserhalb von VacMe gegen {{krankheit}} geimpft?"
+        },
+        "FREIGEGEBEN_INFO": "Sie haben sich erfolgreich registriert. Sie können einen Termin buchen.",
+        "ORTWAHL_INFO": "Impfort",
+        "ORTWAHL_FILTER": {
+            "BUTTON_TOOLTIP": "Sortieren und filtern",
+            "SORTIEREN": {
+                "TITLE": "Impforte sortieren",
+                "IMPFTERMIN": "Sortieren nach nächstem Impftermin",
+                "IMPFORT": "Sortieren nach Impfort (A - Z)",
+                "ENTFERNUNG": "Sortieren nach Entfernung"
+            },
+            "FILTERN": {
+                "TITLE": "Impforte filtern",
+                "IMPFZENTRUM": "Impfzentrum",
+                "APOTHEKE": "Apotheke",
+                "SPITAL": "Spital",
+                "HAUSARZTPRAXIS": "Hausarztpraxis"
+            },
+            "ANWENDEN": "Anwenden",
+            "ZURUEKSETZEN": "Zurücksetzen"
+        },
+        "CANCEL_TERMIN": {
+            "QUESTION": "Wollen Sie Ihre Termine absagen? Durch die Absage werden beide Termine freigegeben.",
+            "CONFIRM": "Termine absagen",
+            "CANCEL": "Abbrechen"
+        },
+        "CANCEL_TERMIN_BOOSTER": {
+            "QUESTION": "Wollen Sie Ihren Termin absagen?",
+            "CONFIRM": "Termin absagen",
+            "CANCEL": "Abbrechen"
+        },
+        "TERMINE-BEARBEITEN": "Termine ändern",
+        "TERMIN-BEARBEITEN": "Termin ändern",
+        "TERMIN-2-UMBUCHEN": "2. Termin ändern",
+        "ABBRECHEN": "Abbrechen",
+        "BUCHEN-AENDERN": "Änderungen buchen",
+        "STATIONAER_MOEGLICH": "Es ist mir möglich, einen stationären Impfort zu besuchen",
+        "STATIONAER_MOEGLICH_CONFIRM": "Achtung, diese Aktion kann nicht rückgängig gemacht werden",
+        "MOBILES_IMPFTEAM_ABSAGEN": {
+            "QUESTION": "Wollen Sie die Anmeldung fürs Mobile Impfteam wirklich absagen?",
+            "ABSAGEN": "Absagen",
+            "CANCEL": "Abbrechen"
+        },
+        "SELBER_ABMACHEN_ABSAGEN": {
+            "QUESTION": "Wollen Sie die Anmeldung für diesen Impfort wirklich absagen?",
+            "ABSAGEN": "Absagen",
+            "CANCEL": "Abbrechen"
+        },
+        "REGISTRATION_TYPE": {
+            "CALLCENTER_REGISTRATION": "Diese Registrierung wurde durch ein Callcenter erstellt",
+            "ONLINE_REGISTRATION": "Diese Registrierung wurde online erstellt",
+            "ORT_DER_IMPFUNG": "Diese Registrierung wurde in einem Ort der Impfung erstellt",
+            "MASSENUPLOAD": "Diese Registrierung wurde durch einen Massenupload erstellt",
+            "NOTFALL_PROZESS": "Diese Registrierung wurde durch den Notfallprozess erstellt",
+            "UNBEKANNT": "Wie die Registrierung erstellt wurde ist unbekannt",
+            "DATA_MIGRATION": "Diese Registrierung wurde durch ein Datamigration erstellt"
+        },
+        "DATA_ANPASSEN": "Persönliche Daten anpassen",
+        "DELETE_ACCOUNT": "Account und alle meine Daten löschen",
+        "DELETE_ACCOUNT_QUESTION": "Wollen Sie wirklich alle Ihre Daten löschen? Falls Sie sich später trotzdem impfen lassen wollen, müssen Sie sich neu registrieren.",
+        "DELETE_ACCOUNT_QUESTION_CONFIRM": "Ja, löschen",
+        "DELETE_ACCOUNT_QUESTION_CANCEL": "Abbrechen",
+        "DELETE_ACCOUNT_ALREADY_GEIMPFT": "Nach der ersten Impfung können die Daten nicht mehr gelöscht werden",
+        "DELETE_ACCOUNT_NOT_ALLOWED": "Sie sind für diese Aktion nicht berechtigt",
+        "ABGESAGTER_TERMIN": "Ihr Termin vom {{datum}} im Ort der Impfung {{odi}} wurde abgesagt!",
+        "IMMOBIL.HINWEIS.INFO": "Hinweis für immobile Personen",
+        "IMMOBIL.HINWEIS.INFO.TEXT": "Sie sind als immobile Person erfasst und werden nicht für die eigenständige Buchung von  Booster-Impfung freigegen. Drücken Sie den nachfolgenden Knopf, falls Sie einen Impfort besuchen können.",
+        "IMPFAUSWEIS_TITLE": "Covid-19 Zertifikat",
+        "IMPFAUSWEIS_BEANTRAGEN": "Jetzt beantragen",
+        "IMPFAUSWEIS_WARTEN": "Ihr persönliches COVID-19 Zertifikat ist in Bearbeitung. Sie werden via SMS benachrichtigt, sobald Sie das Zertifikat hier herunterladen können.",
+        "IMPFAUSWEIS_WARTEN_NO_SMS": "Ihr persönliches COVID-19 Zertifikat ist in Bearbeitung.",
+        "IMPFAUSWEIS_REVOKE_AND_RESEND_POST": "Erneut senden per Post",
+        "IMPFAUSWEIS_REVOKE_AND_RESEND_POST_TITLE": "Zertifikat neu zustellen",
+        "IMPFAUSWEIS_REVOKE_AND_RESEND_POST_INFO": "Es wird ein neues Zertifikat erstellt. Das neue Zertifikat wird per Post verschickt. Die Zustellungsdauer beträgt bis zu 6 Arbeitstage.",
+        "IMPFAUSWEIS_RESEND_TRIGGERED_INFO": "Zertifikat wird per Post geschickt",
+        "IMPFAUSWEIS_REVOKED_DATE": "Der Postversand des Zertifikats wurde zuletzt am {{timestampLetzterPostversand}} ausgelöst",
+        "KEINE_GUELTIGE_SCHWEIZER_ADRESSE": "Achtung, es wurde keine gültige Schweizer Adresse eingegeben. Diese Person kann das Zertifikat nicht per Post erhalten, solange die Adresse nicht korrigiert ist.",
+        "HINWEIS_KINDER_GEMEINSAMER_TERMIN": "Pro Impftermin können 2 Kinder (5 bis 11-jährig) aus der gleichen Familie gleichzeitig geimpft werden. Alle Kinder müssen vor Antritt des Termins auf Vacme registriert werden.",
+        "ERKRANKUNGEN": {
+            "EDIT": "Covid-Erkrankung erfassen/bearbeiten",
+            "VIEW": "Covid-Erkrankung(en)",
+            "CONFIRM-ERKRANKT": "Ich bestätige, dass meine letzte Covid-19-Erkrankung am {{date}} war",
+            "CONFIRM-NICHT-ERKRANKT": "Ich bestätige, dass ich noch nicht an Covid-19 erkrankt bin",
+            "EDIT-ERKRANKT": "Covid-Erkrankung bearbeiten",
+            "EDIT-NICHT-ERKRANKT": "Covid-Erkrankung erfassen"
+        },
+        "INFO_SUPPORT_LEISTUNGSERBRINGER": "Bei Fragen zur FSME-Impfung wenden Sie sich an Ihre medizinische Fachperson. Bei technischen Fragen wenden Sie sich an <a href=\"mailto:fsme.support@vacme.ch\">fsme.support@vacme.ch</a>"
+    },
+    "TERMINE": {
+        "ZURUECK": "Zurück zur Übersicht",
+        "AUSWAHL_ERSTE_IMPFUNG": "Auswahl Termin 1",
+        "AUSWAHL_ZWEITE_IMPFUNG": "Auswahl Termin 2",
+        "AUSWAHL_BOOSTER_IMPFUNG": "Auswahl Termin Booster",
+        "AUSWAHL_IMPFTERMIN": "Auswahl Impftermin",
+        "WAEHLEN": "Auswählen",
+        "UHRZEIT": "{{von}} - {{bis}} Uhr",
+        "KEIN_FREIER": "An diesem Tag ist kein Termin mehr frei.",
+        "JETZT": "Jetzt"
+    },
+    "REG_CODE": {
+        "IHR_CODE": "Ihr persönlicher Impfcode",
+        "ZEIGEN_SIE_CODE": "Zeigen Sie diesen bei der Impfung vor.",
+        "PRIO": "Impfgruppe",
+        "EINGANG": "Eingang:"
+    },
+    "VALIDATIONERROR": {
+        "AUSLANDART": "Ohne Krankenkasse können nur Grenzgängerinnen, Grenzgänger, Auslandschweizerinnen, Auslandschweizer und Flüchtlinge geimpft werden.",
+        "REQUIRED": "Eingabe erforderlich",
+        "MIN": "mindestens {{min.min}}",
+        "MAX": "höchstens {{max.max}}",
+        "MINLENGTH": "{{minlength.requiredLength}} Zeichen notwendig",
+        "MAXLENGTH": "maximal {{maxlength.requiredLength}} Zeichen",
+        "NONCERTIFIABLENAME": "Für diese Eingabe kann kein Covid-Zertifikat ausgestellt werden weil ungültige Sonderzeichen enthalten sind",
+        "ERGAENZE_KRANKENKASSENNUMMER": "Geben Sie Ihre 20-stellige Krankenkassen-Kartennummer ein. Die ersten 10 Stellen wurden aufgrund der Auswahl der Krankenkasse bereits vorausgefüllt.",
+        "PATTERN": "Ungültige Eingabe",
+        "EMAIL": "Ungültige E-Mail-Adresse",
+        "DATE": "Geben Sie ein Datum nach dem 01.01.1900 ein, z.B. 17.12.1965.",
+        "DATETIME": "Geben Sie ein Datum ein, z.B. 17.12.1965, 15:23.",
+        "EQUALERKRANKUNGDATE": "Sie können nicht mehrere Covid-Erkrankungen am gleichen Tag erfassen.",
+        "INVALIDDATE": "Ungültiges Datum. Geben Sie ein Datum ein, z.B. 17.12.1965.",
+        "INVALIDDATETIME": "Ungültiges Datum. Geben Sie ein Datum ein, z.B. 17.12.1965, 15:23.",
+        "DATEINFUTURE": "Ungültiges Datum. Geben Sie ein Datum in der Vergangenheit ein",
+        "DATEBEFOREMINDATE": "Ungültiges Datum. Geben Sie ein Datum ein, das nach dem {{dateBeforeMindate.minDate}} liegt",
+        "DATEINPAST": "Ungültiges Datum. Geben Sie ein Datum in der Zukunft ein",
+        "INVALIDKARTENNUMMER": "Es kann nur nach Krankenkassennummern beginnend mit 80756 gesucht werden, die nicht auf 0000000000 enden",
+        "NUMBERINCORRECT": "Ungültige Telefonnummer",
+        "FESTNETZNUMMER": "Bitte geben Sie eine Mobile Nummer ein."
+    },
+    "REGISTRIERUNG": {
+        "PERSONENDATEN": "Persönliche Angaben",
+        "NAME": "Name",
+        "NAME_HINT": "Nachname wie in Pass / ID aufgeführt",
+        "VORNAME": "Vorname(n)",
+        "VORNAME_HINT": "Vorname(n) wie in Pass / ID aufgeführt",
+        "STRASSE": "Strasse / Nr.",
+        "PLZ": "Postleitzahl",
+        "ORT": "Ort",
+        "IMMOBIL": "Es ist mir absolut nicht möglich, ein Impfzentrum aufzusuchen. Ich bin auf die Impfung durch ein mobiles Impfteam angewiesen.",
+        "IMMOBIL_CONFIRMATION": "Ich kann aufgrund einer Behinderung oder Langzeiterkrankung mein Zuhause absolut nicht verlassen und bin deshalb auf die Impfung durch ein mobiles Impfteam angewiesen.",
+        "MAIL": "E-Mail-Adresse",
+        "TELEFON_HINWEIS": "Die Telefonnummer kann nur bei der Registrierung erfasst werden.",
+        "TELEFON": "Telefonnummer",
+        "KRANKENKASSE": "Krankenkasse",
+        "KARTENNUMMER": "Krankenkassen-Kartennummer",
+        "SCHUTZSTATUS": "Geflüchtet aus Ukraine",
+        "GEBURTSDATUM": "Geburtsdatum",
+        "BEMERKUNGEN": "Bemerkungen (nur für Impfort sichtbar)",
+        "KRANKHEITEN_INTRO": "Gemäss Impfstrategie des BAG zählen folgende Erkrankungen zu den chronischen Krankheiten: Bluthochdruck, Herz-Kreislauf-Erkrankungen, Diabetes, chronische Lungen- und Atemwegserkrankungen, Erkrankungen und Therapien, die das Immunsystem schwächen, Krebserkrankungen, Adipositas (BMI ≥ 35 kg/m2), Niereninsuffizienz, Leberzirrhose. Gleich behandelt wird ferner Trisomie 21.",
+        "KRANKHEITEN": "Chronische Krankheiten",
+        "KRANKHEITEN_OPTION": {
+            "SCHWERE_KRANKHEITSVERLAEUFE": "Krankheit wie oben beschrieben mit höchstem Risiko",
+            "KRANKHEIT": "Krankheit wie oben beschrieben in Behandlung mit Medikamenten oder sonstiger Dauertherapie",
+            "KEINE": "Keine Krankheit",
+            "ANDERE": "Andere Krankheit"
+        },
+        "LEBENSUMSTAENDE": "Lebensumstände",
+        "BERUF": "Beruf",
+        "AGB": "Ich bin mit den <a class='text-link' target='_blank' href='https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/de/themen/coronavirus/vacme/Nutzungsbedingungen.pdf'>Nutzungsbedingungen</a> einverstanden.",
+        "EINWILLIGUNG": "Ich habe die <a class='text-link' target='_blank' href='https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/de/themen/coronavirus/vacme/Einverstaendniserklaerung.pdf'>Einverständniserklärung</a> gelesen und bin damit einverstanden.",
+        "ABGLEICH_ELEKTRONISCHER_IMPFAUSWEIS": "Ich beantrage ein Covid-19-Impfzertifikat und bin mit der Übermittlung meiner Impfdaten an die ausstellende Bundesbehörde einverstanden (optional)",
+        "SAVEBUTTON": "Für Impfung registrieren",
+        "LEBENSUMSTAENDE_OPTION": {
+            "ANDERE": "Andere",
+            "EINZELHAUSHALT": "Einzelhaushalt",
+            "FAMILIENHAUSHALT": "Familienhaushalt oder Haushalt mit weniger als 10 Personen",
+            "GEMEINSCHAFTEN": "Gemeinschaften und Gemeinschaftseinrichtungen mit mehr als 10 Personen",
+            "MASSENUNTERKUENFTEN": "Massenunterkünfte",
+            "MIT_BESONDERS_GEFAEHRDETEN_PERSON": "Haushalt mit einer besonders gefährdeten Person oder bin betreuender Angehöriger"
+        },
+        "BERUF_OPTION": {
+            "ANDERE": "Andere",
+            "BERUF_MIT_AKT_IN_GRO_ARB_GRUP": "Beruf mit Aktivitäten in grossen Arbeitsgruppen",
+            "BERUF_MIT_HOMEOFFICE_MOEGLICH": "Beruf mit Homeoffice-Möglichkeit",
+            "BERUF_MIT_KUNDENKONTAKT": "Beruf mit Kundenkontakt",
+            "GES_PERSONAL_MIT_PAT_KONTAKT": "Gesundheitspersonal mit Patientenkontakt",
+            "GES_PERSONAL_OHNE_PAT_KONTAKT": "Gesundheitspersonal ohne Patientenkontakt",
+            "BETREUUNG_VON_GEFAERD_PERSON": "Betreuung von besonders gefährdeter Person",
+            "NICHT_ERWERBSTAETIG": "Nicht erwerbstätig",
+            "PERSONAL_IN_GEMEINSCHAFTSEIN": "Personal von Gemeinschaftseinrichtungen"
+        },
+        "KK_OPTION": {
+            "AGRISANO": "Agrisano",
+            "AMB": "AMB Assurances SA",
+            "ANDERE": "Andere",
+            "AQUILANA": "Aquilana",
+            "ARCOSANA": "Arcosana",
+            "ASSURA": "Assura-Basis SA",
+            "ATUPRI": "Atupri",
+            "AVENIR": "Avenir Krankenversicherung AG",
+            "BILDENDE_KUENSTLER": "Bildende Künstler/Innen",
+            "BIRCHMEIER": "Birchmeier",
+            "COMPACT": "Compact",
+            "CONCORDIA": "CONCORDIA",
+            "CSS": "CSS",
+            "EASY_SANA": "Easy Sana Krankenversicherung AG",
+            "EGK": "EGK",
+            "EINSIEDLER": "Einsiedler Krankenkasse",
+            "FENACO": "Fenaco-Mitgliedgenossenschaften",
+            "GALENOS": "GALENOS AG",
+            "GEWERBLICHE_KRANKENKASSE_BERN": "Gewerbliche",
+            "GLARNER": "Glarner",
+            "HELSANA": "Helsana",
+            "HOTELA": "Hotela",
+            "INSTITUT_INGENBOHL": "Ingenbohl",
+            "INTRAS": "INTRAS",
+            "KKV": "Visperterminen",
+            "KLUG": "KLuG",
+            "KOLPING": "Kolping",
+            "KPT": "KPT/CPT",
+            "KVF": "KVF Krankenversicherung AG",
+            "LUMNEZIANA": "Lumneziana",
+            "LUZERNER_HINTERLAND": "Luzerner Hinterland",
+            "METALLBAUFIRMEN": "Metallbaufirmen",
+            "MOOVE_SYMPANY": "Moove Sympany AG",
+            "MUTUEL": "Mutuel Krankenversicherung AG",
+            "MUTUELLE_NEUCHATELOISE": "Mutuelle Neuchâteloise",
+            "OKK": "ÖKK",
+            "PHILOS": "Philos Krankenversicherung AG",
+            "PROGRES": "Progrès",
+            "PROVITA": "PROVITA",
+            "RHENUSANA": "rhenusana",
+            "SANA24": "sana24",
+            "SANAGATE": "Sanagate",
+            "SANAVALS": "sanavals",
+            "SANITAS": "Sanitas",
+            "SIMPLON": "Simplon",
+            "SLKK": "SLKK",
+            "SODALIS": "sodalis",
+            "STEFFISBURG": "Steffisburg",
+            "STIFTUNG_WADENSWIL": "Wädenswil",
+            "STOFFEL": "Stoffel",
+            "SUMISWALDER": "Sumiswalder",
+            "SUPRA": "SUPRA-1846 SA",
+            "SWICA": "SWICA",
+            "VALLEE_ENTREMONT": "Vallée d’Entremont",
+            "VISANA": "Visana",
+            "VITA_SURSELVA": "vita surselva",
+            "VIVACARE": "Vivacare",
+            "VIVAO_SYMPANY": "Vivao Sympany",
+            "AUSLAND": "Keine Schweizer Krankenversicherung",
+            "EDA": "EDA / CD"
+        },
+        "AUSLANDART": "Bezug zur Schweiz",
+        "AUSLAND_ART_OPTION": {
+            "AUSLANDSCHWEIZER": "Auslandschweizerin oder Auslandschweizer",
+            "GRENZGAENGER": "Grenzgängerin oder Grenzgänger",
+            "FLUECHTLING": "Flüchtling",
+            "ANDERE": "Anderer (z.B. Urlaub)"
+        },
+        "GESCHLECHT": "Geschlecht",
+        "GESCHLECHT_OPTION": {
+            "ANDERE": "Anders",
+            "MAENNLICH": "Männlich",
+            "WEIBLICH": "Weiblich"
+        },
+        "IDENTIFIKATIONSNUMMER": "Identifikationsnummer",
+        "BESTAETIGUNG_ERNEUT_GESENDET": "Die Bestätigung für Registrierungsnummer {{regnr}} wurde erneut gesendet.",
+        "CONTACT_TRACING": "Ich bin einverstanden, dass das Contact Tracing-Team im Einzelfall wissen darf, dass ich geimpft bin. Die Information soll dazu dienen, um mich von einer eventuellen Quarantäneanordnung auszunehmen. (optional)",
+        "REGISTRIERUNGSNUMMER": "Registrierungsnummer",
+        "KEINKONTAKT": "Wünscht keinen Kontakt"
+    },
+    "AMPEL": {
+        "ROT": "Rot",
+        "ORANGE": "Orange",
+        "GRUEN": "Grün",
+        "GREEN": "Grün",
+        "RED": "Rot"
+    },
+    "EXTERN_GEIMPFT": {
+        "TITLE": "Bereits gegen {{krankheit}} geimpft",
+        "EXTERN_GEIMPFT": "Wurden Sie bereits ausserhalb von VacMe gegen Covid-19 geimpft?",
+        "EXTERN_GEIMPFT_MIT_KRANKHEIT": "Wurden Sie bereits ausserhalb von VacMe gegen {{krankheit}} geimpft?",
+        "EXTERN_GEIMPFT_AFFENPOCKEN": "Wurden Sie bereits gegen Pocken geimpft?",
+        "EXTERN_GEIMPFT_FSME": "Wurden Sie bereits gegen FSME geimpft?",
+        "EXTERN_GEIMPFT_OPTION": {
+            "TRUE": "Ja",
+            "FALSE": "Nein"
+        },
+        "ALLE_IMPFSTOFFE": "Alle anerkannten Impfstoffe",
+        "LETZTE_IMPFUNG_DATUM": "Datum der letzten Impfung",
+        "LETZTE_IMPFUNG_DATUM_UNBEKANNT": "Datum der letzten Impfung unbekannt",
+        "IMPFSTOFF": "Impfstoff",
+        "ANZAHL_IMPFUNGEN": "Anzahl erhaltener Impfungen",
+        "GENESEN": "Ich war mit Covid-19 infiziert und bin genesen",
+        "POSITIV_GETESTET_DATUM": "Datum des anerkannten positiven COVID-19 Tests",
+        "SAVEBUTTON": "Bestätigen",
+        "ANZAHL_MISSING": {
+            "BRAUCHT_0_IMPFUNGEN": "Vollständig grundimmunisiert",
+            "BRAUCHT_1_IMPFUNG": "Noch eine Impfung zur Grundimmunisierung notwendig",
+            "BRAUCHT_2_IMPFUNGEN": "Noch zwei Impfungen zur Grundimmunisierung notwendig",
+            "BRAUCHT_VOLLE_GRUNDIMMUNISIERUNG": "Vollständige Grundimmunisierung notwendig"
+        },
+        "SCHNELLSCHEMA": "Schnellschema",
+        "TROTZDEM_VOLLSTAENDIG_GRUNDIMMUNISIEREN": "Trotzdem volle Grundimmunisierung wahrnehmen"
+    },
+    "ERKRANKUNGEN": {
+        "TITLE": "Bestätigte Covid-Erkrankung(en)",
+        "DATE": "Datum",
+        "DATE_HINT": {
+            "ERFASST_IMPFLING": "Datum des anerkannten positiven COVID 19-Tests",
+            "GRUNDIMMUNISIERUNG": "Positiver Test, in der VacMe-Grundimmunisierung erfasst",
+            "EXT_ZERT": "Positiver Test, im externen Impfzertifikat erfasst"
+        },
+        "EMPTY": "Keine Covid-Erkrankung",
+        "DELETE": "Löschen",
+        "ADD": "Erkrankung hinzufügen",
+        "CANCEL": "Abbrechen",
+        "SAVE": "Speichern",
+        "WILL_LOSE_TERMINE": {
+            "CONFIRM_QUESTION": "Durch Ihre kürzliche Impfung oder Erkrankung ist Ihr Impfschutz immer noch genügend. Eine Impfung ist zur Zeit nicht empfohlen. Ihr gebuchter Termin wird annulliert.",
+            "CONFIRM": "Speichern und Termin absagen",
+            "CANCEL": "Abbrechen"
+        },
+        "WILL_LOSE_ODI": {
+            "CONFIRM_QUESTION": "Durch Ihre kürzliche Impfung oder Erkrankung ist Ihr Impfschutz immer noch genügend. Eine Impfung ist zur Zeit nicht empfohlen. Bitte annullieren Sie Ihren selbst organisierten Termin bei {{odi}}.",
+            "CONFIRM": "Ok, speichern",
+            "CANCEL": "Abbrechen"
+        },
+        "WILL_LOSE_ODI_NICHT_VERWALTET": {
+            "CONFIRM_QUESTION": "Durch Ihre kürzliche Impfung oder Erkrankung ist Ihr Impfschutz immer noch genügend. Eine Impfung ist zur Zeit nicht empfohlen. Bitte annullieren Sie Ihren selbst organisierten Termin.",
+            "CONFIRM": "Ok, speichern",
+            "CANCEL": "Abbrechen"
+        },
+        "FREIGABE_ENTFERNT": "Durch Ihre kürzliche Impfung oder Erkrankung ist Ihr Impfschutz immer noch genügend. Eine Impfung ist zur Zeit nicht empfohlen.",
+        "FREIGABE_ENTFERNT_WITH_BENACHRICHTIGUNG": "Durch Ihre kürzliche Impfung oder Erkrankung ist Ihr Impfschutz immer noch genügend. Eine Impfung ist zur Zeit nicht empfohlen. Sie werden informiert, sobald Sie einen Impftermin buchen können.",
+        "TERMIN_ENTFERNT": "Ihr gebuchter Termin wurde annulliert. Sie werden informiert, sobald Sie wieder einen Impftermin buchen können.",
+        "ODIWAHL_ENTFERNT": "Bitte annullieren Sie Ihren selbst organisierten Termin bei {{odi}}. Sie werden informiert, sobald Sie wieder einen Impftermin buchen können.",
+        "ODIWAHL_ENTFERNT_NICHT_VERWALTET": "Bitte annullieren Sie Ihren selbst organisierten Termin. Sie werden informiert, sobald Sie wieder einen Impftermin buchen können."
+    },
+    "SELECTBOX": {
+        "BITTE_WAEHLEN": "Bitte wählen..."
+    },
+    "PAGER": {
+        "LOESCHEN": "Filter löschen",
+        "NAECHSTE": "Nächste anzeigen »",
+        "VORHERIGE": "« Vorherige anzeigen"
+    },
+    "CALLCENTER": {
+        "REGISTRIERUNG-SUCHEN": {
+            "TITLE": "Zu impfende Person suchen",
+            "CODE": "Sechsstelliger Code",
+            "SUCHEN": "Suchen",
+            "WEITERE_FUNKTIONEN": "Weitere Funktionen",
+            "REGESTRIEREN-TEXT": "Neue Person erfassen",
+            "ADRESSE_ANPASSEN": "Adresse anpassen"
+        },
+        "PERSONALIEN-SUCHE": {
+            "TITLE": "Suche nach geimpfter Person mittels Name, Vorname und Geburtsdatum",
+            "SUCHEN": "Suchen",
+            "RESULTS": "Ergebnisse",
+            "NO-RESULT": "Kein Ergebnis",
+            "MODIFY": "Daten ändern"
+        },
+        "UVCI-SUCHE": {
+            "TITLE": "Suche nach geimpfter Person mittels Name, Vorname, Geburtsdatum und UVCI",
+            "UVCI-LABEL": "UVCI (letzte vier Zeichen von Impfzertifikat)",
+            "OPEN-RESULT": "Öffnen"
+        },
+        "ONBOARDINGCODE-SUCHE": {
+            "TITLE": "Suche nach Person mittels Onboardingcode aus Brief",
+            "SUCHEN": "Suchen",
+            "CODE": "Onboardingcode aus Brief",
+            "NO-RESULT": "Kein Ergebnis"
+        }
+    },
+    "FILES": {
+        "REGBESTAETIGUNG": "Registrierungsbestaetigung.pdf",
+        "TERMINBESTAETIGUNG": "Terminbestaetigung.pdf",
+        "IMPFDOKUMENTATION": "Impfdokumentation.pdf",
+        "COVID_IMPFZERTIFIKAT": "Covid_Impfzertifikat.pdf",
+        "EINWILLIGUNGSERKLAERUNG": "https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/de/themen/gesundheit/krankheiten-impfungen/uebertragbare-krankheiten/affenpocken/fragebogen-affenpockenimpfung.docx",
+        "EINWILLIGUNGSERKLAERUNG_TEXT": "Einwilligungserklärung.docx"
+    },
+    "VACME": {
+        "TITLEIMPFEN": "VacMe Impfen",
+        "TITLEPORTAL": "VacMe Registrierung"
+    },
+    "ERROR_UNEXPECTED": "Unerwarteter Fehler",
+    "ERROR_UNAUTHORIZED": "Sie sind für die Aktion nicht berechtigt",
+    "ERROR_GATEWAY_TIMEOUT": "Es ist ein Timeout aufgetreten",
+    "ERROR_NO_TERMINE": "In diesem Impfort gibt es aktuell keine freien Termine",
+    "ERROR_NO_TERMINE_IN_RANGE": "Keine freien Termine im benötigtem Abstand von {{desiredDistance}} zu Ihrem gewählten Termin.",
+    "ERROR_NON_BOOKABLE_STATUS": "Die Registrierung ist nicht für die Terminbuchung freigegeben",
+    "ERROR_UNKOWN_KRANKHEIT": "Die übergebene Krankheit wird für die Erfassung im System nicht unterstützt",
+    "WARN": {
+        "WARN_UNSAVED_CHANGES": "Wenn Sie fortfahren, verlieren Sie Ihre ungespeicherten Änderungen",
+        "WARN_UNSAVED_CHANGES_OK": "OK",
+        "WARN_UNSAVED_CHANGES_CANCEL": "Abbrechen",
+        "INVALID_FORM_FIELDS": "Das Formular ist noch nicht korrekt ausgefüllt"
+    },
+    "LANGUAGE": {
+        "CHOOSE": {
+            "GERMAN-ARIA": "Sprache wählen: deutsch",
+            "FRENCH-ARIA": "Choisir langue: français",
+            "ENGLISH-ARIA": "Choose language: english"
+        }
+    },
+    "MENU_ZURUECK_ZU_WELL": "Zurück zu Well",
+    "ONLINE_REGISTRATION": "Online",
+    "CALLCENTER_REGISTRATION": "Callcenter",
+    "ORT_DER_IMPFUNG": "Ort der Impfung",
+    "MASSENUPLOAD": "Massenupload",
+    "FOOTER": {
+        "CAPTION": "Impfportal Kanton Bern",
+        "COPYRIGHT": "© 2021 - Impfportal des Kantons Bern"
+    },
+    "BENUTZERNAME-VERGESSEN": {
+        "TITLE": "Benutzername vergessen",
+        "SUBTITLE": "Bitte geben Sie Ihren 6-stelligen Code ein. Sie erhalten dann eine SMS auf Ihre hinterlegte Telefonnummer",
+        "SENDEN": "Abschicken",
+        "SUCCESS": "Eine SMS wurde verschickt"
+    },
+    "PERSONALIEN_EDIT": {
+        "TITLE": "Daten bearbeiten",
+        "SPEICHERN": "Speichern"
+    },
+    "UNIT": {
+        "WEEKS": "Wochen",
+        "DAYS": "Tagen"
+    },
+    "UMFRAGE": {
+        "TITLE": "Herzlichen Dank für Ihre Reaktion auf die Umfrage zur Corona-Impfung",
+        "SUBTITLE": "Die Gesundheitsdirektion des Kantons Bern sieht den Rückmeldungen mit Spannung entgegen. Die Ergebnisse der Befragung werden in einer Medienmitteilung bekannt gegeben.<br><br>Unter den Teilnehmenden werden 10 Digitec-Gutscheine à CHF 100.- nach dem Zufallsprinzip vergeben.<br><br>Herzliche Grüsse<br>Gesundheitsdirektion des Kantons Bern"
+    },
+    "USERPROFILE": {
+        "NAV_ITEM_MOBILE": "Profil",
+        "TITLE": "Persönliche Angaben",
+        "SAVEBUTTON": "Speichern",
+        "CANCEL": "Abbrechen",
+        "KEYCLOAK_EDIT": "Benutzerkonto bearbeiten",
+        "KEYCLOAK_PASSWORD": "Passwort ändern",
+        "TRIGGER_MOBILE_NUMMER": "Mobile Nummer anpassen",
+        "DELETE_ACCOUNT": "Benutzerkonto und Daten löschen",
+        "FEDERATION": {
+            "TITLE": "Verknüpfte Konten",
+            "NO_LINKED_ACCOUNTS": "Keine verknüpften Konten vorhanden",
+            "REMOVE_LINK": "Verknüpfung entfernen"
+        }
+    },
+    "TELEFONNUMMER_UPDATE": {
+        "UPDATE_NUMMER_QUESTION_CONFIRM": "Ändern",
+        "UPDATE_NUMMER_QUESTION_CANCEL": "Abbrechen",
+        "UPDATE_NUMMER_QUESTION": "Derzeit ist in Ihrem Profil eine Festnetznummer als Telefonnummer hinterlegt. Damit wir Ihnen den Sicherheitscode per SMS zusenden können, benötigen wir Ihre Mobiltelefonnummer. Vielen Dank für Ihr Mithilfe."
+    },
+    "KRANKHEITEN": {
+        "COVID": "Covid-19",
+        "AFFENPOCKEN": "Affenpocken",
+        "FSME": "FSME (Pilotphase)",
+        "FSME.DESCRIPTION1": "Pilotphase der DV Bern (VacMe-Hersteller) mit privaten Leistungserbringern, z.B. Terminbuchung in der Well-App.",
+        "FSME.DESCRIPTION2": "Der Kanton Bern ist in keiner Form in der Pilotphase involviert und ist nicht für die Organisation und Verwaltung der FSME-Impfungen zuständig."
+    },
+    "UNBEKANNTE_POCKENIMPFUNG_IN_KINDHEIT": "Pockenimpfung in der Kindheit mit unbekanntem Impfstoff",
+    "LEISTUNGSERBRINGER_AGB": {
+        "FSME": {
+            "TITLE": "Pilotphase: FSME-Impfung",
+            "TEXT": "Die Erweiterung des Angebots zur Bewirtschaftung von FSME-Impfungen in VacMe wurde durch die DV Bern AG (VacMe Hersteller) implementiert. Die Durchführung und Dokumentation der FSME-Impfung wird in berechtigten Apotheken stattfinden. Der Kanton Bern ist für die Organisation und Verwaltung der FSME-Impfungen nicht zuständig. Bitte bestätigen Sie die Einverständniserklärung und die Nutzungsbedingungen der DV Bern AG.",
+            "AGB": "Ich bin mit den <a class='text-link' target='_blank' href='/assets/files/AGB_DV_Bern_Vacme.pdf'>Nutzungsbedingungen</a> einverstanden.",
+            "EINWILLIGUNG": "Ich habe die <a class='text-link' target='_blank' href='/assets/files/Einverstaendniserklaerung_vacme_be_de.pdf'>Einverständniserklärung</a> gelesen und bin damit einverstanden.",
+            "SAVEBUTTON": "Weiter"
+        }
+    }
+}

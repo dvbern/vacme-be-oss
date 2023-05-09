@@ -1,0 +1,23 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+.impfgruppe-freigabe {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    .impfgruppe-select {
+        flex: 5;
+        margin-top: 16px;
+    }
+
+    .impfgruppe-space {
+        flex: 1;
+    }
+
+    .impfgruppe-button {
+        flex: 5;
+    }
+}

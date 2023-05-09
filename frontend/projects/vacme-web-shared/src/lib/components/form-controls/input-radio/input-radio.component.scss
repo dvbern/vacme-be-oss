@@ -1,0 +1,20 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+.display-column {
+    display: flex;
+    flex-direction: column;
+
+
+    label {
+        margin: 5px 0;
+        text-align: left;
+
+        // Radio und Text vertikal zentrieren:
+        display: flex;
+        align-items: center;
+    }
+
+}

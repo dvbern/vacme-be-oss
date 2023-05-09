@@ -1,0 +1,43 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<ng-container *ngIf="enabled()">
+    <h5 translate>UMFRAGE.TITLE</h5>
+
+    <p style="margin-top: 8px; margin-bottom: 0;" translate>UMFRAGE.STICHPROBE</p>
+    <form [formGroup]="umfrageFormGroup" (submit)="downloadStichprobe()">
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 8px;">
+            <lib-input-select formControlName="gruppe" key="UMFRAGE.GROUP" [options]="gruppen">
+            </lib-input-select>
+            <lib-input-text formControlName="limit" key="UMFRAGE.LIMIT"></lib-input-text>
+        </div>
+        <lib-button style="margin-top: 24px;" [noMargin]="true" buttonKind="submit"
+                    translationKey="UMFRAGE.DOWNLOAD"></lib-button>
+    </form>
+
+    <p style="margin-top: 16px; margin-bottom: 0;" translate>UMFRAGE.SMS</p>
+    <form [formGroup]="smsFormGroup" (submit)="sendSms()">
+        <lib-input-select formControlName="gruppe" key="UMFRAGE.GROUP" [options]="gruppen">
+        </lib-input-select>
+        <lib-button style="margin-top: 24px;" [noMargin]="false" buttonKind="submit"
+                    translationKey="UMFRAGE.SMS_SEND"></lib-button>
+        <lib-button style="margin-top: 24px;" [noMargin]="false" buttonKind="secondary" (click)="sendReminder()"
+                    translationKey="UMFRAGE.SMS_SEND_REMINDER"></lib-button>
+    </form>
+
+</ng-container>
+

@@ -1,0 +1,93 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<nav class="dv-menu-container" [ngClass]="getEnvironmentClass()">
+    <div class='signet-oe-2'>
+        <a (click)="resetDataAndReturnToStart()" style="display: block;">
+            <img class='logo' [src]="getLogoUrl()" alt="Logo Kanton Bern">
+            <div class='logo-caption'>{{appName | translate}}</div>
+        </a>
+    </div>
+    <div class="margin-auto"></div>
+    <div class="hide-for-small-only dv-menu-content">
+        <ng-container [ngTemplateOutlet]="menuTemplate">
+        </ng-container>
+    </div>
+    <div class="hide-for-medium dv-menu-content-mobile">
+        <ng-container [ngTemplateOutlet]="menuTemplate">
+        </ng-container>
+    </div>
+</nav>
+
+
+<ng-template #menuTemplate>
+    <div style="display: flex;">
+        <!-- home -->
+        <div class="dv-menu-item" *ngIf="showBackLink()">
+            <a class="service-menue" (click)="resetDataAndReturnToStart()"
+               style="margin: 0 calc(0.25vw + 15px) 0 0;">
+                <span class="hide-for-small-only" translate>TERMINE.ZURUECK</span>
+                <img class="hide-for-medium" width="24" src="../img/home-button_.svg" style="margin: 0;">
+            </a>
+        </div>
+
+        <!-- help -->
+        <div class="dv-menu-item">
+            <a class="service-menue" target="_blank" href="{{helpURL}}"  style="margin: 0 calc(0.25vw + 15px) 0 0;">
+                <span class="hide-for-small-only" translate>NAVIGATION.HELP</span>
+                <img class="hide-for-medium" width="24" src="../img/help_black_24dp.svg" style="margin: 0;">
+            </a>
+        </div>
+        <!-- user -->
+        <div class="dv-menu-item" *ngIf="isLoggedIn()">
+            <a class="service-menue" [title]="profileUsername"  style="margin: 0 calc(0.25vw + 15px) 0 0;"
+               routerLink="/account">
+                <span class="hide-for-small-only" translate>{{profileName}}</span>
+                <img  class="hide-for-medium" width="24" src="../img/account_circle_black_24dp.svg"
+                      alt="{{'USERPROFILE.NAV_ITEM_MOBILE' | translate}}">
+            </a>
+        </div>
+    </div>
+    <!-- logout -->
+    <div class="dv-menu-item" *ngIf="isLoggedIn() && !isWellContext()">
+        <a class="service-menue logout" href="#" [attr.title]="'logout ' + profileUsername"
+           (click)="logout(); $event.stopPropagation(); $event.preventDefault();">Logout</a>
+    </div>
+    <!-- login -->
+    <div class="dv-menu-item" *ngIf="!isLoggedIn()">
+        <a class="service-menue login" href="#"
+           (click)="triggerKeycloakLogin(); $event.stopPropagation(); $event.preventDefault();">Login</a>
+    </div>
+    <!-- language -->
+    <div class="language-selector dv-menu-item">
+        <a class="language" [ngClass]="{'active': 'de'===getCurrentLang() }"
+           [attr.aria-label]="'LANGUAGE.CHOOSE.GERMAN-ARIA' | translate"
+           (click)="translate.use('de')">DE</a>
+        <span> | </span>
+        <a class="language" [ngClass]="{'active': 'fr'===getCurrentLang() }"
+           [attr.aria-label]="'LANGUAGE.CHOOSE.FRENCH-ARIA' | translate"
+           (click)="translate.use('fr')">FR</a>
+        <span *ngIf="hasEnglishTranslationEnabled()"> | </span>
+        <a class="language" [ngClass]="{'active': 'en'===getCurrentLang() }"
+           [attr.aria-label]="'LANGUAGE.CHOOSE.ENGLISH-ARIA' | translate"
+           (click)="translate.use('en')"
+           *ngIf="hasEnglishTranslationEnabled()">EN</a>
+    </div>
+</ng-template>
+
+
+

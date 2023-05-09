@@ -1,0 +1,17 @@
+/* Logo Wrapper - replace existing logo with custom */
+.navbar-title {
+	background-image: url('../img/Kanton-Bern.svg');
+	height: 25px;
+	background-repeat: no-repeat;
+	width: 123px;
+	margin: 3px 10px 5px;
+}
+#kc-header {
+	box-sizing: border-box;
+	padding-top: 52px;
+	background-image: url(../img/Kanton-Bern_50.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	margin-left: 20px;
+	margin-top: 7px;
+}

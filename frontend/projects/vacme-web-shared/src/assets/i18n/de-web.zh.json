@@ -1,0 +1,11 @@
+{
+    "FACH-APP": {
+        "START-PAGE": {
+            "SUCHE_MIT_PERSONALIEN_UVCI": "Suche nach geimpfter Person mittels Name, Vorname, Geburtsdatum und UVCI"
+        }
+    },
+    "GEIMPFT": {
+        "WEITERE_IMPFUNG_WAHRNEHMEN": "Covid-Impfung Dokumentieren",
+        "GOTO_KONTROLLE": "Covid-Impfung Dokumentieren"
+    }
+}

@@ -1,0 +1,30 @@
+:host {
+    .impfdossier-item-list-content {
+        margin: 0 0 0 5px;
+    }
+
+    .impfdossier-item {
+        margin: 10px 0;
+    }
+
+    .help-icon {
+        display: flex;
+        align-items: center;
+        margin: 0 5px;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+
+    .impfdossier-item-flex-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    .impfdossier-item-button {
+        margin-left: 10px;
+    }
+}

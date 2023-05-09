@@ -1,0 +1,763 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+/**
+
+
+EDIT THIS FILE!
+We want to keep the original styleguide-be files untouched. This file is the place for any changes we may need.
+
+
+ */
+@import "../styles/vacme-variables";
+
+body {
+    background-color: #ffffff; // statt #fefefe
+    line-height: $vacme-lineheight;
+    letter-spacing: $vacme-letter-spacing;
+    font-weight: $vacme-fontweight;
+}
+
+
+body,
+div {
+    font-family: $vacme-fontfamily; // Es soll ueberall Roboto sein, nicht ploetzlich Open Sans
+    font-weight: 300;
+}
+
+h4 {
+    line-height: $vacme-lineheight;
+}
+
+@media screen and (max-width: 1119px) {
+    h4.i5 {
+        line-height: $vacme-lineheight;
+    }
+}
+
+
+div.full-wdith,
+div.main-column-grid,
+div.context-column-grid {
+    background-color: inherit; // styles.css Zeile 392 ueberschreiben
+    overflow: visible; // overflow hidden ueberschreiben. Grund: Outlines in aktiven Formularelementen mit 100% Breite
+}
+
+button[disabled] {
+    // disable cursor
+    cursor: default;
+
+    // fix colors
+    background-color: $color-disabled-button-background;
+    color: #fff;
+
+    &.go-back {
+        border: none;
+    }
+
+    &.secondary {
+        color: $color-be-black;
+    }
+
+    // disable animation for disabled buttons
+    &.go-next:hover img:first-of-type, &.submit:hover img:first-of-type {
+        transform: translate(-35px, 0px);
+        opacity: 0;
+    }
+
+    &.go-next:hover img:last-of-type, &.submit:hover img:last-of-type {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+
+    &.go-next:hover span, &.submit:hover span {
+        transform: translate(0px, 0px);
+    }
+
+    &.go-back:hover img:first-of-type {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+
+    &.go-back:hover span {
+        transform: translate(5px, 0px);
+    }
+
+    &.go-back:hover img:last-of-type {
+        transform: translate(35px, 0px);
+        opacity: 0;
+    }
+
+
+}
+
+.centered-content button.secondary,
+.centered-content button.go-next {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.button-no-margin {
+    button {
+        margin: 0;
+    }
+}
+
+.button-no-margin-top {
+    button {
+        margin-top: 0;
+    }
+}
+
+.button-no-margin-bottom {
+    button {
+        margin-bottom: 0;
+    }
+}
+
+.button-w-100 {
+    button.button-width {
+        width: 100%;
+    }
+}
+
+p.text-bold {
+    font-weight: 500;
+}
+
+.red-text {
+    color: $color-be-red;
+    font-weight: bold;
+    font-style: italic;
+}
+
+a.external-link:before {
+    background-image: url('styleguide-be/img/logout.svg');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    width: 20px;
+    height: 16px;
+    content: ' ';
+    position: relative;
+    display: inline-block;
+    top: 2px;
+    background-size: 20px 14px;
+}
+
+.margin-top-30 {
+    margin-top: 30px;
+}
+
+.margin-bottom-30 {
+    margin-bottom: 30px;
+}
+
+.margin-top-15 {
+    margin-top: 15px;
+}
+
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}
+
+.margin-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.margin-right-15 {
+    margin-right: 15px;
+}
+
+
+.text-center {
+    text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+    .text-center-mobile {
+        text-align: center;
+    }
+
+    div.full-wdith {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.white-space-normal {
+    white-space: normal;
+}
+
+.white-space-nowrap {
+    white-space: nowrap;
+}
+
+.valign-top {
+    vertical-align: top;
+}
+
+div.signet-oe-2 {
+    margin-top: auto;
+    margin-bottom: 29px;
+    cursor: pointer;
+    position: relative;
+    bottom: auto;
+    left: auto;
+}
+
+.sticky-header {
+    min-height: 170px;
+    height: auto;
+}
+
+div.context-column,
+div.main-column {
+    margin-top: 70px;
+    position: unset;
+}
+
+div.footer.oe {
+    height: 220px;
+}
+
+div.full-wdith,
+div.image-teaser-s-2,
+div.image-teaser-s,
+div.file-upload-success.floating-label,
+div.menue-item-active::after,
+div.img-galery,
+div.image-galery.i2,
+div.image-galery.i3,
+div.image-galery.i4,
+div.image-galery.i5,
+div.image-galery.i6,
+div.image-galery.i7,
+div.vid,
+div.img-thumbnail,
+div.lightbox-img,
+div.lightbox-img-2,
+div.img-hero,
+div.img-hero-theme,
+div.img-fullpage,
+div.img-3to4-50,
+div.img-3to4-25 {
+    background-image: none;
+}
+
+// override styleguide_inside:
+.styleguide .fi-information,
+.styleguide .fi-information:hover {
+    background-image: none;
+}
+
+
+/* Splitter Link-List Style */
+a.splitter-back::before {
+    background-image: url('../styles/styleguide-be/img/go-back.svg');
+}
+
+div.step-1-text-center {
+    margin: 0 auto;
+    display: block !important;
+    line-height: $vacme-lineheight; // der Styleguide macht sonst eine inkonsistente Line-Height
+}
+
+@media screen and (max-width: 767px) {
+    div.step-1-text-center {
+        line-height: $vacme-lineheight; // der Styleguide macht sonst eine inkonsistente Line-Height
+    }
+}
+
+@media screen and (max-width: 1119px) {
+    h5 {
+        white-space: pre-wrap;
+    }
+}
+
+
+img.logo-oe-footer {
+    cursor: inherit; // override cursor:pointer because that made no sense
+}
+
+
+p.white-text {
+
+    li {
+        color: $color-be-func-white;
+    }
+
+    li:before {
+        background-color: $color-be-func-white;
+    }
+}
+
+
+// ********************* FORMS **************************************
+
+input:placeholder-shown + label, input[type="text"]:placeholder-shown + label {
+    visibility: hidden;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+input:disabled,
+input:placeholder-shown:disabled,
+input:disabled::placeholder,
+select:disabled,
+select:disabled option[selected='true'] {
+    // sonst hat die disabled KrankenkassenkartenNummer nicht die gleiche Farbe wie die anderen disabled Felder
+    color: $color-disabled-text !important;
+    opacity: 1; // user agent stylesheet machte ploetzlich opacity: 0.7, aber nicht ueberall
+}
+
+input:disabled,
+input[type="radio"]:disabled,
+input[type="checkbox"]:disabled,
+input[type=checkbox]:disabled + label[for], input[type=radio]:disabled + label[for],
+select:disabled,
+textarea:disabled {
+    cursor: default;
+}
+
+
+.checkbox-container {
+    position: relative;
+    display: flex; // wichtig bei langen Labels, die umbrechen
+
+    input[type=checkbox],
+    label {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+input[type=checkbox],
+input[type=radio] {
+    // Accessability extreme: wir verwenden die nativen Checkboxen, die zwar schwer zu stylen sind, aber dafuer
+    // gut funktionieren. Wir ueberschreiben hier alles aus dem styleguide und aus foundation.
+
+    display: block;
+    flex-shrink: 0;
+    flex-grow: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: initial;
+    border: solid 1px #1c1c1c;
+    position: relative;
+    cursor: pointer;
+    border-radius: 0;
+
+    width: 26px;
+    height: 26px;
+    float: left;
+
+    // Label jeder Option
+    & + label[for] {
+        line-height: 30px;
+        margin-bottom: 18px; // otherwise the validation error is too close
+    }
+
+    &.invalid {
+        box-shadow: none !important;
+        border-left-width: 1px !important;
+        padding-right: 0 !important;
+    }
+
+}
+
+input[type=radio] {
+    border-radius: 50%;
+}
+
+input[type=checkbox]:checked:before,
+input[type=radio]:checked:before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: #000;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+}
+
+
+input[type=radio]:checked:before {
+    border-radius: 50%;
+}
+
+input[type=checkbox]:focus {
+
+    background-color: #fefefe;
+    box-shadow: 0 0 1px 1px inset black !important;
+    transition: box-shadow .5s, border-color .25s ease-in-out;
+
+    &.invalid {
+        box-shadow: 0 0 1px 1px inset black !important;
+        border: 1px solid black !important;
+    }
+}
+
+.radiogroup-container {
+    display: inline-flex;
+    width: 100%; // damit die Validierung untendran kommt
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+    input[type=radio] {
+        margin-right: 6px;
+    }
+
+    // Label pro Option
+    label {
+        margin-right: 10px;
+        cursor: pointer; // weil die gesamte Breite klickbar ist
+    }
+
+    // Label fuer die gesamte Radiogroup
+    .fieldlabel {
+        margin-right: 15px;
+
+        font-weight: 400; // weil die anderen Formular-Labels und Inhalte auch 400 haben statt 300 wie Fliesstext
+    }
+
+}
+
+div.invalid .radiogroup-container {
+    .fieldlabel {
+        color: $color-be-red;
+    }
+
+    label {
+        color: $color-be-red;
+    }
+}
+
+
+div.invalid span.error { // extending div.invalid.floating-label > span.error
+    position: relative; // mit absolute sind Zeilenumbrueche ein Problem
+    left: 0;
+    top: -16px;
+}
+
+.form-group span.notice {
+    margin-bottom: 16px; // damit der Abstand zu nachfolgenden Validierungsmeldungen stimmt
+}
+
+textarea.invalid {
+    box-shadow: none;
+    border: 1px solid $color-be-red !important;
+    border-left: 6px solid $color-be-red !important;
+    color: #000;
+
+
+    & + label {
+        color: $color-be-red !important;
+    }
+}
+
+/* Text-Link as Container in Link-List */
+a.text-link-list {
+    display: inline-block;
+    text-decoration: none !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
+    line-height: 125%;
+    color: rgba(0, 0, 0, 1);
+    cursor: pointer;
+}
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: url("styleguide-be/img/arrow-down.svg") no-repeat right #fff;
+    background-position-x: calc(100% - 20px);
+    background-size: 18px;
+    font-size: 16px;
+    padding: 8px 42px 8px 23px;
+    height: 59px;
+    border-color: #000;
+    border-left: 6px solid #000;
+    margin: 20px 0 20px 0;
+
+    &.invalid {
+        border-color: $color-be-red;
+        padding-right: 92px;
+    }
+}
+
+select:focus {
+    border-color: #000;
+    border-left: 6px solid #000;
+}
+
+
+.select-container {
+    &.invalid {
+        .select-label {
+            color: $color-be-red;
+        }
+    }
+
+    img.invalid {
+        top: 33px;
+        right: 50px;
+    }
+
+    .floating-label {
+        z-index: 2;
+    }
+}
+
+.form-group.nolabel img.invalid {
+    // in form fields without label (e.g. radio), the warn icon needs to be higher than normal
+    top: 18px;
+}
+
+.formgroup.invalid label {
+    color: $color-be-red;
+}
+
+.form-validation-container {
+    position: relative;
+
+    img.invalid {
+        top: -3px;
+    }
+}
+
+
+a:focus,
+div:focus,
+button:focus,
+select:focus,
+textarea:focus,
+input[type=text]:focus,
+input[type=checkbox]:focus {
+    outline: $focus-outline !important;
+    outline-offset: $focus-outline-offset !important;
+}
+
+input[type=checkbox]:focus {
+    outline-offset: 0 !important; // denn wir zeigen die Outline auf der Checkbox
+}
+
+button.primary:focus,
+button.secondary:focus,
+button.submit:focus,
+button.go-back:focus,
+button.go-next:focus,
+input[type=radio]:focus {
+    outline-width: 0 !important;
+    box-shadow: 0 0 0 4px $focus-outline-color !important; // fuer die abgerundeten Buttons
+}
+
+.button-group.ampel-container {
+    margin-bottom: 0; // statt 1rem. Sonst stimmt der Abstand zur nachfolgenden Validierungsmeldung nicht.
+
+    input[type=radio]:focus {
+        outline-width: 0;
+    }
+
+    label.button:focus-within {
+        outline-width: 0 !important;
+        box-shadow: 0 0 0 4px $focus-outline-color !important; // fuer die abgerundeten Buttons
+    }
+}
+
+.form-row-3-cols {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    > * {
+        padding-right: 10px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .form-row-3-cols {
+        flex-wrap: wrap;
+    }
+}
+
+
+.max-800 {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// sandfarbige Boxen innerhalb eines Accordions: Rand hinzufuegen
+div.accordion-content {
+    .step-1-text,
+    .grundimmunisierung {
+        border: 1px solid rgba(112, 112, 112, 0.5); // wie hr.acccordion-2
+    }
+}
+
+
+
+/*
+*****************  BIG TABLE WITH STICKY HEAD/COL ******* START
+(hierher verschoben aus terminverwaltung-page)
+ */
+$cell-border-color: $color-be-func-line-grey;
+$row-border: 1px solid $cell-border-color;
+$vacme-header-z-index: 1001; // denn der normale Header mit dem Logo hat schon 1000
+
+table.big-table {
+    border-collapse: separate; // sonst entfaellt der border, sobald es sticky ist
+    border-spacing: 0;
+    z-index: $vacme-header-z-index; // damit die ganze Tabelle schon vor dem normalen Header mit dem Logo ist
+    position: relative; // sonst ist die Tabelle beim Scrollen hinter dem normal Header mit dem Logo
+}
+
+table.big-table tr,
+table.big-table tr td {
+    border-color: $cell-border-color;
+}
+
+table.big-table thead {
+    background-color: #fff;
+    border: none;
+}
+
+// STICKY
+
+table thead.sticky-thead tr th {
+    background-color: #fff;
+    padding: 20px 0;
+
+    /* stick to the top */
+    position: sticky;
+    top: 0;
+    z-index: $vacme-header-z-index + 1;
+
+    &.sticky-col {
+        z-index: $vacme-header-z-index + 2;
+        padding: 20px 6px !important;
+        font-weight: normal;
+        font-size: 14px;
+        vertical-align: bottom;
+    }
+
+    &.th-div {
+        padding: 20px 0;
+        vertical-align: middle;
+        width: 50px;
+        height: 80px;
+    }
+
+}
+
+.sticky-col {
+
+    /* Stick to the left */
+    left: 0;
+    position: sticky;
+    /* Displayed on top of other rows when scrolling */
+    z-index: $vacme-header-z-index + 1;
+
+
+    &.sticky-offset1 {
+        left: 78px;
+    }
+
+    &.sticky-offset2 {
+        left: 108px;
+    }
+}
+
+.white-col {
+    background-color: #fff;
+}
+
+/*
+*****************  BIG TABLE WITH STICKY HEAD/COL ******** END
+ */
+
+
+// NOPE: GANZE SEITENBREITE FUER GROSSE TABELLE
+// .nope auf dem Element mit detailpage-grid => Ganze Browserbreite ausnuetzen statt die normale Seitenbreite.
+// (hierher verschoben aus Terminverwaltung)
+.nope {
+    transition: max-width 1s;
+    max-width: 100vw !important;
+
+    div.header-oe.sticky-header {
+        margin: 0 auto;
+    }
+
+    .row {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    form {
+        width: max-content;
+        max-width: unset;
+        margin: auto;
+
+
+        .table-full-width { // auf dem Parent-Element der grossen <table>
+            // need to overwrite fondation styles
+            width: max-content !important;
+            max-width: unset !important;
+
+            table {
+                width: auto;
+                margin: 0 20px !important;
+            }
+        }
+
+        .nope-button {
+            margin: auto !important;
+            max-width: 1350px;
+        }
+    }
+
+    .nope-center {
+        max-width: 1350px;
+        margin: 20px auto;
+    }
+}
+
+
+// ***** Person suchen
+.input-min-height-125 {
+    min-height: 125px;
+    display: block;
+}
+
+
+// Startseite, CC
+.sidebar-action {
+    display: block;
+    text-decoration: none;
+    margin-bottom: 16px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+.no-margin-impfungen-list {
+    button {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+}
+
+.no-margin{
+    button {
+        margin : 0;
+    }
+}

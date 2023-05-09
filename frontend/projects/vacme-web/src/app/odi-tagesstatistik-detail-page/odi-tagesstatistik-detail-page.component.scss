@@ -1,0 +1,42 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+@import "projects/vacme-web-shared/src/styles/vacme-variables";
+
+$cell-border-color: $color-be-func-line-grey;
+$row-border: 1px solid $cell-border-color;
+.selected {
+    background-color: $color-be-sand-hover;
+}
+
+.hint {
+    margin-left: -4px;
+    right: -0.5em;
+}
+
+.thead-row1 th {
+
+    white-space: normal;
+    vertical-align: top;
+}
+
+.thead-row2 th {
+    top: 67px;
+    white-space: normal;
+    vertical-align: top;
+}
+
+.noch-nicht-erschienen {
+    position: fixed;
+    left: 137px;
+    bottom: 20px;
+    z-index: 1002; // mehr als der sticky thead und sticky-col
+}
+.empty {
+    color:  rgba(200, 200, 200, 0.4) !important;
+}
+.border-left {
+    border-left: $row-border;
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31" x="0px" y="0px">
+    <defs>
+        <clipPath id="b">
+            <rect width="31" height="31"/>
+        </clipPath>
+    </defs>
+    <g id="a" clip-path="url(#b)">
+        <g transform="translate(-861 -837)">
+            <circle cx="15.5" cy="15.5" r="15.5" transform="translate(861 837)" fill="#707070"/>
+            <g transform="translate(865 840), scale(0.7, 0.7)">
+                <path
+                    fill="#fff"
+                    d="M27,13H16V9A7,7,0,0,0,2,9v5a1,1,0,0,0,2,0V9A5,5,0,0,1,14,9v4H11a3.0033,3.0033,0,0,0-3,3V27a3.0033,3.0033,0,0,0,3,3H27a3.0033,3.0033,0,0,0,3-3V16A3.0033,3.0033,0,0,0,27,13ZM19.75,23a.75.75,0,0,1-1.5,0V20a.75.75,0,0,1,1.5,0Z"></path>
+            </g>
+        </g>
+    </g>
+</svg>

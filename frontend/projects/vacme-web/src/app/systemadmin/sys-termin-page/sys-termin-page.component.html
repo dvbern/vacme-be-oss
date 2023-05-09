@@ -1,0 +1,100 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='detailpage sys-termin-page'>
+
+
+    <div class='main-column' *ngIf="isInRoleAsRegistrationOi()">
+
+
+        <form [formGroup]="formGroup">
+            <div class="row">
+                <lib-input-select key="IMPFDOK.ODI" formControlName="odiId"
+                                  [options]="odiSelectValues" [noTranslate]="true"
+                                  undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                ></lib-input-select>
+
+            </div>
+
+            <div class="row">
+                <lib-input-text [formGroup]="formGroup" key="REGISTRIERUNGSNUMMER"
+                                formControlName="registrierungsNummer"
+                ></lib-input-text>
+            </div>
+
+            <div class="row">
+                <span translate>SYSTEM_ADMINISTRATION.TERMIN</span>
+                <span>&nbsp;</span>
+                <span>1</span>
+            </div>
+            <div class="row">
+                <div class="form-group-medium-left">
+                    <lib-input-text key="SYSTEM_ADMINISTRATION.TERMIN"
+                                    formControlName="datum1"></lib-input-text>
+                </div>
+                <div class="form-group-medium-right vacme-time-select">
+                    <ngb-timepicker id="forceTerminTime1"
+                                    formControlName="zeit1"
+                                    [seconds]="false"
+                                    class="vacme-time-select"
+                                    [hourStep]="hourStep"
+                                    [minuteStep]="minuteStep"
+                    ></ngb-timepicker>
+                    <lib-validationmessages *ngIf="this.formGroup.controls['zeit1'].touched"
+                                            [errors]="this.formGroup.controls['zeit1'].errors">
+                    </lib-validationmessages>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <span translate>SYSTEM_ADMINISTRATION.TERMIN</span>
+                <span>&nbsp;</span>
+                <span>2</span>
+            </div>
+            <div class="row">
+
+                <div class="form-group-medium-left">
+                    <lib-input-text key="SYSTEM_ADMINISTRATION.TERMIN"
+                                    formControlName="datum2"></lib-input-text>
+                </div>
+                <div class="form-group-medium-right vacme-time-select">
+                    <ngb-timepicker id="forceTerminTime2"
+                                    formControlName="zeit2"
+                                    [seconds]="false"
+                                    class="vacme-time-select"
+                                    [hourStep]="hourStep"
+                                    [minuteStep]="minuteStep"
+                    ></ngb-timepicker>
+                    <lib-validationmessages *ngIf="this.formGroup.controls['zeit2'].touched"
+                                            [errors]="this.formGroup.controls['zeit2'].errors">
+                    </lib-validationmessages>
+                </div>
+            </div>
+
+            <div class="row">
+                <lib-button buttonKind="submit" class="margin-top-30" (clickIfEnabled)="submitIfValid()"
+                            translationKey="SYSTEM_ADMINISTRATION.TERMIN"></lib-button>
+            </div>
+        </form>
+        <hr>
+        <div class='context-column'>
+        </div>
+
+        <pre *ngIf="this.createdTermin">{{this.createdTermin | json}}</pre>
+    </div>
+</div>
