@@ -1,0 +1,30 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+@import "../../../../../src/styles/vacme-variables";
+
+.white-box {
+    display: block;
+    background-color: unset;
+    border: 5px solid $color-be-sand;
+}
+
+.invalid-icon {
+    margin-left: 10px;
+    content: "";
+    height: 31px;
+    width: 31px;
+    right: 16px;
+    top: 33px;
+}
+
+.buttons {
+    ::ng-deep {
+        button.button-width {
+            margin: 0 0 10px 0;
+            width: 100%;
+        }
+    }
+}

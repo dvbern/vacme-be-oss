@@ -1,0 +1,58 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='main-column'>
+    <h4 class='i5 margin-bottom-30' translate>APPMESSAGE.ADMINISTRATION.TITLE</h4>
+
+    <div *ngIf="showPager()" class="margin-bottom-15">
+        <lib-simple-pager [pagerState]="pagerState"
+                          [disabled]="loading"
+                          (pageEvent)="pageChange($event)"></lib-simple-pager>
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" translate>
+                        APPMESSAGE.ADMINISTRATION.STATUS
+                    </th>
+                    <th scope="col" translate>
+                        APPMESSAGE.ADMINISTRATION.MESSAGE_TITLE
+                    </th>
+                    <th scope="col" translate>
+                        APPMESSAGE.ADMINISTRATION.ZEIT_STATUS
+                    </th>
+                    <th scope="col" translate>
+                        APPMESSAGE.ADMINISTRATION.ZEIT_FENSTER
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let message of getMessages()" (click)="messageBearbeiten(message.id)">
+                    <td translate>APPMESSAGE.ADMINISTRATION.{{message.status}}_STATUS</td>
+                    <td>{{message.title}}</td>
+                    <td>{{getZeitStatus(message)}}</td>
+                    <td>{{formatZeitFenster(message.zeitfenster)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <lib-button-navigate buttonKind="primary"
+                goto="/appmessage/bearbeiten"
+                translationKey="APPMESSAGE.ADMINISTRATION.NEW"></lib-button-navigate>
+</div>

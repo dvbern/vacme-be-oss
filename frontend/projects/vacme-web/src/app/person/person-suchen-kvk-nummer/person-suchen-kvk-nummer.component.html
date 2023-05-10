@@ -1,0 +1,43 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<a [ngClass]="this.kvkSucheService.displayKvKSuche ? 'caret-down' : 'caret-right'" (click)="toggleKvKSuche()" translate>FACH-APP.START-PAGE.SUCHEN-KVK-TEXT</a>
+<div class="margin-top-30" *ngIf="this.kvkSucheService.displayKvKSuche">
+    <h4 class='i5' translate>FACH-APP.START-PAGE.SUCHEN-KVK-TITLE</h4>
+    <form [formGroup]="formGroup" (ngSubmit)="submitIfValid()">
+        <div class="row">
+            <lib-input-text [formGroup]="formGroup" label="fach-app.start-page.code" formControlName="kvk"
+                            placeholder="--------------------"></lib-input-text>
+        </div>
+        <div class="row">
+            <lib-button buttonKind="submit" translationKey="FACH-APP.START-PAGE.SUCHEN"></lib-button>
+            <lib-button buttonKind="secondary"
+                        style="flex: 2; margin-left: auto; margin-top: unset; margin-bottom: unset; margin-right: unset;"
+                        (clickIfEnabled)="clearKvkSuche()" translationKey="FACH-APP.START-PAGE.CLEAR"></lib-button>
+        </div>
+        <div class="row" *ngIf="this.kvkSucheService.kvkSucheResult.length > 0">
+            <div *ngFor="let dossier of this.kvkSucheService.kvkSucheResult" class="checkboxes"
+                 style="display: flex; flex-direction: row; justify-content: space-between; text-align: center; width: 100%; padding-right: 10px">
+            <span
+                style="flex: 1; white-space: nowrap; display: inline-block; margin: auto; text-align: left; overflow: hidden; text-overflow: ellipsis;">{{dossier.vorname}} {{dossier.name}}
+                ({{dossier.geburtsdatum | date: 'dd. MMM yyyy': undefined: this.translateService.currentLang}})</span>
+                <lib-button buttonKind="primary" class="button-no-margin"
+                            (clickIfEnabled)="openDossier(dossier)" translationKey="FACH-APP.START-PAGE.OEFFNEN"></lib-button>
+            </div>
+        </div>
+    </form>
+</div>

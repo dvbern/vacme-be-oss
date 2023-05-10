@@ -1,0 +1,198 @@
+### Sonderfall:
+### Step 0: Registrierung direkt am Ort der Impfung
+POST http://localhost:8080/api/v1/web/kontrolle/registrieren
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+    "ampelColor": "GREEN",
+	"risikogruppe": true,
+	"beruflicheTaetigkeit": "ANDERE",
+	"lebensumstaende": "ANDERE",
+	"adresse": {
+		"adresse1": "string",
+		"adresse2": "string",
+		"ort": "string",
+		"plz": "string"
+	},
+	"bemerkung": "string",
+	"geburtsdatum": "1930-12-11",
+    "geschlecht": "MAENNLICH",
+	"mail": "hansli@mailbucket.dvbern.ch",
+	"name": "string",
+	"telefon": "string",
+	"vorname": "string",
+	"krankenkasse": "KPT",
+	"krankenkasseKartenNr": "12345678"
+
+}
+
+### Normalfall:
+### Step 1: Daten fuer Impfkontrolle ueber Registrierungsnummer lesen
+GET http://localhost:8080/api/v1/web/kontrolle/find/G8GZ4
+
+### Step 2: Kontrolle 1
+PUT http://localhost:8080/api/v1/web/kontrolle/kontrolleOk/ERSTE_IMPFUNG
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+	"registrierungsnummer": "V5EA4N",
+	"ampelColor": "GREEN",
+	"abgleichElektronischerImpfausweis": true,
+	"adresse": {
+		"adresse1": "string",
+		"adresse2": "string",
+		"ort": "string",
+		"plz": "string"
+	},
+	"bemerkung": "string",
+	"beruflicheTaetigkeit": "ANDERE",
+	"geburtsdatum": "2020-12-18",
+	"geschlecht": "ANDERE",
+	"identifikationsnummer": "string",
+	"immobil": true,
+	"kontrolleTermin1": {
+		"bemerkung": "string",
+		"identitaetGeprueft": true
+	},
+	"kontrolleTermin2": {
+		"bemerkung": "string",
+		"identitaetGeprueft": true
+	},
+	"krankenkasse": "AGRISANO",
+	"krankenkasseKartenNr": "string",
+	"lebensumstaende": "ANDERE",
+	"mail": "string",
+	"name": "string",
+	"registrierungStatus": "ABGESCHLOSSEN",
+	"risikogruppe": true,
+	"telefon": "string",
+	"vorname": "string"
+}
+
+### Step 3: Kontrolle 2
+PUT http://localhost:8080/api/v1/web/kontrolle/kontrolleOk/ZWEITE_IMPFUNG
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+	"registrierungsnummer": "82ZBN4",
+	"ampelColor": "GREEN",
+	"abgleichElektronischerImpfausweis": true,
+	"adresse": {
+		"adresse1": "string",
+		"adresse2": "string",
+		"ort": "string",
+		"plz": "string"
+	},
+	"bemerkung": "string",
+	"beruflicheTaetigkeit": "ANDERE",
+	"geburtsdatum": "2020-12-18",
+	"geschlecht": "ANDERE",
+	"identifikationsnummer": "string",
+	"immobil": true,
+	"kontrolleTermin1": {
+		"bemerkung": "string",
+		"identitaetGeprueft": true
+	},
+	"kontrolleTermin2": {
+		"bemerkung": "string",
+		"identitaetGeprueft": true
+	},
+	"krankenkasse": "AGRISANO",
+	"krankenkasseKartenNr": "string",
+	"lebensumstaende": "ANDERE",
+	"mail": "string",
+	"name": "string",
+	"registrierungStatus": "ABGESCHLOSSEN",
+	"risikogruppe": true,
+	"telefon": "string",
+	"vorname": "string"
+}
+
+### Fehlerfall:
+### Step 2b: Falsche Person bei Kontrolle 1
+PUT http://localhost:8080/api/v1/web/kontrolle/kontrolleFalschePerson/ERSTE_IMPFUNG
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+	"registrierungsnummer": "ABCDE",
+	"ampel": "GREEN",
+	"abgleichElektronischerImpfausweis": true,
+	"adresse": {
+		"adresse1": "string",
+		"adresse2": "string",
+		"ort": "string",
+		"plz": "string"
+	},
+	"bemerkung": "string",
+	"beruflicheTaetigkeit": "ANDERE",
+	"geburtsdatum": "2020-12-18",
+	"geschlecht": "ANDERE",
+	"identifikationsnummer": "string",
+	"immobil": true,
+	"kontrolleTermin1": {
+		"bemerkung": "string",
+		"identitaetGeprueft": true
+	},
+	"kontrolleTermin2": {
+		"bemerkung": "string",
+		"identitaetGeprueft": true
+	},
+	"krankenkasse": "AGRISANO",
+	"krankenkasseKartenNr": "string",
+	"lebensumstaende": "ANDERE",
+	"mail": "string",
+	"name": "string",
+	"registrierungStatus": "ABGESCHLOSSEN",
+	"risikogruppe": true,
+	"telefon": "string",
+	"vorname": "string"
+}
+
+### Step 3b: Falsche Person bei Kontrolle 2
+PUT http://localhost:8080/api/v1/web/kontrolle/kontrolleFalschePerson/ZWEITE_IMPFUNG
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+	"registrierungsnummer": "ABCDE",
+	"ampel": "GREEN",
+	"abgleichElektronischerImpfausweis": true,
+	"adresse": {
+		"adresse1": "string",
+		"adresse2": "string",
+		"ort": "string",
+		"plz": "string"
+	},
+	"bemerkung": "string",
+	"beruflicheTaetigkeit": "ANDERE",
+	"geburtsdatum": "2020-12-18",
+	"geschlecht": "ANDERE",
+	"identifikationsnummer": "string",
+	"immobil": true,
+	"kontrolleTermin1": {
+		"bemerkung": "string",
+		"identitaetGeprueft": true
+	},
+	"kontrolleTermin2": {
+		"bemerkung": "string",
+		"identitaetGeprueft": true
+	},
+	"krankenkasse": "AGRISANO",
+	"krankenkasseKartenNr": "string",
+	"lebensumstaende": "ANDERE",
+	"mail": "string",
+	"name": "string",
+	"registrierungStatus": "ABGESCHLOSSEN",
+	"risikogruppe": true,
+	"telefon": "string",
+	"vorname": "string"
+}

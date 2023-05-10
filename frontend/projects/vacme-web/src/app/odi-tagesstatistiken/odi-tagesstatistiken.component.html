@@ -1,0 +1,48 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<ng-container *ngIf="ortderimpfungenListe && ortderimpfungenListe.length > 0">
+    <h3 style="margin-top: 80px;margin-bottom: 40px;" translate>FACH-APP.START-PAGE.TAGES-STATISTIK.TITLE</h3>
+
+    <lib-date-spinner [datum]="date" [showBack]="true" [showForward]="true"
+                      (changedDatum)="onChangedOdiStatsDate($event)"
+                      *ngIf="visibleOdis.length > 0"></lib-date-spinner>
+
+    <div class="odi-tagesstatistiken">
+        <div *ngFor="let odi of getVisibleOdis()">
+            <button (click)="removeOdi(odi)"
+                    style="float: right;"
+                    class="grow-on-hover"
+                    [ngbTooltip]="'FACH-APP.START-PAGE.TAGES-STATISTIK.AUSBLENDEN' | translate"
+                    placement="bottom">
+                <img src="/assets/img/close-icon.svg"
+                     style="height:26px;width:auto;">
+            </button>
+            <app-odi-tagesstatistik [odi]="odi"></app-odi-tagesstatistik>
+        </div>
+    </div>
+
+    <lib-input-typeahead
+        [disabled]="getVisibleOdis().length > MAX_ODI_STATS_ON_STARTPAGE-1 || getInvisibleOdis().length === 0"
+        [listOfObjects]="getInvisibleOdis() | sortBy : 'asc' : 'name'"
+        [model]="typeaheadModel"
+        labelProperty="name"
+        labelKey="FACH-APP.START-PAGE.TAGES-STATISTIK.SELECT"
+        (inputChanged)="chooseItem($event)">
+    </lib-input-typeahead>
+
+</ng-container>

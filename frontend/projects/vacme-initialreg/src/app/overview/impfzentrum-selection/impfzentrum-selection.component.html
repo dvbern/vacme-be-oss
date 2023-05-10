@@ -1,0 +1,23 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<p translate>OVERVIEW.IMPFORT_WAEHLEN</p>
+
+<select id="ortDerImpfungList" *ngIf="ortDerImpfungList" (change)="chooseItem($event)" [value]="ortDerImfpung">
+    <option [ngValue]="null" translate>OVERVIEW.IMPFORT_LABEL</option>
+    <option *ngFor="let item of ortDerImpfungList" [ngValue]="item" [selected]="ortDerImfpung">{{item.name}}</option>
+</select>

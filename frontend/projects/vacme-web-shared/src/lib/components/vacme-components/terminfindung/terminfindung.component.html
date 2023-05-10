@@ -1,0 +1,42 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+
+<h1 class="margin-top-30" *ngIf="krankheitIdentifier" [translate]="'TERMINE.AUSWAHL_' + (krankheitIdentifier === 'COVID' ? impffolge : 'IMPFTERMIN')"></h1>
+
+<ng-container *ngIf="freieSlots">
+
+    <lib-date-spinner [datum]="datum" [showBack]="!spinBackHidden()" [showForward]="!spinFwdHidden()"
+                      (changedDatum)="spinToDate($event)"></lib-date-spinner>
+
+    <div *ngIf="freieSlots">
+        <div *ngFor="let slot of freieSlots"
+             [ngClass]="{'chosen': slot.id === getSelectedId()}"
+             class="freier-termin">
+                <span class="date" translate [translateParams]="{
+                von: slot.zeitfenster?.vonDisplay ,
+                bis: slot.zeitfenster?.bisDisplay }">
+                    TERMINE.UHRZEIT</span>
+
+            <lib-button buttonKind="primary" (clickIfEnabled)="chooseSlot(slot)" class="button-no-margin"
+                        translationKey="TERMINE.WAEHLEN"></lib-button>
+        </div>
+    </div>
+    <div *ngIf="!freieSlots || freieSlots.length === 0" translate style="margin-top: 30px">
+        TERMINE.KEIN_FREIER
+    </div>
+</ng-container>

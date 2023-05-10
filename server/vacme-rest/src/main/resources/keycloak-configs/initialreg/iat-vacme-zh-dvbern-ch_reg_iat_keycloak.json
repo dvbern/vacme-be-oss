@@ -1,0 +1,8 @@
+{
+	"realm": "vacme",
+	"auth-server-url": "https://vacme-zh-iat.dvbern.ch/auth/",
+	"ssl-required": "external",
+	"resource": "vacme-initial-app-iat",
+	"public-client": true,
+	"confidential-port": 0
+}

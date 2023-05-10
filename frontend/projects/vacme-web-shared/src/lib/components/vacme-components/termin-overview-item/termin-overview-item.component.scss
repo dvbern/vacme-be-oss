@@ -1,0 +1,95 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+@import "../../../../../src/styles/vacme-variables";
+
+.termin-overview-item {
+    position: relative;
+    border-bottom: 1px solid $color-be-func-line-grey;
+    padding: 20px;
+
+    .title {
+        color: $color-be-func-anthrazit;
+        font-size: small;
+        margin-bottom: 4px;
+    }
+
+    .datetime {
+
+        > * {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .date:after {
+            content: " | ";
+            white-space: pre;
+        }
+        .time{
+            padding-right: 5px;
+        }
+    }
+
+    .details-and-arrow {
+        display: flex;
+
+        > * {
+            flex-shrink: 1;
+            flex-grow: 1;
+        }
+
+        > .fixed-width {
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+    }
+
+    .close-icon {
+        // float: left;
+        display: inline-block;
+        margin-left: 20px;
+        margin-right: 20px;
+        background-image: url('/assets/img/Minus%20Icon.svg');
+
+        @media screen and (max-width: 767px) {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+
+    .check-icon,
+    .calender-icon,
+    .missed-icon {
+        margin-right: 20px;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-position: center center;
+        background-size: auto;
+        width: 24px;
+        height: 24px;
+        transition: all 150ms ease-in-out;
+
+        @media screen and (max-width: 767px) {
+            margin-right: 10px;
+        }
+    }
+
+
+    .check-icon {
+        background-image: url('/assets/img/Valid%20Icon.svg');
+    }
+
+    .calender-icon {
+        background-image: url('/assets/img/datepicker.svg'), url('/assets/img/datepicker_bg.svg');
+    }
+
+    .missed-icon {
+        background-image: url('/assets/img/Invalid%20Icon.svg');
+    }
+
+    .adHocTermin {
+        color: darkgray;
+    }
+}

@@ -1,0 +1,1 @@
+CREATE INDEX IF NOT EXISTS IX_Impfung_timestampvmdl_extern ON Impfung (timestampVMDL, extern, id);

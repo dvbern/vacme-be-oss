@@ -1,0 +1,69 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class="row termin-overview-item">
+
+    <!-- Titel -->
+    <h4 class="title">
+        <ng-container [ngSwitch]="impffolge">
+            <span>
+                <span *ngSwitchCase="'ERSTE_IMPFUNG'"
+                      translate [translateParams]="{i: 1}">OVERVIEW.TERMIN
+                </span>
+                <span *ngSwitchCase="'ZWEITE_IMPFUNG'"
+                      translate [translateParams]="{i: 2}">OVERVIEW.TERMIN
+                </span>
+                 <span *ngSwitchCase="'BOOSTER_IMPFUNG'"
+                       translate>OVERVIEW.TERMIN_N
+                </span>
+            </span>
+        </ng-container>
+    </h4>
+
+    <div class="details-and-arrow">
+        <!-- noch nicht gewaehlt -->
+        <span class="red-text" *ngIf="!getTermin()" translate>OVERVIEW.TERMIN_NOCH_NICHT_ABGEMACHT</span>
+
+
+        <!-- Datum -->
+        <ng-container *ngIf="getTermin()">
+            <!-- Status-Icon -->
+            <div [class]="getStatusIcon() + ' fixed-width'"
+                 [ngbTooltip]="getStatusText() | translate" placement="bottom"></div>
+            <!-- Datum&Zeit -->
+            <div class="datetime" [class.adHocTermin]="erstTerminAdHoc && impffolge === 'ERSTE_IMPFUNG'">
+                <span class="date">{{printDate(getTermin())}}</span>
+                <span class="time">{{printTime(getTermin())}}</span>
+
+                <!-- noch nicht gebucht -->
+                <span class="red-text" *ngIf="hasDeltaChanges">{{getDeltaText()}}</span>
+            </div>
+        </ng-container>
+
+
+        <!-- Pfeil -->
+        <div class="arrow fixed-width" *ngIf="!readonly && !isTerminForImpffolgeAdHoc()">
+            <button (click)="selectDate()">
+                <img class='arrow-right' src='img/go-next.svg'
+                     ngbTooltip="{{'OVERVIEW.SELECT' | translate}}"
+                     placement="bottom">
+            </button>
+        </div>
+
+    </div>
+
+</div>

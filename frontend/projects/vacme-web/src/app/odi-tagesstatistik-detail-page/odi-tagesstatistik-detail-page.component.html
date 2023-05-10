@@ -1,0 +1,104 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<ng-container>
+
+    <div class='detailpage'>
+        <div class='main-column odi-tagesstatistik-main'>
+
+            <div [class.loading]="loading">
+
+                <p>{{title()}}</p>
+
+                <div class='step-1-text noch-nicht-erschienen'>
+                    <p translate>FACH-APP.START-PAGE.TAGES-STATISTIK-DETAIL.NOCH_PENDENT</p>
+                    <div *ngIf="selectedRow && ausstehendForRow">
+                        <ul>
+                            <li *ngFor="let item of ausstehendForRow.entryList">
+                                <a (click)="openRegistration(item)">{{item.anzeige}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div *ngIf="!selectedRow">
+                        <span translate>FACH-APP.START-PAGE.TAGES-STATISTIK-DETAIL.NOCH_PENDENT_NO_SELECTION</span>
+                    </div>
+                </div>
+
+                <table class="margin-top-30 big-table">
+                    <thead class="sticky-thead thead-row1">
+                    <tr>
+                        <th class="sticky-col white-col"></th>
+                        <th class="sticky-col white-col" style="left: 64px;"></th>
+                        <th class="border-left"></th>
+                        <th translate colspan="3" class="border-left">FACH-APP.START-PAGE.TAGES-STATISTIK-DETAIL.TOTAL
+                        </th>
+                        <th colspan="3" *ngFor="let impfstoff of impfstoffList"
+                            class="border-left">{{impfstoff.displayName}}</th>
+
+                    </tr>
+                    </thead>
+                    <thead class="sticky-thead thead-row2">
+                    <tr>
+                        <th translate class="sticky-col white-col">FACH-APP.START-PAGE.TAGES-STATISTIK-DETAIL.VON</th>
+                        <th translate class="sticky-col white-col"
+                            style="left: 64px;">FACH-APP.START-PAGE.TAGES-STATISTIK-DETAIL.BIS
+                        </th>
+                        <th translate class="border-left">FACH-APP.START-PAGE.TAGES-STATISTIK-DETAIL.TITLE-PENDENT</th>
+                        <th translate class="border-left">FACH-APP.START-PAGE.TAGES-STATISTIK-DETAIL.IMPFUNG-1</th>
+                        <th translate>FACH-APP.START-PAGE.TAGES-STATISTIK-DETAIL.IMPFUNG-2</th>
+                        <th translate>FACH-APP.START-PAGE.TAGES-STATISTIK-DETAIL.IMPFUNG-N</th>
+                        <ng-container *ngFor="let impfstoff of impfstoffList">
+                            <th translate class="border-left">FACH-APP.START-PAGE.TAGES-STATISTIK-DETAIL.IMPFUNG-1</th>
+                            <th translate>FACH-APP.START-PAGE.TAGES-STATISTIK-DETAIL.IMPFUNG-2</th>
+                            <th translate>FACH-APP.START-PAGE.TAGES-STATISTIK-DETAIL.IMPFUNG-N</th>
+                        </ng-container>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let slotDetail of slotDetails?.impfstoffTagesReportJaxMap"
+                        [class.selected]="isSelected(slotDetail)"
+                    >
+                        <td class="sticky-col white-col">{{slotDetail.zeitfenster?.vonDisplay}}</td>
+                        <td class="sticky-col white-col" style="left: 64px;">{{slotDetail.zeitfenster?.bisDisplay}}</td>
+                        <td class="border-left white-space-nowrap">
+                            <a (click)="onSelect(slotDetail)"
+                               translate>FACH-APP.START-PAGE.TAGES-STATISTIK-DETAIL.LINK-PENDENT</a>
+                            <span *ngIf="!slotDetail.hasAusstehendeImpfungen">-</span>
+                        </td>
+                        <td class="border-left"
+                            [ngClass]="{'empty': !slotDetail.totalGeplanteImpfungen1}">{{slotDetail.totalGeplanteImpfungen1}}</td>
+                        <td [ngClass]="{'empty': !slotDetail.totalGeplanteImpfungen2}">{{slotDetail.totalGeplanteImpfungen2}}</td>
+                        <td [ngClass]="{'empty': !slotDetail.totalGeplanteImpfungenN}">{{slotDetail.totalGeplanteImpfungenN}}</td>
+                        <ng-container *ngFor="let impfstoff of impfstoffList">
+                            <td class="border-left"
+                                [ngClass]="{'empty': countImpfung1(slotDetail, impfstoff)==='0'}">{{countImpfung1(slotDetail, impfstoff)}}</td>
+                            <td [ngClass]="{'empty': countImpfung2(slotDetail, impfstoff)==='0'}">{{countImpfung2(slotDetail, impfstoff)}}</td>
+                            <td [ngClass]="{'empty': countImpfungN(slotDetail, impfstoff)==='0'}">{{countImpfungN(slotDetail, impfstoff)}}</td>
+                        </ng-container>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <p style="line-height: 1.2;">
+                    <small><i translate
+                              [innerHTML]="'FACH-APP.START-PAGE.TAGES-STATISTIK.HINT' | translate"></i></small>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</ng-container>

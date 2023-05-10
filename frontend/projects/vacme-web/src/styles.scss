@@ -1,0 +1,15 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+/* Hier koennen projektspezifische styles hin, die nur in vacme-web gebraucht werden.
+Alle VacMe-weiten Styles sind im vacme-web-share/src/styles.scss.
+ */
+
+.filedrop.filedrop-massenimport {
+
+    & .ngx-file-drop__content {
+        justify-content: normal;
+    }
+}

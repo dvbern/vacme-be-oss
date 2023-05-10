@@ -1,0 +1,50 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class="daten-korrektur">
+    <form *ngIf="korrekturDashboard && formGroup" [formGroup]="formGroup" (ngSubmit)="correctIfValid()">
+        <div class='step-1-text  step-1-text-center'>
+            <h4 class="infobox-title" translate>FACH-ADMIN.DATEN_KORREKTUR.USERDATA</h4>
+            <p style="margin-top: 8px; margin-bottom: 0;">{{('FACH-ADMIN.DATEN_KORREKTUR.USERNAME' | translate)+ ': ' + basicUserInfo?.benutzerName}}</p>
+            <p style="margin-bottom: 0;">{{('REGISTRIERUNG.MAIL' | translate)+ ': ' + basicUserInfo?.email}}</p>
+            <p style="margin-bottom: 0;">{{('FACH-APP.ODI.BENUTZER.PHONE' | translate)+ ': ' + basicUserInfo?.mobileNummer}}</p>
+        </div>
+        <div class="row">
+            <lib-input-text key="FACH-ADMIN.DATEN_KORREKTUR.USERNAME"
+                            formControlName="username"></lib-input-text>
+        </div>
+
+        <div class="row">
+            <lib-input-text key="registrierung.mail"
+                            formControlName="mail" [autocomplete]="false"></lib-input-text>
+        </div>
+
+        <div class="row">
+            <lib-input-text key="FACH-APP.ODI.BENUTZER.PHONE"
+                            formControlName="telefon" [autocomplete]="false"></lib-input-text>
+        </div>
+
+        <div *ngIf="!hasSwissMobileVorwahl" translate>REG_VALIDATION.PHONE_NOT_SWISS_MOBILE</div>
+
+        <lib-button buttonKind="submit" *ngIf="hasRequiredRole()"
+                    translationKey="FACH-ADMIN.DATEN_KORREKTUR.KORRIGIEREN"></lib-button>
+
+        <lib-button buttonKind="secondary" (clickIfEnabled)="reset()"
+                    translationKey="OVERVIEW.ABBRECHEN"></lib-button>
+
+    </form>
+</div>

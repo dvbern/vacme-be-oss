@@ -1,0 +1,82 @@
+<div class='full-wdith'>
+    <form [formGroup]="selectFormGroup">
+        <div class="row">
+            <h4 translate>SYSTEM_ADMINISTRATION.IMPFSTOFF.TITLE</h4>
+            <lib-input-select
+                formControlName="impfstoff"
+                (change)="impfstoffSelectChange()"
+                key="impfdok.impfstoff"
+                [options]="impfstoffOptions"
+                undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                [noTranslate]="true"></lib-input-select>
+        </div>
+    </form>
+
+    <form [formGroup]="formGroup" *ngIf="selectedImpfstoff" (ngSubmit)="correctIfValid()">
+        <lib-input-text key="SYSTEM_ADMINISTRATION.IMPFSTOFF.NAME" formControlName="name"></lib-input-text>
+        <lib-input-text key="SYSTEM_ADMINISTRATION.IMPFSTOFF.HERSTELLER" formControlName="hersteller"></lib-input-text>
+        <lib-input-text key="SYSTEM_ADMINISTRATION.IMPFSTOFF.CODE" formControlName="code"></lib-input-text>
+        <lib-input-text key="SYSTEM_ADMINISTRATION.IMPFSTOFF.COVID_CERT_PROD_CODE"
+                        formControlName="covidCertProdCode"></lib-input-text>
+
+        <lib-input-text key="SYSTEM_ADMINISTRATION.IMPFSTOFF.HEX_FARBE" formControlName="hexFarbe"></lib-input-text>
+        <hr class="hexcolorbalken" style="background-color: {{formGroup.get('hexFarbe')?.value || '#fff'}};">
+
+        <lib-input-text key="SYSTEM_ADMINISTRATION.IMPFSTOFF.ANZAHL_DOSEN_BENOETIGT"
+                        formControlName="anzahlDosenBenoetigt"></lib-input-text>
+        <lib-input-select formControlName="zulassungsStatus"
+                          key="SYSTEM_ADMINISTRATION.IMPFSTOFF.ZULASSUNGS_STATUS"
+                          [options]="zulassungsOptionen"></lib-input-select>
+        <lib-input-select formControlName="impfstofftyp"
+                          key="SYSTEM_ADMINISTRATION.IMPFSTOFF.IMPFSTOFFTYP"
+                          [options]="impfstofftypOptionen"></lib-input-select>
+        <lib-input-select formControlName="zulassungsStatusBooster"
+                          key="SYSTEM_ADMINISTRATION.IMPFSTOFF.ZULASSUNGS_STATUS_BOOSTER"
+                          [options]="zulassungsOptionen"></lib-input-select>
+        <lib-input-text key="SYSTEM_ADMINISTRATION.IMPFSTOFF.WHOCH2_CODE"
+                        formControlName="whoch2Code"></lib-input-text>
+        <lib-input-text key="SYSTEM_ADMINISTRATION.IMPFSTOFF.INFORMATIONS_LINK"
+                        formControlName="informationsLink"></lib-input-text>
+        <lib-input-multi-select formControlName="krankheiten"
+                                key="SYSTEM_ADMINISTRATION.IMPFSTOFF.KRANKHEIT"
+                                [options]="krankheitsOptionen">
+        </lib-input-multi-select>
+        <lib-input-checkbox formControlName="eingestellt"
+                            key="SYSTEM_ADMINISTRATION.IMPFSTOFF.EINGESTELLT"></lib-input-checkbox>
+
+        <ng-container formArrayName="impfempfehlungen"
+                      *ngIf="getImpfempfehlungenFormArray() as impfempfehlungFormArray">
+            <h4 translate>SYSTEM_ADMINISTRATION.IMPFSTOFF.TITLE_EMPFEHLUNG</h4>
+            <div *ngFor="let empfehlungFormGroupAny of impfempfehlungFormArray.controls; let i = index">
+                <div [formGroup]="empfehlungFormGroup"
+                     *ngIf="getImpfempfehlungenFormGroup(empfehlungFormGroupAny) as empfehlungFormGroup"
+                     class="impfempfehlung">
+                    <lib-input-text key="SYSTEM_ADMINISTRATION.IMPFSTOFF.ANZAHL_VERABREICHT"
+                                    formControlName="anzahlVerabreicht"
+                                    class="impfempfehlung-element"></lib-input-text>
+                    <lib-input-text key="SYSTEM_ADMINISTRATION.IMPFSTOFF.NOTWENDIG_FUER_GRUNDIMMUNISIERUNG"
+                                    formControlName="notwendigFuerChGrundimmunisierung"
+                                    class="impfempfehlung-element"></lib-input-text>
+                    <button (click)="deleteEmpfehlung(i)" type="button" class="action-button">
+                        <img src="/assets/img/delete_black_24dp.svg" class="icon">
+                        <span translate>ERKRANKUNGEN.DELETE</span>
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+        <div>
+            <button (click)="addEmpfehlung()" class="action-button" type="button">
+                <img src="img/Plus%20Icon.svg" class="icon">
+                <span translate>SYSTEM_ADMINISTRATION.IMPFSTOFF.ADD_EMPFEHLUNG</span>
+            </button>
+        </div>
+        <lib-warningbox>
+            <span translate>SYSTEM_ADMINISTRATION.IMPFSTOFF.HINWEIS_10_MINUTEN</span>
+        </lib-warningbox>
+        <lib-button buttonKind="secondary" (clickIfEnabled)="reset()"
+                    translationKey="OVERVIEW.ABBRECHEN"></lib-button>
+
+        <lib-button buttonKind="submit" translationKey="FACH-ADMIN.DATEN_KORREKTUR.KORRIGIEREN"></lib-button>
+
+    </form>
+</div>

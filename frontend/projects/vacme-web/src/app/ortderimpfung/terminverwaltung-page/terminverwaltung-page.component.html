@@ -1,0 +1,206 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<div class=''>
+    <div class="row">
+        <h4 class='i5 nope-center' translate>FACH-APP.ODI.TERMINVERWALTUNG.TITLE</h4>
+    </div>
+
+    <div class="row" style="display: flex; flex-direction: row; justify-content: center;" [class.loading]="!loaded">
+        <ng-container *ngFor="let monthYear of monthYearCombination; let k=index">
+            <lib-button [buttonKind]="monthYear.month === this.selectedMonat ? 'primary' : 'secondary'"
+                        [ngStyle]="{'flex': k}" (clickIfEnabled)="navigate(monthYear)"
+                        [translationKey]="'FACH-APP.ODI.TERMINVERWALTUNG.MONAT.' + monthYear.month">
+            </lib-button>
+        </ng-container>
+    </div>
+
+    <form [formGroup]="formGroup" *ngIf="formGroup" (ngSubmit)="submitIfValid()" class="table-full-wdith">
+        <div class="table-full-width" [class.loading]="!loaded">
+            <table class="big-table">
+
+                <!-- TABLE HEADER -->
+                <thead class="sticky-thead">
+                <tr *ngIf="getColumns() as columns">
+                    <th class="sticky-col">
+                        <span translate>FACH-APP.ODI.TERMINVERWALTUNG.DATUM</span>
+                    </th>
+                    <th class="sticky-col sticky-offset1"></th>
+                    <th class="sticky-col sticky-offset1"></th>
+                    <th class="sticky-col sticky-offset2">
+                        <span translate>FACH-APP.ODI.TERMINVERWALTUNG.ZEILENSUMME</span>
+                    </th>
+                    <ng-container *ngFor="let col of columns">
+                        <th [class.offtime]="col['offtime']" class="th-div">
+                            <label class="th-von">{{col.von}}</label>
+                            <label class="th-bis">{{col.bis}}</label>
+                        </th>
+                    </ng-container>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container formArrayName="tableRowArray" *ngIf="getRows() as rows">
+                    <tr class="spacer-row"></tr>
+                    <ng-container *ngFor="let row of rows; let rowIndex = index">
+                        <tr [formGroupName]="rowIndex" *ngFor="let krankheit of verfuegbareKrankheiten; let krankheitIndex = index"
+                            [class.offtime]="isWeekend(row.day)">
+
+                            <!-- Datum -->
+                            <td class="sticky-col white-col" [ngClass]="{'no-border-bottom': krankheitIndex === 0, 'no-border-top': krankheitIndex + 1 === verfuegbareKrankheiten.length}">
+                                <!-- Only display the date on the first row within each day -->
+                                <label *ngIf="krankheitIndex === 0" class="col0-date" [ngClass]="{'col0-date-flat': !supportsImpffolgeEinsUndZwei(krankheit) }">{{row.dayDisplay}}</label>
+                            </td>
+                            <!-- Slot-Nummer -->
+                            <td class="sticky-col sticky-offset1 white-col">
+                                <div class="day-2-fields col-impffolge">
+                                    <ng-container *ngIf="supportsImpffolgeEinsUndZwei(krankheit) else onlyN">
+                                        <label class="col0-i-ii">{{'FACH-APP.ODI.TERMINVERWALTUNG.' + krankheit | translate}} I</label>
+                                        <label class="col0-i-ii">{{'FACH-APP.ODI.TERMINVERWALTUNG.' + krankheit | translate}} II</label>
+                                        <label class="col0-i-ii">{{'FACH-APP.ODI.TERMINVERWALTUNG.' + krankheit | translate}} N</label>
+                                    </ng-container>
+                                    <ng-template #onlyN>
+                                        <label class="col0-i-ii">{{'FACH-APP.ODI.TERMINVERWALTUNG.' + krankheit | translate}}</label>
+                                    </ng-template>
+                                </div>
+                            </td>
+                            <!-- Termine absagen -->
+                            <td class="sticky-col sticky-offset1 white-col">
+                                <div class="day-2-fields col-terminabsage">
+                                    <ng-container *ngIf="supportsImpffolgeEinsUndZwei(krankheit)">
+                                        <div class="col0-i-ii">
+                                            <a (click)="termineAbsagen(this.ERSTEIMPFUNG, row)"
+                                               *ngIf="showButtonAbsagen(row, krankheit)">
+                                                <div class="close-icon"
+                                                     title="{{'FACH-APP.ODI.STAMMDATEN.TERMINE_ABSAGEN' | translate}}"></div>
+                                            </a>
+                                        </div>
+                                        <div class="col0-i-ii">
+                                            <a (click)="termineAbsagen(this.ZWEITEIMPFUNG, row)"
+                                               *ngIf="showButtonAbsagen(row, krankheit)">
+                                                <div class="close-icon"
+                                                     title="{{'FACH-APP.ODI.STAMMDATEN.TERMINE_ABSAGEN' | translate}}"></div>
+                                            </a>
+                                        </div>
+                                    </ng-container>
+                                    <div class="col0-i-ii">
+                                        <a (click)="termineAbsagen(this.BOOSTERIMPFUNG, row)"
+                                           *ngIf="showButtonAbsagen(row, krankheit)">
+                                            <div class="close-icon"
+                                                 title="{{'FACH-APP.ODI.STAMMDATEN.TERMINE_ABSAGEN' | translate}}"></div>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </td>
+
+                            <!-- Zeilensumme -->
+                            <td class="sticky-col sticky-offset2 white-col">
+                                <div class="day-2-fields col-summe">
+                                    <ng-container *ngIf="supportsImpffolgeEinsUndZwei(krankheit)">
+                                        <label class="col0-i-ii">{{getSum(rowIndex,
+                                            impffolge.ERSTE_IMPFUNG,
+                                            krankheit)}}</label>
+                                        <label class="col0-i-ii">{{getSum(rowIndex,
+                                            impffolge.ZWEITE_IMPFUNG,
+                                            krankheit)}}</label>
+                                    </ng-container>
+                                    <label class="col0-i-ii">{{getSum(rowIndex,
+                                        impffolge.BOOSTER_IMPFUNG,
+                                        krankheit)}}</label>
+                                </div>
+                            </td>
+                            <ng-container formGroupName="krankheitImpfslotDisplayJaxMap">
+                                <ng-container formGroupName="{{krankheit}}"
+                                              *ngIf="getImpfslotArrayOfDayAndKrankheit(rowIndex, krankheit) as daySlots">
+
+                                    <!--  Die Inputfelder.
+                                     Wichtig: tabindex macht einerseits die korrekte Reihenfolge (obwohl die html-Reihenfolge
+                                     anders ist) und andererseits brauchen wir ihn, um mit den Pfeiltasten zu navigieren.
+                                     -->
+                                    <td [formGroupName]="timeIndex"
+                                        *ngFor="let cell of daySlots; let timeIndex = index"
+                                        class="slot-td">
+                                        <div class="day-2-fields">
+                                    <span class="cell-time"
+                                          *ngIf="cell.zeitfenster!.vonDisplay !== getColumns()[timeIndex]?.von">
+                                        {{cell.zeitfenster!.vonDisplay}}
+                                    </span>
+                                            <ng-container *ngIf="krankheit === COVID">
+                                                <input type="text"
+                                                       formControlName="kapazitaetErsteImpfung"
+                                                       class="kapazitaet1"
+                                                       [tabIndex]="getTabIndex(rowIndex, krankheit, timeIndex, ERSTEIMPFUNG)"
+                                                       #kapazitaet1
+                                                       [ngClass]="{'empty': kapazitaet1.value==='0'}"
+                                                       [class.offtime]="isOfftime(row, cell.zeitfenster!.vonDisplay)"
+                                                       [class.invalid]="getControl(rowIndex,timeIndex,'kapazitaetErsteImpfung', krankheit).invalid"
+                                                       (focus)="kapazitaet1.select()"
+                                                       (dragstart)="preventDrag($event)"
+                                                       (drop)="preventDrag($event)"
+                                                       (keydown)="onKeydown($event)"/>
+                                                <input type="text"
+                                                       formControlName="kapazitaetZweiteImpfung"
+                                                       class="kapazitaet2"
+                                                       [tabIndex]="getTabIndex(rowIndex, krankheit, timeIndex, ZWEITEIMPFUNG)"
+                                                       #kapazitaet2
+                                                       [ngClass]="{'empty': kapazitaet2.value==='0'}"
+                                                       [class.offtime]="isOfftime(row, cell.zeitfenster!.vonDisplay)"
+                                                       [class.invalid]="getControl(rowIndex,timeIndex,'kapazitaetZweiteImpfung', krankheit).invalid"
+                                                       (focus)="kapazitaet2.select()"
+                                                       (dragstart)="preventDrag($event)"
+                                                       (drop)="preventDrag($event)"
+                                                       (keydown)="onKeydown($event)"/>
+                                            </ng-container>
+                                            <input type="text"
+                                                   formControlName="kapazitaetBoosterImpfung"
+                                                   class="kapazitaetN"
+                                                   [tabIndex]="getTabIndex(rowIndex, krankheit, timeIndex, BOOSTERIMPFUNG)"
+                                                   #kapazitaetN
+                                                   [ngClass]="{'empty': kapazitaetN.value==='0'}"
+                                                   [class.offtime]="isOfftime(row, cell.zeitfenster!.vonDisplay)"
+                                                   [class.invalid]="getControl(rowIndex,timeIndex,'kapazitaetBoosterImpfung', krankheit).invalid"
+                                                   (focus)="kapazitaetN.select()"
+                                                   (dragstart)="preventDrag($event)"
+                                                   (drop)="preventDrag($event)"
+                                                   (keydown)="onKeydown($event)"/>
+                                            <!-- dragstart/drop: wir wollen verhindern, dass man versehentlich Zahlen
+                                            verschiebt. VACME-406 -->
+                                        </div>
+                                    </td>
+                                </ng-container>
+                            </ng-container>
+                        </tr>
+                        <tr class="spacer-row"></tr>
+                    </ng-container>
+
+                </ng-container>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="nope-button">
+            <lib-button buttonKind="go-back"
+                        (clickIfEnabled)="backToStammdaten()"
+                        translationKey="FACH-APP.ODI.STAMMDATEN.ZURUECK"></lib-button>
+            <lib-button buttonKind="submit"
+                        *ngIf="formGroup" translationKey="FACH-APP.ODI.TERMINVERWALTUNG.SPEICHERN"></lib-button>
+            <lib-button buttonKind="primary"
+                        (clickIfEnabled)="generateImpfslots()"
+                        *ngIf="formGroup && !hasMonatEveryImpfslot"
+                        translationKey="FACH-APP.ODI.TERMINVERWALTUNG.IMPFSLOTS_ERSTELLEN"></lib-button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,50 @@
+{
+    "LANDINGPAGE": {
+        "TITLE": "Willkommen im COVID-19 Portal des Kantons Zürich",
+        "ONBOARDING_WELCOME": "Haben Sie von der Gesundheitsdirektion Zürich einen Brief zur Registrierung auf dem COVID-19 Portal erhalten?"
+    },
+    "IMPFAEHIGKEIT": {
+        "INTRO": "Nehmen Sie anhand der Informationen des BAG und des Kantons Zürich eine Selbsteinschätzung vor, um zu erfahren, ob Sie aktuell zu einer COVID-19 Impfung zugelassen sind.",
+        "LINK_QUESTIONS": "https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/gesundheit/corona/impfung/registrierungstool/selbsteinschaetzung.pdf",
+        "LINK_QUESTIONS_TEXT": "Fragebogen Selbsteinschätzung Kanton Zürich",
+        "LINK_CONSENT": "https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/gesundheit/corona/impfung/registrierungstool/info_zur_covid_19_impfung.pdf",
+        "LINK_CONSENT_TEXT": "Informationen zur Impfung des Kantons Zürich",
+        "HINWEIS": "Haben Sie bereits einen Account? Sie finden den VacMe Code in der SMS von VacMe mit dem Registrierungscode, der Registrierungsbestätigung und der Impfdokumentation."
+    },
+    "OVERVIEW": {
+        "BOOSTER_HELP_HREF": "https://www.zh.ch/de/gesundheit/coronavirus/coronavirus-impfung.html",
+        "PRIO_NICHT_FREIGEGEBEN_LINK": "https://www.zh.ch/coronaimpfung",
+        "PRIO_NICHT_FREIGEGEBEN_LINK_TEXT": "www.zh.ch/coronaimpfung",
+        "NICHT_VERWALTETER_ODI": "Impfung bei einem hier nicht aufgeführten Ort (Arztpraxis)",
+        "NICHT_VERWALTETER_ODI_HINT_1": "Bitte wenden Sie sich für eine Terminvereinbarung an Ihre Hausärztin / Ihren Hausarzt. Bitte beachten Sie, dass Hausarztpraxen die eigenen Patientinnen und Patienten impfen.",
+        "NICHT_VERWALTETER_ODI_HINT_2": "Sollten Sie keine Hausärztin / Hausarzt haben oder sollten keine Impfungen in Ihrer Hausarztpraxis durchgeführt werden, dann wählen Sie bitte «Auswahl ändern» und buchen Sie Termine an einem anderen Ort.",
+        "ZERTIFIKAT_HELP_HREF": "http://zh.ch/covidzertifikat",
+        "FREIGEGEBEN_BOOSTER_NICHT": "Sie werden informiert, sobald Sie eine Booster-Impfung (1 oder weitere) buchen können.",
+        "REGISTRATION_TYPE": {
+            "ONLINE_REGISTRATION": "Für diese Registrierung existiert ein Portal-Login (Online Registration oder erfolgreiches Onboarding)"
+        }
+    },
+    "REGISTRIERUNG": {
+        "AGB": "Ich bin mit den <a class='text-link' target='_blank' href='https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/gesundheit/corona/impfung/registrierungstool/nutzungsbedingungen.pdf'>Nutzungsbedingungen</a> einverstanden.",
+        "EINWILLIGUNG": "Ich habe die <a class='text-link' target='_blank' href='https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/gesundheit/corona/impfung/registrierungstool/einverstaendniserklaerung.pdf'>Einverständniserklärung</a> gelesen und bin damit einverstanden.",
+        "BERUF_OPTION": {
+            "GES_PERSONAL_MIT_PAT_KONTAKT_INTENSIV": "Gesundheitsfachpersonal mit direktem Patientenkontakt (Alters-/Pflege-/Behindertenheime, Spitäler und Kliniken, Spitex)",
+            "GES_PERSONAL_MIT_PAT_KONTAKT": "Gesundheitsfachpersonal mit direktem Patientenkontakt (Arztpraxen, Zahnarztpraxen, Apotheken und weitere ambulante Leistungserbringer)"
+        },
+        "GESCHLECHT_OPTION": {
+            "ANDERE": "Andere"
+        }
+    },
+    "FOOTER": {
+        "CAPTION": "COVID-19 Impfung Kanton Zürich",
+        "COPYRIGHT": "© 2021 - COVID-19 Impfung des Kantons Zürich"
+    },
+    "UMFRAGE": {
+        "AKTUELL_DATEN": "Sind Ihre Daten noch aktuell?",
+        "AKTUELL_DATEN_TEXT": "Wir haben folgende Angaben über Sie gespeichert. Bitte überprüfen Sie diese und berichtigen Sie sie gegebenenfalls. Sie helfen uns damit, VacMe aktuell zu halten.",
+        "AKTUELL_DATEN_BUTTON": "Bestätigen"
+    },
+    "ERKRANKUNGEN": {
+        "FREIGABE_ENTFERNT": "Durch Ihre kürzliche Impfung oder Covid-Erkrankung ist Ihr Impfschutz immer noch genügend. Eine Impfung ist zur Zeit nicht empfohlen."
+    }
+}

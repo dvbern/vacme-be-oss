@@ -1,0 +1,23 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+@import "projects/vacme-web-shared/src/styles/vacme-variables";
+
+p, a {
+    font-weight: 500;
+}
+
+
+.ampel {
+    margin-top: 2em;
+
+    p {
+        font-weight: 600;
+    }
+}
+
+p.critical {
+    color: $color-be-red;
+}

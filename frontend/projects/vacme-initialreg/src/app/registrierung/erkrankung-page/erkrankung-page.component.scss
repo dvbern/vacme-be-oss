@@ -1,0 +1,58 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+:host {
+    .erkrankung-row {
+        display: flex;
+        width: 100%;
+        align-items: flex-start; // nicht center, weil die Hoehe des Input waechst, wenn die Fehlermeldung angezeigt wird
+
+        .erkrankung-date-input {
+            flex-grow: 1;
+            margin-right: 20px;
+        }
+
+        .delete-button {
+            margin-top: 25px;
+            flex-shrink: 0;
+            padding-right: 0;
+            cursor: pointer;
+
+            span {
+                margin-left: 4px;
+            }
+
+            &[disabled] {
+                opacity: 0.3;
+                background: none;
+                color: #000;
+                cursor: default;
+            }
+        }
+
+    }
+
+    .add-button,
+    .delete-button {
+        display: block;
+        padding: 10px 10px 10px 0;
+    }
+
+    .add-icon,
+    .delete-icon {
+        width: auto;
+        vertical-align: middle;
+    }
+
+    .add-icon {
+        height: 38px;
+        margin-bottom: 1px;
+        margin-right: 10px;
+    }
+
+    .delete-icon {
+        height: 28px;
+    }
+}

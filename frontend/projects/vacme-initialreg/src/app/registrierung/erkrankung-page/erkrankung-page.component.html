@@ -1,0 +1,80 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='full-wdith'>
+    <div class='max-800'>
+
+        <h1 class="margin-top-30" translate>ERKRANKUNGEN.TITLE</h1>
+
+
+        <form [formGroup]="formGroup" (ngSubmit)="submitIfValid()" *ngIf="formGroup">
+
+            <!-- EMPTY MESSAGE -->
+            <p *ngIf="!getErkrankungenFormArray()?.length">
+                <span translate>ERKRANKUNGEN.EMPTY</span>
+            </p>
+
+            <!-- Liste -->
+            <ng-container formArrayName="erkrankungen" *ngIf="getErkrankungenFormArray() as erkrankungenFormArray">
+
+                <div *ngFor="let erkrankungFormGroupAny of erkrankungenFormArray.controls; let i = index"
+                     class="row">
+
+                    <div [formGroup]="erkrankungFormGroup"
+                         *ngIf="getErkrankungFormGroup(erkrankungFormGroupAny) as erkrankungFormGroup"
+                         class="erkrankung-row">
+
+                        <ng-container>
+                            <!-- Erkrankung-->
+                            <lib-input-text key="ERKRANKUNGEN.DATE"
+                                            formControlName="date"
+                                            class="erkrankung-date-input"
+                                            noticeText="{{getErkrankungHintKey(erkrankungFormGroup)}}"></lib-input-text>
+                            <button (click)="deleteErkrankung(i)" class="delete-button" type="button"
+                                    [disabled]="!canDelete(erkrankungFormGroup)">
+                                <img src="/assets/img/delete_black_24dp.svg" class="delete-icon">
+                                <span translate class="hide-for-small-only">ERKRANKUNGEN.DELETE</span>
+                            </button>
+
+                        </ng-container>
+                    </div>
+                </div>
+            </ng-container>
+
+            <!-- ADD -->
+            <div>
+                <a (click)="add();" onclick="this.blur()" *ngIf="canAdd()" class="add-button">
+                    <img src="img/Plus%20Icon.svg" class="add-icon">
+                    <span translate>ERKRANKUNGEN.ADD</span>
+                </a>
+            </div>
+
+            <!-- Buttons -->
+            <div class='next-back-buttons'>
+                <lib-button buttonKind="go-back" (clickIfEnabled)="cancel()">
+                    {{'ERKRANKUNGEN.CANCEL' | translate }}
+                </lib-button>
+
+                <lib-button buttonKind="submit" [disabled]="!canEditErkrankungen()">
+                    {{'ERKRANKUNGEN.SAVE' | translate }}
+                </lib-button>
+            </div>
+        </form>
+
+
+    </div>
+</div>

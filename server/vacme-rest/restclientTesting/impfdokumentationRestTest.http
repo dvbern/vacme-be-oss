@@ -1,0 +1,35 @@
+### Step 1: Liste von potentiellen Verantwortlichen lesen
+GET http://localhost:8080/api/v1/web/impfdokumentation/benutzer/verantwortliche/1f3821fd-22db-47c6-a341-2c7d1a7ac5ee
+
+### Step 2: Liste von potentiellen Durchfuehrenden lesen
+GET http://localhost:8080/api/v1/web/impfdokumentation/benutzer/durchfuehrende/1f3821fd-22db-47c6-a341-2c7d1a7ac5ee
+
+### Step 3: Liste der Impfstoffe lesen
+GET http://localhost:8080/api/v1/web/impfdokumentation/impfstoffe
+
+### Step 4: Impfung 1 speichern
+POST http://localhost:8080/api/v1/web/impfdokumentation/saveImpfung/916d4f37-3c1d-48de-8818-cf8e00b46a2f/ERSTE_IMPFUNG
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+	"durchfuehrenderBenutzerId": "c691e17e-668b-48c6-a91a-0f23b1cdd0fa",
+	"fieber": true,
+	"impfstoff": {
+		"anzahlDosenBenoetigt": 0,
+		"anzahlTageZwischenImpfungen": 0,
+		"code": "7680682250011",
+		"id": "141fca55-ab78-4c0e-a2fd-edf2fe4e9b30",
+        "hersteller": "BioNTech",
+		"name": "Comirnaty"
+	},
+	"lot": "string",
+	"menge": 5,
+	"neueKrankheit": true,
+	"registrierungsnummer": "K82Z4W",
+	"verantwortlicherBenutzerId": "c691e17e-668b-48c6-a91a-0f23b1cdd0fa",
+	"verarbreichungsart": "INTRA_MUSKULAER",
+	"verarbreichungsort": "OBERARM",
+	"verarbreichungsseite": "LINKS"
+}

@@ -1,0 +1,55 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+
+<p class="infobox-title" translate>GEIMPFT.IMPFAUSWEIS.TITLE</p>
+<div *ngIf="showDeservesNoZertifikatForNewestImpfung()">
+    <p translate>
+        GEIMPFT.IMPFAUSWEIS.NO_ZERTIFIKAT_FOR_NEWEST_IMPFUNG
+    </p>
+</div>
+<div *ngIf="showDownloadZertifikatButton()" class="impfausweis-button">
+    <lib-button (clickIfEnabled)="downloadZertifikat()" [noMargin]="true"
+                buttonKind="primary" translationKey="GEIMPFT.IMPFAUSWEIS.DOWNLOAD">
+    </lib-button>
+</div>
+<div *ngIf="showGenerateAndDownloadZertifikatButton()">
+    <p translate *ngIf="isNotOnlineRegistrierung()">
+        GEIMPFT.IMPFAUSWEIS.FORCED_GENERATION_INFO
+    </p>
+    <div class="impfausweis-button">
+
+        <lib-button buttonKind="primary"
+                    [noMargin]="true" (clickIfEnabled)="generateAndDownloadZertifikat()"
+                    translationKey="GEIMPFT.IMPFAUSWEIS.GENERATE_AND_DOWNLOAD"></lib-button>
+    </div>
+</div>
+
+<div *ngIf="elektronischerImpfausweis && !hasValidToken && !hasNoPendingZertifikatGeneration">
+    {{'GEIMPFT.IMPFAUSWEIS.NO_API_TOKEN_SHORT' | translate}}
+</div>
+
+<ng-container *ngIf="!elektronischerImpfausweis">
+    <form [formGroup]="elektronischerAusweisGroup">
+        <lib-input-checkbox formControlName="elektronischerImpfausweis"
+                            key="registrierung.abgleich_elektronischer_impfausweis"></lib-input-checkbox>
+    </form>
+    <div class="impfausweis-button">
+        <lib-button buttonKind="primary" translationKey="GEIMPFT.IMPFAUSWEIS.SPEICHERN"
+                    [noMargin]="true" (clickIfEnabled)="saveImpfausweis()"></lib-button>
+    </div>
+</ng-container>

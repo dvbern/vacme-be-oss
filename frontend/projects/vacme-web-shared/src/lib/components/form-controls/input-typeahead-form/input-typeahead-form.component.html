@@ -1,0 +1,52 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class="form-group typeahead-container"
+     [ngClass]="{'invalid': formControl.touched && formControl.invalid, 'autofocus': this.focusOnShow}">
+
+    <div class="input-and-clear">
+        <input type="text" #myInput
+               class="focusable-field"
+               data-lpignore="true"
+               [ngbTypeahead]="searcher"
+               [resultTemplate]="optionTemplate"
+               [inputFormatter]="formatter"
+               [editable]="false"
+               [placeholder]="placeholderKey ? (placeholderKey | translate) : (labelKey | translate)"
+               [ngClass]="{'invalid': formControl.invalid && formControl.touched}"
+               [id]="getId()"
+               [formControl]="formControl"
+               [attr.aria-describedby]="getValidationId()"
+               [attr.aria-labelledby]="getLabelId()"
+               (focus)="focus$.next($any($event).target.value)"
+               (click)="click$.next($any($event).target.value)"
+               (selectItem)="onSelect($event)">
+
+        <button class="clearbutton grow-on-hover" (click)="formControl.reset();focus$.next('')" *ngIf="myInput.value">
+            <img width="20" src="../img/close-icon.svg">
+        </button>
+
+        <label [id]="getLabelId()" class="floating-label open" translate>{{labelKey}}</label>
+    </div>
+
+    <lib-validationmessages *ngIf="formControl.touched" [errors]="formControl.errors"
+                            [myid]="getValidationId()"></lib-validationmessages>
+</div>
+
+<ng-template #optionTemplate let-r="result" let-t="term">
+    <ngb-highlight [result]="formatter(r)" [term]="t" [class.disabled]="r.disabled"></ngb-highlight>
+</ng-template>

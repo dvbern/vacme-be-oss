@@ -1,0 +1,60 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class="form-group select-container"
+     [ngClass]="{'invalid': (formControl.touched && formControl.invalid), 'autofocus': this.focusOnShow}"
+        >
+
+    <label class="select-label floating-label open" [attr.for]="getSelectId()">{{ key | uppercase |
+        translate }}</label>
+
+    <!-- We decided to native select that should work on mobile phones and everywhere else even though
+     they might not look super sexy. Accessibility is king. -->
+    <select [formControl]="formControl"
+            [id]="getSelectId()"
+            class="focusable-field "
+            [attr.aria-describedby]="getValidationId()"
+            [ngClass]="{'invalid': (formControl.touched && formControl.invalid)}">
+
+        <option [ngValue]="null" translate *ngIf="undefinedLabelKey"
+                [attr.selected]="true">{{undefinedLabelKey}}</option>
+
+        <option *ngFor="let option of optionsSorted" [ngValue]="option.value"
+                [disabled]="option.disabled"
+                class="option">
+            <!--
+            noTranslate => don't translate the option labels
+            translationPrefix => prefix the option labels before translating
+             -->
+            {{
+            noTranslate
+                ? option.label
+                : ((translationPrefix ? translationPrefix + '.' : '') + (option.label | uppercase))
+                    | translate
+            }}
+        </option>
+
+        <!-- apparently, an empty optgroup helps mobile phones to display the options correctly
+         when the options are big -->
+        <optgroup label="" *ngIf="addOptgroup"></optgroup>
+    </select>
+
+
+    <lib-validationmessages *ngIf="formControl.touched" [errors]="formControl.errors"
+                            [myid]="getValidationId()"></lib-validationmessages>
+
+</div>
