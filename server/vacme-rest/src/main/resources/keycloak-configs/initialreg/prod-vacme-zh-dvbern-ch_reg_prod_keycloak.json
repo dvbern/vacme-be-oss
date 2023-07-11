@@ -1,0 +1,8 @@
+{
+	"realm": "vacme",
+	"auth-server-url": "https://zh.vacme.ch/auth/",
+	"ssl-required": "external",
+	"resource": "vacme-initial-app-prod",
+	"public-client": true,
+	"confidential-port": 0
+}

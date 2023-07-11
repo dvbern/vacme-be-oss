@@ -1,0 +1,251 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<form [formGroup]="formGroup" *ngIf="formGroup">
+    <div class="row margin-top-30">
+        <lib-form-control-ampel formControlName="ampelColor" *ngIf="showAmpel()"
+                                [formControl]="ampelFormGroup()"></lib-form-control-ampel>
+    </div>
+
+    <div class="row" *ngIf="newPerson">
+        <lib-warningbox *ngIf="ampelFormGroup().value === 'RED'" [critical]="true">
+            <span class="critical" translate>IMPFAEHIGKEIT.RED_WARNING</span>
+        </lib-warningbox>
+        <lib-warningbox *ngIf="ampelFormGroup().value === 'ORANGE'">
+            <span translate>IMPFAEHIGKEIT.ORANGE_WARNING</span>
+        </lib-warningbox>
+        <lib-warningbox *ngIf="ampelFormGroup().value === 'GREEN'" [success]="true">
+            <span translate>IMPFAEHIGKEIT.GREEN_WARNING</span>
+        </lib-warningbox>
+    </div>
+
+    <div class="row">
+        <lib-input-select
+                formControlName="geschlecht" key="registrierung.geschlecht"
+                translationPrefix="REGISTRIERUNG.GESCHLECHT_OPTION"
+                undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                [options]="geschlechtOptions"></lib-input-select>
+
+    </div>
+    <div class="row">
+        <lib-input-text key="registrierung.name"
+                        noticeText="REGISTRIERUNG.NAME_HINT"
+                        formControlName="name" [autocomplete]="false"></lib-input-text>
+    </div>
+    <div class="row">
+        <lib-input-text key="registrierung.vorname"
+                        noticeText="REGISTRIERUNG.VORNAME_HINT"
+                        formControlName="vorname" [autocomplete]="false"></lib-input-text>
+    </div>
+
+    <div [formGroup]="adresseFormGroup()">
+        <div class="row">
+            <lib-input-text key="registrierung.strasse"
+                            formControlName="adresse1"></lib-input-text>
+        </div>
+        <div class="row" style="display: flex; flex-direction: row; justify-content: space-evenly;">
+            <lib-input-text style="flex: 1;" key="registrierung.plz"
+                            formControlName="plz"></lib-input-text>
+            <div style="flex: .1;"></div>
+            <lib-input-text style="flex: 2;" key="registrierung.ort"
+                            formControlName="ort"></lib-input-text>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="hasMobileOrtDerImpfung()
+            && this.vacmeSettingsService.supportsMobileImpfteams(getKrankheit())">
+        <lib-input-checkbox (change)="showMobilConfirmation()" key="registrierung.immobil"
+                            formControlName="immobil"></lib-input-checkbox>
+    </div>
+
+    <div class="row">
+        <lib-input-text key="registrierung.mail"
+                        formControlName="mail" [autocomplete]="false"></lib-input-text>
+    </div>
+
+    <div class="row">
+        <span translate *ngIf="showTelefonHinweis">REGISTRIERUNG.TELEFON_HINWEIS</span>
+        <lib-input-text key="registrierung.telefon"
+                        formControlName="telefon" [autocomplete]="false"></lib-input-text>
+    </div>
+
+    <div class="row">
+        <lib-input-text key="registrierung.identifikationsnummer"
+                        formControlName="identifikationsnummer"></lib-input-text>
+    </div>
+
+    <div [formGroup]="getKontrolleGroup('impfungkontrolleTermin')">
+        <div class="row">
+            <lib-input-checkbox key="FACH-APP.KONTROLLE.IDENTITAET-GEPRUEFT"
+                                formControlName="identitaetGeprueft"></lib-input-checkbox>
+        </div>
+
+        <!-- selbstzahlende -->
+        <div class="row">
+            <lib-input-radio
+                [showGroupLabel]="true"
+                key="IMPFDOK.SELBSTZAHLENDE"
+                formControlName="selbstzahlende"
+                [options]="selbstzahlendeOptions"
+                translationPrefix="IMPFDOK.SELBSTZAHLENDE_OPTION">
+            </lib-input-radio>
+        </div>
+    </div>
+
+    <div class="row">
+        <lib-input-select
+                (change)="krankenkasseSelectChange($event)"
+                formControlName="krankenkasse"
+                key="registrierung.krankenkasse"
+                [options]="kkUtil.krankenkasseOptions()"
+                [doSortOptions]="false"
+                undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                translationPrefix="REGISTRIERUNG.KK_OPTION"></lib-input-select>
+    </div>
+
+    <div class="row">
+        <lib-input-text key="registrierung.kartennummer"
+                        formControlName="krankenkasseKartenNr"></lib-input-text>
+        <span *ngIf="kkUtil.isKrankenkasseSelected(this, 'krankenkasseKartenNr')"
+              class="error" style="margin-top: -16px;"
+              translate>VALIDATIONERROR.ERGAENZE_KRANKENKASSENNUMMER</span>
+    </div>
+
+    <div class="row" *ngIf="kkUtil.isKrankenkasseAuslandOrKeine(this, 'krankenkasse')">
+        <lib-input-select formControlName="auslandArt" key="registrierung.auslandArt"
+                          translationPrefix="REGISTRIERUNG.AUSLAND_ART_OPTION"
+                          [options]="bezugOptions"
+                          undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"></lib-input-select>
+    </div>
+
+    <div class="row" *ngIf="formGroup.get('schutzstatus')">
+        <lib-input-checkbox key="registrierung.schutzstatus"
+                            formControlName="schutzstatus"></lib-input-checkbox>
+    </div>
+
+    <div class="row">
+        <lib-input-text key="registrierung.geburtsdatum"
+                        formControlName="geburtsdatum"></lib-input-text>
+    </div>
+
+    <div class="row form-group">
+        <lib-input-checkbox formControlName="verstorben" key="FACH-APP.KONTROLLE.VERSTORBEN.QUESTION">
+        </lib-input-checkbox>
+    </div>
+
+    <div [formGroup]="getKontrolleGroup('impfungkontrolleTermin')">
+        <div class="row">
+            <lib-input-textarea key="registrierung.bemerkungen"
+                                formControlName="bemerkung"></lib-input-textarea>
+        </div>
+    </div>
+
+    <div class="row margin-bottom-15">
+        <span>{{ 'registrierung.krankheiten_intro' | uppercase | translate }}</span>
+    </div>
+
+    <div class="row">
+        <lib-input-select
+                formControlName="chronischeKrankheiten"
+                key="registrierung.krankheiten"
+                [options]="krankheitenOptions"
+                undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                translationPrefix="REGISTRIERUNG.KRANKHEITEN_OPTION"
+                [addOptgroup]="true"></lib-input-select>
+    </div>
+
+    <div class="row">
+        <lib-input-select formControlName="lebensumstaende"
+                          key="registrierung.lebensumstaende" undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                          translationPrefix="REGISTRIERUNG.LEBENSUMSTAENDE_OPTION"
+                          [options]="fragebogenUtil.lebensumstaendeOptions()" [addOptgroup]="true"
+        ></lib-input-select>
+    </div>
+
+    <div class="row form-group">
+        <lib-input-select formControlName="beruflicheTaetigkeit"
+                          key="registrierung.beruf" undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                          translationPrefix="REGISTRIERUNG.BERUF_OPTION"
+                          [options]="beruflicheTaetigkeit" [addOptgroup]="true"
+        ></lib-input-select>
+    </div>
+
+    <div class="row form-group" *ngIf="vacmeSettingsService.supportsZertifikat(getKrankheit())">
+        <lib-input-checkbox key="REGISTRIERUNG.ABGLEICH_ELEKTRONISCHER_IMPFAUSWEIS"
+                            formControlName="abgleichElektronischerImpfausweis"></lib-input-checkbox>
+    </div>
+
+    <div class="row form-group" *ngIf="hasKeinKontaktEnabled()">
+        <lib-input-checkbox formControlName="keinKontakt" key="REGISTRIERUNG.KEINKONTAKT">
+        </lib-input-checkbox>
+    </div>
+
+    <div class="row form-group" *ngIf="hasContactTracingEnabled()">
+        <lib-input-checkbox key="REGISTRIERUNG.CONTACT_TRACING"
+                            formControlName="contactTracing"></lib-input-checkbox>
+    </div>
+
+    <!-- externes Zertifikat -->
+    <lib-extern-geimpft-form
+        *ngIf="!!formGroup && showExternGeimpft"
+        [krankheit]="getKrankheit()"
+        [formGroup]="externGeimpftFormGroup()"
+        [impfstoffOptions]="impfstoffOptions"
+        [showTrotzdemVollstaendigeGrundimmunisierungWahrnehmen]="true"
+        [showKontrolliertCheckbox]="true"
+        [externGeimpftOriginal]="impfkontrolle?.externGeimpft">
+    </lib-extern-geimpft-form>
+
+    <!-- Leistungserbringer-AGBs aktzeptieren -->
+    <div class="row form-group agb" *ngIf="showLeistungserbringerAGB()">
+        <h4 translate>FACH-APP.KONTROLLE.LEISTUNGSERBRINGER_AGB.TITLE</h4>
+        <span translate>FACH-APP.KONTROLLE.LEISTUNGSERBRINGER_AGB.TEXT</span>
+            <lib-input-checkbox key="FACH-APP.KONTROLLE.LEISTUNGSERBRINGER_AGB.AGB"
+                                formControlName="agb"></lib-input-checkbox>
+            <lib-input-checkbox key="FACH-APP.KONTROLLE.LEISTUNGSERBRINGER_AGB.EINWILLIGUNG"
+                                formControlName="einwilligung"></lib-input-checkbox>
+    </div>
+
+    <!-- BUTTONs -->
+    <div style="display: flex;">
+
+        <div id="buttons-anchor"></div>
+
+        <lib-button buttonKind="go-back" (clickIfEnabled)="navigateBackEvent.emit()"
+                    translationKey="IMPFDOK.ZURUECK"></lib-button>
+
+        <div style="flex-grow: 1">
+            <lib-button buttonKind="submit" [disabled]="!canSave || isAmpelRed()"
+                        (clickIfEnabled)="saveIfValid()" translationKey="FACH-APP.KONTROLLE.SPEICHERN">
+            </lib-button>
+        </div>
+
+        <div style="flex-grow: 1" *ngIf="isBerechtigtForImpfdokumentation() && !canSave">
+            <lib-button buttonKind="primary"
+                        (clickIfEnabled)="navigateToImpfdokumentationEvent.emit()"
+                        translationKey="FACH-APP.KONTROLLE.GOTO_IMPFUNG">
+            </lib-button>
+        </div>
+
+        <div style="display: flex; flex-direction: column" *ngIf="!newPerson">
+            <lib-button buttonKind="secondary" [disabled]="!canSave || isAmpelRed()"
+                        (clickIfEnabled)="saveFalschePersonIfValid()"
+                        translationKey="FACH-APP.KONTROLLE.PERSON_SPEICHERN">
+            </lib-button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,98 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<div class='full-wdith'>
+    <form [formGroup]="formGroup" *ngIf="isUserInroleAsRegistrationOi(); else noAccess">
+
+        <!-- Impfungen in ein anderes ODI verschieben -->
+        <div class="row">
+            <h4>Impfungen Migrieren</h4>
+            <p>Hier können Sie Impfungen einem neuen Odi zuweisen.
+                Geben Sie dazu die UUIDs der zu migrierenden Impfungen und der ziel ODI kommasepariert an (ohne Leerzeilen):</p>
+            <pre>00000000-0000-0000-0000-000000000000, 11111111-1111-1111-1111-111111111111 // Entry 1</pre>
+            <pre>22222222-2222-2222-2222-222222222222, 11111111-1111-1111-1111-111111111111 // Entry 2</pre>
+        </div>
+        <div class="row">
+            <lib-input-textarea [noTranslate]="true" key="Zu migrierende Impfung-Ids und ODI-Ids. Kommasepariert"
+                                formControlName="odiMigration"></lib-input-textarea>
+        </div>
+        <div class="row">
+            <lib-button buttonKind="primary" (clickIfEnabled)="submitMigration()">Massenverarbeitung starten</lib-button>
+        </div>
+
+        <!-- Impfungen auf Extern setzen und in VMDL loeschen -->
+        <div class="row">
+            <h4>Duplikatentfernung</h4>
+            <p>Hier können Sie Impfungen in VACME auf extern setzen und sie aus VMDL loeschen lassen
+                Geben Sie dazu die UUIDs der zu entfernenden Impfungen zeilengetrennt unten an (ohne Leerzeilen)</p>
+            <div>
+                00000000-0000-0000-0000-000000000000<br/>
+                00000000-0000-0000-0000-000000000001<br/>
+                 ...
+            </div>
+        </div>
+        <div class="row">
+            <lib-input-textarea [noTranslate]="true" key="Zu löschende Impfung-Ids."
+                                formControlName="duplikat"></lib-input-textarea>
+        </div>
+        <div class="row">
+            <lib-button buttonKind="primary" (clickIfEnabled)="submitDuplikat()">Massenverarbeitung starten</lib-button>
+        </div>
+
+
+        <!-- Registrierungen loeschen -->
+        <div class="row">
+            <h4>Registrierungen löschen</h4>
+            <p>Registrierungen löschen, welche keine Impfungen und keine Zertifikate haben.</p>
+            <div>
+                AB15C8<br/>
+                45GNE4<br/>
+                ...
+            </div>
+        </div>
+        <div class="row">
+            <lib-input-textarea [noTranslate]="true" key="Zu löschende Registrierungsnummern."
+                                formControlName="registrierungenToDelete"></lib-input-textarea>
+        </div>
+        <div class="row">
+            <lib-button buttonKind="primary" (clickIfEnabled)="deleteRegistrations()">Massenverarbeitung starten</lib-button>
+        </div>
+
+        <!-- Impfungen loeschen -->
+        <div class="row">
+            <h4>Impfungen löschen</h4>
+            <p>Hier können Sie Impfungen in VACME und aus VMDL loeschen lassen. Die zur Impfung gehörenden Zertifikate
+                werden revoziert.
+                Geben Sie dazu die UUIDs der zu entfernenden Impfungen zeilengetrennt unten an (ohne Leerzeilen)</p>
+            <div>
+                00000000-0000-0000-0000-000000000000<br/>
+                00000000-0000-0000-0000-000000000001<br/>
+                ...
+            </div>
+        </div>
+        <div class="row">
+            <lib-input-textarea [noTranslate]="true" key="Zu löschende Impfung-Ids."
+                                formControlName="impfungenLoeschen"></lib-input-textarea>
+        </div>
+        <div class="row">
+            <lib-button buttonKind="primary" (clickIfEnabled)="impfungenLoeschen()">Massenverarbeitung starten</lib-button>
+        </div>
+
+    </form>
+    <ng-template #noAccess>
+        <div>Der eingeloggte Benutzer hat keine Berechtigung fuer diese Seite. </div>
+    </ng-template>
+</div>

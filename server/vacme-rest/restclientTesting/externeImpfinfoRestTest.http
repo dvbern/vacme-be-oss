@@ -1,0 +1,26 @@
+### Externe Impfinfo anlagen mit einem Eintrag
+POST http://localhost:8080/api/v1/reg/externeimpfinfo/8N7KLM
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+	"externeImpfinfoEintraege": [
+		{
+			"datumImpfung": "2021-09-15",
+			"impffolgeNr": 1,
+			"impfstoffId": "141fca55-ab78-4c0e-a2fd-edf2fe4e9b30"
+		},
+		{
+			"datumImpfung": "2021-09-16",
+			"impffolgeNr": 2,
+			"impfstoffId": "141fca55-ab78-4c0e-a2fd-edf2fe4e9b30"
+		},
+		{
+			"datumImpfung": "2021-09-17",
+			"impffolgeNr": 3,
+			"impfstoffId": "141fca55-ab78-4c0e-a2fd-edf2fe4e9b30"
+		}
+	],
+	"vonCoronaGenesen": true
+}

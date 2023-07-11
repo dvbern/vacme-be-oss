@@ -1,0 +1,93 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<!-- Alle Zertifikate -->
+<ng-container *ngIf="zertifikatList">
+    <div *ngFor="let zertifikat of zertifikatList"
+         class="step-1-text step-1-text-center" style="margin-top: 15px;">
+
+        <!-- Titel -->
+        <p class="impfausweis-title"
+           translate
+           [translateParams]="{date: printDate(zertifikat.timestampZertifikatErstellt)}">OVERVIEW.ZERTIFIKAT_N.TITLE</p>
+
+        <!-- Infos -->
+        <div style="margin-top: 10px;">
+            <div class="info-line">
+                <div>
+                    <span translate>OVERVIEW.ZERTIFIKAT_N.DOSIS</span>
+                    <span>:&nbsp;</span>
+                </div>
+                <div>
+                    <span>{{zertifikat.numberOfDoses}} / {{zertifikat.totalNumberOfDoses}}</span>
+                </div>
+            </div>
+
+            <div class="info-line">
+                <div>
+                    <span translate>OVERVIEW.ZERTIFIKAT_N.IMPFSTOFF</span>
+                    <span>:&nbsp;</span>
+                </div>
+                <div>
+                    <span>{{zertifikat.impfstoffJax!.displayName!}}</span>
+                </div>
+            </div>
+
+            <div class="info-line">
+                <div>
+                    <span translate>OVERVIEW.ZERTIFIKAT_N.IMPFDATUM</span>
+                    <span>:&nbsp;</span>
+                </div>
+                <div>
+                    <span>{{printDate(zertifikat.vaccinationDate)}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- revoked -->
+        <div class="info-line" *ngIf="zertifikat.revoked">
+            <div>
+                <span translate>OVERVIEW.ZERTIFIKAT_N.REVOKED</span>
+                <span>:&nbsp;</span>
+            </div>
+            <div>
+                <span>{{ printDate(zertifikat.timestampZertifikatRevoked)}}</span>
+            </div>
+        </div>
+        <!-- uvci -->
+        <div class="info-line">
+            <div>
+                <span translate>OVERVIEW.ZERTIFIKAT_N.UVCI</span>
+                <span>:&nbsp;</span>
+            </div>
+            <div>
+                <span class="break-word">{{zertifikat.uvci}}</span>
+            </div>
+        </div>
+
+        <!-- download -->
+        <div *ngIf="!zertifikat.revoked" (click)="downloadSpecificZertifikat(zertifikat)" class="download">
+            <div style="text-align: center; padding: 5px;">
+                <img width="60"
+                     src="../img/certificate.png"/>
+            </div>
+            <div class="downloadLinkText" style="text-align: center; padding: 5px;">
+                <a><span translate>OVERVIEW.ZERTIFIKAT_N.DOWNLOAD</span></a>
+            </div>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,640 @@
+{
+    "NAVIGATION": {
+        "HELP": "Aide",
+        "LOGIN": "Login",
+        "LOGOUT": "Logout"
+    },
+    "LANDINGPAGE": {
+        "TITLE": "Bienvenue sur le portail de vaccination du canton de Berne",
+        "ONBOARDING_WELCOME": "Avez-vous reçu une lettre de la direction de la santé du canton de Berne pour vous enregistrer sur le portail de vaccination?",
+        "ONBOARDING_WELCOME_BUTTON": "Si oui, cliquez ici",
+        "ANGEBOT": "Les vaccins suivants peuvent être effectués via VacMe : <li>Variole du singe - <a href='https://www.gsi.be.ch/fr/start/themen/gesundheit/krankheiten-und-impfungen/uebertragbare-krankheiten-und-impfungen/informationen-zur-affenpockenerkrankung.html' target='_blank'>Infolink</a></li><li>Covid-19 - <a href='https://www.gsi.be.ch/fr/start/themen/coronavirus.html' target='_blank'>Infolink</a></li><li>FSME</li>",
+        "LOGIN_TEXT": "Je possède déjà un identifiant.",
+        "LOGIN_BUTTON": "Identifiant",
+        "ODER": "ou",
+        "REGISTER_TEXT": "Je suis nouveau chez VacMe.",
+        "REGISTER_BUTTON": "S’enregistrer",
+        "REGISTER_BUTTON_CONTINUE": "Poursuivre l’enregistrement",
+        "FSME_TEXT": "Réserver vos vaccins contre les tiques (FSME) à partir de mai 2023 également via l'application Well. <a target='_blank' href='https://open.well.ch/VacMeLP'>Télécharger l'application Well</a>"
+    },
+    "ONBOARDING": {
+        "TRIGGER": {
+            "MISSING_LOGIN": "Il n'y a pas encore d’identifiant pour cet enregistrement.",
+            "SEND": "Envoyer une lettre pour que la personne puisse créer un identifiant ",
+            "CONFIRM": {
+                "TEXT": "Faut-il envoyer une lettre par la poste pour que la personne vaccinée puisse créer un identifiant?",
+                "CONFIRM": "Envoyer",
+                "CANCEL": "Annuler"
+            },
+            "BESTAETIGUNG": "Lettre envoyée"
+        },
+        "START": {
+            "INTRO": "Reliez vos données de vaccination COVID-19 existantes avec un identifiant VacMe.",
+            "CODE": "Code",
+            "SEND": "Continuer",
+            "IS_LOGGED_IN": "Vous êtes déjà connecté. Souhaitez-vous relier les données de vaccination avec cet identifiant?",
+            "KEEP_USER": "Oui, relier avec cet identifiant",
+            "LOGOUT": "Non, enregistrer à nouveau"
+
+        },
+        "PROCESS": {
+            "PROGRESS": "Les données de vaccination sont en train d’être chargées..."
+        },
+        "SUCCESS": {
+            "TITLE": "Enregistrement réussi",
+            "MESSAGE_1": "Vous pouvez maintenant accéder à vos documents de vaccination."
+        },
+        "ERROR_TIMEOUT": "Le temps s’est écoulé, réessayez s’il vous plaît."
+    },
+    "CONFIRMATION": {
+        "YES": "Oui",
+        "NO": "Non"
+    },
+    "IMPFAEHIGKEIT": {
+        "TITLE": "Auto-évaluation",
+        "INTRO": "Pour savoir si vous pouvez vous faire vacciner, veuillez procéder à une auto-évaluation à l’aide des informations fournies par l’Office fédéral de la santé publique et par le canton de Berne.",
+        "TASK": "Parcourez le questionnaire d’auto-évaluation (le lien s’ouvre dans une nouvelle fenêtre). Continuez une fois que le résultat est disponible.",
+        "LINK_QUESTIONS": "https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/fr/themen/coronavirus/vacme/Questionnaire_d_auto_evaluation.pdf",
+        "LINK_QUESTIONS_TEXT": "Questionnaire d’auto-évaluation du canton de Berne",
+        "LINK_CONSENT": "https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/fr/themen/coronavirus/vacme/Informations_sur_la_vaccination.pdf",
+        "LINK_CONSENT_TEXT": "informations sur la vaccination contre le COVID-19 dans le canton de Berne.",
+        "CONSENT_CHECK_1": "J’ai lu et compris les ",
+        "CONSENT_CHECK_2": "J’accepte de me faire vacciner.",
+        "RESULT": "Sélectionnez le résultat du questionnaire.",
+        "SEND": "Poursuivre l’enregistrement",
+        "RED_WARNING": "Vous ne pouvez actuellement pas vous faire vacciner. Réévaluez la situation en cas de changement de votre état de santé ou parlez-en avec un médecin.",
+        "ORANGE_WARNING": "Vous pouvez déjà vous enregistrer, mais vous devez parler de la vaccination avec un-e médecin.",
+        "GREEN_WARNING": "Vous pouvez vous enregistrer. "
+    },
+    "IMPFDOSSIERS_OVERVIEW": {
+        "TITLE": "Vos vaccinations",
+        "IMPFDOSSIER_SUMMARY_LIST_ITEM": {
+            "TERMIN_MANUELL_ABGEMACHT": "Le rendez-vous pour la vaccination a été pris personnellement.",
+            "NO_FREIE_TERMINE": "Actuellement, il n’y a pas de dates de vaccination disponibles",
+            "TERMINE_VERFUEGBAR": "Vous êtes éligible à la vaccination",
+            "TERMINE_VERFUEGBAR_BUCHEN": "Réserver un rendez-vous",
+            "TERMIN": "Rendez-vous le {{date}} | {{time}} heures",
+            "NO_FREIGABE_GRUNDIMMUNISIERUNG": "Le rendez-vous ne peut pas être réservé",
+            "NO_FREIGABE": "Vous serez informé(e) dès que vous pourrez réserver la prochaine vaccination",
+            "NO_FREIGABE_FSME": "Vous serez averti(e) le {{date}} pour la prise de rendez-vous pour la prochaine vaccination.",
+            "NO_FREIGABE_NO_BENACHRICHTIGUNG": "",
+            "TO_DOSSIER": "Vers le dossier"
+        },
+        "WEITERE_IMPFUNGEN": "Vaccins disponibles contre d'autres maladies"
+    },
+    "IMPFDOSSIERS_AUSWAHL": {
+        "TITLE": "Vaccins disponibles",
+        "AUSWAEHLEN": "Sélectionnez",
+        "KEINE_IMPFUNGEN": "Pas d'autres vaccins disponibles"
+    },
+    "OVERVIEW": {
+        "BOOSTER_TITEL": "Vaccination rappel",
+        "BOOSTER_HELP_HREF": "https://www.be.ch/boostercheck",
+        "DOSSIER_TITEL": "Dossier de vaccination: {{translatedKrankheit}}",
+        "PRIO_NICHT_FREIGEGEBEN_1": "Vous vous êtes bien enregistré-e. Le groupe auquel vous avez été attribué-e n’est pas encore approuvé. Veuillez consulter la page ",
+        "PRIO_NICHT_FREIGEGEBEN_LINK": "https://www.gsi.be.ch/fr/start/themen/coronavirus/impfen.html",
+        "PRIO_NICHT_FREIGEGEBEN_LINK_TEXT": "be.ch/vaccination-corona",
+        "PRIO_NICHT_FREIGEGEBEN_2": " pour savoir si les personnes de votre groupe peuvent se faire vacciner. Lorsque tel est le cas, vous pouvez prendre rendez-vous via le présent portail pour les deux injections. Le processus d’enregistrement est terminé. Vos données ont été enregistrées.",
+        "FREIGEGEBEN_BOOSTER_COVID": "Réserver un rendez-vous",
+        "FREIGEGEBEN_BOOSTER_NICHT_COVID": "Vous serez informé par {{notificationMethod}} dès que vous pourrez réserver une vaccination de rappel (1 ou plus).",
+        "FREIGEGEBEN_BOOSTER_AFFENPOCKEN": "Vous êtes approuvé pour la vaccination.",
+        "FREIGEGEBEN_BOOSTER_NICHT_AFFENPOCKEN": "Vous êtes pas encore approuvé pour la vaccination.",
+		"FREIGEGEBEN_BOOSTER_FSME": "",
+		"FREIGEGEBEN_BOOSTER_NICHT_FSME": "Vous serez averti(e) le {{date}} pour la prise de rendez-vous pour la prochaine vaccination.",
+        "FREIGEGEBEN_BOOSTER_SELBSTZAHLER": "Je souhaite quand même recevoir un autre rappel COVID et je paie moi-même le vaccin",
+        "EINWILLIGUNGSERKLAERUNG_AFFENPOCKEN": "En réservant un rendez-vous, je confirme avoir pris connaissance de la fiche d’information au sujet de la vaccination contre <a class='text-link' target='_blank' href='https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/fr/themen/gesundheit/krankheiten-und-impfungen/uebertragbare-krankheiten-und-impfungen/affenpocken/fiche-d-information-vaccination-contre-la-variole-du-singe.pdf'> la variole du singe </a> et que je fais partie de l’un des groupes de personnes auxquelles la vaccination est recommandée.<br/>N’oubliez pas d’apporter votre  <a class='text-link' target='_blank' href='https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/fr/themen/gesundheit/krankheiten-und-impfungen/uebertragbare-krankheiten-und-impfungen/affenpocken/declaration-de-consentement-a-la-vaccination-contre-la-variole-du-singe.docx'> déclaration de consentement</a> signée à votre rendez-vous !<br/>Le médecin en charge de la vaccination répond volontiers à vos questions.",
+        "SELBSTZAHLER_HINT": "Vous avez décidé de vous faire vacciner, mais cette vaccination n'est pas couverte par la campagne de vaccination COVID. Veuillez noter que vous devrez payer vous-même cette vaccination.",
+        "ZWEIDREIWOCHEN": "La vaccination requiert {{count}} injections à intervalle de {{desiredDistance}}. Vous devez toujours réserver deux rendez-vous. Si une seule injection se révèle nécessaire, le second rendez-vous sera annulé au moment de la première injection.",
+        "TERMIN_MANUELL_ABMACHEN": "Vous pouvez fixer un rendez-vous. A noter que vous devrez présenter la confirmation de rendez-vous et votre code personnel sur le lieu de vaccination.",
+        "TERMIN_EXTERNER_BUCHUNGSLINK": "Veuillez prendre personnellement rendez-vous pour une vaccination en cliquant sur le lien suivant:<br>{{link}}<br>Présentez la confirmation du rendez-vous avec votre code personnel au poste de vaccination.",
+        "TERMIN_MOBILES_IMPFTEAM": "Vous avez choisi de vous faire vacciner par une équipe mobile, qui viendra chez vous. Nous vous remercions d’ores et déjà de votre patience, les visites peuvent prendre du temps. Il est impossible de fixer un rendez-vous à l’avance.",
+        "HINT_ODI_TYPE": {
+            "IMPFZENTRUM": "",
+            "KINDER_IMPFZENTRUM": "",
+            "HAUSARZT": "",
+            "ALTERSHEIM": "",
+            "APOTHEKE": "<b>Veuillez tenir compte des remarques suivantes :</b><br/> <ul> <li>Les personnes enceintes ont besoin d'un certificat médical pour se faire vacciner en pharmacie.</li> <li>Les personnes immunodéprimées et les personnes souffrant de maladies auto-immunes ne peuvent pas être vaccinées en pharmacie. Veuillez vous adresser à votre médecin traitant </li> </ul>",
+            "MOBIL": "",
+            "SPITAL": "",
+            "ANDERE": ""
+        },
+        "BUCHEN": "Réserver",
+        "SELECT": "Sélectionner",
+        "IMPFORT_WAEHLEN": "Les personnes du groupe auquel vous avez été attribué-e peuvent se faire vacciner. Sélectionnez le lieu de vaccination souhaité.",
+        "IMPFORT_LABEL": "-- Séléctionner lieu de vaccination --",
+        "NICHT_VERWALTETER_ODI": "Vaccination dans un lieu non mentionné ici (cabinet médical / pharmacie)",
+        "NICHT_VERWALTETER_ODI_HINT_1": "Pour prendre rendez-vous, veuillez vous adresser à votre médecin de famille ou à votre pharmacien-ne. A noter que, dans les cabinets médicaux, les médecins vaccinent leur propre patientèle uniquement.",
+        "NICHT_VERWALTETER_ODI_HINT_2": "Si vous n’avez pas de médecin de famille ou que le vaccin contre le COVID-19 n’est administré ni dans votre cabinet médical ni dans votre pharmacie, veuillez sélectionner « Modifier la sélection » et prendre rendez-vous dans un autre lieu de vaccination.",
+        "NICHT_VERWALTETER_ODI_ABSAGEN": "Modifier la sélection",
+        "NO_TERMIN": "(pas de rendez-vous)",
+        "NEXT_TERMIN_AM": "prochaine date le",
+        "ODI_INAKTIV": "(plus actif)",
+        "NOTIFICATION_METHOD_LETTER": "lettre",
+        "NOTIFICATION_METHOD_SMS": "SMS",
+        "TERMIN": "{{i}}. Rendez-vous",
+        "TERMIN_N": "Rendez-vous",
+        "TERMIN_NOCH_NICHT_ABGEMACHT": "Pas encore fixé",
+        "TERMIN_NOCH_NICHT_GEBUCHT": "Pas encore réservé!",
+        "CLEAR_TERMIN": "supprimer",
+        "DONE_TERMIN": "vacciné",
+        "PLANNED_TERMIN": "prévu",
+        "MISSED_TERMIN": "manqué",
+        "WARNUNG_ZEITABSTAND": "Les rendez-vous pour la vaccination doivent être espacés de {{min}} à {{max}} jours.",
+        "WARNUNG_ZEITABSTAND_OVER": "L’intervalle recommandé entre les vaccinations est de quatre semaines. Avec {{max}} jours, vous êtes en dehors de cette plage. Une vaccination est toujours possible si vous êtes d’accord.",
+        "PUENKTLICH_COVID": "Veuillez arriver à l’heure au rendez-vous. Il faut prévoir une heure pour la vaccination. N’oubliez pas de présenter les documents suivants : <ul><li>code personnel</li><li>Pièce d’identité officielle </li><li>Carte d’assurance</li><li>Carnet de vaccination</li><li>Eventuels documents complémentaires, p. ex. une attestation médicale.</li><li>Preuve éventuelle que le Covid-19 a déjà été contracté (test PCR positif ou ordonnance de mise en isolement)</li><li>Toute preuve de vaccination par Covid-19 non documentée dans VacMe.</li></ul>",
+        "PUENKTLICH_AFFENPOCKEN": "Veuillez arriver à l’heure au rendez-vous. Il faut prévoir une heure pour la vaccination. N’oubliez pas de présenter les documents suivants : <ul><li>code personnel</li><li>Pièce d’identité officielle </li><li>Carte d’assurance</li><li>Carnet de vaccination</li><li>Eventuels documents complémentaires, p. ex. une attestation médicale.</li><li>la présente déclaration de <a class='text-link-white' target='_blank' href='https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/fr/themen/gesundheit/krankheiten-und-impfungen/uebertragbare-krankheiten-und-impfungen/affenpocken/declaration-de-consentement-a-la-vaccination-contre-la-variole-du-singe.docx'>consentement</a> signée.</li><li>Toute preuve de vaccination antivariolique non documentée dans VacMe.</li></ul>",
+		"PUENKTLICH_FSME": "Veuillez arriver à l’heure au rendez-vous. Il faut prévoir une heure pour la vaccination. N’oubliez pas de présenter les documents suivants : <ul><li>code personnel</li><li>Pièce d’identité officielle </li><li>Carte d’assurance</li><li>Carnet de vaccination</li><li>Eventuels documents complémentaires, p. ex. une attestation médicale.</li><li>Toute preuve de vaccination par FSME non documentée dans VacMe.</li></ul>",
+        "KOMMENTAR": "Commentaire de la part du lieu de vaccination :",
+        "DOWNLOAD_REGBESTAETIGUNG": "Télécharger la confirmation d’enregistrement",
+        "REGBESTAETIGUNG_ERNEUT_SENDEN": "Renvoyer la confirmation la confirmation d’enregistrement",
+        "DOWNLOAD_TERMINBESTAETIGUNG": "Télécharger la confirmation de rendez-vous",
+        "DOWNLOAD_IlLEGAL_STATE": "Le document n’a pas pu être téléchargé, vos données affichées peuvent ne pas être à jour. Veuillez actualiser votre page.",
+        "TERMINBESTAETIGUNG_ERNEUT_SENDEN": "Renvoyer la confirmation de rendez-vous",
+        "DOWNLOAD_IMPFDOKUMENTATION": "Télécharger la documentation relative à la vaccination",
+        "IN_VACME_DOKUMENTIERTE_IMPFUNGEN": "Vaccins documentés dans VacMe :",
+        "DOWNLOAD_ZERTIFIKAT": "Télécharger le certificat COVID-19",
+        "ZERTIFIKAT_HELP_HREF": "https://www.gsi.be.ch/fr/start/themen/coronavirus/zertifikat.html",
+        "ZERTIFIKAT_N": {
+            "ALLE_ANZEIGEN": "Voir tous les certificats",
+            "ALLE_AUSBLENDEN": "Fermer la liste des certificats",
+            "TITLE": "Certificat COVID-19 du {{date}}",
+            "REVOKED": "Révoqué le",
+            "DOSIS": "Dose",
+            "IMPFSTOFF": "Vaccin",
+            "IMPFDATUM": "Vaccination",
+            "DOWNLOAD": "Télécharger le certificat COVID-19",
+            "UVCI": "UVCI"
+        },
+        "GEIMPFT": "Vous êtes à présent vacciné-e contre le COVID-19.",
+        "GEIMPFT_AUTOMATISCH_ABGESCHLOSSEN": "La deuxième vaccination n’a pas eu lieu. Le dossier a été fermé.",
+        "GEIMPFT_AUTOMATISCH_ABGESCHLOSSEN_INFO": "Si vous désirez de recevoir la deuxième vaccination quand même, contactez le lieu de vaccination de votre choix.",
+        "GEIMPFT_ZWEITE_IMFPUNG_VERZICHTET": "La deuxième vaccination a été abandonnée.",
+        "EXTERNE_IMPFUNGEN": {
+            "TITLE": "Vaccinations reçues",
+            "GENESEN": {
+                "TITLE": "A été infecté par Covid-19 et s'est rétabli",
+                "JA": "Oui"
+            },
+            "MISSING_IMPFUNGEN": {
+                "TITLE": "Immunisation de base"
+            },
+            "EDIT": "Ajuster les données",
+            "ADD": "Ajouter un certificat de vaccination contre le {{krankheit}} hors de VacMe"
+        },
+        "FREIGEGEBEN_INFO": "Vous vous êtes enregistré avec succès. Vous pouvez réserver un rendez-vous.",
+        "ORTWAHL_INFO": "Lieu de vaccination",
+        "ORTWAHL_FILTER": {
+            "BUTTON_TOOLTIP": "Trier et filtrer",
+            "SORTIEREN": {
+                "TITLE": "Trier les lieus de vaccination",
+                "IMPFTERMIN": "Trier par prochaine date de vaccination",
+                "IMPFORT": "Trier par lieu de vaccination (A - Z)",
+                "ENTFERNUNG": "Trier par distance"
+            },
+            "FILTERN": {
+                "TITLE": "Filtrer les lieus de vaccination",
+                "IMPFZENTRUM": "Centre de vaccination",
+                "APOTHEKE": "Pharmacie",
+                "SPITAL": "Hôpital",
+                "HAUSARZTPRAXIS": "Cabinet de médecine générale"
+            },
+            "ANWENDEN": "Appliquer",
+            "ZURUEKSETZEN": "Réinitialiser"
+        },
+        "CANCEL_TERMIN": {
+            "QUESTION": "Vous souhaitez annuler vos réservations ? En cas d’annulation, les deux dates seront libérées.",
+            "CONFIRM": "Annuler les réservations",
+            "CANCEL": "Retour"
+        },
+        "CANCEL_TERMIN_BOOSTER": {
+            "QUESTION": "Vous souhaitez annuler votre réservation ?",
+            "CONFIRM": "Annuler la réservation",
+            "CANCEL": "Retour"
+        },
+        "TERMINE-BEARBEITEN": "Changer les RDV",
+        "TERMIN-BEARBEITEN": "Changer le RDV",
+        "TERMIN-2-UMBUCHEN": "Change le 2ème RDV",
+        "ABBRECHEN": "Annuler",
+        "BUCHEN-AENDERN": "Modifier les réservations",
+        "STATIONAER_MOEGLICH": "Je peux me rendre dans un centre de vaccination stationnaire",
+        "STATIONAER_MOEGLICH_CONFIRM": "Attention, cette action ne peut pas être annulée",
+        "MOBILES_IMPFTEAM_ABSAGEN": {
+            "QUESTION": "Êtes-vous sûr de vouloir annuler l’inscription de l’équipe mobile de vaccination ?",
+            "ABSAGEN": "Annuler l’inscription",
+            "CANCEL": "Retour"
+        },
+        "SELBER_ABMACHEN_ABSAGEN": {
+            "QUESTION": "Êtes-vous sûr de vouloir annuler l’inscription à ce lieu de vaccination ?",
+            "ABSAGEN": "Annuler l’inscription",
+            "CANCEL": "Retour"
+        },
+        "REGISTRATION_TYPE": {
+            "CALLCENTER_REGISTRATION": "Cet enregistrement a été créé dans un call center",
+            "ONLINE_REGISTRATION": "Cet enregistrement a été créé en ligne",
+            "ORT_DER_IMPFUNG": "Cet enregistrement a été créé dans un lieu de vaccination",
+            "MASSENUPLOAD": "Cet enregistrement a été créé par une importation de masse",
+            "NOTFALL_PROZESS": "Cet enregistrement a été créé par le processus d'urgence",
+            "UNBEKANNT": "Il est inconnu comment cet enregistrement a été créé",
+            "DATA_MIGRATION": "Cet enregistrement a été créé par une migration de donnée"
+        },
+        "DATA_ANPASSEN": "Modifier les données personnelles",
+        "DELETE_ACCOUNT": "Supp. de compte et des données",
+        "DELETE_ACCOUNT_QUESTION": "Voulez-vous vraiment effacer toutes vos données ? Si vous souhaitez toujours être vacciné plus tard, vous devrez vous réinscrire.",
+        "DELETE_ACCOUNT_QUESTION_CONFIRM": "Oui, supprimer",
+        "DELETE_ACCOUNT_QUESTION_CANCEL": "Annuler",
+        "DELETE_ACCOUNT_ALREADY_GEIMPFT": "Après la première vaccination, les données ne peuvent plus être éffacées",
+        "DELETE_ACCOUNT_NOT_ALLOWED": "Vous n’êtes pas autorisé pour cette action",
+        "ABGESAGTER_TERMIN": "Votre rendez-vous du {{datum}} au lieu de vaccination {{odi}} a été annulé!",
+        "IMMOBIL.HINWEIS.INFO": "Information pour les personnes immobiles",
+        "IMMOBIL.HINWEIS.INFO.TEXT": "Vous êtes enregistré en tant que personne immobile et n'êtes pas autorisé(e) à réserver une vaccination de rappel par vous même. Appuyez sur le bouton ci-dessous si vous pouvez vous rendre dans un point de vaccination.",
+        "IMPFAUSWEIS_TITLE": "Certificat Covid-19",
+        "IMPFAUSWEIS_BEANTRAGEN": "Donner son consentement",
+        "IMPFAUSWEIS_WARTEN": "Votre certificat COVID-19 est en cours de traitement. Vous serez notifié par SMS lorsque vous pourrez télécharger ici le certificat.",
+        "IMPFAUSWEIS_WARTEN_NO_SMS": "Votre certificat COVID-19 est en cours de traitement.",
+        "IMPFAUSWEIS_REVOKE_AND_RESEND_POST": "Réenvoyer par la poste",
+        "IMPFAUSWEIS_REVOKE_AND_RESEND_POST_TITLE": "Réenvoyer le certificat",
+        "IMPFAUSWEIS_REVOKE_AND_RESEND_POST_INFO": "Un nouveau certificat sera créé. Le nouveau certificat sera envoyé par poste. La livraison peut durer jusqu’à 6 jours ouvrables.",
+        "IMPFAUSWEIS_RESEND_TRIGGERED_INFO": "Le certificat va être envoyé par poste",
+        "IMPFAUSWEIS_REVOKED_DATE": "Le dernier envoie postale du certificat a été déclenché le {{timestampLetzterPostversand}}",
+        "KEINE_GUELTIGE_SCHWEIZER_ADRESSE": "Attention, l’adresse renseignée n’est pas une adresse suisse valable. Cette personne ne pourra pas recevoir le certificat par poste tant que l’adresse ne sera pas corrigée.",
+        "HINWEIS_KINDER_GEMEINSAMER_TERMIN": "Deux enfants (de 5 à 11 ans) d’une même famille peuvent être vaccinés en même temps à un seul rendez-vous de vaccination. Tous les enfants doivent être enregistrés sur Vacme avant le rendez-vous",
+        "ERKRANKUNGEN": {
+            "EDIT": "Enregistrer/éditer une maladie Covid",
+            "VIEW": "Maladie(s) Covid",
+            "CONFIRM-ERKRANKT": "Je confirme que ma dernière maladie Covid-19 était le {{date}}",
+            "CONFIRM-NICHT-ERKRANKT": "Je confirme que je n’ai pas encore contracté le Covid-19",
+            "EDIT-ERKRANKT": "Modifier la maladie Covid",
+            "EDIT-NICHT-ERKRANKT": "Enregistrer une maladie Covid"
+        },
+        "INFO_SUPPORT_LEISTUNGSERBRINGER": "Pour toute question concernant la vaccination FSME, veuillez vous adresser à votre professionel de la santé. Pout des questions techniques, contactez <a href=\"mailto:fsme.support@vacme.ch\">fsme.support@vacme.ch</a>"
+    },
+    "TERMINE": {
+        "ZURUECK": "Retour à l’aperçu",
+        "AUSWAHL_ERSTE_IMPFUNG": "Sélectionner date 1",
+        "AUSWAHL_ZWEITE_IMPFUNG": "Sélectionner date 2",
+        "AUSWAHL_BOOSTER_IMPFUNG": "Sélectionner date rappel",
+        "AUSWAHL_IMPFTERMIN": "Sélectionner date de vaccination",
+        "WAEHLEN": "Sélectionner",
+        "UHRZEIT": "{{von}} - {{bis}} heures",
+        "KEIN_FREIER": "Aucun rendez-vous disponible pour cette date.",
+        "JETZT": "Maintenant"
+    },
+    "REG_CODE": {
+        "IHR_CODE": "Votre code de vaccination personnel",
+        "ZEIGEN_SIE_CODE": "Vous devrez le présenter lors de la vaccination.",
+        "PRIO": "Groupe",
+        "EINGANG": "Réception :"
+    },
+    "VALIDATIONERROR": {
+        "AUSLANDART": "Sans assurance maladie, seuls les frontaliers, les Suisses de l'étranger et les réfugiés peuvent être vaccinés.",
+        "REQUIRED": "Champs obligatoires",
+        "MIN": "au minimum {{min.min}}",
+        "MAX": "au maximum {{max.max}}",
+        "MINLENGTH": "Il doit y avoir au minimum {{minlength.requiredLength}} signes.",
+        "MAXLENGTH": "Il doit y avoir au maximum {{maxlength.requiredLength}} signes.",
+        "NONCERTIFIABLENAME": "Le certificat Covid ne peut pas être délivré pour cette entrée car elle contient des caractères spéciaux non valides.",
+        "ERGAENZE_KRANKENKASSENNUMMER": "Veuillez saisir le numéro d’assuré-e à 20 chiffres. Les 10 premiers chiffres sont automatiquement remplis sur la base de la caisse sélectionnée.",
+        "PATTERN": "Saisie incorrecte",
+        "EMAIL": "Adresse électronique incorrecte",
+        "DATE": "Veuillez saisir une date après le 01.01.1900, p. ex. 17.12.1965.",
+        "DATETIME": "Veuillez saisir une date, p. ex. 17.12.1965, 15:23.",
+        "INVALIDDATE": "La date est incorrecte. Veuillez saisir une date, p. ex. 17.12.1965.",
+        "EQUALERKRANKUNGDATE": "Vous ne pouvez pas saisir plusieurs maladies Covid le même jour.",
+        "INVALIDDATETIME": "La date est incorrecte. Veuillez saisir une date, p. ex. 17.12.1965, 15:23.",
+        "DATEINFUTURE": "La date est incorrecte. Veuillez saisir une date dans le passé",
+        "DATEBEFOREMINDATE": "La date est incorrecte. Veuillez saisir une date postérieure à {{dateBeforeMindate.minDate}}",
+        "DATEINPAST": "Date non valable. Entrez une date dans le futur",
+        "INVALIDKARTENNUMMER": "Vous ne pouvez rechercher que les numéros d’assurance maladie commençant par 80756 et ne se terminant pas par 0000000000",
+        "NUMBERINCORRECT": "Numéro de téléphone invalide",
+        "FESTNETZNUMMER": "Veuillez saisir un numéro de téléphone portable."
+    },
+    "REGISTRIERUNG": {
+        "PERSONENDATEN": "Données personnelles",
+        "NAME": "Nom de famille",
+        "NAME_HINT": "selon le passeport / la carte d’identité",
+        "VORNAME": "Prénom(s)",
+        "VORNAME_HINT": "selon le passeport / la carte d’identité",
+        "STRASSE": "Rue, no",
+        "PLZ": "NPA",
+        "ORT": "Localité",
+        "IMMOBIL": "Je ne peux pas me rendre dans un centre de vaccination. Une équipe mobile doit venir chez moi.",
+        "IMMOBIL_CONFIRMATION": "Je souffre d’un handicap ou d’une maladie chronique et ne peut en aucun cas quitter mon domicile. Je dois me faire vacciner par une équipe mobile.",
+        "MAIL": "Adresse électronique",
+        "TELEFON_HINWEIS": "Le numéro de téléphone peut seulement être entré pendant l'inscription.",
+        "TELEFON": "Numéro de téléphone",
+        "KRANKENKASSE": "Assurance maladie",
+        "KARTENNUMMER": "Numéro d’assuré-e",
+        "SCHUTZSTATUS": "Réfugié d'Ukraine",
+        "GEBURTSDATUM": "Date de naissance",
+        "BEMERKUNGEN": "Remarques (visible uniquement par lieu de vaccination)",
+        "KRANKHEITEN_INTRO": "Selon la stratégie de vaccination de l’OFSP, les maladies suivantes comptent parmi les maladies chroniques : hypertension, maladies cardio-vasculaires, diabète, maladies chroniques des poumons et des voies respiratoires, maladies et thérapies affaiblissant le système immunitaire, maladies cancéreuses, adiposité (IMC ≥ 35 kg/m2), insuffisance rénale, cirrhose du foie. De la même façon est traité la trisomie 21.",
+        "KRANKHEITEN": "Maladies chroniques",
+        "KRANKHEITEN_OPTION": {
+            "SCHWERE_KRANKHEITSVERLAEUFE": "Pathologie telle que décrite ci-dessus à haut risque",
+            "KRANKHEIT": "Pathologie telle que décrite ci-dessus avec traitement médicamenteux ou autre thérapie de longue durée",
+            "KEINE": "Aucune maladie",
+            "ANDERE": "Autre maladie"
+        },
+        "LEBENSUMSTAENDE": "Cadre de vie",
+        "BERUF": "Profession",
+        "AGB": "J’accepte les <a class='text-link' target='_blank' href='https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/fr/themen/coronavirus/vacme/Conditions_d_utilisation.pdf'>conditions d’utilisation</a>.",
+        "EINWILLIGUNG": "J’ai lu et accepte la <a class='text-link' target='_blank' href='https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/fr/themen/coronavirus/vacme/Declaration_de_consentement.pdf'>déclaration de consentement</a>.",
+        "ABGLEICH_ELEKTRONISCHER_IMPFAUSWEIS": "Je demande un certificat Covid-19 et j’autorise la transmission de mes données à l’autorité fédérale émettrice.  (optionnel)",
+        "SAVEBUTTON": "S’enregistrer",
+         "LEBENSUMSTAENDE_OPTION": {
+            "ANDERE": "Autre",
+            "EINZELHAUSHALT": "Ménage d’une seule personne",
+            "FAMILIENHAUSHALT": "Famille ou ménage comptant moins de 10 personnes",
+            "GEMEINSCHAFTEN": "Structures communautaires comptant plus de 10 personnes",
+            "MASSENUNTERKUENFTEN": "Hébergement collectif",
+            "MIT_BESONDERS_GEFAEHRDETEN_PERSON": "Ménage avec personne à risque ou prend en charge un parent"
+        },
+        "BERUF_OPTION": {
+            "ANDERE": "Autre",
+            "BERUF_MIT_AKT_IN_GRO_ARB_GRUP": "Profession impliquant des activités de groupe",
+            "BERUF_MIT_HOMEOFFICE_MOEGLICH": "Profession avec possibilité de télétravail",
+            "BERUF_MIT_KUNDENKONTAKT": "Profession impliquant des contacts avec la clientèle",
+            "GES_PERSONAL_MIT_PAT_KONTAKT": "Personnel de santé ayant des contacts avec la patientèle",
+            "GES_PERSONAL_OHNE_PAT_KONTAKT": "Personnel de santé sans contact avec la patientèle",
+            "BETREUUNG_VON_GEFAERD_PERSON": "Prise en charge de personnes à risque",
+            "NICHT_ERWERBSTAETIG": "Pas d’activité lucrative",
+            "PERSONAL_IN_GEMEINSCHAFTSEIN": "Personnel actif dans les structures communautaires"
+        },
+        "KK_OPTION": {
+            "AGRISANO": "Agrisano",
+            "AMB": "AMB Assurances SA",
+            "ANDERE": "Autre",
+            "AQUILANA": "Aquilana",
+            "ARCOSANA": "Arcosana",
+            "ASSURA": "Assura-Basis SA",
+            "ATUPRI": "Atupri",
+            "AVENIR": "Avenir Krankenversicherung AG",
+            "BILDENDE_KUENSTLER": "Bildende Künstler/Innen",
+            "BIRCHMEIER": "Birchmeier",
+            "COMPACT": "Compact",
+            "CONCORDIA": "CONCORDIA",
+            "CSS": "CSS",
+            "EASY_SANA": "Easy Sana Krankenversicherung AG",
+            "EGK": "EGK",
+            "EINSIEDLER": "Einsiedler Krankenkasse",
+            "FENACO": "Fenaco-Mitgliedgenossenschaften",
+            "GALENOS": "GALENOS AG",
+            "GEWERBLICHE_KRANKENKASSE_BERN": "Gewerbliche",
+            "GLARNER": "Glarner",
+            "HELSANA": "Helsana",
+            "HOTELA": "Hotela",
+            "INSTITUT_INGENBOHL": "Ingenbohl",
+            "INTRAS": "INTRAS",
+            "KKV": "Visperterminen",
+            "KLUG": "KLuG",
+            "KOLPING": "Kolping",
+            "KPT": "KPT/CPT",
+            "KVF": "KVF Krankenversicherung AG",
+            "LUMNEZIANA": "Lumneziana",
+            "LUZERNER_HINTERLAND": "Luzerner Hinterland",
+            "METALLBAUFIRMEN": "Metallbaufirmen",
+            "MOOVE_SYMPANY": "Moove Sympany AG",
+            "MUTUEL": "Mutuel Krankenversicherung AG",
+            "MUTUELLE_NEUCHATELOISE": "Mutuelle Neuchâteloise",
+            "OKK": "ÖKK",
+            "PHILOS": "Philos Krankenversicherung AG",
+            "PROGRES": "Progrès",
+            "PROVITA": "PROVITA",
+            "RHENUSANA": "rhenusana",
+            "SANA24": "sana24",
+            "SANAGATE": "Sanagate",
+            "SANAVALS": "sanavals",
+            "SANITAS": "Sanitas",
+            "SIMPLON": "Simplon",
+            "SLKK": "SLKK",
+            "SODALIS": "sodalis",
+            "STEFFISBURG": "Steffisburg",
+            "STIFTUNG_WADENSWIL": "Wädenswil",
+            "STOFFEL": "Stoffel",
+            "SUMISWALDER": "Sumiswalder",
+            "SUPRA": "SUPRA-1846 SA",
+            "SWICA": "SWICA",
+            "VALLEE_ENTREMONT": "Vallée d’Entremont",
+            "VISANA": "Visana",
+            "VITA_SURSELVA": "vita surselva",
+            "VIVACARE": "Vivacare",
+            "VIVAO_SYMPANY": "Vivao Sympany",
+            "AUSLAND": "Pas d'assurance maladie suisse",
+            "EDA": "DFAE / CD"
+        },
+        "AUSLANDART": "Relation avec la Suisse",
+        "AUSLAND_ART_OPTION": {
+            "AUSLANDSCHWEIZER": "Suisse de l’étranger",
+            "GRENZGAENGER": "Frontalier",
+            "FLUECHTLING": "Réfugié",
+            "ANDERE": "Autre (p.e. Vacances)"
+        },
+        "GESCHLECHT": "Sexe",
+        "GESCHLECHT_OPTION": {
+            "ANDERE": "Autre",
+            "MAENNLICH": "Homme",
+            "WEIBLICH": "Femme"
+        },
+        "IDENTIFIKATIONSNUMMER": "Numéro d’identification",
+        "BESTAETIGUNG_ERNEUT_GESENDET": "La confirmation du numéro d’enregistrement {{regnr}} été envoyée de nouveau.",
+        "CONTACT_TRACING": "J’accepte que l’équipe de traçage des contacts puisse être informée, le cas échéant, du fait que je suis vacciné-e. L’information sert à m’exempter d’un éventuel ordre de mise en quarantaine. (optionnel)",
+        "REGISTRIERUNGSNUMMER": "Numéro d’enregistrement",
+        "KEINKONTAKT": "Ne souhaite pas être contacté"
+    },
+    "AMPEL": {
+        "ROT": "Rouge",
+        "ORANGE": "Orange",
+        "GRUEN": "Vert",
+        "GREEN": "Vert",
+        "RED": "Rouge"
+    },
+    "EXTERN_GEIMPFT": {
+        "TITLE": "Déjà vacciné contre le {{krankheit}} ?",
+        "EXTERN_GEIMPFT": "Avez-vous déjà été vacciné(e) contre le Covid-19 en dehors de VacMe ?",
+        "EXTERN_GEIMPFT_MIT_KRANKHEIT": "Avez-vous déjà été vacciné(e) contre le {{krankheit}} en dehors de VacMe ?",
+        "EXTERN_GEIMPFT_AFFENPOCKEN": "Avez-vous déjà été vacciné(e) contre la variole ?",
+        "EXTERN_GEIMPFT_FSME": "Avez-vous déjà été vacciné(e) contre la FSME ?",
+        "EXTERN_GEIMPFT_OPTION": {
+            "TRUE": "Oui",
+            "FALSE": "Non"
+        },
+        "ALLE_IMPFSTOFFE": "Tous les vaccins approuvés",
+        "LETZTE_IMPFUNG_DATUM": "Date de la dernière vaccination",
+        "LETZTE_IMPFUNG_DATUM_UNBEKANNT": "Date de la dernière vaccination inconnue",
+        "IMPFSTOFF": "Vaccin",
+        "ANZAHL_IMPFUNGEN": "Nombre de vaccins reçus",
+        "GENESEN": "J'ai été infecté par Covid-19 et je me suis rétabli",
+        "POSITIV_GETESTET_DATUM": "Date du test COVID-19 positif reconnu",
+        "SAVEBUTTON": "Confirmer",
+        "ANZAHL_MISSING": {
+            "BRAUCHT_0_IMPFUNGEN": "Complètement immunisé(e)",
+            "BRAUCHT_1_IMPFUNG": "Encore une vaccination requise pour l'immunisation de base",
+            "BRAUCHT_2_IMPFUNGEN": "Encore deux vaccins requise pour l'immunisation de base",
+            "BRAUCHT_VOLLE_GRUNDIMMUNISIERUNG": "Immunisation de base complète requise"
+        },
+        "SCHNELLSCHEMA": "Schéma rapide",
+        "TROTZDEM_VOLLSTAENDIG_GRUNDIMMUNISIEREN": "Prende immunisation de base complète quand même"
+    },
+    "ERKRANKUNGEN": {
+        "TITLE": "Maladie(s) Covid",
+        "DATE": "Date",
+        "DATE_HINT": {
+            "ERFASST_IMPFLING": "Date du test COVID-19 positif reconnu",
+            "GRUNDIMMUNISIERUNG": "Test positif, enregistré dans VacMe",
+            "EXT_ZERT": "Test positif, enregistré dans le certificat de vaccination hors de VacMe"
+        },
+        "EMPTY": "Pas de maladie Covid",
+        "DELETE": "Supprimer",
+        "ADD": "Ajouter maladie Covid",
+        "CANCEL": "Annuler",
+        "SAVE": "Enregistrer",
+        "WILL_LOSE_TERMINE": {
+            "CONFIRM_QUESTION": "En raison de votre récente vaccination ou maladie, votre protection vaccinale est encore suffisante. Une vaccination n'est pas nécessaire pour le moment. Votre rendez-vous réservé sera annulé.",
+            "CONFIRM": "Enregistrer et annuler le rendez-vous",
+            "CANCEL": "Annuler"
+        },
+        "WILL_LOSE_ODI": {
+            "CONFIRM_QUESTION": "En raison de votre récente vaccination ou maladie, votre protection vaccinale est encore suffisante. Une vaccination n'est pas nécessaire pour le moment. Veuillez annuler votre rendez-vous auto-organisé avec {{odi}}.",
+            "CONFIRM": "Oui, enregistrer",
+            "CANCEL": "Annuler"
+        },
+        "WILL_LOSE_ODI_NICHT_VERWALTET": {
+            "CONFIRM_QUESTION": "En raison de votre récente vaccination ou maladie, votre protection vaccinale est encore suffisante. Une vaccination n'est pas nécessaire pour le moment. Veuillez annuler votre rendez-vous auto-organisé.",
+            "CONFIRM": "Oui, enregistrer",
+            "CANCEL": "Annuler"
+        },
+        "FREIGABE_ENTFERNT": "En raison de votre récente vaccination ou maladie, votre protection vaccinale est encore suffisante. Une vaccination n'est pas nécessaire pour le moment. ",
+        "FREIGABE_ENTFERNT_WITH_BENACHRICHTIGUNG": "En raison de votre récente vaccination ou maladie, votre protection vaccinale est encore suffisante. Une vaccination n'est pas nécessaire pour le moment. Vous serez informé dès que vous pourrez prendre un rendez-vous de vaccination.",
+        "TERMIN_ENTFERNT": "Votre rendez-vous pris a été annulé. Vous serez informé dès que vous pourrez reprendre un rendez-vous de vaccination.",
+        "ODIWAHL_ENTFERNT": "Veuillez annuler votre rendez-vous auto-organisé avec {{odi}}. Vous serez informé dès que vous pourrez reprendre un rendez-vous de vaccination.",
+        "ODIWAHL_ENTFERNT_NICHT_VERWALTET": "Veuillez annuler votre rendez-vous auto-organisé. Vous serez informé dès que vous pourrez reprendre un rendez-vous de vaccination."
+    },
+    "SELECTBOX": {
+        "BITTE_WAEHLEN": "Veuillez sélectionner ..."
+    },
+    "PAGER": {
+        "LOESCHEN": "Effacer le filtre",
+        "NAECHSTE": "Afficher suivant »",
+        "VORHERIGE": "« Afficher précédent"
+    },
+    "CALLCENTER": {
+        "REGISTRIERUNG-SUCHEN": {
+            "TITLE": "Rechercher la personne à vacciner",
+            "CODE": "Code à 6 caractères",
+            "SUCHEN": "Rechercher",
+            "WEITERE_FUNKTIONEN": "Autres actions",
+            "REGESTRIEREN-TEXT": "Saisir une nouvelle personne",
+            "ADRESSE_ANPASSEN": "Modifier addresse"
+        },
+        "PERSONALIEN-SUCHE": {
+            "TITLE": "Recherche d’une personne vaccinée par son nom, son prénom et sa date de naissance",
+            "SUCHEN": "Chercher",
+            "RESULTS": "Résultats",
+            "NO-RESULT": "Aucun résultat",
+            "MODIFY": "Modifier les données"
+        },
+        "UVCI-SUCHE": {
+            "TITLE": "Recherche d’une personne vaccinée par son nom, son prénom, sa date de naissance et UVCI",
+            "UVCI-LABEL": "UVCI (les 4 derniers caractères du certificat de vaccination)",
+            "OPEN-RESULT": "Ouvrir"
+        },
+        "ONBOARDINGCODE-SUCHE": {
+            "TITLE": "Rechercher quelqu’un par le code onboarding issu de la lettre",
+            "SUCHEN": "Chercher",
+            "CODE": "Code onboarding issu de la lettre",
+            "NO-RESULT": "Aucun résultat"
+        }
+    },
+    "FILES": {
+        "REGBESTAETIGUNG": "Confirmation_enregistrement.pdf",
+        "TERMINBESTAETIGUNG": "Confirmation_rendez_vous.pdf",
+        "IMPFDOKUMENTATION": "Documentation.pdf",
+        "COVID_IMPFZERTIFIKAT": "Certificat_de_vaccination_covid.pdf",
+        "EINWILLIGUNGSERKLAERUNG": "https://www.gsi.be.ch/content/dam/gsi/dokumente-bilder/fr/themen/gesundheit/krankheiten-und-impfungen/uebertragbare-krankheiten-und-impfungen/affenpocken/declaration-de-consentement-a-la-vaccination-contre-la-variole-du-singe.docx",
+        "EINWILLIGUNGSERKLAERUNG_TEXT": "Déclaration de consentement.docx"
+    },
+    "VACME": {
+        "TITLEIMPFEN": "VacMe Vaccination",
+        "TITLEPORTAL": "VacMe Enregistrement"
+    },
+    "ERROR_UNEXPECTED": "Erreur inattendue",
+    "ERROR_UNAUTHORIZED": "Vous n’avez pas les autorisations requises pour effectuer cette action.",
+    "ERROR_GATEWAY_TIMEOUT": "La connection a durée trop longtemps (Timeout)",
+    "ERROR_NO_TERMINE": "Il n’y a actuellement aucun rendez-vous disponible dans ce lieu de vaccination.",
+    "ERROR_NO_TERMINE_IN_RANGE": "Il n’y a aucune plage horaire disponible dans les {{desiredDistance}} qui suivent par rapport à la date que vous avez choisie.",
+    "ERROR_NON_BOOKABLE_STATUS": "L’'enregistrement n’est pas validé pour la réservation de RDV",
+    "ERROR_UNKOWN_KRANKHEIT": "La maladie transmise n'est pas prise en charge pour la saisie dans le système.",
+    "WARN": {
+        "WARN_UNSAVED_CHANGES": "Si vous continuez, vous perdrez vos modifications non sauvegardées",
+        "WARN_UNSAVED_CHANGES_OK": "OK",
+        "WARN_UNSAVED_CHANGES_CANCEL": "Annuler",
+        "INVALID_FORM_FIELDS": "Le formulaire n’est pas encore rempli correctement."
+    },
+    "LANGUAGE": {
+        "CHOOSE": {
+            "GERMAN-ARIA": "Sprache wählen: deutsch",
+            "FRENCH-ARIA": "Choisir langue: français",
+            "ENGLISH-ARIA": "Choose language: english"
+        }
+    },
+    "MENU_ZURUECK_ZU_WELL": "Retour à Well",
+    "ONLINE_REGISTRATION": "En ligne",
+    "CALLCENTER_REGISTRATION": "Callcenter",
+    "ORT_DER_IMPFUNG": "Lieu de vaccination",
+    "MASSENUPLOAD": "Importation en bloc",
+    "FOOTER": {
+        "CAPTION": "Portail de vaccination canton de Berne",
+        "COPYRIGHT": "Portail de vaccination du canton de Berne"
+    },
+    "BENUTZERNAME-VERGESSEN": {
+        "TITLE": "Nom d’utilisateur oublié",
+        "SUBTITLE": "Saisissez votre code de 6 signes. Vous recevrez ensuite un SMS au numéro de téléphone lié au compte",
+        "SENDEN": "Envoyer",
+        "SUCCESS": "Un SMS a été envoyé"
+    },
+    "PERSONALIEN_EDIT": {
+        "TITLE": "Modifier les données",
+        "SPEICHERN": "Sauvegarder"
+    },
+    "UNIT": {
+        "WEEKS": "semaines",
+        "DAYS": "jours"
+    },
+    "USERPROFILE": {
+        "NAV_ITEM_MOBILE": "Profil",
+        "TITLE": "Vos détails",
+        "SAVEBUTTON": "Confirmer",
+        "CANCEL": "Annuler",
+        "KEYCLOAK_EDIT": "Modifier le compte utilisateur",
+        "KEYCLOAK_PASSWORD": "Changer le mot de passe",
+        "TRIGGER_MOBILE_NUMMER": "Adapter le numéro de portable",
+        "DELETE_ACCOUNT": "Supprimer le compte utilisateur et les données",
+        "FEDERATION" : {
+            "TITLE" : "Comptes liés",
+            "NO_LINKED_ACCOUNTS" : "Aucun compte lié n'existe",
+            "REMOVE_LINK" : "Supprimer le lien"
+        }
+    },
+    "TELEFONNUMMER_UPDATE": {
+        "UPDATE_NUMMER_QUESTION_CONFIRM": "Modifier",
+        "UPDATE_NUMMER_QUESTION_CANCEL": "Annuler",
+        "UPDATE_NUMMER_QUESTION": "Actuellement, votre profil contient un numéro de téléphone fixe. Pour nous permettre de vous envoyer le code de sécurité par SMS, nous avons besoin de votre numéro de téléphone portable. Merci pour votre aide."
+    },
+    "KRANKHEITEN": {
+        "COVID": "Covid-19",
+        "AFFENPOCKEN": "Variole du singe",
+		"FSME": "FSME (phase pilote)",
+        "FSME.DESCRIPTION1": "Phase pilote de la DV Bern (fabricant de VacMe) avec des prestataires privés, tels que la réservation de rendez-vous dans l'application Well.",
+        "FSME.DESCRIPTION2": "Le canton de Berne n'est en aucun cas impliqué dans la phase pilote et n'est pas responsable de l'organisation et de l'administration des vaccinations contre l'encéphalite à tiques (FSME)."
+    },
+    "UNBEKANNTE_POCKENIMPFUNG_IN_KINDHEIT": "Vaccination contre la variole dans l'enfance avec un vaccin inconnu",
+    "LEISTUNGSERBRINGER_AGB": {
+        "FSME": {
+            "TITLE": "Phase-pilote: Vaccination contre la FSME",
+            "TEXT": "L'extension de l'offre de gestion des vaccinations FSME dans VacMe a été mise en œuvre par DV Bern AG (fabricant de VacMe). La réalisation et la documentation de la vaccination FSME auront lieu dans des pharmacies autorisées. Le canton de Berne n'est pas responsable de l'organisation et de la gestion des vaccinations FSME. Veuillez confirmer la déclaration de consentement et les conditions d'utilisation de DV Bern AG.",
+            "AGB": "J’accepte les <a class='text-link' target='_blank' href='/assets/files/AGB_DV_Bern_VacMe_fr.pdf'>conditions d’utilisation</a>.",
+            "EINWILLIGUNG": "J’ai lu et accepte la <a class='text-link' target='_blank' href='/assets/files/Einverstaendniserklaerung_vacme_be_fr.pdf'>déclaration de consentement</a>.",
+            "SAVEBUTTON": "Continuer"
+        }
+    }
+}

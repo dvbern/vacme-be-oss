@@ -1,0 +1,35 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='row step-1-text margin-top-30' style="display: block">
+    <h4 class="infobox-title" translate>FACH-APP.KONTROLLE.DOCUMENTS</h4>
+    <ul class="documents" *ngIf="hasDocuments()">
+        <li>
+            <a (click)="downloadRegistrationConfirmation()" translate>FILES.REGBESTAETIGUNG</a>
+        </li>
+        <li *ngIf="hasPendingTermin()">
+            <a (click)="downloadTerminConfirmation()" translate>FILES.TERMINBESTAETIGUNG</a>
+        </li>
+        <li *ngIf="hasVacmeImpfung && isOiDokumentation()">
+            <a (click)="downloadImpfdokumentation()" translate>FILES.IMPFDOKUMENTATION</a>
+        </li>
+        <hr>
+        <li *ngIf="showEinwilligungserklaerungFormular()">
+            <a href="{{ 'FILES.EINWILLIGUNGSERKLAERUNG' | translate }}" translate>FILES.EINWILLIGUNGSERKLAERUNG_TEXT</a>
+        </li>
+    </ul>
+</div>

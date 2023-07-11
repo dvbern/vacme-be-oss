@@ -1,0 +1,86 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<ng-container *ngIf="impffolge !== 'BOOSTER_IMPFUNG'">
+
+    <!-- TERMIN 1 -->
+    <div class='row step-1-text margin-top-30' [class.red]="hasTermin1Error" style="display: block"
+         *ngIf="showTermin1()">
+        <img class='invalid-icon' src='img/Invalid Icon.svg' *ngIf="hasTermin1Error">
+        <p class="infobox-title" translate>FACH-APP.KONTROLLE.TERMIN1</p>
+        <h4>{{getTerminOrImpfung1DatumText()}} {{getDataDiffStringTermin(termine.termin1)}}</h4>
+        <p>{{getImpfzentrumTermin1()}}</p>
+        <lib-button *ngIf="showAdHocTermin1()" buttonKind="secondary" (clickIfEnabled)="adHocTermin1AndSelectTermin2()"
+                    translationKey="IMPFDOK.TERMIN.AD_HOC"></lib-button>
+    </div>
+
+    <!-- IMPFUNG 1 -->
+    <div class='row step-1-text margin-top-30' [class.red]="hasTermin1Error" style="display: block"
+         *ngIf="!showTermin1()">
+        <img class='invalid-icon' src='img/Invalid Icon.svg' *ngIf="hasTermin1Error">
+        <p class="infobox-title" translate>FACH-APP.KONTROLLE.IMPFUNG1</p>
+        <h4>{{getTerminOrImpfung1DatumText()}} {{getDataDiffStringImpfung(this.termine.impfung1)}}</h4>
+        <p>{{getImpfzentrumTermin1()}}</p>
+        <p [class.invalid-text]="hasImpfstoffError">{{getImpfstoffImpfung1()}}</p>
+        <p>{{getBemerkungImpfung1()}}</p>
+    </div>
+
+    <!-- TERMIN 2 -->
+    <div class='row step-1-text margin-top-30' [class.red]="hasTermin2Error || hasDateMinError || hasDateMaxError"
+         style="display: block" *ngIf="showTermin2()">
+        <img class='invalid-icon' src='img/Invalid Icon.svg' *ngIf="hasTermin2Error">
+        <p class="infobox-title" translate>FACH-APP.KONTROLLE.TERMIN2</p>
+        <h4>{{getTerminOrImpfung2DatumText()}} {{getDataDiffStringTermin(termine.termin2)}}</h4>
+        <p>{{getImpfzentrumTermin2()}}</p>
+    </div>
+    <!-- IMPFUNG 2 -->
+    <div class='row step-1-text margin-top-30' [class.red]="hasTermin2Error || hasDateMinError || hasDateMaxError"
+         style="display: block" *ngIf="!showTermin2()">
+        <img class='invalid-icon' src='img/Invalid Icon.svg' *ngIf="hasTermin2Error">
+        <p class="infobox-title" translate>FACH-APP.KONTROLLE.IMPFUNG2</p>
+        <h4>{{getTerminOrImpfung2DatumText()}} {{getDataDiffStringImpfung(this.termine.impfung2)}}</h4>
+        <p>{{getImpfzentrumTermin2()}}</p>
+        <p>{{getImpfstoffImpfung2()}}</p>
+        <p>{{getBemerkungImpfung2()}}</p>
+    </div>
+
+    <!-- TERMINE ANPASSEN BUTTON -->
+    <p class='row step-1-text margin-top-30'>
+        <a *ngIf="showTermin1or2Anpassen()" (click)="termineAnpassen()"
+           translate>FACH-APP.KONTROLLE.BEIDE_TERMINE_VERSCHIEBEN</a>
+    </p>
+</ng-container>
+
+
+<ng-container *ngIf="impffolge === 'BOOSTER_IMPFUNG'">
+
+    <!-- TERMIN N -->
+    <div class='row step-1-text margin-top-30' [class.red]="hasTerminNError" style="display: block">
+        <img class='invalid-icon' src='img/Invalid Icon.svg' *ngIf="hasTerminNError">
+        <p class="infobox-title" translate>FACH-APP.KONTROLLE.TERMIN</p>
+        <h4>{{getTerminDateString(termine.terminNPending)}} {{getDataDiffStringTermin(termine.terminNPending)}}</h4>
+        <p>{{getImpfzentrumTerminN()}}</p>
+    </div>
+
+    <!-- BoosterTERMIN ANPASSEN BUTTON -->
+    <p class='row step-1-text margin-top-30'>
+        <a *ngIf="showTerminBoosterAnpassen()" (click)="termineAnpassen()"
+           translate>FACH-APP.KONTROLLE.BOOSTER_TERMIN_VERSCHIEBEN</a>
+    </p>
+
+
+</ng-container>

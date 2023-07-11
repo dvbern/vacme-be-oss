@@ -1,0 +1,79 @@
+
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<!-- Auf zweite Impfung verzichten -->
+<lib-button *ngIf="showAufZweiteImpfungVerzichten"
+    [swal]="cancelImpfung"
+    buttonKind="secondary"
+    translationKey="IMPFDOK.KEIN_ZWEITE_IMPFUNG.TRIGGER"></lib-button>
+
+<!-- Es kann nicht geimpft werden (Achtung: [disabled] und [swal] kann man nicht kombinieren) -->
+<lib-button *ngIf="showEsKannNichtGeimpftWerden && !disableEsKannNichtGeimpftWerden"
+    [swal]="cancelImpfung"
+    buttonKind="secondary"
+    translationKey="IMPFDOK.ZURUEK_ZU_KONTROLLE"></lib-button>
+
+<!--Popup mit Infos die beim Verzicht auf 2. Impfung benoetigt werden-->
+<swal #cancelImpfung
+      icon="question"
+      [showConfirmButton]="false"
+      [title]="(isZweiteImpfung() ? 'IMPFDOK.KEIN_ZWEITE_IMPFUNG.ZWEITE_TITLE' : 'IMPFDOK.KEIN_ZWEITE_IMPFUNG.ERSTE_TITLE') | translate">
+    <div *swalPortal="swalTargets.content" class="swal-content-vacme-style">
+
+        <!-- user muss auswahlen ob er nur heute nicht impfen will oder ob der Fall kurzfristig nicht geimpft wird-->
+        <form [formGroup]="keineZweiteImpfungGroup" *ngIf="isZweiteImpfung()">
+            <lib-input-radio
+                [showGroupLabel]="false"
+                key="cancelOrMove"
+                formControlName="cancelOrMove"
+                id="cancelOrMoveRadio"
+                [options]="cancelOrMoveOptions"
+                [columnDisplay]="true"
+                translationPrefix="IMPFDOK.KEIN_ZWEITE_IMPFUNG"></lib-input-radio>
+        </form>
+
+        <!-- Aus zweite Impfung komplett verzichten -> Grund -->
+        <form [formGroup]="verzichtenBegruendungGroup" *ngIf="isZweiteImpfungToCancel()">
+            <!-- vollstaendig weil genesen? -->
+            <lib-input-checkbox key="IMPFDOK.KEIN_ZWEITE_IMPFUNG.VOLLSTAENDIGER_IMPFSCHUTZ"
+                                formControlName="vollstaendigerImpfschutz"
+                                (change)="vollstaendigerImpfschutzChanged()"></lib-input-checkbox>
+
+            <!-- genesen -->
+            <ng-container *ngIf="hasVollstaendigerImpfschutz(), else unvollstaendigerImpfschutz">
+                <p translate>IMPFDOK.KEIN_ZWEITE_IMPFUNG.BEGRUENDUNG_VOLLSTAENDIGER_IMPFSCHUTZ</p>
+                <lib-input-text key="IMPFDOK.KEIN_ZWEITE_IMPFUNG.POSITIV_GETESTET_DATUM"
+                                formControlName="positivGetestetDatum"></lib-input-text>
+            </ng-container>
+
+            <!-- anderer Grund fuer keine zweite Impfung -->
+            <ng-template #unvollstaendigerImpfschutz>
+                <lib-input-textarea key="impfdok.kein_zweite_impfung.begruendung"
+                                    formControlName="begruendung"></lib-input-textarea>
+            </ng-template>
+        </form>
+
+        <!-- Buttons sind nicht im swalTargets.actions, weil sonst das Fenster schliessen nicht mehr geht -->
+        <lib-button buttonKind="primary"
+                    (clickIfEnabled)="confirmCancelZweiteImpfung()"
+                    translationKey="IMPFDOK.KEIN_ZWEITE_IMPFUNG.CONFIRM_ZURUEK"></lib-button>
+        <lib-button buttonKind="secondary"
+                    (clickIfEnabled)="closeSwal()"
+                    translationKey="IMPFDOK.KEIN_ZWEITE_IMPFUNG.CONFIRM_CANCEL"></lib-button>
+    </div>
+</swal>

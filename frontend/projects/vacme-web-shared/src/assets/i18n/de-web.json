@@ -1,0 +1,732 @@
+{
+    "FACH-APP": {
+        "START-PAGE": {
+            "CODE": "Sechsstelliger Code",
+            "SUCHEN": "Suchen",
+            "REGESTRIEREN": "Registrieren",
+            "REGESTRIEREN-TEXT": "Neue Person erfassen",
+            "REGISTRIEREN-TEXT-AFFENPOCKEN": "Neue Person erfassen (Affenpocken)",
+            "REGISTRIEREN-TEXT-FSME": "Neue Person erfassen (FSME)",
+            "ODI": {
+                "NEU": "Impfort",
+                "BEARBEITEN": "Bearbeiten"
+            },
+            "TOOLS": "Weitere Funktionen",
+            "SUCHEN-TITLE": "Zu impfende Person suchen",
+            "SUCHEN-KVK-TITLE": "Krankenkassen-Kartennummer suchen",
+            "SUCHEN-KVK-TEXT": "Registrierungsnummer nicht bekannt? Per Krankenkassen-Kartennummer suchen",
+            "SUCHE_MIT_PERSONALIEN": "Per Name, Vorname und Geburtsdatum suchen (mit Termin oder bereits hier geimpft)",
+            "PERSONALIEN-SUCHE-GOTO": "Öffnen",
+            "OEFFNEN": "Öffnen",
+            "CLEAR": "Suche löschen",
+            "TAGES-STATISTIK": {
+                "TITLE": "Tagesstatistik Impfungen",
+                "SELECT": "Statistik für Impfort anzeigen",
+                "AUSBLENDEN": "ausblenden",
+                "IMPFSTOFF_UNBEKANNT": "Nicht eindeutig definiert *",
+                "DURCHGEFUEHRT": {
+                    "TITLE": "Durchgeführte Impfungen",
+                    "TOTAL": "Total",
+                    "IMPFUNG-1": "Impfung I",
+                    "IMPFUNG-2": "Impfung II",
+                    "IMPFUNG-N": "Impfung N"
+                },
+                "GEPLANT": {
+                    "TITLE": "Total (anstehende & durchgeführte Impfungen)",
+                    "TOTAL": "Total",
+                    "IMPFUNG-1": "Impfung I",
+                    "IMPFUNG-2": "Impfung II",
+                    "IMPFUNG-N": "Impfung N"
+                },
+                "PENDENT": {
+                    "TITLE": "Anstehende Termine inkl. Impfstoffempfehlung",
+                    "TOTAL": "Total",
+                    "IMPFUNG-1": "Impfung I",
+                    "IMPFUNG-2": "Impfung II",
+                    "IMPFUNG-N": "Impfung N"
+                },
+                "HINT": "* Bei Impfung 1: Freie Impfstoffwahl<br>Bei Impfung 2: Zugehörige 1. Impfung (noch) nicht durchgeführt<br>Bei Impfung N: Mehrere Impfstoffe werden empfohlen",
+                "HINT2": "** Beinhaltet alle Impfungen, die nach der zweiten oder bei durchgemachter COVID-Erkrankung nach der ersten Impfung durchgeführt wurden",
+                "DETAILLINK": "(Details)"
+            },
+            "TAGES-STATISTIK-DETAIL": {
+                "TOTAL": "Total",
+                "VON": "Von",
+                "BIS": "Bis",
+                "IMPFUNG-1": "Impfung I",
+                "IMPFUNG-2": "Impfung II",
+                "IMPFUNG-N": "Impfung N",
+                "NOCH_PENDENT": "Noch nicht erschienen: ",
+                "NOCH_PENDENT_NO_SELECTION": "Bitte in der Tabelle einen Eintrag auswählen",
+                "TITLE-PENDENT": "Pendent",
+                "LINK-PENDENT": "noch offen"
+            }
+        },
+        "KONTROLLE": {
+            "TITLE": "Zu impfende Person (Kontrolle {{i}})",
+            "TITLE-NEW": "Erfassung zu impfende Person",
+            "SPEICHERN": "Kontrolliert",
+            "PERSON_SPEICHERN": "Speichern",
+            "TERMIN1": "Termin 1",
+            "TERMIN2": "Termin 2",
+            "TERMIN": "Termin",
+            "IMPFUNG1": "Impfung 1",
+            "IMPFUNG2": "Impfung 2",
+            "FRUEHERE_IMPFUNGEN": "Frühere Impfungen",
+            "KEINE_FRUEHERE_IMPFUNGEN": "Keine früheren Impfungen",
+            "TERMIN_NOCH_UNBEKANNT": "Termin noch nicht vereinbart",
+            "TERMIN_NICHT_BENOETIGT": "Kein zweiter Termin notwendig",
+            "IDENTITAET-GEPRUEFT": "Identität geprüft",
+            "DRUCKEN": "Bestätigung Ihrer Registrierung drucken",
+            "ERROR_WRONG_STATE": "Die Registrierung ist in einem unerwarteten Status",
+            "UPLOAD_BUTTON": "Datei hochladen",
+            "ANHANG": "Anhang",
+            "BEMERKUNGEN": "Bemerkungen: ",
+            "BEIDE_TERMINE_VERSCHIEBEN": "Beide Termine verschieben oder absagen",
+            "BOOSTER_TERMIN_VERSCHIEBEN": "Termin verschieben oder absagen",
+            "DOCUMENTS": "Dokumente",
+            "GOTO_IMPFUNG": "Zur Impfung",
+            "MOBIL_CONFIRMATION": "Wollen Sie dieses Flag wirklich entfernen? Dadurch erscheint die Person nicht mehr auf dem Report 'Durch mobiles Impfteam zu impfende Personen'",
+            "MOBIL_CONFIRMATION_DEP": "Wollen Sie dieses Flag wirklich setzen? Es werden grundsätzlich keine neuen Registrierungen für mobile Impfteams entgegengenommen",
+            "DIALOG_CONFIRM_BIRTHDATE": "Diese Person ist {{age}} Jahre alt. Bitte bestätigen Sie das Geburtsdatum",
+            "DIALOG_CONFIRM_BIRTHDATE_PLACEHOLDER": "Geburtsdatum, z.B. 31.12.1980",
+            "ERROR_LOADING_IMPFSTOFFE": "Impfstoffe konnten nicht geladen werden",
+            "ERROR_LOADING_KK": "Krankenkassen konnten nicht geladen werden",
+            "VERSTORBEN": {
+                "CANCEL": "Abbrechen",
+                "CONFIRM": "Bestätigen",
+                "CONFIRM_QUESTION": "Ist diese Person tatsächlich gestorben?",
+                "QUESTION": "Diese Person ist verstorben"
+            },
+            "NEXT_FREIGABE_TEXT": "Die nächste Impfung ist buchbar ab dem {{datumFreigabe}}.",
+            "ALREADY_FREIGEGEBEN_TEXT": "Termin kann gebucht werden",
+            "TERMIN_BUCHEN": "Termin buchen",
+            "LEISTUNGSERBRINGER_AGB": {
+                "TITLE": "Einwilligung der impfwilligen Person",
+                "TEXT": "Die Erweiterung des Angebots zur Bewirtschaftung von FSME-Impfungen in VacMe wurde durch die DV Bern AG (VacMe Hersteller) implementiert. Die Durchführung und Dokumentation der FSME-Impfung wird in berechtigten Apotheken stattfinden. Der Kanton Bern ist für die Organisation und Verwaltung der FSME-Impfungen nicht zuständig. Bitte bestätigen Sie, dass die impfwillige Person darüber aufgeklärt wurde und dass sie die Einverständniserklärung und die Nutzungsbedingungen der DV Bern AG akzeptiert.",
+                "AGB": "Die impfwillige Person ist mit den <a class='text-link' target='_blank' href='/assets/files/AGB_DV_Bern_Vacme.pdf'>Nutzungsbedingungen</a> einverstanden.",
+                "EINWILLIGUNG": "Die impfwillige Person hat die <a class='text-link' target='_blank' href='/assets/files/Einverstaendniserklaerung_vacme_be_de.pdf'>Einverständniserklärung</a> gelesen und bin damit einverstanden."
+            }
+        },
+        "ODI": {
+            "STAMMDATEN": {
+                "REGISTRIERUNG": "Neuen Impfort hinzufügen",
+                "BEARBEITUNG": "Impfort",
+                "IDENTIFIER": "Code",
+                "NAME": "Name",
+                "ADRESSE1": "Adresse 1",
+                "ADRESSE2": "Adresse 2",
+                "PLZ": "PLZ",
+                "ORT": "Ort",
+                "OEFFENTLICH": "Öffentlich zugänglich",
+                "MOBILER-ODI": "Mobiles Impfzentrum",
+                "TERMINVERWALTUNG": "Terminverwaltung über VacMe",
+                "EXTERNER_BUCHUNGSLINK": "Externer Buchungslink",
+                "EXTERNER_BUCHUNGSLINK_HINT": "Link für die Terminbuchung, z.B. <a href=\"https://www.google.ch/\" target=\"_blank\">https://www.google.ch/</a>",
+                "PERSONALISIERTER_IMPF_REPORT": "Berechtigt für personalisierten Impf-Report",
+                "DEAKTIVIERT": "Deaktiviert",
+                "BOOSTER": "Booster-Impfungen",
+                "IMPFUNG_GEGEN_BEZAHLUNG": "Impfung gegen Bezahlung",
+                "BOOSTER_IMPFSTOFF": "Vorhandene Impfstoffe",
+                "ZSR-NUMMER": "ZSR-Nummer",
+                "GLN-NUMMER": "GLN-Nummer",
+                "TYP-TEXT": "Impfort-Typ",
+                "TYP": {
+                    "ALTERSHEIM": "Alters- und Pflegeheim",
+                    "APOTHEKE": "Apotheke",
+                    "HAUSARZT": "Arztpraxis",
+                    "IMPFZENTRUM": "Impfzentrum",
+                    "KINDER_IMPFZENTRUM": "Kinder-Impfzentrum",
+                    "MOBIL": "Mobiles Impfteam",
+                    "SPITAL": "Spital",
+                    "ANDERE": "Andere"
+                },
+                "KOMMENTAR": "Bemerkungen",
+                "SPEICHERN": "Impfort Speichern",
+                "CODE_UEBERPRUEFEN": "Code überprüfen",
+                "FACHVERANTWORTUNGBAB": "Zuständige Person Fachverantwortung BAB",
+                "ORGANISATIONSVERANTWORTUNG": "Zuständige Person Organisationsverantwortung",
+                "KUNDENGRUPPE": "Kundengruppe",
+                "MANDANT": "Mandant",
+                "TERMINE_BEARBEITEN": "Termine bearbeiten",
+                "ZURUECK": "Terminverwaltung beenden",
+                "TERMINE_ABSAGEN": "Alle Termine absagen",
+                "TERMINE_ABSAGEN_QUESTION": "Alle Termine dieses Tages absagen?",
+                "TERMINE_ABSAGEN_ZWEITTERMIN_CONFIRM": "Ich bestätige, dass alle Zweittermine an diesem Tag gelöscht werden. In diesem Fall werden alle zu impfenden Personen mittels SMS oder Brief informiert und müssen über VacMe oder über das Callcenter einen neuen zweiten Impftermin buchen",
+                "TERMINE_ABSAGEN_ERSTTERMIN_CONFIRM": "Ich bestätige, dass alle Ersttermine, sowie alle dazugehörenden Zweittermine an diesem Tag gelöscht werden. In diesem Fall werden alle zu impfenden Personen mittels SMS oder Brief informiert und müssen über VacMe oder über das Callcenter zwei neue Impftermine buchen",
+                "TERMINE_ABSAGEN_BOOSTERTERMIN_CONFIRM": "Ich bestätige, dass alle Boostertermine an diesem Tag gelöscht werden. In diesem Fall werden alle zu impfenden Personen mittels SMS oder Brief informiert und müssen über VacMe oder über das Callcenter einen neuen Boostertermin buchen"
+            },
+            "KUNDENGRUPPE": {
+                "GALENICA": "Galenica",
+                "DROPA": "Dropa",
+                "UNBEKANNT": "Unbekannt"
+            },
+            "MANDANT": {
+                "BE": "Bern",
+                "ZH": "Zürich"
+            },
+            "TERMINVERWALTUNG": {
+                "TITLE": "Terminverwaltung",
+                "IMPFSLOTS_ERSTELLEN": "Impfslots erstellen",
+                "SPEICHERN": "Termine speichern",
+                "MONAT": {
+                    "0": "Januar",
+                    "1": "Februar",
+                    "2": "März",
+                    "3": "April",
+                    "4": "Mai",
+                    "5": "Juni",
+                    "6": "Juli",
+                    "7": "August",
+                    "8": "September",
+                    "9": "Oktober",
+                    "10": "November",
+                    "11": "Dezember"
+                },
+                "ZEILENSUMME": "Total",
+                "DATUM": "Datum",
+                "VALIDIERUNG_TITEL": "Warnung: An folgenden Erstterminen gibt es zu wenige passende Zweittermine im Abstand von {{desiredDays}} Tagen:",
+                "VALIDIERUNG_ZEILE": "Termin 1 {{datum1Display}}: {{kap1}}, Termin 2 {{datum2Display}}: {{kap2}}",
+                "COVID": "Covid",
+                "AFFENPOCKEN": "Mpox",
+                "FSME": "FSME"
+            },
+            "BENUTZER": {
+                "TITEL": "Personen",
+                "ROLLE": {
+                    "PERSONAL": "Personal",
+                    "FACHPERSONAL": "Fachpersonal",
+                    "ORGANISATIONSSUPERVISION": "Organisationssupervision",
+                    "ORGANISATIONSVERANTWORTUNG": "Organisationsverantwortung",
+                    "FACHSUPERVISION": "Fachsupervision",
+                    "FACHVERANTWORTUNG_BAB": "Fachverantwortung BAB",
+                    "FACHVERANTWORTUNG_BAB_DELEGIERT": "Fachverantwortung BAB (delegiert)"
+                },
+                "BEARBEITUNG": "Benutzer bearbeiten",
+                "REGISTRIERUNG": "Benutzer erstellen",
+                "FIRSTNAME": "Vorname",
+                "LASTNAME": "Nachname",
+                "EMAIL": "E-Mail",
+                "PHONE": "Mobiltelefonnummer",
+                "GLNNUMMER": "GLN-Nummer",
+                "USERNAME": "Benutzername",
+                "SPEICHERN": "Benutzer speichern",
+                "ROLLE-TEXT": "Rolle",
+                "LOESCHEN": "Benutzer entfernen",
+                "SPERREN": "Benutzer sperren",
+                "ENTSPERREN": "Benutzer entsperren",
+                "LOESCHEN.CONFIRM.TITLE": "Achtung, mit dieser Aktion wird der Benutzer definitiv entfernt, bitte verwenden Sie diese Funktion nur, wenn der Benutzer fälschlicherweise erfasst wurde. Falls der Benutzer nicht mehr bei Ihnen arbeitet, verwenden Sie bitte die \"Sperren\" Funktion, damit er für Nachdokumentationen noch auswählbar bleibt.",
+                "LOESCHEN.CONFIRM.OK": "Entfernen",
+                "LOESCHEN.CONFIRM.CANCEL": "Abbrechen"
+            },
+            "BENUTZERLISTE": {
+                "BENUTZER_ERFASSEN": "Benutzer erfassen",
+                "FACHROLLE": "Rolle",
+                "FIRSTNAME": "Vorname",
+                "LASTNAME": "Nachname",
+                "USERNAME": "Benutzername",
+                "MEHR_LADEN": "Mehr laden"
+            },
+            "ODI_FILTER": {
+                "TITLE": "Filter",
+                "BEARBEITEN": "Filter bearbeiten",
+                "TYP": "Filter Typ",
+                "STRING_ARGUMENT": "Text Argument",
+                "MINIMAL_WERT": "Grösser als",
+                "MAXIMAL_WERT": "Maximalwert",
+                "NEW": "Neuer Filter",
+                "SAVE": "Speichern",
+                "TYP_ENUM": {
+                    "AGE_FILTER": "Alter",
+                    "GESCHLECHT_FILTER": "Geschlecht",
+                    "PRIORITAET_FILTER": "Prioritaet",
+                    "PRIORITAET_PUNKT_FILTER": "Prioritaet Punkt",
+                    "REGISTRIERUNGS_EINGANG": "Registrierungseingang",
+                    "CHRONISCHE_KRANKHEITEN": "Chronische Krankheiten",
+                    "BERUFLICHE_TAETIGKEIT": "Berufliche Tätigkeit",
+                    "LEBENSUMSTAENDE": "Lebensumstände"
+                }
+            }
+        },
+        "UPLOAD": {
+            "FILENAME": "Dateiname"
+        }
+    },
+    "FACH-ADMIN": {
+        "DATEN_KORREKTUR": {
+            "TITLE": "Datenkorrektur",
+            "REGISTRIERUNGSNUMMER": "Registrierungsnummer",
+            "IMPFUNG": {
+                "TITLE": "Impfung korrigieren",
+                "IMPFFOLGE": "Impffolge",
+                "ERSTE_IMPFUNG": "Erste Impfung",
+                "ZWEITE_IMPFUNG": "Zweite Impfung",
+                "BOOSTER_IMPFUNG": "Booster-Impfung",
+                "IMPFUNG_UND_NR": "Impfung",
+                "IMPFUNG_NR": "{{num}}. Impfung - {{date}}"
+            },
+            "BOOSTER": {
+                "BOOSTERNR": "Auswahl Booster-Impfung"
+            },
+            "KORRIGIEREN": "Korrigieren",
+            "SUCCESS": "Impfung angepasst. Bitte vergessen Sie nicht, wenn nötig auch die andere Impfung zu korrigieren",
+            "SUCCESS_PERSONENDATEN": "Personendaten angepasst",
+            "SUCCESS_EMAIL_TELEPHONE": "E-Mail und Mobiltelefonnummer angepasst",
+            "SUCCESS_DOWNLOAD_IMPFDOKU": "Impfdokumentation herunterladen",
+            "DELETE_ACCOUNT": "Registrierung löschen",
+            "DELETE_ACCOUNT_QUESTION": "Sind Sie sicher, dass Sie die Registrierung inkl. Historisierung und Benutzerkonto löschen wollen?",
+            "EMAIL_TELEPHONE": "E-Mail und Mobiltelefonnummer des Onlinezugangs anpassen",
+            "USERDATA": "Benutzerdaten",
+            "USERNAME": "Benutzername",
+            "EMAIL_TELEPHONE_INFO": "Es werden nur die E-Mail und Telefonnummer des Benutzers geändert, die Angaben auf der verlinkten Registrierungen werden nicht angepasst! Wollen sie fortfahren?",
+            "IMPFUNG_DATEN": "Impfungsdaten anpassen (Impfstoff, Lot, Menge)",
+            "IMPFUNG_ORT": "Ort der Impfung anpassen",
+            "SELBSTZAHLENDE": "Zahlungsmodus anpassen",
+            "ONBOARDING": "Onboarding",
+            "ONBOARDING_SEND": "Onboarding-Brief senden",
+            "ONBOARDING_NOT_POSSIBLE": "Für diese Registrierung existiert bereits ein Login",
+            "IMPFUNG_VERABREICHUNG": "Verabreichung anpassen",
+            "IMPFSTOFF_EINGESTELLT_WARNUNG": "Die verwendung von {{impfstoff}} wurde eingestellt",
+            "IMPFUNG_DATUM": "Datum der Impfung anpassen",
+            "PERSONENDATEN": "Basis-Personendaten anpassen",
+            "DELETE_IMPFUNG": "Impfung löschen  (nur Duplikat oder fehlerhafte Impfungen)",
+            "DELETE_IMPFUNG_WARNING_DIALOG": {
+                "TITLE": "Eine durchgeführte Impfung darf nicht gelöscht werden!",
+                "LABEL": "Sie dürfen nur Duplikate oder fälschlicherweise erfasste Impfungen löschen. In diesem Fall wird diese Impfung nicht vergütet, vom VMDL gelöscht und allfällige ausgestellte COVID-Zertifikate revoziert.",
+                "CONFIRM": "Duplikat oder fehlerhafte Impfung löschen",
+                "CANCEL": "Impfung wurde durchgeführt, abbrechen"
+            },
+            "KRANKHEIT": "Krankheit Typ",
+            "KORREKTUR_TYP": "Gewünschte Korrektur",
+            "OPEN_MASK": "Korrekturmaske öffnen",
+            "SUCHE_MIT_PERSONALIEN": "Suche nach geimpfter Person mittels Name, Vorname und Geburtsdatum",
+            "ZERTIFIKAT": "Zertifikat",
+            "ZERTIFIKAT_NEU_ERSTELLEN": "Zertifikat neu erstellen",
+            "ZERTIFIKAT_FORCE_POST": "Zertifikatszustellung per Post erzwingen",
+            "DURCHFUEHRENDE_PERSON": "Durchführende Person: ",
+            "ZERTIFIKAT_ZURUECKZIEHEN": "Zertifikat zurückziehen",
+            "ZERTIFIKAT_REVOKE_AND_RECREATE": "Zertifikat neu erstellen",
+            "ZERTIFIKAT_BEREITS_PER_POST_GESCHICKT": "Achtung, Postversand wurde bereits am {{timestampLetzterPostversand}} ausgelöst"
+        }
+    },
+    "IMPFDOK": {
+        "TITLE": "Impfdokumentation (Impfung {{i}})",
+        "NO_ACCESS": "Auf diese Registrierung gibt es für die Impfdokumentation keinen Zugriff (mehr)",
+        "VERANTWORTLICH": "Verantwortliche Person",
+        "DURCHFUEHREND": "Durchführende Person",
+        "EINWILLIGUNG": {
+            "LABEL": "Einwilligung Impfung",
+            "OHNE_VORBEHALT": "Einwilligung ohne Vorbehalte",
+            "OHNE_VORBEHALT_AFFENPOCKEN": "Der vom BAG erstellte Aufklärungsbogen zur Affenpockenimpfung wurde gelesen und die Einwilligungserklärung liegt unterschrieben vor",
+            "MIT_VORBEHALT": "Einwilligung entgegen den aktuellen Empfehlungen (in Bemerkungen festhalten)"
+        },
+        "IMPFSTOFF": "Impfstoff",
+        "IMPFSTOFF_ZULASSUNG": {
+            "ZUGELASSEN": "",
+            "EMPFOHLEN": "",
+            "EXTERN_ZUGELASSEN": "(nur für extern zugelassen)",
+            "NICHT_ZUGELASSEN": "(nicht zugelassen)",
+            "NICHT_WHO_ZUGELASSEN": "(nicht WHO-zugelassen)"
+        },
+        "LOT": "Charge / LOT",
+        "IMMUNSUPPRIMIERT": "Immunsupprimiert?",
+        "KEIN_FIEBER": "Kein Fieber",
+        "KEINE_NEUE_KRANKHEIT": "Keine neue Krankheit",
+        "KEIN_FIEBER_KEINE_KONTRAINDI": {
+            "LABEL": "Kein Fieber und keine Kontraindikationen",
+            "KEINE_NEUE_ERKRANKUNGEN_COVID": "Keine neuen Erkrankungen",
+            "KEINE_NEUE_ERKRANKUNGEN_AFFENPOCKEN": "≥ 18 Jahre und keine stattgehabte Affenpockenerkrankung",
+            "KEINE_NEUE_ERKRANKUNGEN_FSME": "TODO Text definieren",
+            "KEINE_ALLERGIEN_1": "Keine für Impfung relevanten Allergien",
+            "KEINE_ALLERGIEN_2": "oder siehe Bemerkungen",
+            "KEINE_ALLERGIEN_INFO_COVID": "Relevant: Allgemeinreaktion/Anaphylaxie auf Inhaltsstoffe des RNA-Impfstoffs, bekannte oder wahrscheinliche Sensibilisierung vom Soforttyp auf Polyethylenglykol (PEG, Macrogol) oder Tromethamin (TRIS, Trometamol), Anaphylaxie nach der ersten Dosis des RNA-Impfstoffs. Bei schwerer Anaphylaxie (Grad III/IV) mit unklarem oder noch nicht abgeklärtem Auslöser oder idiopathischer Anaphylaxie muss eine Rücksprache mit Facharzt/Fachärztin Allergologie erfolgen.",
+            "KEINE_ALLERGIEN_INFO_AFFENPOCKEN": "Bekannte Unverträglichkeiten/ Allergien gegenüber Inhaltsstoffen des Impfstoffs (Hühnerprotein, Trometamol, Gentamicin, Benzonase, Ciprofloxacin)",
+            "KEINE_ALLERGIEN_INFO_FSME": "Allergie gegen Hühnereiweiss, Medikamente oder einen Bestandteil des Impfstoffs",
+            "KEINE_REAKTIONEN": "Keine Reaktion auf andere Impfungen in der Vergangenheit oder siehe Bemerkungen",
+            "KEINE_REAKTION_FSME": "Keine anaphylaktische Reaktion auf eine frühere Impfung",
+            "KEINE_WIRKUNGEN_FSME": "Keine schwerwiegenden unerwünschten Wirkungen auf andere Impfungen in der Vergangenheit oder siehe Bemerkungen",
+            "KEIN_REGELMAESSIGE_MEDIKAMENTE_FSME": "Keine regelmässigen Medikamente oder siehe Bemerkungen"
+        },
+        "KEINE_BESONDEREN_UMSTAENDE": {
+            "LABEL": "Keine besonderen Umstände",
+            "KEIN_BLUTVERDUENNUNG": "Keine Blutverdünnung oder siehe Bemerkungen",
+            "KEIN_BLUTVERDUENNUNG_FSME": "Keine Blutverdünnung oder bekanntes Blutungsrisiko oder siehe Bemerkungen"
+        },
+        "ZECKENSTICH": "Zeckenstich in den letzten 4 Wochen?",
+        "SCHWANGER": "Schwanger?",
+        "RISIKOREICHES_SEXUALLEBEN": "Risikoreiches Sexualverhalten?",
+        "IMPFUNG_AUS_BERUFLICHEN_GRUENDEN": "Impfung aus beruflichen Gründen?",
+        "KONTAKT_MIT_PERSON_AUS_RISIKOGRUPPE": "Risikokontakt zu infizierten Personen?",
+        "OPTIONAL-TRUE-FALSE-OPTION": {
+            "TRUE": "ja",
+            "FALSE": "nein",
+            "KEINE_ANGABE": "möchte keine Auskunft geben"
+        },
+        "SCHWANGER_WARNUNG": "Hinweis für Apotheken: Schwangere benötigen ein Attest",
+        "SELBSTZAHLENDE": "Zahlungsmodus:",
+        "SELBSTZAHLENDE_OPTION": {
+            "SELBSTZAHLENDE": "Impfung für Selbstzahlerinnen und Selbstzahler",
+            "IMPFKAMPAGNE_COVID": "Impfung der COVID-19-Impfkampagne",
+            "ZAHLUNGSTYP_KRANKENKASSE": "Impfung über Krankenkasse abrechnen"
+        },
+        "SELBSTZAHLENDE_WARNUNG": {
+            "IMMUNSUPPRIMIERT": "{{vorname}} {{name}} ist immunsupprimiert. Die Abrechnung sollte über die COVID-19-Impfkampagne erfolgen.",
+            "INFO_POPUP": "Achtung! Bitte überprüfen Sie, dass der Zahlungsmodus korrekt gesetzt ist."
+        },
+        "VERABREICHUNG_ART": "Verabreichungsart",
+        "VERAB_ART": {
+            "INTRA_MUSKULAER": "Intramuskulär",
+            "SUBKUTAN": "Subkutan",
+            "INTRADERMAL": "Intradermal"
+        },
+        "VERABREICHUNG_ORT": "Verabreichungsort",
+        "VERAB_ORT": {
+            "OBERARM": "Oberarm",
+            "UNTERARM": "Unterarm",
+            "OBERSCHENKEL": "Oberschenkel",
+            "ANDERER_ORT": "Anderer Ort"
+        },
+        "VERABREICHUNGORTLR": "",
+        "LINKS_RECHTS": {
+            "LINKS": "links",
+            "RECHTS": "rechts"
+        },
+        "MENGE": "Menge in ml",
+        "SPEICHERN_WARN": "Sie können die Impfdokumentation nach dem Speichern nicht mehr verändern.",
+        "SPEICHERN": "Geimpft",
+        "ZURUECK": "Zurück",
+        "BEMERKUNG": "Bemerkung",
+        "DRUCKEN": "Impfdokumentation drucken",
+        "ERROR": {
+            "LOAD-DATA": "Impfdokumentation konnte nicht geladen werden",
+            "WRONG-STATUS": "Registrierung hat den falschen Status {{dossierStatus}}. Krankheit: {{dossierKrankheit}} (Dossier) bzw. {{urlKrankheit}} (URL)"
+        },
+        "REG-BEMERKUNG": "Bemerkung zur Registration",
+        "REG-KONTROLLE-N": "Bemerkung Kontrolle {{impffolgeNr}}",
+        "TERMIN": {
+            "HEUTE": "Heute",
+            "ERSTE_IMPFUNG": "Termin 1",
+            "ZWEITE_IMPFUNG": "Termin 2",
+            "ANPASSEN": "Termine anpassen",
+            "IN": "in",
+            "SEIT": "vor",
+            "TAGEN": "Tagen",
+            "CANCEL_TERMIN_2": "Termin absagen",
+            "AD_HOC": "Termin heute erstellen"
+        },
+        "ODI": "Impfort",
+        "ZURUEK_ZU_KONTROLLE": "Es kann nicht geimpft werden",
+        "ZURUEK_ZU_KONTROLLE.CONFIRM": "Kann nicht geimpft werden?",
+        "ZURUEK_ZU_KONTROLLE.CONFIRM_ZURUEK": "Ja, nicht geimpft",
+        "ZURUEK_ZU_KONTROLLE.CONFIRM_CANCEL": "Abbrechen",
+        "KEIN_ZWEITE_IMPFUNG": {
+            "TRIGGER": "Auf 2. Impfung verzichten",
+            "ZWEITE_TITLE": "Kann nicht geimpft werden?",
+            "ERSTE_TITLE": "Auf zweite Impfung verzichten?",
+            "CONFIRM_ZURUEK": "Ja",
+            "CONFIRM_CANCEL": "Abbrechen",
+            "VERSCHIEBEN": "Zweite Impfung kann heute nicht durchgeführt werden, z.B. wegen aktuellem Fieber",
+            "VERZICHTEN": "Auf zweite Impfung verzichten und Impfdossier abschliessen",
+            "BEGRUENDUNG": "Begründung für Impfdokumentation",
+            "BEGRUENDUNG_VOLLSTAENDIGER_IMPFSCHUTZ": "Begründung für Impfdokumentation: Die Person hat eine bestätigte COVID-19-Erkrankung durchgemacht. Gemäss den Vorgaben des Bundesamtes für Gesundheit (BAG) wird in diesem Fall nur eine Impfdosis empfohlen.",
+            "VOLLSTAENDIGER_IMPFSCHUTZ": "Vollständiger Impfschutz gemäss Bundesamt für Gesundheit aufgrund bestätiger COVID-19 Erkrankung",
+            "VOLLSTAENDIGER_IMPFSCHUTZ_BEGRUENDUNG": "Personen mit einer bestätigten COVID-19 Erkrankung wird nur eine Impfdosis empfohlen.",
+            "POSITIV_GETESTET_DATUM": "Datum des anerkannten COVID-19 Tests",
+            "POSITIV_GETESTET": "Positiver, anerkannter COVID-19 Test am {{date}}"
+        },
+        "NOT_SAME_ODI": {
+            "TERMIN1": "Termin 1 wurde im Impfort \"{{i}}\" gebucht",
+            "TERMIN2": "Termin 2 wurde im Impfort \"{{i}}\" gebucht",
+            "TERMIN": "Termin wurde im Impfort \"{{i}}\" gebucht",
+            "GEWUENSCHTER_ODI": "Gewünschter Ort der Impfung ist \"{{i}}\""
+        },
+        "NACHTRAG_IMPFUNG_N": {
+            "IMPFUNG_HEUTE": "Die Impfung {{n}} wird heute durchgeführt",
+            "IMPFUNG_NACHTRAG": "Die Impfung {{n}} wurde bereits früher durchgeführt",
+            "ERSTE_IMPFUNG_ERFASSEN": "Tragen Sie jetzt zuerst die Impfdokumentation der Impfung {{n}} nach, bevor Sie mit der Impfung {{m}} beginnen.",
+            "DATUM_ERSTE_IMPFUNG": "Datum der Impfung {{n}}",
+            "IMPFUNG_1_NACHTRAGEN": "Nachdokumentation speichern",
+            "EXTERN": "Impfung {{n}} wurde andernorts oder unter einer anderen Registrierung vorgenommen"
+        },
+        "NUR_EINE_DOSIS": {
+            "CONFIRM": "Für diesen Impfstoff ist nur eine Dosis notwendig. Der zweite Termin wird ggf. gelöscht. Bitte bestätigen Sie, dass die geimpfte Person entsprechend informiert wird."
+        },
+        "GRUNDIMMUNISIERUNG_OPTION": {
+            "TRUE": "Diese Impfung gehört noch zur Grundimmunisierung",
+            "FALSE": "Diese Impfung ist eine Booster-Impfung"
+        },
+        "IMPF_SCHEMA": "Impfschema",
+        "IMPF_SCHEMA_OPTION": {
+            "SCHNELLSCHEMA": "Schnellschema",
+            "KONVENTIONELL": "Konventionell"
+        }
+    },
+    "REPORTS": {
+        "ASYNC": {
+            "TABLETITLE": "Asynchrone Reports",
+            "NORESULTS": "Aktuell gibt es für ihren Benutzer keine asynchron generierten Reports"
+        },
+        "TITLE": "Reports & Statistiken",
+        "ANZEIGEN": "Anzeigen",
+        "REPORTING_KANTON": "Reporting Kanton",
+        "REPORTING_KANTON_STATISTIK": "Registrierungen Kanton CSV",
+        "REPORTING_KANTONSARZT_STATISTIK": "Registrierungen Kantonsarzt CSV",
+        "REPORTING_IMPFUNGEN_STATISTIK": "Impfungen CSV",
+        "REPORTING_TERMINSLOTS_STATISTIK": "Reporting Terminslots CSV",
+        "REPORTING_ODIS_STATISTIK": "Reporting ODIs CSV",
+        "REPORTING_KANTON_FILENAME": "ReportingKanton.xlsx",
+        "REPORTING_KANTON_CSV_FILENAME": "RegistrierungenKanton.csv",
+        "REPORTING_IMPFUNGEN_CSV_FILENAME": "ReportingImpfungen.csv",
+        "REPORTING_TERMINSLOTS_CSV_FILENAME": "ReportingTerminslots.csv",
+        "REPORTING_ODIS_CSV_FILENAME": "ReportingOdis.csv",
+        "REPORTING_KANTONSARZT_CSV_FILENAME": "RegistrierungenKantonsarzt.csv",
+        "REPORTING_ODI_IMPFUNGEN_STATISTIK": "Reporting ODI Impfungen",
+        "REPORTING_ODI_IMPFUNGEN_CSV_FILENAME": "ReportingOdiImpfungen.xlsx",
+        "REPORTING_ODI_TERMINBUCHUNGEN_STATISTIK": "Reporting ODI Terminbuchungen",
+        "REPORTING_ODI_TERMINBUCHUNGEN_CSV_FILENAME": "ReportingOdiTerminbuchungen.xlsx",
+        "ABRECHNUNG": {
+            "FILE_NAME": "Abrechnung.xlsx",
+            "TITLE": "Abrechnung COVID-19 Impfkampagne",
+            "START": "Abrechnung herunterladen",
+            "VON": "Von",
+            "BIS": "Bis"
+        },
+        "ABRECHNUNG_ERWACHSEN": {
+            "FILE_NAME": "AbrechnungErwachsen.xlsx",
+            "TITLE": "Abrechnung COVID-19 Impfkampagne >= 12 Jahre"
+        },
+        "ABRECHNUNG_KIND": {
+            "FILE_NAME": "AbrechnungKind.xlsx",
+            "TITLE": "Abrechnung COVID-19 Impfkampagne < 12 Jahre"
+        },
+        "IMPFUNGEN_FHIR": {
+            "FILE_NAME": "ReportingImpfungen_{{regNum}}.xml",
+            "TITLE": "Impfungen FHIR"
+        },
+        "ABRECHNUNG_ZH": {
+            "FILE_NAME": "AbrechnungZH.xlsx",
+            "TITLE": "Abrechnung COVID-19 Impfkampagne Kanton Zürich 65+/-"
+        },
+        "ABRECHNUNG_ZH_KIND": {
+            "FILE_NAME": "AbrechnungZHKind.xlsx",
+            "TITLE": "Abrechnung COVID-19 Impfkampagne Kanton Zürich 11+/-"
+        },
+        "ABRECHNUNG_ZEITRAUM_TOO_BIG": "Der Zeitraum ist zu gross, es sind maximal 366 Tage erlaubt",
+        "TBL": {
+            "TYP": "Typ",
+            "STATUS": "Status",
+            "ZEIT_BESTELLT": "Bestellzeit",
+            "ZEIT_GELIEFERT": "Geliefert Zeit",
+            "ZEIT_FILENAME": "Filename",
+            "LINK": "Download"
+        }
+    },
+    "SYSTEM_ADMINISTRATION": {
+        "TERMIN": "Termin",
+        "TITLE": "System-Administration",
+        "ANZEIGEN": "Anzeigen",
+        "RE_GENERATE_DOKUMENTE": "Dokumente neu generieren und an Post senden (nur Callcenter)",
+        "RE_GENERATE_DOKUMENTE_SAVE_DB": "Dokumente neu generieren und in DB speichern (nur Callcenter)",
+        "STICHTAG": "Stichtag (14:00 Vortag bis 14:00 am Stichtag)",
+        "DOWNLOAD_DOKUMENTE": "Dokumente herunterladen",
+        "ZIP_DOWNLOAD_FILENAME": "Dokumente_{{stichtag}}.zip",
+        "PROCESS_UPLOAD_MYCOVIDVAC": "Verarbeiten/Upload zu MyCOVIDvac (meineimpfungen)",
+        "IMPFGRUPPE_FREIGEBEN": "Impfgruppe Freigeben",
+        "IMPFGRUPPENFREIGABE": "Impfgruppenfreigabe",
+        "RUN_JOB_STATISTIK_ERSTIMPFUNGEN": "Mail senden mit Anzahl Erst- und Boosterimpfungen",
+        "JOB_STATISTIK_ERSTIMPFUNGEN_SUCCESS": "Die Angaben wurden an die konfigurierte E-Mail-Adresse verschickt",
+        "ZERTIFIKAT_ENABLED": "Soll das COVID-Zertifikat GUI für Impfwillige erscheinen",
+        "ZERTIFIKAT_ENABLED_SPEICHERN": "Zertifikat-Einstellung Speichern",
+        "IMPFSTOFF": {
+            "TITLE": "Impfstoff editieren",
+            "IMPFSTOFF": "Impfstoff",
+            "NAME": "Name",
+            "HERSTELLER": "Hersteller",
+            "CODE": "Code",
+            "COVID_CERT_PROD_CODE": "Covid-Zertifikat Prod Code",
+            "HEX_FARBE": "Farbe (Hex)",
+            "ANZAHL_DOSEN_BENOETIGT": "Anzahl Dosen benötigt",
+            "ZULASSUNGS_STATUS": "Zulassungsstatus",
+            "INFORMATIONS_LINK": "Informationslink",
+            "TITLE_EMPFEHLUNG": "Impfempfehlung CH Grundimmunisierung",
+            "ANZAHL_VERABREICHT": "Wenn Anzahl verabreicht",
+            "NOTWENDIG_FUER_GRUNDIMMUNISIERUNG": "Dann noch notwendig für Grundimmunisierung",
+            "ADD_EMPFEHLUNG": "Empfehlung hinzufügen",
+            "IMPFSTOFFTYP": "Impfstofftyp",
+            "EINGESTELLT": "Eingestellt",
+            "ZULASSUNGS_STATUS_BOOSTER": "Zulassungsstatus Booster",
+            "HINWEIS_10_MINUTEN": "Hinweis: Falls nach dem Impfstoff-Editieren die Neuberechnung durchgeführt werden muss. Bitte nach dem editieren 10 min warten, bevor Neuberechnung starten.",
+            "WHOCH2_CODE": "WHoch2 Code",
+            "KRANKHEIT": "Krankheit"
+        }
+    },
+    "ERROR_FILE_TOO_BIG": "Die Datei ist zu gross. Max 10MB",
+    "ERROR_COMBINED_FILES_TOO_BIG": "Die Dateien sind zusammen zu gross für den gemeinsamen Upload",
+    "ERROR_UNKOWN_KRANKHEIT": "Die übergebene Krankheit wird für die Erfassung im System nicht unterstuetzt",
+    "ERR_FALSCHE_PERS": "Diese Person wurde in einer früheren Kontrolle abgewiesen als falsche Person",
+    "ERR_NO_IMPFABLE_PERS": "Keine zu impfende Person gefunden",
+    "UPLOAD_FILE_ERROR": "Die Dateien konnten nicht hochgeladen werden",
+    "REG_VALIDATION": {
+        "AGE_WARNING_CHILD": "Die Person ist unter {{warnage}}-jährig.",
+        "AGE_WARNING_CHILD_COVID": "Die Person ist unter 12-jährig. Nur Pfizer/BioNTech Comirnaty® 10 Mikrogramm/Dosis (Kinderimpfung) verwenden!",
+        "AGE_WARNING_ADULT_COVID": "Die Person ist über 12-jährig. Pfizer/BioNTech Comirnaty® 10 Mikrogramm/Dosis (Kinderimpfung) sollte nicht verwendet werden",
+        "TITLE": "Achtung",
+        "PHONE_NOT_SWISS_MOBILE": "Die eingegebene Nummer scheint keine Schweizer Mobiltelefonnummer zu sein. Sie können diese trotzdem speichern, wenn Sie sicher sind, dass SMS an diese Nummer gesendet werden können.",
+        "IMPFUNG_WAS_SAME_DAY": "Diese Person wurde heute schon geimpft",
+        "MIN_DAYS_NOT_VALID": "Der Abstand zwischen den Impfungen ist kleiner als die empfohlenen vier Wochen",
+        "MAX_DAYS_NOT_VALID": "Der Abstand zwischen den Impfungen ist grösser als die empfohlenen vier Wochen",
+        "WRONG_IMPFGRUPPE": "Die Impfgruppe {{gruppe}} ist noch nicht freigegeben",
+        "WRONG_STATUS": "Die Person ist im falschen Impfstatus",
+        "DIFFERENT_IMPFSTOFF": "Bei der letzten Impfung wurde ein anderer Impfstoff verwendet",
+        "BUTTON_SAVE_ANYWAY": "Trotzdem impfen",
+        "BUTTON_CANCEL": "Abbrechen",
+        "NO_TERMIN": "Die zu impfende Person hat keinen Termin",
+        "USER_NOT_FOR_ODI": "Der aktuelle Termin {{impffolge}} ist in einem Ort der Impfung, für den Sie nicht zugeteilt sind",
+        "WRONG_TERMIN": "Die zu impfende Person hat ihren Termin nicht heute",
+        "WRONG_ODI": "Die zu impfende Person ist in einem anderen Ort der Impfung angemeldet",
+        "ODI_INAKTIV": "Dieser Ort der Impfung ist nicht mehr aktiv",
+        "NICHT_FREIGEGEBEN_SELBSTZAHLER": "Der Abstand zur letzten Impfung oder Covid-Erkrankung beträgt weniger als von der EKIF empfohlen",
+        "IMPFSTOFF_EINGESTELLT": "Die verwendung von {{impfstoff}} wurde eingestellt"
+    },
+    "TERMINFINDUNG": {
+        "TERMIN_ANDERER_ODI": "Die Person hat einen Termin in einem anderen Ort der Impfung. Wollen Sie diesen Termin überschreiben?",
+        "ABBRECHEN": "abbrechen",
+        "UEBERSCHREIBEN": "überschreiben"
+    },
+    "ADMIN": {
+        "DATUM": "Datum",
+        "BUCHUNGEN_TERMIN_1": "Buchungen Termin 1",
+        "BUCHUNGEN_TERMIN_1_SHORT": "Buchungen T1",
+        "BUCHUNGEN_TERMIN_2": "Buchungen Termin 2",
+        "BUCHUNGEN_TERMIN_2_SHORT": "Buchungen T2",
+        "BUCHUNGEN_TERMIN_N": "Buchungen Termin N",
+        "BUCHUNGEN_TERMIN_N_SHORT": "Buchungen TN",
+        "KAPAZITAET_TERMIN_1": "Kapaz. Termin 1",
+        "KAPAZITAET_TERMIN_1_SHORT": "Kapaz. T1",
+        "KAPAZITAET_TERMIN_2": "Kapaz. Termin 2",
+        "KAPAZITAET_TERMIN_2_SHORT": "Kapaz. T2",
+        "KAPAZITAET_TERMIN_N": "Kapaz. Termin N",
+        "KAPAZITAET_TERMIN_N_SHORT": "Kapaz. TN",
+        "FREIE_TERMIN_1": "Freie Termin 1",
+        "FREIE_TERMIN_1_SHORT": "Freie T1",
+        "FREIE_TERMIN_2": "Freie Termin 2",
+        "FREIE_TERMIN_2_SHORT": "Freie T2",
+        "FREIE_TERMIN_N": "Freie Termin N",
+        "FREIE_TERMIN_N_SHORT": "Freie TN",
+        "IMPFUNGEN_1": "Impfungen 1",
+        "IMPFUNGEN_1_SHORT": "Impfungen 1",
+        "IMPFUNGEN_2": "Impfungen 2",
+        "IMPFUNGEN_2_SHORT": "Impfungen 2",
+        "IMPFUNGEN_N": "Impfungen N",
+        "IMPFUNGEN_N_SHORT": "Impfungen N",
+        "TOTAL": "Total",
+        "ANZAHL_REGISTRIERUNGEN": "Anzahl Registrierungen",
+        "VERSION": "Version"
+    },
+    "NAVIGATION_SERVICE": {
+        "PERSON_BEREITS_KONTROLLIERT": "{{person}} wurde bereits kontrolliert und ist zum Impfen bereit",
+        "PERSON_BEREITS_GEIMPFT": "{{person}} wurde bereits vollständig geimpft"
+    },
+    "IMPFDOSSIER_SUMMARY": {
+        "TITLE": "Impfdossiers",
+        "IMPFUNGSDATEN_LETZTE_IMPFUNG": "Letzte Impfung mit Impfstoff {{impfstoff}} am {{timestampImpfung}}",
+        "IMPFUNG_AUSSTEHEND": "Noch keine Impfung vorgenommen"
+    },
+    "GEIMPFT": {
+        "TITLE": "{{person}} wurde folgendermassen geimpft:",
+        "BEMERKUNGENIMPFUNG": "Bemerkungen:",
+        "IMPFUNGSDATEN": "Impfung {{impffolge}} mit Impfstoff {{impfstoff}} am {{timestampImpfung}}",
+        "IMPFUNG_AUSSTEHEND": "Impfung {{impffolge}} noch ausstehend",
+        "IMPFUNG_VERZICHTET_GRUND": "Begründung - Wieso wurde auf die 2. Impfung verzichtet",
+        "IMPFUNG_VERZICHTET": "Auf die zweite Impfung wurde am {{datum}} verzichtet",
+        "IMPFUNG_GEHOERT_ZU_GRUNDIMMUNISIERUNG": "Impfung gehört zur Grundimmunisierung",
+        "IMPFUNG_GEHOERT_NICHT_ZU_GRUNDIMMUNISIERUNG": "Booster-Impfung",
+        "SCHWANGER": "Während Schwangerschaft",
+        "SCHON_ABGESCHLOSSEN": "Die zweite Impfung wurde nicht wahrgenommen. Das Dossier wurde am {{datum}} abgeschlossen.",
+        "ZWEITE_IMPFUNG_WAHRNEHMEN": "2. Impfung trotzdem wahrnehmen",
+        "ERKRANKUNG_ENTFERNEN": "Covid-19 Erkrankung entfernen",
+        "WEITERE_IMPFUNG_WAHRNEHMEN": "Weitere Covid Impfung wahrnehmen",
+        "WEITERE_IMPFUNG_WAHRNEHMEN_AFFENPOCKEN": "Weitere Affenpocken Impfung wahrnehmen",
+        "WEITERE_IMPFUNG_WAHRNEHMEN_FSME": "Weitere FSME Impfung wahrnehmen",
+        "IMPFDOKUMENTATION": "Impfdokumentation herunterladen",
+        "SPEICHERN": "Bemerkungen speichern",
+        "GOTO_KONTROLLE": "Zur Kontrolle",
+        "IMPFAUSWEIS": {
+            "SPEICHERN": "Speichern",
+            "NO_API_TOKEN": "Im Moment ist die Ausstellung von Zertifikaten nicht möglich, versuchen sie es später noch einmal oder wenden Sie sich an den Kantonssupport.",
+            "NO_API_TOKEN_SHORT": "Im Moment ist die Ausstellung von Zertifikaten nicht möglich, versuchen sie es später noch einmal",
+            "DOWNLOAD": "Herunterladen",
+            "GENERATE_AND_DOWNLOAD": "Generieren und Herunterladen",
+            "FORCED_GENERATION_INFO": "Durch die Generierung des Zertifikates vor Ort entfällt der automatische Postversand. Bitte geben Sie das Dokument der geimpften Person mit!",
+            "TITLE": "COVID-19 Zertifikat",
+            "NO_ZERTIFIKAT_FOR_NEWEST_IMPFUNG": "Für die letzte Impfung besteht kein Anspruch auf ein Zertifikat"
+        },
+        "EXTERNE_IMPFUNGEN": {
+            "TITLE": "Externes Impfzertifikat",
+            "NICHT_KONTROLLIERT": "Noch nicht geprüft"
+        },
+        "ERKRANKUNGEN": {
+            "TITLE": "Covid-Erkrankung(en):",
+            "ORIGIN": {
+                "EXT_ZERT": "externes Impfzertifikat",
+                "GRUNDIMMUNISIERUNG": "Grundimmunisierung",
+                "ERFASST_IMPFLING": "Selbstdeklaration"
+            }
+        },
+        "ZERTIFIKATSLISTE_TITEL": "Alle COVID-19 Zertifikate"
+    },
+    "EXTERN_GEIMPFT": {
+        "EXTERN_GEIMPFT": "Wurde die Person ausserhalb von Vacme bereits gegen Covid-19 geimpft?",
+        "GENESEN": "mit Covid-19 infiziert und genesen",
+        "KONTROLLIERT": "Ich bestätige, dass ich das externe Impfzertifikat geprüft habe"
+    },
+    "APPMESSAGE": {
+        "ADMINISTRATION": {
+            "TITLE": "Applikationsmeldungen",
+            "NEW": "Neue Meldung",
+            "STATUS": "Status",
+            "MESSAGE_TITLE": "Titel",
+            "ZEIT_FENSTER": "Zeitfenster",
+            "DATE": "Von {{vonZeit}}, bis {{bisZeit}}",
+            "NACHRICHT_BEARBEITEN": "Nachricht bearbeiten",
+            "SPEICHERN": "Nachricht speichern",
+            "BEARBEITEN": {
+                "TITLE": "Titel",
+                "VON": "Von",
+                "BIS": "Bis",
+                "STATUS": "Status",
+                "CONTENT": "Inhalt",
+                "ERROR": "Fehler",
+                "WARNING": "Warnung",
+                "INFO": "Info",
+                "VORSCHAU": "Vorschau"
+            },
+            "ERROR_STATUS": "Error",
+            "INFO_STATUS": "Info",
+            "WARNING_STATUS": "Warnung",
+            "ERSTELLEN": "Erstellen",
+            "ZEIT_STATUS": "Zeit Status",
+            "ZEIT_FUTURE": "Zukunft",
+            "ZEIT_PAST": "Vergangenheit",
+            "ZEIT_PRESENT": "Gegenwart"
+        }
+    },
+    "ZERTIFIKAT_TOKEN": {
+        "DELETE_ALL": "Alle Token löschen!",
+        "HOCHLADEN": "Token für COVID-Zertifikate hochladen",
+        "OK": "Es existiert bereits ein gültiges Token für COVID-Zertifikate",
+        "NOK": "Es wurde noch kein Token für COVID-Zertifikate hochgeladen",
+        "LINK_TEXT": "Covid-Zertifikat Tool des Bundes",
+        "LINK": "https://www.covidcertificate.admin.ch",
+        "INFO": "Loggen Sie sich auf der untenstehenden Seite  ein und starten Sie die Funktion 'Neues OTP generieren'",
+        "TITLE": "Neues Token einfügen",
+        "TOKEN": "Token",
+        "SAVE": "Token speichern"
+    },
+    "VALIDATIONERROR": {
+        "EXTERNGEIMPFTUNVOLLSTAENDIG": "Externe Grundimmunisierung unvollständig. Wählen Sie \"Nein\" oder ergänzen Sie die Daten",
+        "ZULASSUNG": "Der Impfstoff ist nicht zugelassen",
+        "MUST_BE_LAST_IMPFUNG": "Nur die letzte Impfung kann gewählt werden"
+    },
+    "ACCOUNT_DEAKTIVIERT": "Ihr Account ist deaktiviert."
+}

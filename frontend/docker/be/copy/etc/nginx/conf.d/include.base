@@ -1,0 +1,107 @@
+# Cache expires
+expires $expires;
+
+# file upload & timeouts
+client_max_body_size 21m;
+client_body_timeout 300s;
+
+include /etc/nginx/conf.d/substituted/include.csp.vars;
+add_header Content-Security-Policy "$cspDefault; $cspScript; $cspStyle; $cspConnect; $cspFont; $cspImg; $cspFrame;" always;
+
+add_header X-Xss-Protection "1; mode=block" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header Referrer-Policy "strict-origin" always;
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+# Nginx Version verstecken
+server_tokens off;
+
+# HTML root
+location / {
+    root   /usr/share/nginx/html;
+
+    error_page 404 /404.html;
+    error_page 400 401 403 405 /403.html;
+    error_page 500 502 503 504 /500.html;
+
+     location = /404.html {
+       root /tmp/html;
+       internal;
+     }
+
+     location = /403.html {
+       root /tmp/html;
+       internal;
+     }
+
+     location = /500.html {
+       root /tmp/html;
+       internal;
+     }
+
+     location = /robots.txt {
+     try_files $uri =404;
+     }
+
+     location = /sitemap.xml {
+     try_files $uri =404;
+     }
+
+    try_files $uri$args $uri$args/ /index.html;
+
+    # match all query params for assets as we use a query params for cache busting
+    location /assets/ {
+        try_files $uri =404;
+    }
+
+    # match all query params for templates as we use a query params for cache busting
+    location /templates/ {
+        try_files $uri =404;
+    }
+
+    # reverse proxy configuration to java application server (HTTP)
+    location /api/ {
+        include /etc/nginx/conf.d/include.proxy.api.conf;
+
+        add_header Cache-Control "no-cache, no-store, must-revalidate";
+    }
+
+    location /health/ {
+        include /etc/nginx/conf.d/include.proxy.api.conf;
+    }
+
+    location /auth {
+        include /etc/nginx/conf.d/include.proxy.keycloak.conf;
+
+	    # unsafe stuff for keycloak (remove once switch to kc12+ is made)
+	    add_header Content-Security-Policy "default-src 'self' data: 'unsafe-inline'; $cspFont;";
+
+	    location /auth/resources/ {
+            include /etc/nginx/conf.d/include.proxy.keycloak.conf;
+
+            proxy_hide_header   "Cache-Control";
+            expires             7d;
+        }
+
+#        location /auth/admin/ {
+#            include /etc/nginx/conf.d/include.proxy.keycloak.conf;
+#
+#            add_header Content-Security-Policy "default-src 'self' data: 'unsafe-inline'; frame-src 'self'; frame-ancestors 'self'; object-src 'none'" always;
+#        }
+#
+#        location ~ ^/auth/realms/(master|vacme|vacme-web)/protocol/openid-connect/3p-cookies/step(1|2).html$ {
+#            include /etc/nginx/conf.d/include.proxy.keycloak.conf;
+#
+#            add_header Content-Security-Policy "$cspDefault; script-src 'sha256-HJ3xHgiXVZ6i67mKy8YY8RNfhQbutdLkHRs2tY9vV44=' 'sha256-feU5SD8gkg3329SBZnuyarkMLHJGAZm3an4Nl5XpdQk='; $cspStyle; $cspConnect; $cspFont; $cspImg; $cspFrameKeycloak;" always;
+#        }
+#
+#        location ~ ^/auth/realms/(master|vacme|vacme-web)/protocol/openid-connect/login-status-iframe.html$ {
+#            include /etc/nginx/conf.d/include.proxy.keycloak.conf;
+#
+#            add_header Content-Security-Policy "$cspDefault; script-src 'sha256-gkXwoDSeOhLWdDt8XaqtJVDW0Do1/n19bUlSCHNiQS8='; $cspStyle; $cspConnect; $cspFont; $cspImg; $cspFrameKeycloak;" always;
+#        }
+    }
+
+}
+
+access_log /var/log/nginx/access.log main if=$log_ua;

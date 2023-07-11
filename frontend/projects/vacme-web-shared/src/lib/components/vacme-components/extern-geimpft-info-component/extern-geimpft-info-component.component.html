@@ -1,0 +1,61 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<!-- Datum -->
+<p>
+    <span translate>EXTERN_GEIMPFT.LETZTE_IMPFUNG_DATUM</span>
+    <br>
+    <b>{{externGeimpft.letzteImpfungDate | date: dateUtil.dateFormatLong(this.translateService.currentLang) : undefined: this.translateService.currentLang}}</b>
+</p>
+<!-- Impfstoff -->
+<p *ngIf="!!externGeimpft.impfstoff">
+    <span translate>EXTERN_GEIMPFT.IMPFSTOFF</span>
+    <br>
+    <b translate>{{externGeimpft.impfstoff.displayName}}</b>
+</p>
+<!-- Anzahl -->
+<p>
+    <span translate>EXTERN_GEIMPFT.ANZAHL_IMPFUNGEN</span>
+    <br>
+    <b>{{externGeimpft.anzahlImpfungen}}</b>
+</p>
+<!-- genesen -->
+<p *ngIf="externGeimpft.genesen">
+    <span translate>OVERVIEW.EXTERNE_IMPFUNGEN.GENESEN.TITLE</span>
+    <br>
+    <b translate>OVERVIEW.EXTERNE_IMPFUNGEN.GENESEN.JA</b>
+    <b>, {{externGeimpft.positivGetestetDatum | date: dateUtil.dateFormatLong(this.translateService.currentLang) : undefined: this.translateService.currentLang}}</b>
+</p>
+
+<!-- Anzahl missing Impfungen bis Grundimmunisierung -->
+<p *ngIf="externGeimpft.missingForGrundimmunisiertBeforeDecision">
+    <span translate>OVERVIEW.EXTERNE_IMPFUNGEN.MISSING_IMPFUNGEN.TITLE</span>
+    <br>
+
+    <img *ngIf="externGeimpft.missingForGrundimmunisiertBeforeDecision==='BRAUCHT_0_IMPFUNGEN'"
+         width="30" src="/assets/img/Valid Icon.svg">
+    <img *ngIf="externGeimpft.missingForGrundimmunisiertBeforeDecision!=='BRAUCHT_0_IMPFUNGEN'"
+         width="30" src="/assets/img/go-next.svg">
+    <b [translate]="'EXTERN_GEIMPFT.ANZAHL_MISSING.' + externGeimpft.missingForGrundimmunisiertBeforeDecision"
+       style="margin-left: 10px;"></b>
+
+    <ng-container *ngIf="externGeimpft.trotzdemVollstaendigGrundimmunisieren">
+        <br>
+        <b translate>EXTERN_GEIMPFT.TROTZDEM_VOLLSTAENDIG_GRUNDIMMUNISIEREN</b>
+    </ng-container>
+
+</p>

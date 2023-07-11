@@ -1,0 +1,35 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+
+<a class="sidebar-action" [href]="profileUrl" translate>USERPROFILE.KEYCLOAK_EDIT</a>
+
+<a class="sidebar-action" (click)="confirmAndDeleteAccount()" translate
+   *ngIf="canDeleteAccount()">USERPROFILE.DELETE_ACCOUNT</a>
+
+<a class="sidebar-action" [href]="passwordUrl" translate>USERPROFILE.KEYCLOAK_PASSWORD</a>
+
+<a class="sidebar-action" (click)="triggerMobileNummerChange()" translate>USERPROFILE.TRIGGER_MOBILE_NUMMER</a>
+
+
+<!-- logout -->
+<a class="sidebar-action margin-top-30 d-flex" style="font-size: initial;" (click)="logout()">
+    <img width="20" style="margin-right: 7px;" src="../img/logout.svg">
+    <span>Logout</span>
+</a>
+
+

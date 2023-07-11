@@ -1,0 +1,133 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<div class='full-wdith' *ngIf="loaded === false">
+    <h4 class='i5'>loading ...</h4>
+</div>
+<div class='full-wdith' *ngIf="loaded === true">
+    <h4 class='i5' translate>REPORTS.TITLE</h4>
+
+    <p *ngIf="showKantonsreportAndKantonsarztreport()">
+        <a (click)="downloadStatistikReportingKanton()" translate>REPORTS.REPORTING_KANTON_STATISTIK</a>
+    </p>
+   <p *ngIf="showKantonsreportAndKantonsarztreport()">
+       <a (click)="downloadStatistikReportingKantonsarzt()" translate>REPORTS.REPORTING_KANTONSARZT_STATISTIK</a>
+   </p>
+    <p *ngIf="isKantonMedizinischerReporterUser()">
+        <a (click)="downloadStatistikReportingImpfungen()" translate>REPORTS.REPORTING_IMPFUNGEN_STATISTIK</a>
+    </p>
+    <p *ngIf="isKantonMedizinischerReporterUser()">
+        <a (click)="downloadStatistikReportingTerminslots()" translate>REPORTS.REPORTING_TERMINSLOTS_STATISTIK</a>
+    </p>
+    <p *ngIf="isKantonMedizinischerReporterUser()">
+        <a (click)="downloadStatistikReportingOdis()" translate>REPORTS.REPORTING_ODIS_STATISTIK</a>
+    </p>
+
+    <p *ngIf="downloadReportingOdiImpfungenEnabled()">
+        <a (click)="downloadReportingOdiImpfungen()" translate>REPORTS.REPORTING_ODI_IMPFUNGEN_STATISTIK</a>
+    </p>
+    <p *ngIf="downloadReportingOdiTerminbuchungenEnabled()">
+        <a (click)="downloadReportingOdiTerminbuchungen()" translate>REPORTS.REPORTING_ODI_TERMINBUCHUNGEN_STATISTIK</a>
+    </p>
+
+    <form [formGroup]="formGroup" [hidden]="!downloadAbrechnungEnabled()">
+        <div style="display:flex; justify-content: space-between">
+            <lib-input-text key="reports.abrechnung.von" style="flex: 1"
+                            formControlName="abrechnungFrom"></lib-input-text>
+            <lib-input-text key="reports.abrechnung.bis" style="flex: 1"
+                            formControlName="abrechnungTo"></lib-input-text>
+        </div>
+        <p>
+            <a (click)="downloadAbrechnung()" translate>REPORTS.ABRECHNUNG.TITLE</a>
+        </p>
+        <div *ngIf="downloadBEEnabled()">
+            <p>
+                <a (click)="downloadAbrechnungErwachsen()" translate>REPORTS.ABRECHNUNG_ERWACHSEN.TITLE</a>
+            </p>
+            <p>
+                <a (click)="downloadAbrechnungKind()" translate>REPORTS.ABRECHNUNG_KIND.TITLE</a>
+            </p>
+        </div>
+
+        <div *ngIf="isZHAndKTMedReporter()">
+            <p>
+                <a (click)="downloadAbrechnungZH()" translate>REPORTS.ABRECHNUNG_ZH.TITLE</a>
+            </p>
+            <p>
+                <a (click)="downloadAbrechnungZHKind()" translate>REPORTS.ABRECHNUNG_ZH_KIND.TITLE</a>
+            </p>
+        </div>
+
+        <div *ngIf ="showFHIRDownload()">
+            <a [ngClass]="this.showCodeSuche ? 'caret-down' :'caret-right'" (click)="toggleCodeSuche()" translate>REPORTS.IMPFUNGEN_FHIR.TITLE</a>
+            <div class="margin-top-30" *ngIf="this.showCodeSuche">
+                <h4 class='i5' translate>FACH-APP.START-PAGE.CODE</h4>
+                <form [formGroup]="formGroupFhir" (ngSubmit)="downloadImpungenFHIR()">
+                    <div class="row">
+                        <lib-input-text label="fach-app.start-page.code" style="flex: 1"
+                                        formControlName="code"
+                                        placeholder="------">
+                        </lib-input-text>
+                    </div>
+                    <div class="row">
+                        <lib-button buttonKind="submit" translationKey="REPORTS.TBL.LINK"></lib-button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </form>
+
+    <div class="margin-top-30" *ngIf="userHasRoleThatHasAsyncReport()">
+        <h5 class='i5' translate>REPORTS.ASYNC.TABLETITLE</h5>
+
+        <div *ngIf="listDocumentsObs$ | async as documentQueueArray">
+            <ng-container *ngIf="documentQueueArray.length; else noAsyncDocs">
+
+
+                <table class="table margin-top-30">
+                    <thead>
+                    <tr>
+                        <td translate>REPORTS.TBL.TYP</td>
+                        <td translate>REPORTS.TBL.STATUS</td>
+                        <td translate>REPORTS.TBL.ZEIT_BESTELLT</td>
+                        <td translate>REPORTS.TBL.ZEIT_GELIEFERT</td>
+                        <td translate>REPORTS.TBL.ZEIT_FILENAME</td>
+                        <td translate>REPORTS.TBL.LINK</td>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr *ngFor="let documentQueue of documentQueueArray ">
+                        <td>{{documentQueue.typ}}</td>
+                        <td [title]="documentQueue.lastError">{{documentQueue.status}}</td>
+                        <td>{{documentQueue.timestampErstellt | date: 'dd. MMM yyyy hh:mm': undefined: this.translateService.currentLang}}</td>
+                        <td>{{documentQueue.resultTimestamp | date: 'dd. MMM yyyy hh:mm': undefined: this.translateService.currentLang}}</td>
+                        <td>{{documentQueue.docQueueResultFilename}}</td>
+                        <td><a *ngIf="documentQueue.docQueueResultId" (click)="downloadQueueItem(documentQueue)"
+                               translate>REPORTS.TBL.LINK</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </ng-container>
+            <ng-template #noAsyncDocs>
+                <p translate>REPORTS.ASYNC.NORESULTS </p>
+            </ng-template>
+
+        </div>
+    </div>
+
+</div>

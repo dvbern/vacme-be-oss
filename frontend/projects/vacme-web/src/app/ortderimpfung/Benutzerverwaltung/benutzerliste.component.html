@@ -1,0 +1,85 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class="benutzerliste">
+
+    <div class="row">
+        <lib-button-navigate buttonKind="secondary"
+                             goto="/ortderimpfung/oidbenutzer/{{encode(ortDerImpfungIdentifier)}}/{{encode(ortDerImpfungId)}}">
+            {{'FACH-APP.ODI.BENUTZERLISTE.BENUTZER_ERFASSEN' | translate}}
+        </lib-button-navigate>
+    </div>
+
+    <div class="row benutzerliste-liste">
+
+        <table class="table table-striped benutzer-table">
+            <thead>
+            <tr>
+                <th scope="col" appSortable="fachRolle" (sort)="onSort($event)" translate>
+                    FACH-APP.ODI.BENUTZERLISTE.FACHROLLE
+                </th>
+                <th scope="col" appSortable="firstName" (sort)="onSort($event)" translate>
+                    FACH-APP.ODI.BENUTZERLISTE.FIRSTNAME
+                </th>
+                <th scope="col" appSortable="lastName" (sort)="onSort($event)" translate>
+                    FACH-APP.ODI.BENUTZERLISTE.LASTNAME
+                </th>
+                <th scope="col" appSortable="username" (sort)="onSort($event)" translate>
+                    FACH-APP.ODI.BENUTZERLISTE.USERNAME
+                </th>
+                <th scope="col" class="image-col  col-md-1"></th>
+                <th scope="col" class="image-col  col-md-1" appSortable="enabled" (sort)="onSort($event)" translate>
+                    <img src="/assets/img/lock.svg" style="height:38px;width:auto;">
+                </th>
+                <th scope="col" class="image-col  col-md-1"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of table" [ngClass]="{'disabled': !user.enabled}">
+                <td scope="row" [title]="user.fachRolle">{{getRollenbezeichnung(user.fachRolle)}}</td>
+                <td [title]="user.firstName">{{user.firstName}}</td>
+                <td [title]="user.lastName">{{user.lastName}}</td>
+                <td [title]="user.username">{{user.username}}</td>
+                <td class="image-col  col-md-1">
+                    <a routerLink="/ortderimpfung/oidbenutzer/{{encode(ortDerImpfungIdentifier)}}/{{encode(ortDerImpfungId)}}/{{encode(user.username)}}"
+                       [title]="'FACH-APP.ODI.BENUTZER.BEARBEITUNG' | translate">
+                        <img src="img/Edit%20Icon.svg"
+                             style="height:38px;width:auto;">
+                    </a>
+
+                </td>
+                <td>
+                    <a (click)="toggleUserEnabled(user)">
+                        <ng-container *ngIf="canBeModified(user)">
+                            <img *ngIf="user.enabled" src="/assets/img/unlock.svg" style="height:38px;width:auto;" [title]="'FACH-APP.ODI.BENUTZER.SPERREN' | translate">
+                            <img *ngIf="!user.enabled" src="/assets/img/lock.svg" style="height:38px;width:auto;" [title]="'FACH-APP.ODI.BENUTZER.ENTSPERREN' | translate">
+                        </ng-container>
+                    </a>
+                </td>
+                <td class="image-col col-md-1">
+                    <a (click)="confirmAndLeaveGroup(user)" [title]="'FACH-APP.ODI.BENUTZER.LOESCHEN' | translate">
+                        <img *ngIf="canBeModified(user)" src="/assets/img/Papierkorb%20Icon.svg"
+                             style="height:38px;width:auto;"
+                        >
+                    </a>
+                </td>
+            </tbody>
+        </table>
+        <lib-button [disabled]="disableLoadMore" (clickIfEnabled)="loadNextBatch()">{{'FACH-APP.ODI.BENUTZERLISTE.MEHR_LADEN' | translate}}</lib-button>
+    </div>
+
+</div>

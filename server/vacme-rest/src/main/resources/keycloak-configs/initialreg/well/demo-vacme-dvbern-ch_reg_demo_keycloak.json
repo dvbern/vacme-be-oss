@@ -1,0 +1,8 @@
+{
+	"realm": "vacme",
+	"auth-server-url": "https://well-demo.vacme.ch/auth/",
+	"ssl-required": "external",
+	"resource": "vacme-initial-app-demo-well",
+	"public-client": true,
+	"confidential-port": 0
+}

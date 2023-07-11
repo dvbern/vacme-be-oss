@@ -1,0 +1,579 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='full-wdith'> <!-- volle Breite und responsive Margins -->
+    <div class="max-800"> <!-- max-800, sonst sieht es auf Desktop sehr wild aus -->
+        <pre style="display: none">{{this.dashboardJax.status}}</pre>
+
+        <!-- QR-Code (nur am Anfang) -->
+        <!-- TODO Affenpocken warum machen wir das mit !!dashboardJax.vollstaendigerImpfschutz-->
+        <app-code [hideQrCode]="!!dashboardJax.vollstaendigerImpfschutz || hideQRCode()"
+                  [registrierungsnummer]="dashboardJax.registrierungsnummer"
+                  [name]="dashboardJax.name"
+                  [vorname]="dashboardJax.vorname"
+                  [geburtsdatum]="dashboardJax.geburtsdatum"
+                  [prioritaet]="dashboardJax.prioritaet"></app-code>
+
+        <!-- Dossiertitle -->
+        <h3 [translate]="'OVERVIEW.DOSSIER_TITEL'" [translateParams]="{translatedKrankheit: getTranslatedKrankheit()}"></h3>
+
+        <!-- Grundimpfungen: Freigabestatus und Abschlussinfos -->
+        <ng-container [ngTemplateOutlet]="grundimpfungenStatus"
+                      *ngIf="!isAlreadyGrundimmunisiert()"></ng-container>
+
+        <!-- Booster: Titel und Freigabestatus -->
+        <ng-container [ngTemplateOutlet]="boosterStatus"
+                      *ngIf="isAlreadyGrundimmunisiert()"></ng-container>
+
+        <!-- Anchor: nach der Terminbuchung springt man zu diesem Anchor zurueck. -->
+        <div id="termine-anchor"></div>
+
+        <!-- Zurueck zu Well -->
+        <div class="row" style="text-align: center" *ngIf="showZurueckZuWell()">
+            <lib-button buttonKind="secondary" (clickIfEnabled)="zurueckZuWellClicked()"
+                        translationKey="MENU_ZURUECK_ZU_WELL"></lib-button>
+        </div>
+
+        <!-- Planung: ODI/Termine anzeigen/waehlen, bitte puenktlich etc. -->
+        <ng-container [ngTemplateOutlet]="planungBlock"
+                      *ngIf="showPlanungBlock()"></ng-container>
+
+        <!--  Link zurueck zum overview -->
+        <div class="row" style="text-align: center; margin-top: 20px;">
+            <a *ngIf="showLinkZurueck()"
+               (click)="navigateToOverviewPage()"><span translate>TERMINE.ZURUECK</span></a>
+        </div>
+
+        <!-- Zertifikat in gelber Box -->
+        <ng-container [ngTemplateOutlet]="vacmeZertifikatBox"
+                      *ngIf="showZertifikatBox()"></ng-container>
+
+        <!-- Erkrankung -->
+        <ng-container [ngTemplateOutlet]="erkrankungBlock"
+                      *ngIf="showErkrankungBlock()"></ng-container>
+
+        <!-- Immobil-Flag entfernen -->
+        <ng-container [ngTemplateOutlet]="immobilBlock"
+                      *ngIf="showImmobilBlock()"></ng-container>
+
+        <!-- Alle Zertifikate -->
+        <ng-container [ngTemplateOutlet]="vacmeAlleZertifikateBox"
+                      *ngIf="showAlleZertifikatBox()"></ng-container>
+
+        <!-- Externes Impfzertifikat in gelber Box -->
+        <ng-container [ngTemplateOutlet]="externesZertifikatBox"
+                      *ngIf="showExterneImpfinfobox()"></ng-container>
+
+        <!-- Externes Impfzertifikat neu hinzufuegen -->
+        <ng-container [ngTemplateOutlet]="externesZertifikatAddButton"
+                      *ngIf="showExterneImpfinfoCreateButton()"></ng-container>
+
+        <!-- Download Dokumente -->
+        <ng-container [ngTemplateOutlet]="dokumenteBlock"></ng-container>
+
+        <!-- Info zu Support Leistungserbringer-Impfungen -->
+        <ng-container [ngTemplateOutlet]="infoSupportLeistungserbringer"
+                      *ngIf="showSupportLeistungserbringer()"></ng-container>
+
+        <!-- CC: Persoenliche Daten anpassen -->
+        <ng-container [ngTemplateOutlet]="persoenlicheDatenAnpassenButton"
+                      *ngIf="isCallcenter()"></ng-container>
+
+        <!-- CC: Registierungstyp -->
+        <ng-container [ngTemplateOutlet]="registrationTypeInfo"
+                      *ngIf="isCallcenter()"></ng-container>
+
+        <!-- CC: Onboarding-Brief schicken, wenn die Registrierung noch kein Login hat -->
+        <ng-container [ngTemplateOutlet]="resendOnboardingButton"
+                      *ngIf="canResendOnboardingLetter()"></ng-container>
+    </div>
+</div>
+
+
+<!-- ************************** INHALTSBLOECKE **************************  -->
+
+<!-- Grundimpfungen Freigabe und Infos -->
+<ng-template #grundimpfungenStatus>
+
+    <!-- Grundimpfungen, nicht freigegeben -->
+    <ng-container [ngTemplateOutlet]="grundimpfungenNichtFreigegebenBox"
+                  *ngIf="!isFreigegebenOderMehr()"></ng-container>
+
+    <!-- Grundimpfung freigegeben -->
+    <ng-container [ngTemplateOutlet]="grundimpfungenFreigegebenInfo"
+                  *ngIf="showGrundimpfungFreigegebenInfo()"></ng-container>
+
+    <!-- Grundimmunisierung abgeschlossen Infotext -->
+    <ng-container [ngTemplateOutlet]="grundimpfungenAbgeschlossenInfo"
+                  *ngIf="anyStatusOfAbgeschlossen()"></ng-container>
+
+</ng-template>
+
+<!-- Grundimpfungen nicht freigegeben -->
+<ng-template #grundimpfungenNichtFreigegebenBox>
+    <div class='summary-box'>
+        {{'OVERVIEW.PRIO_NICHT_FREIGEGEBEN_1' | translate }}
+        <a class="text-link" target="_blank"
+           href="{{'OVERVIEW.PRIO_NICHT_FREIGEGEBEN_LINK' | translate}}">{{'OVERVIEW.PRIO_NICHT_FREIGEGEBEN_LINK_TEXT' | translate}}</a>{{'OVERVIEW.PRIO_NICHT_FREIGEGEBEN_2' | translate }}
+    </div>
+</ng-template>
+
+
+<!-- Grundimpfungen freigegeben -->
+<ng-template #grundimpfungenFreigegebenInfo>
+    <div style="padding: 5px;" class="margin-bottom-15">
+        <span translate>OVERVIEW.FREIGEGEBEN_INFO</span>
+    </div>
+</ng-template>
+
+<!-- Booster -->
+<ng-template #boosterStatus>
+    <div class="row">
+
+        <!-- Titel -->
+        <h4 class="margin-top-30" style="display: flex" *ngIf="getKrankheit() === 'COVID'">
+            <span translate>OVERVIEW.BOOSTER_TITEL</span>
+
+            <a class="help-icon grow-on-hover" target='_blank'
+
+               [href]="'OVERVIEW.BOOSTER_HELP_HREF' | translate" translate>
+                <img width="20" src="../img/Help Icon.svg">
+            </a>
+        </h4>
+        <!-- Booster nicht freigegeben / unbekannt / freigegeben ab / freigegeben jetzt -->
+        <p class="text-bold">{{getBoosterFreigabetext()}}</p>
+
+        <!-- Affenpocken specific info text -->
+        <div class="summary-box" style="margin-bottom: 0px;" *ngIf="showAffenpockenInfo()" [innerHTML]="'OVERVIEW.EINWILLIGUNGSERKLAERUNG_AFFENPOCKEN' | uppercase | translate"></div>
+
+        <!-- Booster gemaess EKIF nicht freigegeben, aber fuer Selbstzahler moeglich -->
+        <div *ngIf="showLinkSelbstzahler()">
+            <form [formGroup]="selbstzahlerConfirmFormGroup" style="flex-grow: 1; min-width: 200px;">
+                <lib-input-checkbox
+                    [key]="'OVERVIEW.FREIGEGEBEN_BOOSTER_SELBSTZAHLER'"
+                    formControlName="confirmedSelbstzahler">
+                </lib-input-checkbox>
+            </form>
+        </div>
+        <div *ngIf="isSelbstzahler()">
+            <div class='summary-box' translate>OVERVIEW.SELBSTZAHLER_HINT</div>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- Grundimpfungen abgeschlossen -->
+<ng-template #grundimpfungenAbgeschlossenInfo>
+    <div class="abgeschlossen-info">
+        <h2>{{getInfotextForAnyStatusOfAbgeschlossen()}}</h2>
+    </div>
+    <div class="abgeschlossen-info" *ngIf="isAutomatischAbgeschlossen()">
+        <span translate>OVERVIEW.GEIMPFT_AUTOMATISCH_ABGESCHLOSSEN_INFO</span>
+    </div>
+</ng-template>
+
+
+<!-- Erkrankung -->
+<ng-template #erkrankungBlock>
+    <div class="row">
+        <lib-button class="button-no-margin"
+                    (clickIfEnabled)="gotoErkrankungPage(); $event.stopPropagation(); $event.preventDefault();"
+                    [translationKey]="'OVERVIEW.ERKRANKUNGEN.' + (canEditErkrankungen() ? 'EDIT' : 'VIEW')"></lib-button>
+    </div>
+</ng-template>
+
+<!-- Immobil-Flag entfernen -->
+<ng-template #immobilBlock>
+    <div class='summary-box'>
+        <ng-container>
+            <h4 translate>OVERVIEW.IMMOBIL.HINWEIS.INFO</h4>
+            <p translate>OVERVIEW.IMMOBIL.HINWEIS.INFO.TEXT</p>
+
+
+            <lib-button buttonKind="secondary" class="button-no-margin"
+                        (clickIfEnabled)="changeToMobil()"
+                        [translationKey]="'OVERVIEW.STATIONAER_MOEGLICH'"></lib-button>
+        </ng-container>
+    </div>
+</ng-template>
+
+<!-- Noch nicht fertig geimpft: ODI/Termine anzeigen/waehlen, bitte puenktlich etc. -->
+<ng-template #planungBlock>
+
+    <!--  Meldung fuer Kinder unter 12 Jahren -->
+    <ng-container *ngIf="showHintTermineFuerKinderUnter12Jahren()">
+        <div class='summary-box' translate>OVERVIEW.HINWEIS_KINDER_GEMEINSAMER_TERMIN</div>
+    </ng-container>
+
+    <!-- Covid-Erkrankung bestaetigen -->
+    <div id="confirm-erkrankungen-anchor"></div>
+    <div *ngIf="showErkrankungConfirm()"
+         style="display: flex; flex-wrap: wrap;" class="margin-bottom-30">
+        <ng-container
+            *ngIf="(dashboardJax.impfdossier?.erkrankungen?.length ? 'ERKRANKT' : 'NICHT-ERKRANKT') as prefix">
+            <form [formGroup]="erkrankungenConfirmFromGroup" style="flex-grow: 1; min-width: 200px;">
+                <lib-input-checkbox
+                    [key]="'OVERVIEW.ERKRANKUNGEN.CONFIRM-' + prefix"
+                    [translateParams]="{date: getLastErkrankungDate()}"
+                    formControlName="confirmed">
+                </lib-input-checkbox>
+            </form>
+
+            <lib-button buttonKind="secondary" class="button-no-margin" style="margin-left: 30px;"
+                        (clickIfEnabled)="resetConfirmErkrankungen();gotoErkrankungPage();$event.stopPropagation(); $event.preventDefault();"
+                        [translationKey]="'OVERVIEW.ERKRANKUNGEN.EDIT-' + prefix"></lib-button>
+        </ng-container>
+    </div>
+
+    <!-- Auswahl ODI -->
+    <ng-container *ngIf="showOrtWahlInfo()">
+        <div class="checkbox-container" *ngIf="dashboardJax.immobil && !isAlreadyGrundimmunisiert()">
+            <input id="stationary" type="checkbox" [(ngModel)]="stationaryImpfort"
+                   (change)="cacheStationaryPossible()">
+            <label for="stationary" translate>OVERVIEW.STATIONAER_MOEGLICH</label>
+        </div>
+
+        <div class="odi-wahl-container">
+            <div class="form-group select-container">
+                <label class="select-label floating-label open"
+                       for="odiSelectionId"
+                       translate>OVERVIEW.ORTWAHL_INFO</label>
+                <select [(ngModel)]="this.selectedOdiId"
+                        (change)="selectOrtDerImpfung()"
+                        [disabled]="!ortDerImpfungList"
+                        id="odiSelectionId">
+                    <option *ngFor="let option of odiOptions"
+                            [ngValue]="option.value"
+                            [disabled]="option.disabled">
+                        {{option.label}}
+                    </option>
+                </select>
+            </div>
+            <div (click)="toggleOdiFilter()" class="filter-button grow-on-hover"
+                 [title]="'OVERVIEW.ORTWAHL_FILTER.BUTTON_TOOLTIP' | translate">
+                <img *ngIf="!odiFilterActive" class="filter-img" src="../img/filter_neutral.svg">
+                <img *ngIf="odiFilterActive" class="filter-img" src="../img/filter_active.svg">
+            </div>
+        </div>
+
+        <app-overview-odi-filter [hideOdiFilters]="hideOdiFilters" [odiFilterFormGroup]="odiFilterFormGroup"
+                                 (resetOdiFilter)="resetOdiFilter()" (filterOdis)="filterOdis()"
+                                 [showDistanceFilter]="showDistanceFilter()"></app-overview-odi-filter>
+    </ng-container>
+
+    <!-- Informationen zu dem gebuchten Termin wenn man schon was gebucht hat -->
+    <ng-container *ngIf="isAtLeastOdiGewaehltButNotYetGeimpftValues() || isSelbstzahler()">
+        <!--  Meldung dass er selber einen Termin abmachen muss sonst -->
+        <ng-container *ngIf="showHintTerminSelberAbmachenOhneBuchungslink()">
+            <div class='summary-box' translate>OVERVIEW.TERMIN_MANUELL_ABMACHEN</div>
+        </ng-container>
+        <!--  Meldung dass er unter folgendem Link selber einen Termin abmachen muss  -->
+        <ng-container *ngIf="showHintTerminSelberAbmachenMitBuchungslink()">
+            <div class='summary-box' [innerHTML]="'OVERVIEW.TERMIN_EXTERNER_BUCHUNGSLINK' |
+                translate:{link: this.getBuchungslink()}"></div>
+        </ng-container>
+        <!--  Meldung dass sich das mobile impfteam bei ihm meldet -->
+        <ng-container *ngIf="showHintTerminMobilesImpfteam()">
+            <div class='summary-box' translate>OVERVIEW.TERMIN_MOBILES_IMPFTEAM</div>
+        </ng-container>
+
+        <!-- Odi-Typ-spezifische Meldung, z.B. bei Termin in Apotheke -->
+        <ng-container *ngIf="getHintAccordingToOdiType()">
+            <div class='summary-box' [innerHTML]="getHintAccordingToOdiType()"></div>
+        </ng-container>
+
+        <!--    Warnung das puenktlich kommt nur bei Orten mit termin    -->
+        <div class="row" *ngIf="this.getOrtDerImpfung()?.terminverwaltung">
+            <lib-warningbox>
+                <span [innerHTML]="'OVERVIEW.PUENKTLICH_' + getKrankheit() | translate"></span>
+            </lib-warningbox>
+        </div>
+
+        <div class="row margin-top-30" style="display: flex; justify-content: center">
+            <ng-container *ngIf="getAdresse()">
+                <lib-addressbox [anschrift]="getOrtDerImpfung()?.name"
+                                [adresse]="getAdresse()"></lib-addressbox>
+            </ng-container>
+        </div>
+        <div class="row" *ngIf="getOrtDerImpfung()?.kommentar">
+            <p translate class="kommentar">
+                OVERVIEW.KOMMENTAR</p>
+            <p>{{getOrtDerImpfung()?.kommentar}}</p>
+        </div>
+    </ng-container>
+
+    <!-- Eigentliche Termine -->
+    <ng-container *ngIf="canSeeTermine()">
+        <!-- Die Abstands-Warnung wird nur fuer Grundimmunisierung benoetigt -->
+        <div class="row" *ngIf="!isAlreadyGrundimmunisiert()">
+            <span>{{getInfoTextDistanceBetweenImpfungen()}}</span>
+        </div>
+
+        <!-- Termin(e) -->
+        <lib-termin-overview-item *ngFor="let impffolge of getImpffolgen()"
+                                  [readonly]="isTerminReadOnly(impffolge)"
+                                  [impffolge]="impffolge"
+                                  [ortDerImpfungId]="getOrtDerImpfungId()"
+                                  [registrierungsnummer]="getRegistrierungsnummer()"
+                                  [disableIntervallCheck]="false"
+                                  [hasDeltaChanges]="isDelta(impffolge)"
+                                  (nextFreieTermin)=doNextFreieTermin($event)>
+        </lib-termin-overview-item>
+
+        <!-- Termin wurde abgesagt -->
+        <ng-container *ngFor="let abgesagterTerminDatum of [dashboardJax.abgesagteTermine?.termin1,
+        dashboardJax.abgesagteTermine?.termin2, dashboardJax.abgesagteTermine?.terminn]">
+            <div class="row summary-box" *ngIf="abgesagterTerminDatum">
+                    <span translate [translateParams]="{
+                datum: printDate(abgesagterTerminDatum),
+                odi: dashboardJax.abgesagteTermine?.ortDerImpfung?.name}">
+                    OVERVIEW.ABGESAGTER_TERMIN</span>
+            </div>
+        </ng-container>
+
+
+        <!-- Abstandswarnung -->
+        <div *ngIf="warnDates()" translate class="summary-box"
+             [translateParams]="{min: getMinDiff(), max: getMaxDiff()}">OVERVIEW.WARNUNG_ZEITABSTAND
+        </div>
+    </ng-container>
+
+    <!-- Info, wenn nicht verwalteter ODI gewaehlt -->
+    <ng-container *ngIf="showHintNichtVerwalteterOdi()">
+        <div class='summary-box' translate>OVERVIEW.NICHT_VERWALTETER_ODI_HINT_1</div>
+        <div class='summary-box' translate>OVERVIEW.NICHT_VERWALTETER_ODI_HINT_2</div>
+    </ng-container>
+
+    <!-- Buttons / Actions -->
+
+    <!-- Termine aendern / absagen -->
+    <div class="row">
+        <span *ngIf="canTermineBearbeiten()">
+            <lib-button buttonKind="secondary" (clickIfEnabled)="openTerminBearbeitung()"
+                        [translationKey]="termineBearbeitenButtonText()"></lib-button>
+        </span>
+        <span *ngIf="showAbsagen()">
+            <lib-button buttonKind="secondary" (clickIfEnabled)="absagenClicked()"
+                        translationKey="{{absagenButtonText()}}"></lib-button>
+        </span>
+    </div>
+
+    <ng-container *ngIf="!isAtLeastOdiGewaehltButNotYetGeimpftValues()">
+        <lib-button buttonKind="submit" *ngIf="showSaveButtonForOdiWithoutTermin()" [disabled]="!canSave()"
+                    (clickIfEnabled)="ortWaehlen()" translationKey="OVERVIEW.SELECT"></lib-button>
+
+        <lib-button buttonKind="submit" *ngIf="showSaveButtonForOdiWithTermin()" [disabled]="!canSave()"
+                    (clickIfEnabled)="buchen()" translationKey="OVERVIEW.BUCHEN"></lib-button>
+    </ng-container>
+
+
+</ng-template>
+
+
+<ng-template #vacmeZertifikatBox>
+    <!-- Zertifikat -->
+    <div class='summary-box' translate>
+
+        <div class="impfausweis-title-container">
+            <p class="impfausweis-title" translate>OVERVIEW.IMPFAUSWEIS_TITLE</p>
+            <a class="help-icon grow-on-hover" target='_blank'
+               [href]="'OVERVIEW.ZERTIFIKAT_HELP_HREF' | translate" translate>
+                <img width="20" src="../img/Help Icon.svg">
+            </a>
+
+            <!-- Liste aller Zertifikate ein-/ausblenden -->
+            <ng-container *ngIf="hasMoreZertifikate">
+                <a *ngIf="!showAlleZertifikate" (click)="showAlleZertifikate = true" class="history-icon"
+                   style="margin-left: 10px;" [title]="'OVERVIEW.ZERTIFIKAT_N.ALLE_ANZEIGEN' | translate">
+
+
+                </a>
+            </ng-container>
+
+        </div>
+
+        <!-- Flag elektronischer Impfausweis anpassen wenn es false ist -->
+        <ng-container *ngIf="showZertifikatBeantragenButton()">
+            <form [formGroup]="elektronischerAusweisGroup">
+                <lib-input-checkbox formControlName="elektronischerImpfausweis"
+                                    key="registrierung.abgleich_elektronischer_impfausweis"></lib-input-checkbox>
+            </form>
+            <div class="impfausweis-button">
+                <lib-button buttonKind="primary" translationKey="OVERVIEW.IMPFAUSWEIS_BEANTRAGEN"
+                            [noMargin]="true" (clickIfEnabled)="saveFlagForm()"></lib-button>
+            </div>
+        </ng-container>
+        <!-- Auf Zertifikat warten -->
+        <ng-container *ngIf="showZertifikatWarten()">
+            <div class="impfausweis-wait">
+                <img class="impfausweis-wait-icon" src="/assets/img/spinner.svg"/>
+                <p class="impfausweis-wait-text" translate>{{getImpfausweisWarten()}}</p>
+            </div>
+        </ng-container>
+        <!-- Zertifikat herunterladen -->
+        <ng-container *ngIf="showZertifikatDownload()">
+            <div (click)="downloadZertifikat()"
+                 class="text-center  margin-top-30"
+                 style="cursor: pointer; display: flex; flex-direction: column">
+                <div style="">
+                    <img width="60"
+                         src="../img/certificate.png"/>
+                </div>
+                <div class="downloadLinkText" style="text-align: center; padding: 5px;">
+                    <a><span translate>OVERVIEW.DOWNLOAD_ZERTIFIKAT</span></a>
+                </div>
+            </div>
+        </ng-container>
+        <!-- Zertifikat per Post erneut schicken -->
+        <ng-container *ngIf="isCallcenter() && this.dashboardJax.elektronischerImpfausweis">
+            <lib-zertifikat-per-post (resendZertifikatEvent)="resendZertifikatPerPost()"
+                                     [timestampLetzterPostversand]="dashboardJax.timestampLetzterPostversand">
+
+            </lib-zertifikat-per-post>
+        </ng-container>
+        <!-- Keine gueltige Schweizer Adresse -->
+        <lib-warningbox *ngIf="isCallcenter() && !isGueltigeSchweizerAdresse()">
+            <span translate>OVERVIEW.KEINE_GUELTIGE_SCHWEIZER_ADRESSE</span>
+        </lib-warningbox>
+
+
+    </div>
+</ng-template>
+
+<ng-template #vacmeAlleZertifikateBox>
+
+    <!-- Liste aller Zertifikate ausblenden -->
+    <p class="text-center margin-top-15">
+        <a class="grow-on-hover" (click)="showAlleZertifikate = false"
+           [title]="'OVERVIEW.ZERTIFIKAT_N.ALLE_AUSBLENDEN' | translate">
+            <img width="24" src="../img/close-icon.svg">
+        </a>
+    </p>
+    <!-- Liste -->
+    <lib-zertifikat-list
+        [zertifikatList]="zertifikatList"
+        (triggerDownload)="downloadSpecificZertifikat($event)"></lib-zertifikat-list>
+</ng-template>
+
+<ng-template #externesZertifikatBox>
+
+    <!-- Externes Impfzertifikat -->
+    <div class='summary-box'>
+        <ng-container *ngIf="dashboardJax.externGeimpft as externGeimpft">
+            <h4 translate>OVERVIEW.EXTERNE_IMPFUNGEN.TITLE</h4>
+            <lib-extern-geimpft-info-component [externGeimpft]="externGeimpft"></lib-extern-geimpft-info-component>
+
+            <!-- bearbeiten Button -->
+            <lib-button-navigate *ngIf="canEditExternesZertifikat()"
+                                 goto="/externgeimpft/{{dashboardJax.registrierungsnummer}}/krankheit/{{getKrankheit()}}"
+                                 buttonKind="secondary" class="button-no-margin"
+                                 translationKey="OVERVIEW.EXTERNE_IMPFUNGEN.EDIT"></lib-button-navigate>
+        </ng-container>
+    </div>
+
+</ng-template>
+
+<ng-template #externesZertifikatAddButton>
+    <div class="row text-center">
+        <a
+            routerLink="/externgeimpft/{{dashboardJax.registrierungsnummer}}/krankheit/{{getKrankheit()}}"
+            >{{'OVERVIEW.EXTERNE_IMPFUNGEN.ADD' | translate: {krankheit: getTranslatedKrankheit()} }}</a>
+    </div>
+</ng-template>
+
+
+<ng-template #dokumenteBlock>
+    <!-- Download Dokumente -->
+    <div style="display: flex; flex-direction: column">
+        <div *ngIf="regbestaetigungEnabled()"
+             style="display: flex; flex-direction: column; text-align: center; padding: 20px;">
+            <div (click)="downloadRegistrationsbestaetigung()" class="download">
+                <div style="text-align: center; padding: 5px;">
+                    <img width="60" src="../img/PDF_file_icon.svg"/>
+                </div>
+                <div style="text-align: center; padding: 5px;">
+                    <a><span translate>OVERVIEW.DOWNLOAD_REGBESTAETIGUNG</span></a>
+                </div>
+            </div>
+            <!-- FIXME besser stylen -->
+            <div (click)="resendRegistrationbestaetigung()"
+                 *ngIf="isCallcenter()"
+                 class="download">
+                <a><span translate>OVERVIEW.REGBESTAETIGUNG_ERNEUT_SENDEN</span></a>
+            </div>
+        </div>
+
+        <!-- if status > gebucht / odi ausgewaehlt -->
+        <div *ngIf="terminbestaetigungEnabled()"
+             style="display: flex; flex-direction: column; text-align: center; padding: 20px;">
+            <div (click)="downloadTerminbestaetigung()" class="download">
+                <div style="text-align: center; padding: 5px;">
+                    <img width="60" src="../img/PDF_file_icon.svg"/>
+                </div>
+                <div style="text-align: center; padding: 5px;">
+                    <a><span translate>OVERVIEW.DOWNLOAD_TERMINBESTAETIGUNG</span></a>
+                </div>
+            </div>
+            <div (click)="resendTerminbestaetigung()"
+                 class="download"
+                 *ngIf="isCallcenter()">
+                <a><span translate>OVERVIEW.TERMINBESTAETIGUNG_ERNEUT_SENDEN</span></a>
+            </div>
+        </div>
+        <div *ngIf="impfdokuEnabled()" style="display: flex; flex-direction: column; text-align: center;"  class="margin-top-30">
+            <p class="text-bold" translate>OVERVIEW.IN_VACME_DOKUMENTIERTE_IMPFUNGEN</p>
+            <div (click)="downloadImpfdokumentation()"
+                 class="download text-center margin-bottom-30"
+                 style="cursor: pointer;">
+                <div style="">
+                    <img width="60"
+                         src="../img/PDF_file_icon.svg"/>
+                </div>
+                <div style="text-align: center; padding: 5px;">
+                    <a><span translate>OVERVIEW.DOWNLOAD_IMPFDOKUMENTATION</span></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</ng-template>
+
+<ng-template #infoSupportLeistungserbringer>
+    <div [innerHTML]="'OVERVIEW.INFO_SUPPORT_LEISTUNGSERBRINGER' | translate" class="row text-center" translate></div>
+</ng-template>
+
+<ng-template #persoenlicheDatenAnpassenButton>
+    <div class="daten-anpassen">
+        <lib-button translationKey="OVERVIEW.DATA_ANPASSEN" buttonKind="primary" [noMargin]="true"
+                    (clickIfEnabled)="dataAnpassen()"></lib-button>
+    </div>
+</ng-template>
+
+<ng-template #registrationTypeInfo>
+    <div class="center">
+        <p>{{registrationType()}}</p>
+    </div>
+</ng-template>
+
+<ng-template #resendOnboardingButton>
+    <div class="center" style="margin-top: 40px;">
+        <p translate>ONBOARDING.TRIGGER.MISSING_LOGIN</p>
+        <lib-button translationKey="ONBOARDING.TRIGGER.SEND"
+                    buttonKind="secondary" [noMargin]="true"
+                    (clickIfEnabled)="resendOnboardingLetter()"></lib-button>
+    </div>
+</ng-template>

@@ -1,0 +1,153 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+//// VARIABLES
+@import 'vacme-variables';
+$swal2-title-margin: 0 0 .4em;
+$swal2-title-font-size: 24px;
+
+$swal2-button-focus-outline: none; // $focus-outline;
+$swal2-button-focus-box-shadow: 0 0 0 4px $focus-outline-color !important; // fuer die abgerundeten Buttons //$focus-outline;
+
+$swal2-show-animation: none;
+$swal2-hide-animation: swal2-hide .15s forwards;
+
+
+$swal2-success: $color-be-func-green;
+$swal2-success-border: rgba($swal2-success, .3);
+$swal2-error: $color-be-red;
+$swal2-warning: $color-be-red;
+$swal2-info: $color-be-cappuccino;
+$swal2-question: $color-be-cappuccino;
+
+
+$swal2-font: $vacme-fontfamily;
+$swal2-font-size: $vacme-fontsize;
+
+@import 'sweetalert2/src/variables'; // has "!default" variables -> needs to be placed after our variable overrides
+
+
+
+// SWEETALERT
+@import 'sweetalert2/src/scss/mixins';
+@import 'sweetalert2/src/scss/toasts';
+@import 'sweetalert2/src/scss/body';
+@import 'sweetalert2/src/scss/core';
+@import 'sweetalert2/src/scss/animations';
+// OVERRIDES
+
+/*
+ Achtung: Die Overrides funktionieren NICHT, wenn Swal an irgendeinem Ort wie folgt importiert wird:
+     SCHLECHT:      import Swal from 'sweetalert2'; // Hier wird nicht nur das JS, sondern auch das CSS importiert
+ Man muss es stattdessen immer so importieren:
+     GUT:           import Swal from 'sweetalert2/dist/sweetalert2.js'; // nur das JS importieren
+ */
+
+.swal2-popup:focus {
+    outline: none !important; // wegen unseren Kanton-BE-Overrides
+}
+.swal2-styled:focus {
+    outline: none !important; // wegen unseren Kanton-BE-Overrides
+}
+
+.swal2-title {
+    font-weight: $vacme-fontweight;
+    font-size: 24px;
+    letter-spacing: 0.75px;
+    line-height: 33px;
+}
+.swal2-content,
+.swal2-content div {
+    color: $color-be-black;
+    font-weight: $vacme-fontweight;
+    line-height: $vacme-lineheight;
+    letter-spacing: $vacme-letter-spacing;
+    font-size: $vacme-fontsize;
+    font-family: $vacme-fontfamily;
+}
+
+.swal2-styled.swal2-confirm {
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+    font-family: $vacme-fontfamily;
+    font-style: normal;
+    font-weight: 500;
+    font-size: $vacme-fontsize;
+    line-height: 26px;
+    line-height: 125%;
+    background-color: rgba(78, 78, 78, 0.95);
+    display: inline-block;
+    height: 49px;
+    border-radius: 49px;
+    border: none;
+    vertical-align: middle;
+    margin: 0 10px 10px 0;
+    -webkit-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    min-width: 150px;
+    padding: 12px 40px;
+}
+.swal2-styled.swal2-cancel {
+    overflow: hidden;
+    text-align: center;
+    font-family: $vacme-fontfamily;
+    font-style: normal;
+    font-weight: 500;
+    font-size: $vacme-fontsize;
+    line-height: 26px;
+    line-height: 125%;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(112, 112, 112, 1);
+    display: inline-block;
+    height: 49px;
+    border-radius: 49px;
+    border: 1px solid #4E4E4E;
+    vertical-align: middle;
+    margin: 0 10px 10px 0;
+    -webkit-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+    cursor: pointer;
+    min-width: 150px;
+    padding: 12px 39px 12px 44px;
+}
+.swal2-icon.swal2-warning {
+    border-color: $swal2-error;
+    color: $swal2-error;
+}
+.swal2-icon.swal2-warning {
+    border-color: $swal2-warning;
+    color: $swal2-warning;
+}
+.swal2-icon.swal2-question {
+    border-color: $swal2-question;
+    color: $swal2-question;
+}
+.swal2-icon.swal2-info {
+    border-color: $swal2-info;
+    color: $swal2-info;
+}
+.swal2-icon.swal2-success {
+    border-color: rgba($swal2-success, .3);
+    color: $swal2-success;
+}
+
+
+.swal2-confirm.primary.swal2-styled {
+    background-color: rgba(78, 78, 78, 0.95) !important;
+    border-radius: 49px !important;
+    height: 49px !important;
+    margin: 8px;
+}
+
+.swal2-cancel.secondary.swal2-styled {
+    background-color: #fff !important;
+    border-radius: 49px !important;
+    color: #000;
+    border: 1px solid rgba(78, 78, 78, 0.95) !important;
+    height: 49px !important;
+    margin: 8px;
+}
