@@ -1,0 +1,5 @@
+ALTER TABLE Registrierung
+	ADD COLUMN sprache VARCHAR(50) NULL;
+
+ALTER TABLE Registrierung_AUD
+	ADD COLUMN sprache VARCHAR(50) NULL;

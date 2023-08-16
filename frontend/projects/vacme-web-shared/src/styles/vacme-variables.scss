@@ -1,0 +1,45 @@
+// ********* Farben des Kanton Bern Styleguides ********************
+$color-be-red: #EA161F;
+$color-be-sand: #FAF1E3;
+$color-be-lightsand: #FCF8F3;
+$color-be-darksand: #F7E9D2;
+$color-be-cappuccino: #ebd3ae;
+$color-be-sand-hover: #F2E0C3;
+$color-be-black: #000000;
+
+$color-be-func-green: #3D8608;
+$color-be-func-anthrazit: #4E4E4E;
+$color-be-func-darkgrey: #707070;
+$color-be-func-lightgrey: #F2F2F2;
+$color-be-func-red-hover: #D01018;
+$color-be-func-white: #FFFFFF;
+$color-be-func-grey: #DEDEDE;
+$color-be-func-line-grey: #707070;
+$color-be-func-anthrazit-hover: #404040;
+$color-be-func-verylight-grey: #F8F8F8;
+
+
+$vacme-fontfamily: 'Roboto', 'arial', sans-serif;
+$vacme-fontsize: 16px;
+$vacme-fontweight: 300;
+$vacme-lineheight: 1.625; // 26px/16px wie in <p> aus den Kanton-Bern-Styles
+$vacme-letter-spacing: initial;
+
+
+
+// *******  selber erfunden fuer VacMe: *******************
+
+
+$color-vacme-grey: $color-be-func-darkgrey; // gleiche Farbe wie Progressbar (siehe COLOR_PROGRESSBAR), auch fuer Outlines
+$color-disabled-background: #e6e6e6; // das war aus Foundation drin
+$color-disabled-text: #707070; // das war nicht so recht definiert, die Browser machen es unterschiedlich
+$color-disabled-button-background: #dedede; // Styleguide primary not-active
+
+$color-ampel-red: $color-be-red;
+$color-ampel-orange: #FA970A; //bisher: #F09A4E;
+$color-ampel-green: $color-be-func-green;
+
+// Vacme-Fokus-Outline, um Accessibility sicherzustellen. Muss richtig fett und kontrastreich sein.
+$focus-outline-color: $color-be-func-darkgrey;
+$focus-outline: 4px solid $focus-outline-color;
+$focus-outline-offset: 0;

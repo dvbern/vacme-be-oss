@@ -1,0 +1,174 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<ng-container>
+    <div *ngIf="accessOk === undefined" class="full-wdith">
+        <h2 class='i5'>Daten werden geladen</h2>
+    </div>
+    <div *ngIf="accessOk === false" class="full-wdith">
+        <h2 class='i5' translate>IMPFDOK.NO_ACCESS</h2>
+    </div>
+    <div *ngIf="accessOk === true">
+
+        <div class="main-column full-wdith row">
+
+            <h2>{{title()}}</h2>
+
+            <div *ngIf="isUserBerechtigtForKrankheit(krankheitCovid)">
+                <hr/>
+                <h4 translate>KRANKHEITEN.COVID</h4>
+
+                <!-- Externes Impfzertifikat -->
+                <div *ngIf="dashboardCovidJax?.externGeimpft as externGeimpft"
+                     class="step-1-text margin-top-30" style="display: block;">
+
+                    <h4 translate>GEIMPFT.EXTERNE_IMPFUNGEN.TITLE</h4>
+                    <lib-extern-geimpft-info-component [externGeimpft]="externGeimpft"></lib-extern-geimpft-info-component>
+
+                    <!-- noch nicht kontrolliert -->
+                    <p *ngIf="!externGeimpft.kontrolliert" class="red-text">
+                        <span translate>GEIMPFT.EXTERNE_IMPFUNGEN.NICHT_KONTROLLIERT</span>
+                    </p>
+                </div>
+
+                <!-- Vacme-Impfungen -->
+                <app-geimpft-impfungen-list *ngIf="accessOk"
+                                            [dashboardJax]="dashboardCovidJax"
+                                            [editableLastBemerkung]="true"
+                                            [supportsImpffolgenEinsUndZwei]="supportsImpffolgenEinsUndZwei()">
+
+                </app-geimpft-impfungen-list>
+
+
+                <!-- Impfdokumentation -->
+                <div *ngIf="hasVacmeImpfung() && hasRoleDokumentation()">
+                    <a (click)="downloadImpfdokumentation(krankheitCovid)" translate>GEIMPFT.IMPFDOKUMENTATION</a>
+                </div>
+
+                <app-person-folgetermin *ngIf="dashboardCovidJax && isTerminbuchungAllowed(getPersonFolgeterminFromDashboard(dashboardCovidJax))"
+                                        [data]="getPersonFolgeterminFromDashboard(dashboardCovidJax)"
+                                        (termineUmbuchenCalled)="termineUmbuchen(getPersonFolgeterminFromDashboard(dashboardCovidJax))">
+                </app-person-folgetermin>
+
+                <div>
+                    <!-- Button: Kontrolle fuer Impfung 2 -->
+                    <lib-button buttonKind="secondary"
+                                *ngIf="showKontrolle1() || showKontrolle2()"
+                                (clickIfEnabled)="navigateToKontrolleForCovid()"
+                                translationKey="GEIMPFT.GOTO_KONTROLLE">
+                    </lib-button>
+                    <!-- Button: 2. Impfung trotzdem wahrnehmen resp. Erfasste Erkrankung entfernen -->
+                    <lib-button buttonKind="secondary"
+                                *ngIf="canZweiteImpfungWahrnehmen()"
+                                (clickIfEnabled)="zweiteImpfungWahrnehmen()"
+                                [translationKey]="this.canErkrankungEntfernen() ? 'GEIMPFT.ERKRANKUNG_ENTFERNEN'
+                                : 'GEIMPFT.ZWEITE_IMPFUNG_WAHRNEHMEN'">
+                    </lib-button>
+                    <!-- Button: auf 2. Impfung verzichten -->
+                    <app-zweite-impfung-verzichten
+                        [showAufZweiteImpfungVerzichten]="showAufZweiteImpfungVerzichten()"
+                        [showEsKannNichtGeimpftWerden]="false"
+                        [impffolge]="getImpffolge()"
+                        [registrierungsnummer]="dashboardCovidJax?.registrierungsnummer">
+                    </app-zweite-impfung-verzichten>
+                    <!-- Button: Weitere Impfung -->
+                    <lib-button buttonKind="secondary"
+                                *ngIf="canAddCovidBooster()"
+                                (clickIfEnabled)="boosterWahrnehmenCovid()"
+                                translationKey="GEIMPFT.WEITERE_IMPFUNG_WAHRNEHMEN">
+                    </lib-button>
+                </div>
+
+                <!-- Zertifikat -->
+                <div class="step-1-text step-1-text-center"
+                     *ngIf="dashboardCovidJax && dashboardCovidJax.currentZertifikatInfo!.deservesZertifikat && dashboardCovidJax.registrierungsnummer">
+                    <app-person-zertifikat class="current-zertifikat-box"
+                                           [registrierungsEingang]="dashboardCovidJax.eingang"
+                                           [currentZertifikatInfo]="dashboardCovidJax.currentZertifikatInfo"
+                                           [elektronischerImpfausweis]="!!dashboardCovidJax.elektronischerImpfausweis"
+                                           [registration]="dashboardCovidJax.registrierungsnummer"
+                                           [krankheit]="getKrankheit()"
+                                           (zertifikatCreatedEvent)="zertifikatCreated()">
+                    </app-person-zertifikat>
+                </div>
+
+                <!-- Komplettliste der Zertifikate -->
+                <lib-accordion *ngIf="hasMoreZertifikate" [initiallyOpen]="false">
+                    <span class="title" translate>GEIMPFT.ZERTIFIKATSLISTE_TITEL</span>
+
+                    <!-- Liste -->
+                    <lib-zertifikat-list
+                        [zertifikatList]="zertifikatList"
+                        (triggerDownload)="downloadSpecificZertifikat($event)"></lib-zertifikat-list>
+
+                </lib-accordion>
+            </div>
+
+            <div *ngFor="let possibleKrankheit of krankheitenForUser">
+                <div *ngIf="possibleKrankheit !== krankheitCovid">
+                    <hr/>
+                    <h4 translate>KRANKHEITEN.{{possibleKrankheit}}</h4>
+
+                    <lib-impfdossier-summary-list-item
+                        [impfdossierSummary]="getDossierOfKrankheit(possibleKrankheit)"
+                        (downloadEvent)="this.downloadImpfdokumentation(possibleKrankheit)">
+                    </lib-impfdossier-summary-list-item>
+                    <ng-container *ngIf="getDossierOfKrankheit(possibleKrankheit) as currentDossier">
+                        <app-person-folgetermin *ngIf="isTerminbuchungAllowed(getPersonFolgeterminFromImpfdossierSummary(currentDossier))"
+                                                [data]="getPersonFolgeterminFromImpfdossierSummary(currentDossier)"
+                                                (termineUmbuchenCalled)="termineUmbuchen(getPersonFolgeterminFromImpfdossierSummary(currentDossier))">
+                        </app-person-folgetermin>
+                    </ng-container>
+
+                    <lib-button buttonKind="secondary"
+                                *ngIf="canAddImpfungNonCovid(possibleKrankheit)"
+                                (clickIfEnabled)="impfungWarnehmenNonCovid(possibleKrankheit)"
+                                translationKey="GEIMPFT.WEITERE_IMPFUNG_WAHRNEHMEN_{{possibleKrankheit}}">
+                    </lib-button>
+                </div>
+            </div>
+
+        </div>
+        <div class='context-column'>
+
+            <app-person-suchen></app-person-suchen>
+
+            <div class='row step-1-text' style="display:block;">
+                <a *ngIf="hasRoleDokumentation()"
+                   class="sidebar-action"
+                   routerLink="/admin/datenkorrektur"
+                   [queryParams]="{registrierungNummer: this.dashboardCovidJax?.registrierungsnummer}"
+                   translate>FACH-ADMIN.DATEN_KORREKTUR.TITLE</a>
+            </div>
+
+            <app-person-fileupload *ngIf="!isUserBerechtigtForMoreThanOneKrankheit()"
+                                   [regNummer]="this.dashboardCovidJax?.registrierungsnummer"
+                                   [krankheit]="getFilesForKrankheitToDisplay()"
+                                   [canUpload]="isAllowedToUploadFiles()"
+                                   [canDownload]="isAllowedToDownloadFiles()"
+                                   [uploadedFiles]="uploadedFiles">
+            </app-person-fileupload>
+
+            <app-person-infos *ngIf="dashboardCovidJax"
+                              [personalien]="dashboardCovidJax"
+                              [showBemerkungen]="false"
+                              [showErkrankungen]="false">
+            </app-person-infos>
+
+        </div>
+    </div>
+</ng-container>

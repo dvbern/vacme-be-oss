@@ -1,0 +1,53 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+
+.odi-tagesstatistik {
+    width: 100%;
+
+
+    ::ng-deep {
+        .date-spinner {
+            .date {
+                font-size: 16px;
+            }
+        }
+    }
+
+    table {
+        margin-top: 30px;
+
+        .numbers {
+            text-align: right;
+            width: 100px;
+            padding-left: 8px !important;
+        }
+
+        .hiddenrow {
+            display: none;
+        }
+        .empty {
+            color: rgba(200, 200, 200, 0.4);
+        }
+    }
+
+    .stats-footer {
+        font-size: 12px;
+        line-height: 13px;
+        float: right;
+    }
+
+
+    &.loading {
+        table {
+            opacity: 0.5;
+        }
+    }
+}
+
+.hint {
+    margin-left: -4px;
+    right: -0.5em;
+}

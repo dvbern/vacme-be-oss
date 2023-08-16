@@ -1,0 +1,1 @@
+ALTER TABLE Zertifikat MODIFY registrierung_id VARCHAR(36) NULL;

@@ -1,0 +1,1 @@
+UPDATE Impfschutz SET erlaubteImpfstoffe = NULL WHERE erlaubteImpfstoffe = '';

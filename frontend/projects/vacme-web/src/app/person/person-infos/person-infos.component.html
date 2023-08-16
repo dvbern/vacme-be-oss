@@ -1,0 +1,59 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div data-testid="personInfo" class='row step-1-text margin-top-30' style="display: block">
+    <h4
+        class="infobox-title">{{personalien.name}} {{personalien.vorname}} {{personalien.registrierungsnummer}}</h4>
+    <p>{{personalien.geburtsdatum | date: 'dd. MMM yyyy': undefined: this.translateService.currentLang}} <br>
+        <span [class.invalid-text]="hasImpfgruppeError"
+              title="{{personalien.status}}"><span translate>REG_CODE.PRIO</span> {{personalien.prioritaet}}</span>
+        <br/>
+        <span translate>REG_CODE.EINGANG</span><span translate> {{personalien.eingang}}</span>
+        <br/>
+        <a *ngIf="canSendOnboardingLetter()"
+           style="font-size: 16px;"
+           (click)="triggerOnboarding()"
+           translate>ONBOARDING.TRIGGER.SEND</a>
+    </p>
+
+    <div *ngIf="showBemerkungen">
+        <ul *ngIf="personalien.kommentare" style="margin: 0">
+            <li *ngIf="personalien.bemerkungenRegistrierung">
+                <span translate>IMPFDOK.REG-BEMERKUNG</span>
+                <span>: </span>
+                <br>
+                <i>{{personalien.bemerkungenRegistrierung}}</i>
+            </li>
+            <li *ngFor="let kontrolleKommentar of personalien.kommentare">
+                <span class="margin-top-15" translate
+                      [translateParams]="{impffolgeNr: kontrolleKommentar.impffolgeNr}"
+                      title="{{kontrolleKommentar.impffolge}}">
+                    IMPFDOK.REG-KONTROLLE-N
+                </span>
+                <span> ({{kontrolleKommentar.timestamp | date : 'dd. MMM yyyy': undefined: this.translateService.currentLang}}
+                    )</span>
+                <span>: </span>
+                <br>
+                <i>{{kontrolleKommentar.bemerkung}}</i>
+            </li>
+        </ul>
+    </div>
+
+    <div *ngIf="showErkrankungen">
+        <app-erkrankungen-list [erkrankungen]="personalien.impfdossier?.erkrankungen"></app-erkrankungen-list>
+    </div>
+</div>

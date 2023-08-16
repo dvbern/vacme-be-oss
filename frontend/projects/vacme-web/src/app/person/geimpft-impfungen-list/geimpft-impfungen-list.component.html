@@ -1,0 +1,112 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<div *ngIf="impfungenList.length === 0 && !hasExternesZertifikat()" class="step-1-text step-1-text-center" translate>
+    FACH-APP.KONTROLLE.KEINE_FRUEHERE_IMPFUNGEN
+</div>
+<div *ngFor="let impfungAndNr of impfungenList"
+     class="step-1-text step-1-text-center impfung-data"
+     [class.grundimmunisierung]="impfungAndNr.impfung?.grundimmunisierung">
+
+    <!-- Titel pro Impfung -->
+    <h4 [title]="impfungAndNr.impffolge">{{getTitle(impfungAndNr.impffolgeNr, impfungAndNr.impfung?.impffolge, impfungAndNr.impfung)}}</h4>
+
+    <!-- Details pro Impfung -->
+    <ng-container *ngIf="impfungAndNr.impfung as impfung">
+        <ul class="impfung-data-list">
+
+            <!-- Grundimmunisierung/Auffrischung -->
+            <li *ngIf="impfung.grundimmunisierung" translate>
+                GEIMPFT.IMPFUNG_GEHOERT_ZU_GRUNDIMMUNISIERUNG
+            </li>
+            <li *ngIf="false === impfung.grundimmunisierung" translate>
+                GEIMPFT.IMPFUNG_GEHOERT_NICHT_ZU_GRUNDIMMUNISIERUNG
+            </li>
+
+            <!-- Erstimpfung: Spezialfall -->
+            <ng-container *ngIf="impfung.impffolge === 'ERSTE_IMPFUNG'">
+
+                <!-- Fehlende Zweitimpfung -->
+                <ng-container *ngIf="needsZweitimpfung() && !hasZweitimpfung()">
+                    <!-- abgeschlossen ohne zweite Impfung (mit Timestamp) -->
+                    <li *ngIf="isAbgeschlossen()"
+                        translate
+                        [translateParams]="{datum: this.printDate(this.dashboardJax?.timestampZuletztAbgeschlossen)}">
+                        GEIMPFT.SCHON_ABGESCHLOSSEN
+                    </li>
+                    <!-- nicht abgeschlossen, aber freiwillig auf 2. Impfung verzichtet (mit Timestamp) #neverhappens -->
+                    <li *ngIf="!isAbgeschlossen() && hasZweiteImpfungVerzichtet()"
+                        translate
+                        [translateParams]="{datum: this.printDate(this.dashboardJax?.zweiteImpfungVerzichtetZeit)}">
+                        GEIMPFT.IMPFUNG_VERZICHTET
+                    </li>
+                    <!-- auf zweite impfung verzichtet UND vollstaendiger Impfschutz: Begruendung -->
+                    <li *ngIf="hasZweiteImpfungVerzichtet() && this.hasVollstaendigenImpfschutz()"
+                        translate>
+                        IMPFDOK.KEIN_ZWEITE_IMPFUNG.VOLLSTAENDIGER_IMPFSCHUTZ_BEGRUENDUNG
+                    </li>
+
+                    <!-- Begruendung fuer Verzicht, nicht editierbar #neverhappens -->
+                    <li *ngIf="!this.isVerzichtetGrundEditable() && this.dashboardJax?.zweiteImpfungVerzichtetGrund">
+                        <span translate>GEIMPFT.IMPFUNG_VERZICHTET_GRUND</span>
+                        <span>: </span>
+                        <span>{{this.dashboardJax?.zweiteImpfungVerzichtetGrund}}</span>
+                    </li>
+
+                </ng-container>
+
+                <!-- PCR-Testdatum: bei Impfung 1 anzeigen -->
+                <li *ngIf="dashboardJax?.positivGetestetDatum"
+                    translate
+                    [translateParams]="{date: printDate(dashboardJax?.positivGetestetDatum)}">
+                    IMPFDOK.KEIN_ZWEITE_IMPFUNG.POSITIV_GETESTET
+                </li>
+
+            </ng-container>
+
+            <li *ngIf="impfung.schwanger" translate>
+                GEIMPFT.SCHWANGER
+            </li>
+
+
+            <!-- Bemerkungen (readonly) -->
+            <li *ngIf="showBemerkungReadonly(impfung)">
+                <p>
+                    <span translate>GEIMPFT.BEMERKUNGENIMPFUNG</span>
+                    <br>
+                    <i style="white-space: pre-wrap;">{{impfung.bemerkung}}</i>
+                </p>
+            </li>
+
+        </ul>
+
+
+        <!-- Bemerkung-Editor wird in controller vorbereitet mit uebersetztem titel -->
+        <form *ngIf="showBemerkungEditor(impfung)" [formGroup]="bemerkungEditor!.form">
+            <lib-input-textarea
+                [key]="bemerkungEditor!.key"
+                formControlName="bemerkung"
+                [noTranslate]="true"
+            ></lib-input-textarea>
+
+            <lib-button buttonKind="primary" [disabled]="!canSave()" *ngIf="showSaveButton()"
+                        translationKey="GEIMPFT.SPEICHERN" (clickIfEnabled)="saveIfValid()"
+                        class="no-margin-impfungen-list">
+            </lib-button>
+        </form>
+    </ng-container>
+
+</div>

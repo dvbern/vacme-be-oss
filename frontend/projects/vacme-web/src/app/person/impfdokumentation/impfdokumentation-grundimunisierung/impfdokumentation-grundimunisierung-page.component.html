@@ -1,0 +1,102 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<ng-container *ngIf="!modif">
+
+    <div>
+
+        <div class="main-column">
+
+            <h2 class='i5' [title]="impffolge">{{title()}}</h2>
+
+            <app-impfdokumentation-form [baseData]="formBaseData"
+                                        (selectOdi)="selectOdi($event)"
+                                        (submited)="save($event)"
+                                        (back)="back()"
+                                        (notVaccinated)="confirmAndResetToKontrolle()"></app-impfdokumentation-form>
+
+        </div>
+        <div class="context-column" *ngIf="accessOk">
+            <app-person-suchen></app-person-suchen>
+
+            <app-person-infos *ngIf="dashboardJax"
+                              [personalien]="dashboardJax"></app-person-infos>
+
+            <app-person-documents *ngIf="dashboardJax && dashboardJax.registrierungsnummer"
+                                  [krankheit]="krankheitIdentifier"
+                                  [hasVacmeImpfung]="boosterUtil.hasDashboardVacmeImpfung(dashboardJax)"
+                                  [registration]="dashboardJax.registrierungsnummer"
+                                  [status]="dashboardJax.status"
+                                  [termininfos]="dashboardJax">
+            </app-person-documents>
+
+            <div *ngIf="vacmeSettingsService.supportsZertifikat(this.krankheitIdentifier)">
+                <div class='row step-1-text margin-top-30' style="display: block"
+                     *ngIf="dashboardJax && dashboardJax.currentZertifikatInfo!.deservesZertifikat && dashboardJax.registrierungsnummer">
+                    <app-person-zertifikat
+                        [registrierungsEingang]="dashboardJax.eingang"
+                        [currentZertifikatInfo]="dashboardJax.currentZertifikatInfo"
+                        [elektronischerImpfausweis]="!!dashboardJax.elektronischerImpfausweis"
+                        [registration]="dashboardJax.registrierungsnummer"
+                        [krankheit]="this.krankheitIdentifier">
+                    </app-person-zertifikat>
+                </div>
+            </div>
+
+            <div *ngIf="vacmeSettingsService.supportsTerminbuchung(this.krankheitIdentifier)">
+                <div id="termine-anchor"></div>
+                <ng-container *ngIf="{ savedVal: saved$ | async} as savedValObj">
+                    <app-person-folgetermin *ngIf="savedValObj.savedVal && dashboardJax"
+                                            [data]="getPersonFolgeterminTS(dashboardJax)"
+                                            (termineUmbuchenCalled)="termineUmbuchen(savedValObj.savedVal)">
+                    </app-person-folgetermin>
+
+                    <app-person-termin *ngIf="dashboardJax" [termine]="dashboardJax" [impffolge]="impffolge"
+                                       [impffolgeNr]="impffolgeNr"
+                                       [status]="dashboardJax.status"
+                                       (adHocTermin1AndSelectTermin2Called)="onAdHocTermin1AndSelectTermin2()"
+                                       (termineUmbuchenCalled)="termineUmbuchen(savedValObj.savedVal)"
+                                       [showTerminumbuchungButtons]="showTerminumbuchungButtons(savedValObj.savedVal)">
+                    </app-person-termin>
+                </ng-container>
+            </div>
+            <app-person-impfung *ngIf="dashboardJax"
+                                [dashboardJax]="dashboardJax"
+                                [impffolge]="impffolge"
+                                [supportsImpffolgenEinsUndZwei]="supportsImpffolgenEinsUndZwei()"
+            ></app-person-impfung>
+        </div>
+    </div>
+</ng-container>
+
+
+<!--Ansicht wahrend der Bearbeitung der Termine-->
+<ng-container *ngIf="modif">
+    <div id="terminbuchung-anchor"></div>
+    <lib-termine-bearbeiten [dashboardJax]="dashboardJax!"
+                            [ortDerImpfungList]="odiList"
+                            [selectedOdiId]="ortDerImpfungId ? ortDerImpfungId : undefined"
+                            [mussAtLeastGebuchtSein]="false"
+                            [mussAtLeastFreigegebenSein]="false"
+                            [erstTerminAdHoc]="erstTerminAdHoc"
+                            (goBack)="exitTerminumbuchung($event)"
+                            (cancelAppointment)="cancelAppointment($event)"
+                            (updateAppointment)="updateAppointment($event)"
+                            (nextFreieTermin)="gotoNextFreienTermin($event)">
+
+    </lib-termine-bearbeiten>
+</ng-container>

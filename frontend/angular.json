@@ -1,0 +1,862 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "vacme-initialreg": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/vacme-initialreg",
+      "sourceRoot": "projects/vacme-initialreg/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/vacme-initialreg",
+            "index": "projects/vacme-initialreg/src/index.html",
+            "main": "projects/vacme-initialreg/src/main.ts",
+            "polyfills": "projects/vacme-initialreg/src/polyfills.ts",
+            "tsConfig": "projects/vacme-initialreg/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/vacme-initialreg/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "./projects/vacme-web-shared/src/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "./projects/vacme-web-shared/src/styles/styleguide-be/img",
+                "output": "img"
+              }
+            ],
+            "styles": [
+              "./projects/vacme-web-shared/src/styles.scss",
+              "projects/vacme-initialreg/src/styles.scss"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/vacme-initialreg/src/environments/environment.ts",
+                  "with": "projects/vacme-initialreg/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "9mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "be": {
+              "outputPath": "dist/be/vacme-initialreg",
+              "fileReplacements": [
+                {
+                  "replace": "projects/vacme-web-shared/src/cantons/canton.ts",
+                  "with": "projects/vacme-web-shared/src/cantons/canton.be.ts"
+                }
+              ],
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "projects/vacme-web-shared/src/styles/themes/be/"
+                ]
+              },
+              "assets": [
+                {
+                  "glob": "favicon.ico",
+                  "input": "./projects/vacme-web-shared/src/styles/themes/be/",
+                  "output": ""
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/assets",
+                  "output": "assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/styles/styleguide-be/img",
+                  "output": "img"
+                }
+              ],
+              "optimization": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "9mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "be-production": {
+              "outputPath": "dist/be/vacme-initialreg",
+              "fileReplacements": [
+                {
+                  "replace": "projects/vacme-web-shared/src/cantons/canton.ts",
+                  "with": "projects/vacme-web-shared/src/cantons/canton.be.ts"
+                },
+                {
+                  "replace": "projects/vacme-initialreg/src/environments/environment.ts",
+                  "with": "projects/vacme-initialreg/src/environments/environment.prod.ts"
+                }
+              ],
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "projects/vacme-web-shared/src/styles/themes/be/"
+                ]
+              },
+              "assets": [
+                {
+                  "glob": "favicon.ico",
+                  "input": "./projects/vacme-web-shared/src/styles/themes/be/",
+                  "output": ""
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/assets",
+                  "output": "assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/styles/styleguide-be/img",
+                  "output": "img"
+                }
+              ],
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "9mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "zh": {
+              "outputPath": "dist/zh/vacme-initialreg",
+              "fileReplacements": [
+                {
+                  "replace": "projects/vacme-web-shared/src/cantons/canton.ts",
+                  "with": "projects/vacme-web-shared/src/cantons/canton.zh.ts"
+                }
+              ],
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "projects/vacme-web-shared/src/styles/themes/zh/"
+                ]
+              },
+              "assets": [
+                {
+                  "glob": "favicon.ico",
+                  "input": "./projects/vacme-web-shared/src/styles/themes/zh/",
+                  "output": ""
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/assets",
+                  "output": "assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/styles/styleguide-be/img",
+                  "output": "img"
+                }
+              ],
+              "optimization": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "9mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "zh-production": {
+              "outputPath": "dist/zh/vacme-initialreg",
+              "fileReplacements": [
+                {
+                  "replace": "projects/vacme-web-shared/src/cantons/canton.ts",
+                  "with": "projects/vacme-web-shared/src/cantons/canton.zh.ts"
+                },
+                {
+                  "replace": "projects/vacme-initialreg/src/environments/environment.ts",
+                  "with": "projects/vacme-initialreg/src/environments/environment.prod.ts"
+                }
+              ],
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "projects/vacme-web-shared/src/styles/themes/zh/"
+                ]
+              },
+              "assets": [
+                {
+                  "glob": "favicon.ico",
+                  "input": "./projects/vacme-web-shared/src/styles/themes/zh/",
+                  "output": ""
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/assets",
+                  "output": "assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/styles/styleguide-be/img",
+                  "output": "img"
+                }
+              ],
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "9mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "vacme-initialreg:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "vacme-initialreg:build:production"
+            },
+            "be": {
+              "browserTarget": "vacme-initialreg:build:be"
+            },
+            "zh": {
+              "browserTarget": "vacme-initialreg:build:zh"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "vacme-initialreg:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/vacme-initialreg/src/test.ts",
+            "polyfills": "projects/vacme-initialreg/src/polyfills.ts",
+            "tsConfig": "projects/vacme-initialreg/tsconfig.spec.json",
+            "karmaConfig": "projects/vacme-initialreg/karma.conf.js",
+            "assets": [
+              "projects/vacme-initialreg/src/favicon.ico",
+              "projects/vacme-initialreg/src/assets"
+            ],
+            "styles": [
+              "projects/vacme-initialreg/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/vacme-initialreg/e2e/protractor.conf.js",
+            "devServerTarget": "vacme-initialreg:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "vacme-initialreg:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/vacme-initialreg/**/*.ts",
+              "projects/vacme-initialreg/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "vacme-web-shared": {
+      "projectType": "library",
+      "root": "projects/vacme-web-shared",
+      "sourceRoot": "projects/vacme-web-shared/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/vacme-web-shared/tsconfig.lib.json",
+            "project": "projects/vacme-web-shared/ng-package.json",
+            "assets": [
+              "projects/vacme-web-shared/src/assets"
+            ],
+            "styles": [
+              "projects/vacme-web-shared/src/styles.scss"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/vacme-web-shared/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vacme-web-shared/src/test.ts",
+            "tsConfig": "projects/vacme-web-shared/tsconfig.spec.json",
+            "karmaConfig": "projects/vacme-web-shared/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/vacme-web-shared/**/*.ts",
+              "projects/vacme-web-shared/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "vacme-web": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/vacme-web",
+      "sourceRoot": "projects/vacme-web/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/vacme-web",
+            "index": "projects/vacme-web/src/index.html",
+            "main": "projects/vacme-web/src/main.ts",
+            "polyfills": "projects/vacme-web/src/polyfills.ts",
+            "tsConfig": "projects/vacme-web/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/vacme-web/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "./projects/vacme-web-shared/src/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "./projects/vacme-web/src/assets/templates",
+                "output": "templates"
+              },
+              {
+                "glob": "**/*",
+                "input": "./projects/vacme-web-shared/src/styles/styleguide-be/img",
+                "output": "img"
+              }
+            ],
+            "styles": [
+              "./projects/vacme-web-shared/src/styles.scss",
+              "projects/vacme-web/src/styles.scss"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/vacme-web/src/environments/environment.ts",
+                  "with": "projects/vacme-web/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "9mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "be": {
+              "outputPath": "dist/be/vacme-web",
+              "fileReplacements": [
+                {
+                  "replace": "projects/vacme-web-shared/src/cantons/canton.ts",
+                  "with": "projects/vacme-web-shared/src/cantons/canton.be.ts"
+                }
+              ],
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "projects/vacme-web-shared/src/styles/themes/be/"
+                ]
+              },
+              "assets": [
+                {
+                  "glob": "favicon.ico",
+                  "input": "./projects/vacme-web-shared/src/styles/themes/be/",
+                  "output": ""
+                },
+                {
+                  "glob": "robots.txt",
+                  "input": "./projects/vacme-web-shared/src/",
+                  "output": ""
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/assets",
+                  "output": "assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web/src/assets/templates",
+                  "output": "templates"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/styles/styleguide-be/img",
+                  "output": "img"
+                }
+              ],
+              "optimization": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "9mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "be-production": {
+              "outputPath": "dist/be/vacme-web",
+              "fileReplacements": [
+                {
+                  "replace": "projects/vacme-web-shared/src/cantons/canton.ts",
+                  "with": "projects/vacme-web-shared/src/cantons/canton.be.ts"
+                },
+                {
+                  "replace": "projects/vacme-web/src/environments/environment.ts",
+                  "with": "projects/vacme-web/src/environments/environment.prod.ts"
+                }
+              ],
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "projects/vacme-web-shared/src/styles/themes/be/"
+                ]
+              },
+              "assets": [
+                {
+                  "glob": "favicon.ico",
+                  "input": "./projects/vacme-web-shared/src/styles/themes/be/",
+                  "output": ""
+                },
+                {
+                  "glob": "robots.txt",
+                  "input": "./projects/vacme-web-shared/src/",
+                  "output": ""
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/assets",
+                  "output": "assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web/src/assets/templates",
+                  "output": "templates"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/styles/styleguide-be/img",
+                  "output": "img"
+                }
+              ],
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "9mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "zh": {
+              "outputPath": "dist/zh/vacme-web",
+              "fileReplacements": [
+                {
+                  "replace": "projects/vacme-web-shared/src/cantons/canton.ts",
+                  "with": "projects/vacme-web-shared/src/cantons/canton.zh.ts"
+                }
+              ],
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "projects/vacme-web-shared/src/styles/themes/zh/"
+                ]
+              },
+              "assets": [
+                {
+                  "glob": "favicon.ico",
+                  "input": "./projects/vacme-web-shared/src/styles/themes/zh/",
+                  "output": ""
+                },
+                {
+                  "glob": "robots.txt",
+                  "input": "./projects/vacme-web-shared/src/",
+                  "output": ""
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/assets",
+                  "output": "assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web/src/assets/templates",
+                  "output": "templates"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/styles/styleguide-be/img",
+                  "output": "img"
+                }
+              ],
+              "optimization": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "9mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "zh-production": {
+              "outputPath": "dist/zh/vacme-web",
+              "fileReplacements": [
+                {
+                  "replace": "projects/vacme-web-shared/src/cantons/canton.ts",
+                  "with": "projects/vacme-web-shared/src/cantons/canton.zh.ts"
+                },
+                {
+                  "replace": "projects/vacme-web/src/environments/environment.ts",
+                  "with": "projects/vacme-web/src/environments/environment.prod.ts"
+                }
+              ],
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "projects/vacme-web-shared/src/styles/themes/zh/"
+                ]
+              },
+              "assets": [
+                {
+                  "glob": "favicon.ico",
+                  "input": "./projects/vacme-web-shared/src/styles/themes/zh/",
+                  "output": ""
+                },
+                {
+                  "glob": "robots.txt",
+                  "input": "./projects/vacme-web-shared/src/",
+                  "output": ""
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/assets",
+                  "output": "assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web/src/assets/templates",
+                  "output": "templates"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./projects/vacme-web-shared/src/styles/styleguide-be/img",
+                  "output": "img"
+                }
+              ],
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "9mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "vacme-web:build",
+            "port": 4222
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "vacme-web:build:production"
+            },
+            "be": {
+              "browserTarget": "vacme-web:build:be"
+            },
+            "zh": {
+              "browserTarget": "vacme-web:build:zh"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "vacme-web:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vacme-web/src/test.ts",
+            "polyfills": "projects/vacme-web/src/polyfills.ts",
+            "tsConfig": "projects/vacme-web/tsconfig.spec.json",
+            "karmaConfig": "projects/vacme-web/karma.conf.js",
+            "assets": [
+              "projects/vacme-web/src/favicon.ico",
+              "projects/vacme-web/src/assets"
+            ],
+            "styles": [
+              "projects/vacme-web/src/styles.scss"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/vacme-web/e2e/protractor.conf.js",
+            "devServerTarget": "vacme-web:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "vacme-web:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/vacme-web/**/*.ts",
+              "projects/vacme-web/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "vacme-web-generated": {
+      "projectType": "library",
+      "root": "projects/vacme-web-generated",
+      "sourceRoot": "projects/vacme-web-generated/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/vacme-web-generated/tsconfig.lib.json",
+            "project": "projects/vacme-web-generated/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/vacme-web-generated/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vacme-web-generated/src/test.ts",
+            "tsConfig": "projects/vacme-web-generated/tsconfig.spec.json",
+            "karmaConfig": "projects/vacme-web-generated/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/vacme-web-generated/**/*.ts",
+              "projects/vacme-web-generated/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
+  },
+  "schematics": {
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
+    }
+  }
+}

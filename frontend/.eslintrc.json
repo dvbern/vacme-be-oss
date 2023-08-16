@@ -1,0 +1,134 @@
+{
+    "root": true,
+    "ignorePatterns": [
+        "projects/**/*"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "*.ts"
+            ],
+            "parserOptions": {
+                "project": [
+                    "tsconfig.json",
+                    "e2e/tsconfig.json"
+                ],
+                "createDefaultProgram": true
+            },
+            "extends": [
+                "plugin:@angular-eslint/recommended",
+                "plugin:@angular-eslint/template/process-inline-templates",
+                "plugin:@typescript-eslint/recommended",
+                "plugin:@typescript-eslint/recommended-requiring-type-checking"
+            ],
+            "plugins": [
+                "eslint-plugin-rxjs"
+            ],
+            "rules": {
+                "no-unused-vars": "off",
+                "@typescript-eslint/no-unused-vars": [
+                    "error",
+                    {
+                        "argsIgnorePattern": "^(_)|([Ii]gnore)",
+                        "varsIgnorePattern": "^(_)|(LOG)"
+                    }
+                ],
+                "@typescript-eslint/no-floating-promises": [
+                    "error",
+                    {
+                        "ignoreVoid": true,
+                        "ignoreIIFE": true
+                    }
+                ],
+                "@typescript-eslint/restrict-plus-operands": "off",
+                // diese Rule ist kaputt
+                "@typescript-eslint/no-unsafe-member-access": "off",
+                // diese Rule ist kaputt
+                "@typescript-eslint/no-unsafe-argument": "off",
+                // diese Rule ist kaputt,
+                "@typescript-eslint/no-unsafe-assignment": "off",
+                // diese Rule ist kaputt,
+                "@typescript-eslint/no-unsafe-call": "off",
+                // diese Rule ist kaputt,
+                "@typescript-eslint/no-unsafe-return": "off",
+                // wenn sich schon jemand die Muehe macht, einen Typ hinzuschreiben, dann behalten wir den auch :)
+                "@typescript-eslint/no-inferrable-types": "off",
+                "@typescript-eslint/unbound-method": [
+                    "error",
+                    {
+                        "ignoreStatic": true
+                    }
+                ],
+                "@typescript-eslint/explicit-function-return-type": [
+                    "error",
+                    {
+                        // functions duerfen
+                        "allowExpressions": true,
+                        // lambdas duerfen
+                        "allowConciseArrowFunctionExpressionsStartingWithVoid": true
+                    }
+                ],
+                "@typescript-eslint/ban-ts-comment": "warn",
+                "rxjs/no-exposed-subjects": "error",
+                "rxjs/no-ignored-subscribe": "error",
+                "rxjs/no-subject-value": "warn",
+                "rxjs/no-unsafe-catch": "error",
+                "rxjs/no-unsafe-first": "error",
+                "rxjs/no-ignored-observable": "off",
+                // disabled because this is really common: this.store.dispatch()
+                "rxjs/no-implicit-any-catch": "off",
+                "@typescript-eslint/member-ordering": [
+                    "error",
+                    {
+                        "default": [
+                            "static-field",
+                            "instance-field",
+                            "static-method",
+                            "instance-method"
+                        ]
+                    }
+                ],
+                "@typescript-eslint/naming-convention": [
+                    "error",
+                    {
+                        "selector": "enumMember",
+                        "format": [
+                            "UPPER_CASE"
+                        ]
+                    }
+                ],
+                "no-underscore-dangle": "off",
+                "arrow-body-style": "off",
+                "max-len": [
+                    "error",
+                    {
+                        "ignoreStrings": true,
+                        "ignoreUrls": true,
+                        "ignoreTemplateLiterals": true,
+                        "ignoreRegExpLiterals": true,
+                        "code": 140
+                    }
+                ],
+                "prefer-arrow/prefer-arrow-functions": "off",
+                "rxjs/no-create": "error",
+                "rxjs/no-internal": "error",
+                "rxjs/no-subject-unsubscribe": "error",
+                "rxjs/no-unsafe-takeuntil": "error",
+                "rxjs/finnish": "error",
+                "rxjs/no-ignored-error": "error",
+                "rxjs/no-unsafe-switchmap": "error",
+                "rxjs/throw-error": "error",
+                "jsdoc/newline-after-description": "off"
+            }
+        },
+        {
+            "files": [
+                "*.html"
+            ],
+            "extends": [
+                "plugin:@angular-eslint/template/recommended"
+            ],
+            "rules": {}
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "extends": "../../../tsconfig.json",
+    "compilerOptions": {
+        "sourceMap": false,
+        "outDir": "../../../dist/out-tsc",
+        "allowJs": true,
+        "types": [
+            "cypress",
+            "node"
+        ],
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "target": "ES5",
+        "lib": [
+            "ES5",
+            "DOM"
+        ]
+    },
+    "include": [
+        "**/*.ts",
+        "**/*.js",
+    ]
+}

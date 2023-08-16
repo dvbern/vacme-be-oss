@@ -1,0 +1,119 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='detailpage'>
+    <div class='main-column' style='margin-top: 20px'>
+        <div style="min-height: 80px; margin-bottom: 20px">
+            <lib-application-message-window
+                *ngFor="let appMessage of appMessages"
+                (closeEvent)="closeAppMessage(appMessage)"
+                [isOpen]="isOpen(appMessage)"
+                (openEvent)="openMessage(appMessage)"
+                [applicationMessage]="appMessage"></lib-application-message-window>
+        </div>
+        <ng-container *ngIf="showSuche()">
+            <app-person-suchen [focusOnShow]="true"></app-person-suchen>
+
+            <app-person-suchen-kvk-nummer></app-person-suchen-kvk-nummer>
+            <div>
+                <a routerLink="/odi-registrierung-suchen" translate>
+                    FACH-APP.START-PAGE.SUCHE_MIT_PERSONALIEN
+                </a>
+            </div>
+            <div *ngIf="showSucheUVCI()">
+                <a routerLink="/odi-registrierung-uvci-suchen" translate>
+                    FACH-APP.START-PAGE.SUCHE_MIT_PERSONALIEN_UVCI
+                </a>
+            </div>
+        </ng-container>
+
+        <app-odi-tagesstatistiken [ortderimpfungenListe]="ortderimpfungenListe"
+                                  *ngIf="isOiLogistikReporter() && ortderimpfungenListe.length > 0"></app-odi-tagesstatistiken>
+    </div>
+    <div class='context-column'>
+        <div class='row step-1-text' *ngIf="isOiKontrolle()" style="display: block;" translate>
+            <p translate>FACH-APP.START-PAGE.REGESTRIEREN</p>
+            <a href="#"
+               data-testid="startpage-adhoc-COVID"
+               class="sidebar-action"
+               *ngIf="showAdHocCovidButton"
+               routerLink="/person/new/kontrolle/COVID"
+               translate>FACH-APP.START-PAGE.REGESTRIEREN-TEXT</a>
+            <span *ngFor="let nonCovidKrankheit of krankheitenNonCovidForUser">
+				<a href="#" class="sidebar-action"
+                   routerLink="/person/new/kontrolle/booster/{{nonCovidKrankheit}}"
+                   translate>FACH-APP.START-PAGE.REGISTRIEREN-TEXT-{{nonCovidKrankheit}}</a>
+			</span>
+        </div>
+
+        <div *ngIf="hasAvailableTools()" class='row step-1-text' style="display:block;">
+            <p translate>FACH-APP.START-PAGE.TOOLS</p>
+            <a *ngIf="hasDatenkorrektur()"
+               class="sidebar-action"
+               routerLink="/admin/datenkorrektur"
+               translate>FACH-ADMIN.DATEN_KORREKTUR.TITLE</a>
+            <a *ngIf="isAsRegistrationOiBenutzer()" class="sidebar-action" routerLink="/sysadmin/system" translate>SYSTEM_ADMINISTRATION.TITLE</a>
+            <a *ngIf="isOiLogistikReporter()"
+               class="sidebar-action"
+               routerLink="/reports"
+               translate>REPORTS.TITLE</a>
+            <a *ngIf="isAsRegistrationOiBenutzer()"
+               class="sidebar-action"
+               routerLink="/appmessage"
+               translate>APPMESSAGE.ADMINISTRATION.TITLE</a>
+            <app-zertifikat-token *ngIf="isAsZertifikatKTBenutzer()"
+                                  class="sidebar-action">
+            </app-zertifikat-token>
+        </div>
+
+        <div class="row margin-top-30" style="display: flex; flex-direction: row; justify-content: space-evenly;"
+             *ngIf="isAsRegistrationOiBenutzer()">
+            <h4 class='i5' style="flex: 1; white-space: nowrap" translate>FACH-APP.START-PAGE.ODI.NEU</h4>
+            <img src="img/Plus%20Icon.svg" (click)="neuesOrtDerImpfung()"
+                 style="flex: 2;margin-left: 32px;height:38px;width:auto;vertical-align:middle;margin-bottom: 1px;">
+        </div>
+
+        <!-- Typahead to filter ODIs -->
+        <div class="row" style="margin-top: 10px;"
+             *ngIf="ortderimpfungenListe.length >= PAGE_SIZE">
+            <lib-input-typeahead
+                labelProperty="name"
+                labelKey="OVERVIEW.IMPFORT_LABEL"
+                [listOfObjects]="ortderimpfungenListe"
+                [model]="typeaheadModel"
+                (inputChanged)="onSelect($event)">
+            </lib-input-typeahead>
+        </div>
+
+        <!-- Simple pagination -->
+        <lib-simple-pager *ngIf="ortderimpfungenListe.length >= PAGE_SIZE"
+                          [pagerState]="odiFilterState"
+                          (pageEvent)="onPageButton($event)"></lib-simple-pager>
+
+        <div *ngFor="let odi of ortderimpfungenAnzeige"
+             class="odiEditButton"
+             style="">
+             <span title="{{odi.name}}">
+                {{odi.name}}
+            </span>
+            <lib-button buttonKind="primary" class="button-no-margin" [disabled]="disableOdiEditButton()"
+                        (clickIfEnabled)="ortderImpfungBearbeiten(odi.id)" [noMargin]="true"
+                        translationKey="FACH-APP.START-PAGE.ODI.BEARBEITEN"></lib-button>
+        </div>
+
+    </div>
+</div>

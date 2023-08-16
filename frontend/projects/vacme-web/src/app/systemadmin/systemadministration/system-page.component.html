@@ -1,0 +1,140 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<div class='full-wdith'>
+    <h4 class='i5' translate>SYSTEM_ADMINISTRATION.TITLE</h4>
+
+    <form [formGroup]="formGroup">
+
+        <p (show)="isUserInroleAsRegistrationOi()">
+            <lib-button buttonKind="button" class="margin-top-30" (clickIfEnabled)="callVMDLUploadBatchJob()">
+                VMDL-Upload
+            </lib-button>
+        </p>
+
+        <!-- cBoosterImmunisiertStatusImpfschutzService Batchjob ausfuehren -->
+        <p (show)="isUserInroleAsRegistrationOi()">
+            <lib-button buttonKind="button"
+                        class="margin-top-30"
+                        (clickIfEnabled)="callBoosterImmunisiertStatusImpfschutzService()">
+                Call Booster-Status-Service Immunisiert inkl. Impfschutzberechnung
+            </lib-button>
+        </p>
+
+        <!-- BoosterFreigabeStatusService Batchjob ausfuehren -->
+        <p (show)="isUserInroleAsRegistrationOi()">
+            <lib-button buttonKind="button" class="margin-top-30" (clickIfEnabled)="callBoosterFreigabeStatusService()">
+                Call Booster-Status-Service BoosterFreigabe
+            </lib-button>
+        </p>
+
+
+        <div style="display: flex; align-items: center">
+            <!-- BoosterRecalculationService Batchjob ausfuehren -->
+            <lib-input-select
+                formControlName="krankheit"
+                key="Krankheit"
+                [options]="krankheitOptions"
+                undefinedLabelKey="SELECTBOX.BITTE_WAEHLEN"
+                [noTranslate]="true"
+                class="margin-right-15"
+            >
+            </lib-input-select>
+            <p (show)="isUserInroleAsRegistrationOi()">
+                <lib-button buttonKind="button"
+                            class="margin-top-30"
+                            (clickIfEnabled)="callBoosterRecalculationService()">
+                    Call Impfschutz von Dossiers neu berechnen
+                </lib-button>
+            </p>
+        </div>
+
+        <!-- HealthCheck Batchjob ausfuehren -->
+        <p (show)="isUserInroleAsRegistrationOi()">
+            <lib-button buttonKind="button" class="margin-top-30" (clickIfEnabled)="callDbValidationBatchJob()">
+                Application-Health Batchjob
+            </lib-button>
+        </p>
+
+        <!-- Children Prio Update durchfuehren -->
+        <p (show)="isUserInroleAsRegistrationOi()">
+            <lib-button buttonKind="button"
+                        class="margin-top-30"
+                        (clickIfEnabled)="callPriorityUpdateForGrowingChildren()">
+                Priority update for growing children
+            </lib-button>
+        </p>
+
+        <p (show)="isUserInroleAsRegistrationOi()">
+            <lib-button buttonKind="button" class="margin-top-30" (clickIfEnabled)="callPLZImportFromCSV()"
+                        title="Importiert die PLZs aus dem mitdeployten plz_verzeichnis_v2_nogeo.csv in die DB">
+                Import PLZs to DB
+            </lib-button>
+
+            <lib-button buttonKind="button" class="margin-top-30" (clickIfEnabled)="callPLZMedstatImportFromCSV()"
+                        title="Importiert die MedStat-Nummern aus dem mitdeployten plz_medstat.csv in die DB">
+                Import MedStats to DB
+            </lib-button>
+
+            <lib-button buttonKind="button" class="margin-top-30" (clickIfEnabled)="callGlnNummerUpdate()"
+                        title="Importiert die GLN Nummern der Fachverantwortlichen BAB aus Keycloak">
+                Import GLN of Fachverantwortliche BAB
+            </lib-button>
+        </p>
+
+        <app-impfgruppe-freigabe></app-impfgruppe-freigabe>
+
+        <hr/>
+
+        <app-job-statistik-erstimpfungen></app-job-statistik-erstimpfungen>
+
+        <div style="display: flex; align-items: center">
+            <lib-input-checkbox key="SYSTEM_ADMINISTRATION.ZERTIFIKAT_ENABLED"
+                                formControlName="zertifikatEnabled"></lib-input-checkbox>
+            <lib-button buttonKind="primary" (clickIfEnabled)="saveZertifikatEnabled()"
+                        translationKey="SYSTEM_ADMINISTRATION.ZERTIFIKAT_ENABLED_SPEICHERN"></lib-button>
+        </div>
+
+        <!-- PDF Archivierung Batchjob ausfuehren -->
+        <p *ngIf="isUserInroleAsRegistrationOi()">
+            <lib-button buttonKind="button" class="margin-top-30" (clickIfEnabled)="callPdfArchivierung()">
+                Call Archivierung
+            </lib-button>
+        </p>
+
+        <!-- Unused User Archivierung fuer Odi User ausfuehren -->
+        <p *ngIf="isUserInroleAsRegistrationOi()">
+            <lib-button buttonKind="button" class="margin-top-30" (clickIfEnabled)="callDeactivateUnusedUsers()">
+                Trigger deactivate Unused Users run
+            </lib-button>
+        </p>
+
+        <!-- Editieren von Impfstoffen -->
+        <p *ngIf="isUserInroleAsRegistrationOi()">
+            <lib-button buttonKind="button" class="margin-top-30" routerLink="../impfstoff">
+                Impfstoffe editieren
+            </lib-button>
+        </p>
+
+        <!-- Recalculate OdiLatLng for all odis -->
+        <p *ngIf="isUserInroleAsRegistrationOi()">
+            <lib-button buttonKind="button" class="margin-top-30" (clickIfEnabled)="callGeocodeOdis()">
+                Geocode all Odis
+            </lib-button>
+        </p>
+
+    </form>
+</div>

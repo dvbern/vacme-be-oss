@@ -1,0 +1,1 @@
+Update ApplicationProperty set value = '32' where name = 'DISTANCE_BETWEEN_IMPFUNGEN_TOLERANCE_AFTER';

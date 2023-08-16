@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS Umfrage;
+DROP TABLE IF EXISTS umfrage_sequence;

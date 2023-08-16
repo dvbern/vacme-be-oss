@@ -1,0 +1,49 @@
+### Step 1: Registrierung mit Username hansli schreiben
+POST http://localhost:8080/api/v1/keycloak/create/group/Insel
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+	"username": "vacme",
+	"enabled": true,
+	"firstName": "tester",
+	"lastName": "tester",
+	"email": "me@dvbern.ch",
+	"phone": "041 79 123 45 67",
+	"password": "vacme",
+	"glnNummer": "007"
+
+}
+
+### Step 2: join to group (maybe not needed)
+PUT http://localhost:8080/api/v1/keycloak/joingroup/id/76bddd7a-04ec-43ed-897f-6017e74de7d8/group/Insel
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+### Step 3: Get group members
+GET http://localhost:8080/api/v1/keycloak/group/Insel
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+### Step 4: leave to group
+PUT http://localhost:8080/api/v1/keycloak/leavegroup/id/76bddd7a-04ec-43ed-897f-6017e74de7d8/group/Insel
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+### Step 5: join to role
+PUT http://localhost:8080/api/v1/keycloak/joinrole/id/76bddd7a-04ec-43ed-897f-6017e74de7d8/role/Oberarzt
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+### Step 6: leave to role
+PUT http://localhost:8080/api/v1/keycloak/leaverole/id/76bddd7a-04ec-43ed-897f-6017e74de7d8/role/Oberarzt
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+

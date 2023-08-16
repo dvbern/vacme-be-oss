@@ -1,0 +1,38 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+@import "projects/vacme-web-shared/src/styles/vacme-variables";
+
+.impfausweis-title {
+    font-weight: bold;
+    text-align: center;
+}
+
+.impfausweis-button {
+    display: flex;
+    justify-content: center;
+}
+
+.impfausweis-no-token {
+    line-height: 30px;
+    font-size: 14px;
+    margin: 0;
+    font-family: "Roboto", "arial", sans-serif;;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.sidebar-action {
+    display: block;
+    text-decoration: none;
+    margin-bottom: 16px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.current-zertifikat-box {
+    text-align: center;
+}

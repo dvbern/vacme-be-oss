@@ -1,0 +1,72 @@
+/*!
+ * Copyright (C) 2022 DV Bern AG, Switzerland
+ *
+ */
+
+
+.syringe {
+
+    &-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &-first {
+        width: 90%;
+    }
+
+    &-second {
+        width: 10%;
+        min-width: 80px;
+        max-width: 100px
+    }
+
+    &-box {
+        width: 59px;
+        height: 59px;
+        margin: 20px 0 20px auto;
+        border: 1px solid black;
+    }
+
+    &-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    &-center {
+        margin: 0;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+}
+:host {
+    .information {
+        &-box {
+            width: 59px;
+            height: 59px;
+            margin: 20px 0 20px auto;
+            border: 1px solid black;
+        }
+
+        &-img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+    }
+
+    .row-attributen ::ng-deep {
+        .fieldlabel {
+            display: inline-block;
+            width: 40%;
+        }
+    }
+
+    .red-color{
+        color: red;
+    }
+}
+

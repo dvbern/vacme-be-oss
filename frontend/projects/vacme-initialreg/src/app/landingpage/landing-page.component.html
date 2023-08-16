@@ -1,0 +1,122 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='full-wdith'>
+    <div class="three-cols">
+        <div class="centered-content">
+
+            <!-- Ueberschrift -->
+            <div class="row">
+                <h4 class='i5' translate>LANDINGPAGE.TITLE</h4>
+            </div>
+        </div>
+    </div>
+    <div class="three-cols">
+        <div class="centered-content">
+            <div class="flex-infobox">
+                <!-- Genereal Infomessage Angebot -->
+                <div class="row mb-2" *ngIf="showAngeboteneImpfungen()">
+                    <div class='info-box margin-bottom-15 margin-top-30'>
+                        <p [innerHTML]="'LANDINGPAGE.ANGEBOT' | translate">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Genereal Infomessage Intro -->
+            <div class="row mb-2" *ngIf="showGeneralInfomessage()">
+                <div class='info-box margin-bottom-15 margin-top-30'>
+                    <p [innerHTML]="generalInfoMessage">
+                    </p>
+                </div>
+            </div>
+
+
+            <!-- Onboarding Intro -->
+            <div class="row mb-2" *ngIf="showOnboardingWelcomeText()">
+                <div class='info-box margin-bottom-15 margin-top-30'>
+                    <p>
+                        {{'LANDINGPAGE.ONBOARDING_WELCOME' | translate}}
+                    </p>
+                    <p style="margin-bottom: 0;">
+                        <a routerLink="/onboarding" translate>LANDINGPAGE.ONBOARDING_WELCOME_BUTTON</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Login / neu registrieren -->
+            <ng-container *ngIf="!isAlreadyLoggedIn()">
+                <div class="row margin-bottom-30 margin-top-30">
+                    <p class="limited-text-size" translate>LANDINGPAGE.LOGIN_TEXT</p>
+                    <lib-button data-testid="landingPageButtonLogin"
+                                buttonKind="go-next"
+                                (clickIfEnabled)="triggerKeycloakLogin()"
+                                translationKey="LANDINGPAGE.LOGIN_BUTTON"></lib-button>
+                </div>
+                <div class="row margin-top-30">
+                    <div class="separator" translate>LANDINGPAGE.ODER</div>
+                </div>
+            </ng-container>
+            <div class="row margin-top-30">
+                <ng-container *ngIf="!isAlreadyLoggedIn(); else buttonWeiter">
+                    <p class="limited-text-size" translate>LANDINGPAGE.REGISTER_TEXT</p>
+                    <lib-button data-testid="landingPageButtonRegister"
+                                class="test"
+                                buttonKind="secondary"
+                                (clickIfEnabled)="goToRegistration()"
+                                translationKey="LANDINGPAGE.REGISTER_BUTTON"></lib-button>
+                </ng-container>
+                <!-- wenn man nach login in keycloak direkt die page oeffnet wird nur ein weiterbutton angezeigt -->
+                <ng-template #buttonWeiter>
+                    <lib-button class="test" buttonKind="secondary" (clickIfEnabled)="goToPostRegistration()"
+                                translationKey="LANDINGPAGE.REGISTER_BUTTON_CONTINUE"></lib-button>
+                </ng-template>
+            </div>
+
+        </div>
+
+        <!-- FSME: Bild neben Infobox -->
+        <div class="side-right">
+            <div class="image-box" *ngIf="showFSMESidebar()">
+                <img class='image-box-image margin-top-30' src="/assets/img/landingpage/landingpage.png"
+                     alt="Frau läuft einem Waldweg entlang">
+
+                <div class="text-box">
+                    <div class="text">
+                        <h5>
+                            <span class="text-link" [innerHTML]="'LANDINGPAGE.FSME_TEXT' | translate"></span>
+                            <a class="info-icon white grow-on-hover"
+                               (click)="fsmeInfoExpanded = !fsmeInfoExpanded">i</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+
+            <div *ngIf="fsmeInfoExpanded" style="margin-bottom: 2em;    max-width: 420px;">
+                <div class="step-1-text margin-top-30 margin-bottom-30"
+                     style="display: flex; justify-content: space-between;">
+                    <div>
+                        <p style="margin-top: 0;" translate>KRANKHEITEN.FSME.DESCRIPTION1</p>
+                        <p style="margin-bottom: 0; margin-top: 0;" translate>KRANKHEITEN.FSME.DESCRIPTION2</p>
+                    </div>
+                    <div class="close-icon" style="flex-shrink: 0;" (click)="fsmeInfoExpanded = false"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
